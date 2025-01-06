@@ -652,6 +652,9 @@ div.widget h3 {
     }
 }
 
+.adsbygoogle iframe {
+    user-select: none;
+}
 
 body::before {
     background-image: url("https://cdn.croomssched.tech/data/7291ef48-5f58-4f73-a79d-23f146afd471/ChristmasTall.png");
