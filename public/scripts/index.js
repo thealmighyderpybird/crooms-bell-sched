@@ -74,20 +74,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let visitCounter = parseInt(localStorage.getItem("visitCounter"));
     if (isNaN(visitCounter)) {
-        welcome("index.html");
+        //welcome("index.html");
         localStorage.setItem("visitCounter", (1).toString());
     } else {
         visitCounter++;
         localStorage.setItem("visitCounter", visitCounter.toString());
-    }
-
-    let hurricaneCounter = parseInt(localStorage.getItem("hurricaneCounter"));
-    if (isNaN(hurricaneCounter) && new Date().getDate() === 8) {
-        welcome("hurricane.html");
-        localStorage.setItem("hurricaneCounter", (1).toString());
-    } else if (hurricaneCounter === 1 && new Date().getDate() === 8) {
-        welcome("hurricane.html");
-        localStorage.setItem("hurricaneCounter", (2).toString());
     }
 
     createCBSHSched(document.getElementById("sched"));
