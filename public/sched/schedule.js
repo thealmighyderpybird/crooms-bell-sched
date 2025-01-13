@@ -28,10 +28,11 @@ let titleUpdateLoop;
 
 function createCBSHSched(element) {
     const application = document.createElement("div");
-    application.id = "cbsh-application";
     element.appendChild(application);
+    application.id = "cbsh-application";
 
-    fetch("https://api.croomssched.tech/today").then((res) => {
+    //fetch("https://api.croomssched.tech/today").then((res) => {
+    fetch("/today.json").then((res) => {
         return res.text();
     }).then((res) => {
         return JSON.parse(res).data;
@@ -48,35 +49,22 @@ function createCBSHSched(element) {
             });
         }
     }).finally(() => {
-        fixMissingSettings();
+        fixMissingSettings(application);
     });
 }
 
-function fixMissingSettings() {
+function fixMissingSettings(application) {
     fetch("https://croomssched.tech/sched/defaultSettings.json").then((res) => {
-        return res.text();
-    }).then((res) => {
-        return JSON.parse(res);
-    }).then((Settings) => {
-        let SavedSettings = JSON.parse(window.localStorage.getItem("settings"));
-        if (SavedSettings) {
-            for (const obj in Settings) {
-                if (SavedSettings[obj] === undefined) {
-                    console.log(obj, " is missing!");
-
-                    if (obj === "theme" && window.matchMedia("screen and (prefers-color-scheme: dark)")) {
-                        SavedSettings[obj] = "dark";
-                    } else {
-                        SavedSettings[obj] = Settings[obj];
-                    }
-                }
-            }
-            SavedSettings.font.values = Settings.font.values;
+        return res.json();
+    }).then((DefaultSettings) => {
+        let UserSettings = JSON.parse(window.localStorage.getItem("settings"));
+        if (UserSettings) {
+            Settings = Object.assign(DefaultSettings, UserSettings);
         } else {
-            SavedSettings = Settings;
+            Settings = DefaultSettings;
         }
-        window.localStorage.setItem("settings", JSON.stringify(SavedSettings));
-        loadSettings();
+        window.localStorage.setItem("settings", JSON.stringify(Settings));
+        startSched(application);
     }).catch((e) => {
         console.error(e);
     });
@@ -90,26 +78,9 @@ const inIframe = () => {
     }
 }
 
-function loadSettings() {
-    if (window.localStorage.getItem("settings") === null) {
-        xhr = new XMLHttpRequest();
-        xhr.open("GET", "https://croomssched.tech/schedule/defaultSettings.json");
-        xhr.responseType = "json";
-        xhr.send();
-        xhr.onload = function () {
-            Settings = xhr.response;
-            window.localStorage.setItem("settings", JSON.stringify(Settings));
-        }
-        startSched();
-    } else {
-        Settings = JSON.parse(window.localStorage.getItem("settings"));
-        startSched();
-    }
-}
-
 let current_lunch = 1;
 
-function startSched(element) {
+function startSched(application) {
     let inAnIframe = inIframe();
 
     try {
@@ -134,15 +105,15 @@ function startSched(element) {
         isALunch = false;
         isBLunch = true;
         current_lunch = 2;
+        CBSHSched.currentLunch = "B Lunch";
     } else {
         isALunch = true;
         isBLunch = false;
         current_lunch = 1;
+        CBSHSched.currentLunch = "A Lunch";
     }
 
     let eventNumber = 1;
-
-    const application = document.getElementById("cbsh-application");
 
     const statusDiv = document.createElement("div");
     application.appendChild(statusDiv);
