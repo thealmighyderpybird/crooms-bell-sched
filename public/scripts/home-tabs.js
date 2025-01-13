@@ -3,7 +3,7 @@ const switchTab = (tabContainer, tab) => {
         tabContainer.children.item(i).classList.remove("active");
     }
 
-    tabContainer.parentElement.querySelector(".container .active").classList.remove("active");
+    tabContainer.parentElement.querySelector(".container .content.active").classList.remove("active");
 
     tab.classList.add("active");
     tabContainer.parentElement.querySelector(".container #" + tab.dataset.launch).classList.add("active");
@@ -18,3 +18,4 @@ const setTabListener = (tabContainer) => {
 }
 
 setTabListener(document.querySelector("#quickbits-and-feed > div.tabs"));
+setTabListener(document.querySelector("#schedule > div.tabs"));

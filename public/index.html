@@ -77,14 +77,24 @@
         <i><q id="senseless"></q></i>
     </div>
     <div id="widget-board" class="active">
-        <div id="schedule" class="widget">
-            <!-- Temporary Ad Location -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-7615151731467786"
-                 data-ad-slot="8739090285"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
+        <div id="schedule" class="widget tabbed">
+            <div class="tabs">
+                <div data-launch="schedule-widget" class="active">Schedule</div>
+                <div data-launch="eason-tracker">Eason Tracker</div>
+                <div data-launch="messenger">Messenger</div>
+            </div>
+            <div class="widget container with-tabs">
+                <div class="content active" id="schedule-widget">
+                    <h3 style="margin-bottom: 0.5rem;">Schedule</h3>
+                    <div></div>
+                </div>
+                <div class="content" id="eason-tracker">
+                    <iframe src="https://easontracker.croomssched.tech/"></iframe>
+                </div>
+                <div class="content" id="messenger">
+
+                </div>
+            </div>
         </div>
         <div id="lunch" class="widget">
             <div id="lunchContainer">
@@ -144,35 +154,35 @@
                     <div id="pd0">
                         <h4 id="0-name"></h4>
                         <img src="/spinner-86.svg" id="0-icon" draggable="false" alt="Period 0 forecast image">
-                        <h6><span id="0-temp"></span>°F | <span id="0-windd"></span> at <span id="0-winds"></span>
+                        <h6><span id="0-temp"></span>°F | <span id="0-wind-dir"></span> at <span id="0-winds"></span>
                         </h6>
                         <p id="0-desc"></p>
                     </div>
                     <div id="pd1">
                         <h4 id="1-name"></h4>
                         <img src="/spinner-86.svg" id="1-icon" draggable="false" alt="Period 1 forecast image">
-                        <h6><span id="1-temp"></span>°F | <span id="1-windd"></span> at <span id="1-winds"></span>
+                        <h6><span id="1-temp"></span>°F | <span id="1-wind-dir"></span> at <span id="1-winds"></span>
                         </h6>
                         <p id="1-desc"></p>
                     </div>
                     <div id="pd2">
                         <h4 id="2-name"></h4>
                         <img src="/spinner-86.svg" id="2-icon" draggable="false" alt="Period 2 forecast image">
-                        <h6><span id="2-temp"></span>°F | <span id="2-windd"></span> at <span id="2-winds"></span>
+                        <h6><span id="2-temp"></span>°F | <span id="2-wind-dir"></span> at <span id="2-winds"></span>
                         </h6>
                         <p id="2-desc"></p>
                     </div>
                     <div id="pd3">
                         <h4 id="3-name"></h4>
                         <img src="/spinner-86.svg" id="3-icon" draggable="false" alt="Period 3 forecast image">
-                        <h6><span id="3-temp"></span>°F | <span id="3-windd"></span> at <span id="3-winds"></span>
+                        <h6><span id="3-temp"></span>°F | <span id="3-wind-dir"></span> at <span id="3-winds"></span>
                         </h6>
                         <p id="3-desc"></p>
                     </div>
                     <div id="pd4">
                         <h4 id="4-name"></h4>
                         <img src="/spinner-86.svg" id="4-icon" draggable="false" alt="Period 4 forecast image">
-                        <h6><span id="4-temp"></span>°F | <span id="4-windd"></span> at <span id="4-winds"></span>
+                        <h6><span id="4-temp"></span>°F | <span id="4-wind-dir"></span> at <span id="4-winds"></span>
                         </h6>
                         <p id="4-desc"></p>
                     </div>
@@ -205,7 +215,7 @@
                 </div>
                 <div class="content" id="surveys">
                     <h3 class="no-bottom">Surveys</h3>
-                    <p>
+                    <p class="no-bottom">
                         Here's a list of available surveys. Surveys will be removed after being up for one week.
                         <a class="links" onclick="loadTool('survey', 'https://api.croomssched.tech/survey', false)">
                             Add a survey.
@@ -271,8 +281,8 @@
             <span id="date-time"><span class="icon">schedule</span></span>
             <span id="current-period"><span class="icon"></span></span>
         </span>
-        <div class="popout" style="width: 350px; right: 0;">
-            <div id="sched"></div>
+        <div class="popout" style="width: 350px; right: 0; padding: 0;">
+            <iframe id="sched" src="/sched?inApp=true"></iframe>
         </div>
     </div>
 </footer>
@@ -376,6 +386,5 @@
 <script>
     (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
-<!-- <script>createScheduleTable(document.querySelector("#schedule > div"))</script> -->
 </body>
 </html>

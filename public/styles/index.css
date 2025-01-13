@@ -27,8 +27,8 @@ body > main {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    grid-template-areas: "lunch lunch weather"
-                         "extras feed feed";
+    grid-template-areas: "extras lunch lunch"
+                         "feed feed weather";
     user-select: none;
 }
 
@@ -329,9 +329,14 @@ div.widget h3 {
 #random {
     background: var(--pri);
     user-select: none;
-    margin: 18px 18px 0;
+    margin: 18px;
     border-radius: 10px;
     padding: 15px;
+}
+
+#schedule-widget > div {
+    max-width: 600px;
+    width: 100%;
 }
 
 #teacherquote {
@@ -366,6 +371,14 @@ div.widget h3 {
 
 #others > div > .tool-warning > p:last-child {
     margin-top: revert;
+}
+
+#sched {
+    height: 77px;
+}
+
+#eason-tracker, #eason-tracker > iframe {
+    height: 100%;
 }
 
 .dialog.welcome {
@@ -429,8 +442,12 @@ div.widget h3 {
     }
 
     #DailyLunchImageContainer {
-        display: none;
         justify-content: center;
+        display: flex;
+    }
+
+    #DailyLunchImage {
+        float: none;
     }
 
     #feed > div {
