@@ -1,4 +1,5 @@
-@import url("/styles/themes.css");
+@import url("/styles/themes/all.css");
+@import url("/styles/colors.css");
 @import url("/styles/cursor.css");
 @import url("/styles/icons.css");
 @import url("/styles/fonts.css");
@@ -205,6 +206,10 @@
 body {
     height: 100vh;
     margin: 0;
+}
+
+body::before, body::after {
+    content: revert !important;
 }
 
 header, main, section, article, aside, footer {

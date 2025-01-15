@@ -166,13 +166,15 @@ function objectLength(obj) {
 
 document.addEventListener("DOMContentLoaded", () => {
     const currentTheme = JSON.parse(localStorage.getItem("settings")).theme ? JSON.parse(localStorage.getItem("settings")).theme : null;
+    const accentColor = JSON.parse(localStorage.getItem("settings")).accentColor ? JSON.parse(localStorage.getItem("settings")).accentColor : null;
 
     if (currentTheme) {
         document.documentElement.classList.add(currentTheme);
     }
 
-    const accentColor = JSON.parse(localStorage.getItem("settings")).accentColor ? JSON.parse(localStorage.getItem("settings")).accentColor : null;
-    document.documentElement.style.setProperty("--accent-color", "var(--" + accentColor + ")");
+    if (currentTheme) {
+        document.body.classList.add(accentColor);
+    }
 }, false);
 
 const currentFont = JSON.parse(localStorage.getItem("settings")).font.value ? JSON.parse(localStorage.getItem("settings")).font.value : null;
