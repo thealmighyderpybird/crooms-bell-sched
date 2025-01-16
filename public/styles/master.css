@@ -265,15 +265,15 @@ body > header {
     width: 100%;
 }
 
+nav > div {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
 nav {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
-}
-
-nav > div {
-    display: flex;
-    flex-flow: row nowrap;
 }
 
 nav > div > div {
@@ -308,6 +308,8 @@ nav > div > div > div.submenu {
     transform: translateX(-15px);
     background: var(--pri);
     box-shadow: black 0 10px 10px;
+    max-height: calc(100vh - 90px);
+    overflow-y: auto;
     z-index: 10;
 
     div {
