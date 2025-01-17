@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Feed Update</title>
+    <style>
+        @import url("/src/styles/master.css");
+        
+        #loader {
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; user-select: none;
+        }
+
+        :root, body {
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        #feed-form {
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.5rem 1rem;
+            user-select: none;
+            margin: auto;
+            max-width: 400px;
+        }
+
+        #feed-form > main {
+            margin-bottom: 1rem;
+        }
+
+        #feed-form > main > div > label {
+            margin-bottom: 0.3rem;
+            display: block;
+        }
+
+        #feed-form > main > div > input {
+            font-size: inherit;
+            text-align: left;
+            width: 100%;
+        }
+
+        #feed-form > footer {
+            text-align: center;
+        }
+
+        .error {
+            font-size: 10.5pt;
+            margin-bottom: 1rem;
+            color: var(--warn);
+        }
+
+        .footnote {
+            margin-bottom: 1rem;
+            font-size: 0.75rem;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+<img src="/spinner.svg" alt="Loading..." draggable="false" id="loader">
+<div id="feed-form" style="display: none;">
+    <header>
+        <h1>Feed</h1>
+        <p>By submitting a Feed Update, you agree to not club baby seals.</p>
+    </header>
+    <main>
+        <div>
+            <label for="feed-update" class="hidden">Feed Update</label>
+            <input id="feed-update" placeholder="Feed Update" autocomplete="off">
+        </div>
+        <div style="padding: 0.2rem 0 0.4rem;">
+            <label for="feed-link" class="hidden">Feed Link</label>
+            <input id="feed-link" placeholder="Link (optional)" autocomplete="off">
+        </div>
+        <p class="footnote">
+            To add text styling, use [em][/em] for <em>italics</em>, [b][/b] for <b>bold</b>, and [rainbow][/rainbow]
+            for <span class="rainbow">rainbow</span>.
+        </p>
+    </main>
+    <footer>
+        <button>Submit Feed Update</button>
+    </footer>
+</div>
+<script src="/scripts/commons.js"></script>
+<script src="/tools/feed-updates/submission.js"></script>
+<script>
+    document.body.onload = () => {
+        document.getElementById("loader").remove();
+        document.getElementById("feed-form").removeAttribute("style");
+    }
+</script>
+</body>
+</html>

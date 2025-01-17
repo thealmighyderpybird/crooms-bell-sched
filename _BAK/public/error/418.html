@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/favicon.ico">
+    <title>Crooms Bell Schedule</title>
+    <link rel="stylesheet" type="text/css" href="/src/styles/master.css">
+    <style>
+        body {
+            user-select: none;
+        }
+
+        div#content {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        div#content img {
+            padding: 10px;
+            border-radius: 10px;
+            background-color: #dddddd;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            div#content img {
+                background-color: #222222;
+            }
+        }
+    </style>
+</head>
+<body>
+<div id="content">
+    <img src="//cdn.glitch.global/f5277dbc-e2bd-47cf-a2a4-4962cf44a8be/Derpy%20Bird1.png"
+         style="width: 200px; height: 200px;" draggable="false" alt="Derpy Bird">
+    <h1 style="margin-bottom: 0;">It looks like you're a Derpy Bird!</h1>
+    <h3>Would you like your head to be bashed with a rock?</h3>
+    <a class="button" href="//derpybird.glitch.me/derpyderpyderpyderp/" style="margin-top: 1rem;">Yes</a>
+    <a class="button" href="/" style="margin-top: 1rem;">No</a>
+</div>
+</body>
+<script src="/scripts/commons.js"></script>
+</html>
