@@ -67,7 +67,7 @@ document.querySelector("#feed-form > footer > button").addEventListener("click",
             "data": data
         }),
         headers: {
-            "Authorization": JSON.parse(retrieveIdentity()),
+            "Authorization": JSON.stringify(retrieveIdentity()),
             "Accept": "application/json",
             "Content-Type": "application/json"
         }
