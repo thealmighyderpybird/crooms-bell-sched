@@ -1,3 +1,9 @@
+try {
+    retrieveIdentity()
+} catch {
+    location.href = "https://admin.croomssched.tech/sso?host=croomssched.tech"
+}
+
 document.querySelector("#feed-form > footer > button").addEventListener("click", async () => {
     const feed = document.getElementById("feed-update");
     const link = document.getElementById("feed-link");
@@ -61,6 +67,7 @@ document.querySelector("#feed-form > footer > button").addEventListener("click",
             "data": data
         }),
         headers: {
+            "Authorization": JSON.parse(retrieveIdentity()),
             "Accept": "application/json",
             "Content-Type": "application/json"
         }
@@ -91,3 +98,15 @@ document.querySelector("#feed-form > footer > button").addEventListener("click",
         document.querySelector("button").addEventListener("click", () => {location.reload();})
     }
 });
+
+function retrieveIdentity() {
+    try {
+        return JSON.parse(document.cookie
+            .split("; ")
+            .find((row) => row.startsWith("credentials="))
+            ?.split("=")[1]);
+    } catch {
+        alertBalloon("We couldn't post your Feed Update",
+            "Make sure you're signed into your account and try again.", 2);
+    }
+}
