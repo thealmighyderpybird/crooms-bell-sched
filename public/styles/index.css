@@ -225,6 +225,7 @@ div.widget h3 {
     font-size: 9pt;
     opacity: 0.5;
     padding-left: 0.5rem;
+    user-select: none;
 }
 
 #feed-updates > li i {
