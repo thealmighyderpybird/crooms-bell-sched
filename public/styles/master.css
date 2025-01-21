@@ -79,6 +79,8 @@
     --link: var(--accent-color);
     background: var(--background);
     color: var(--main);
+
+    color-scheme: light !important;
 }
 
 :root.dark {
@@ -102,6 +104,8 @@
     --link: var(--accent-color);
     background: var(--background);
     color: var(--main);
+
+    color-scheme: dark !important;
 }
 
 @media screen and (prefers-reduced-motion: reduce) {

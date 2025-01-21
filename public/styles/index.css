@@ -222,9 +222,9 @@ div.widget h3 {
 }
 
 #feed-updates > li > span.username {
-    float: right;
     font-size: 9pt;
-    color: var(--qua);
+    opacity: 0.5;
+    padding-left: 0.5rem;
 }
 
 #feed-updates > li i {
