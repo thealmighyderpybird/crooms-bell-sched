@@ -221,6 +221,12 @@ div.widget h3 {
     margin: 0;
 }
 
+#feed-updates > li > span.username {
+    float: right;
+    font-size: 9pt;
+    color: var(--qua);
+}
+
 #feed-updates > li i {
     user-select: none;
 }
