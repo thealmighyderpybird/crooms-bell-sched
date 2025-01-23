@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>temp post-auth handoff</title>
+</head>
+<body>
+Please wait...
+<script>
+    const params = new URL(location.href).searchParams;
+    const token = params.get("token");
+    const sid = params.get("sid");
+    const href = params.get("href");
+
+    const d = new Date();
+    d.setTime(d.getTime() + (5*24*60*60*1000));
+    let expires = "expires="+ d.toUTCString();
+    document.cookie = "credentials=" + JSON.stringify(token) + ";expires="+ expires +";path=/;";
+
+    localStorage.setItem("SID", sid);
+
+    location.href = href;
+</script>
+</body>
+</html>

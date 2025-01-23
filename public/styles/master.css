@@ -1,4 +1,5 @@
-@import url("/styles/themes.css");
+@import url("/styles/themes/all.css");
+@import url("/styles/colors.css");
 @import url("/styles/cursor.css");
 @import url("/styles/icons.css");
 @import url("/styles/fonts.css");
@@ -78,6 +79,8 @@
     --link: var(--accent-color);
     background: var(--background);
     color: var(--main);
+
+    color-scheme: light !important;
 }
 
 :root.dark {
@@ -101,6 +104,8 @@
     --link: var(--accent-color);
     background: var(--background);
     color: var(--main);
+
+    color-scheme: dark !important;
 }
 
 @media screen and (prefers-reduced-motion: reduce) {
@@ -207,6 +212,10 @@ body {
     margin: 0;
 }
 
+body::before, body::after {
+    content: revert !important;
+}
+
 header, main, section, article, aside, footer {
     display: block;
 }
@@ -260,15 +269,15 @@ body > header {
     width: 100%;
 }
 
+nav > div {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
 nav {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
-}
-
-nav > div {
-    display: flex;
-    flex-flow: row nowrap;
 }
 
 nav > div > div {
@@ -303,6 +312,8 @@ nav > div > div > div.submenu {
     transform: translateX(-15px);
     background: var(--pri);
     box-shadow: black 0 10px 10px;
+    max-height: calc(100vh - 90px);
+    overflow-y: auto;
     z-index: 10;
 
     div {

@@ -4,8 +4,10 @@
 
 #accent-color-smart-selector > div,
 #accent-color-smart-selector > div > svg,
+#accent-color-smart-selector > div > img,
 #font-smart-selector > div,
-#font-smart-selector > div > svg {
+#font-smart-selector > div > svg,
+#font-smart-selector > div > img {
     border-radius: 15px;
 }
 

@@ -73,6 +73,12 @@
       "check": true
     },
     {
+      "id": "hodge",
+      "name": "Mr. Hodge Fight (Opens in new tab)",
+      "link": "https://scratch.mit.edu/projects/1110821875/",
+      "check": true
+    },
+    {
       "id": "self",
       "name": "Crooms Bell Schedule",
       "link": "https://croomssched.tech",

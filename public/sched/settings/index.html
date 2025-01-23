@@ -77,54 +77,56 @@
         <div style="padding: 16px 8px 8px; user-select: none;">
             <h2>Display</h2>
             <div id="color-settings-app" style="margin-top: 1em;">
-                <h3>Theme</h3>
-                <label for="themeSelector" style="font-weight: bold; display: none;">Theme</label>
+                <h3>Color Scheme</h3>
+                <label for="themeSelector" style="font-weight: bold; display: none;">Color Scheme</label>
                 <select id="themeSelector" name="themeSelector">
                     <option value="system">Match System Theme</option>
                     <option value="light">Light</option>
                     <option value="dark">Dark</option>
                 </select>
-                <h3 style="margin-top: revert;">Accent Color</h3>
+                <h3 style="margin-top: revert;">Theme</h3>
                 <div id="accent-color-smart-selector" style="padding: 5px;">
-                    <div onclick="setAccent('default-accent')" title="Default Colors">
+                    <div onclick="setTheme('default-accent');" title="Default Colors">
                         <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50">
                             <polygon points="0,0 50,0 0,50" fill="#690D24"></polygon>
                             <polygon points="50,50 50,0 0,50" fill="#FF1010"></polygon>
                         </svg>
                     </div>
-                    <div onclick="setAccent('windows')" title="Windows Blue">
+                    <div onclick="setTheme('windows');" title="Windows Blue">
                         <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50">
                             <rect height="50" width="50" fill="#0078D4"></rect>
                         </svg>
                     </div>
-                    <div onclick="setAccent('gold')" title="Sunrise Gold">
+                    <div onclick="setTheme('gold');" title="Sunrise Gold">
                         <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50">
                             <rect height="50" width="50" fill="#DAA520"></rect>
                         </svg>
                     </div>
-                    <div onclick="setAccent('nature')" title="Nature Green">
+                    <div onclick="setTheme('nature');" title="Nature Green">
                         <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50">
                             <polygon points="0,0 50,0 0,50" fill="#006400"></polygon>
                             <polygon points="50,50 50,0 0,50" fill="#008000"></polygon>
                         </svg>
                     </div>
-                    <div onclick="setAccent('halloween')" title="Halloween">
+                    <div onclick="setTheme('halloween');" title="Halloween">
                         <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50">
                             <polygon points="0,0 50,0 0,50" fill="#4B0082"></polygon>
                             <polygon points="50,50 50,0 0,50" fill="#FF8C00"></polygon>
                         </svg>
                     </div>
-                    <div onclick="setAccent('christmas')" title="Christmas">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50">
-                            <polygon points="0,0 50,0 0,50" fill="#8B0000"></polygon>
-                            <polygon points="50,50 50,0 0,50" fill="#228B22"></polygon>
-                        </svg>
-                    </div>
-                    <div onclick="setAccent('winter')" title="Winter">
+                    <div onclick="setTheme('winter');" title="Winter">
                         <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50">
                             <polygon points="0,0 50,0 0,50" fill="#1E90FF"></polygon>
                             <polygon points="50,50 50,0 0,50" fill="#87CEEB"></polygon>
                         </svg>
+                    </div>
+                    <div onclick="setTheme('christmas');" title="Christmas">
+                        <img src="https://cdn.croomssched.tech/data/7291ef48-5f58-4f73-a79d-23f146afd471/Christmas.png"
+                             width="50" height="50" alt="Christmas Theme">
+                    </div>
+                    <div onclick="setTheme('wawwf');" title="What Are We Waiting For?">
+                        <img src="https://cdn.croomssched.tech/data/7291ef48-5f58-4f73-a79d-23f146afd471/WAWWF.png"
+                             width="50" height="50" alt="What Are We Waiting For? Theme">
                     </div>
                 </div>
                 <h3 style="margin-top: revert;">Font</h3>

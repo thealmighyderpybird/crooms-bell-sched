@@ -4,9 +4,9 @@ document.getElementById("themeSelector").addEventListener("change", () => {
     localStorage.setItem("settings", JSON.stringify(Settings));
 });
 
-function setAccent(scheme) {
-    document.documentElement.style.setProperty("--accent-color", "var(--" + scheme + ")");
-    Settings.accentColor = scheme;
+function setTheme(theme) {
+    document.body.className = theme;
+    Settings.accentColor = theme;
     localStorage.setItem("settings", JSON.stringify(Settings));
 }
 
