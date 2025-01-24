@@ -666,3 +666,8 @@ div.widget h3 {
 .adsbygoogle iframe {
     user-select: none;
 }
+
+iframe#cbsh-ad {
+    user-select: none;
+    margin-top: 1rem;
+}
