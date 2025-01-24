@@ -340,14 +340,19 @@ div.widget h3 {
 #random {
     background: var(--pri);
     user-select: none;
-    margin: 18px;
     border-radius: 10px;
     padding: 15px;
+    margin: 18px 18px 0;
 }
 
 #schedule-widget > div {
-    max-width: 600px;
     width: 100%;
+}
+
+#schedule-widget > iframe {
+    margin-top: 1rem;
+    display: block;
+    height: 148px;
 }
 
 #teacherquote {
