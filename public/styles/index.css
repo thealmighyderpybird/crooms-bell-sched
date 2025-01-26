@@ -352,7 +352,7 @@ div.widget h3 {
 #schedule-widget > iframe {
     margin-top: 1rem;
     display: block;
-    height: 148px;
+    height: calc(148px + 1rem);
 }
 
 #teacherquote {
