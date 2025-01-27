@@ -1,5 +1,3 @@
-function skipTask() {}
-
 const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 const today = new Date();
 let day = weekday[today.getDay()];
@@ -81,6 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem("visitCounter", visitCounter.toString());
     }
 
-    createCBSHSched(document.getElementById("sched"));
+    createCBSHSched(document.querySelector("#schedule-widget > div"));
     createRotatingInfo();
 });

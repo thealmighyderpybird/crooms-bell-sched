@@ -37,13 +37,13 @@ function setFun(information) {
 }
 
 const getFeed = () => {
-    let feed = new XMLHttpRequest();
-    feed.open('GET',"https://api.croomssched.tech/feed");
-    feed.responseType = 'json';
-    feed.send();
-    feed.onload = function() {
-        loadFeed(JSON.parse(JSON.stringify(feed.response.data)));
-    }
+    fetch("https://api.croomssched.tech/feed").then((res) => {
+        return res.json();
+    }).then((res) => {
+        loadFeed(res.data);
+    }).catch((error) => {
+        alertBalloon("We encountered an issue loading the Feed.", error.message, 1);
+    });
 }
 
 const loadFeed = (feeds) => {
@@ -106,7 +106,7 @@ const getForecast = () => {
             document.getElementById(index+"-icon").src = forecasts[index].icon;
             document.getElementById(index+"-desc").innerHTML = forecasts[index].desc;
             document.getElementById(index+"-temp").innerHTML = forecasts[index].temp;
-            document.getElementById(index+"-windd").innerHTML = forecasts[index].windDir;
+            document.getElementById(index+"-wind-dir").innerHTML = forecasts[index].windDir;
             document.getElementById(index+"-winds").innerHTML = forecasts[index].windSpeed;
             index++;
         }
@@ -161,12 +161,12 @@ const getAlerts = () => {
 
 const getSurveys = () => {
     fetch("https://api.croomssched.tech/surveys").then((res) => {
-        return res.text();
-    }).then((res) => {
-        return JSON.parse(res).data;
+        return res.json();
     }).then((data) => {
-        loadSurveys(data);
-    })
+        loadSurveys(data.data);
+    }).catch((error) => {
+        alertBalloon("We encountered an issue loading the survey list.", error.message, 1);
+    });
 }
 
 const loadSurveys = (surveys) => {

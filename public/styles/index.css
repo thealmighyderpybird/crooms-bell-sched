@@ -31,8 +31,8 @@ body > main {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    grid-template-areas: "lunch lunch weather"
-                         "extras feed feed";
+    grid-template-areas: "extras lunch lunch"
+                         "feed feed weather";
     user-select: none;
 }
 
@@ -214,7 +214,7 @@ div.widget h3 {
     margin-block-start: 1em;
     overflow-y: auto;
     height: calc(100% - 70px);
-    max-height: 196px;
+    max-height: 193px;
 }
 
 #feed-updates {
@@ -243,7 +243,7 @@ div.widget h3 {
 #surveys > div {
     overflow-y: auto;
     height: calc(100% - 70px);
-    max-height: 196px;
+    max-height: 193px;
 }
 
 #wx-alert-panel {
@@ -340,21 +340,32 @@ div.widget h3 {
 #random {
     background: var(--pri);
     user-select: none;
-    margin: 18px 18px 0;
     border-radius: 10px;
     padding: 15px;
+    margin: 18px 18px 0;
+}
+
+#schedule-widget > div {
+    width: 100%;
+}
+
+#schedule-widget > iframe {
+    margin-top: 1rem;
+    display: block;
+    height: calc(148px + 1rem);
 }
 
 #teacherquote {
     background: var(--pri);
     user-select: none;
-    margin: 0 18px;
+    margin: 0 18px 18px;
     border-radius: 10px;
     padding: 15px;
 }
 
 #bottom-ad {
     user-select: none;
+    display: none;
     margin: 18px;
 }
 
@@ -377,6 +388,14 @@ div.widget h3 {
 
 #others > div > .tool-warning > p:last-child {
     margin-top: revert;
+}
+
+#sched {
+    height: 77px;
+}
+
+#eason-tracker, #eason-tracker > iframe {
+    height: 100%;
 }
 
 .dialog.welcome {
@@ -440,12 +459,12 @@ div.widget h3 {
     }
 
     #DailyLunchImageContainer {
-        display: none;
         justify-content: center;
+        display: none;
     }
 
-    #feed > div {
-        max-height: 260px;
+    #DailyLunchImage {
+        float: none;
     }
 }
 
@@ -461,6 +480,10 @@ div.widget h3 {
     #feed > div, #surveys > div {
         max-height: 100%;
         overflow: auto;
+    }
+
+    #DailyLunchImageContainer {
+        display: flex;
     }
 }
 

@@ -14,8 +14,9 @@ let CBSHSched = {
         "current": "Current Period",
         "next": "Next Period",
         "remainingTime": "2:00:00"
-    }
-}
+    },
+    "currentLunch": "Lunch"
+};
 
 let Settings = {
     "periodNames": {}
