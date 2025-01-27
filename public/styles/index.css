@@ -214,7 +214,7 @@ div.widget h3 {
     margin-block-start: 1em;
     overflow-y: auto;
     height: calc(100% - 70px);
-    max-height: 196px;
+    max-height: 193px;
 }
 
 #feed-updates {
@@ -243,7 +243,7 @@ div.widget h3 {
 #surveys > div {
     overflow-y: auto;
     height: calc(100% - 70px);
-    max-height: 196px;
+    max-height: 193px;
 }
 
 #wx-alert-panel {
@@ -358,13 +358,14 @@ div.widget h3 {
 #teacherquote {
     background: var(--pri);
     user-select: none;
-    margin: 0 18px;
+    margin: 0 18px 18px;
     border-radius: 10px;
     padding: 15px;
 }
 
 #bottom-ad {
     user-select: none;
+    display: none;
     margin: 18px;
 }
 
@@ -459,15 +460,11 @@ div.widget h3 {
 
     #DailyLunchImageContainer {
         justify-content: center;
-        display: flex;
+        display: none;
     }
 
     #DailyLunchImage {
         float: none;
-    }
-
-    #feed > div {
-        max-height: 260px;
     }
 }
 
@@ -483,6 +480,10 @@ div.widget h3 {
     #feed > div, #surveys > div {
         max-height: 100%;
         overflow: auto;
+    }
+
+    #DailyLunchImageContainer {
+        display: flex;
     }
 }
 
