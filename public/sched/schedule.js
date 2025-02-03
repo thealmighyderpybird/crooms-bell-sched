@@ -192,15 +192,15 @@ function startSched(application) {
         }, 50);
     }, false);
 
-    if (Settings.showTimeRemainingRing) {
-        const extraDiv = document.createElement("div");
-        application.appendChild(extraDiv);
-        const progressMeterContainer = document.createElement("div");
-        progressMeterContainer.classList.add("progress-meter");
-        extraDiv.appendChild(progressMeterContainer);
-        const progressMeter = document.createElement("div");
-        progressMeterContainer.appendChild(progressMeter);
-    }
+    const extraDiv = document.createElement("div");
+    application.appendChild(extraDiv);
+    const progressMeterContainer = document.createElement("div");
+    progressMeterContainer.classList.add("progress-meter");
+    extraDiv.appendChild(progressMeterContainer);
+    const progressMeter = document.createElement("div");
+    progressMeterContainer.appendChild(progressMeter);
+
+    if (!Settings.showTimeRemainingRing) progressMeterContainer.classList.add("hidden");
 
     let currentDay = null;
     let startDate = new Date().getDate();
