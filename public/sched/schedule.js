@@ -364,8 +364,9 @@ function startSched(application) {
         CBSHSched.period.current = EventName;
         CBSHSched.period.remainingTime = count_down.toString() + ":" + seconds;
 
-        let percent = ((event_sec - now_sec) / (event_sec - start_event_sec)) * 100;
-        progressMeter.style.width = percent + "%";
+        let percent_remaining = ((event_sec - now_sec) / (event_sec - start_event_sec)) * 100;
+        let percent_complete = 100 - percent_remaining;
+        progressMeter.style.width = percent_complete + "%";
     }
 
     function getEventName(EventName) {
