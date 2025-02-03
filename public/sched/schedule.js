@@ -2,7 +2,8 @@ const schedMessenger = new BroadcastChannel("sched-messenger");
 const appStyles = document.createElement("link");
 appStyles.rel = "stylesheet";
 appStyles.type = "text/css";
-appStyles.href = "https://croomssched.tech/sched/app.css";
+//appStyles.href = "https://croomssched.tech/sched/app.css";
+appStyles.href = "http://localhost:3000/sched/app.css";
 document.head.appendChild(appStyles);
 let CBSHSched = {
     "time": {
@@ -115,10 +116,12 @@ function startSched(application) {
 
     let eventNumber = 1;
 
+    const scheduleDiv = document.createElement("div");
+    application.appendChild(scheduleDiv);
     const statusDiv = document.createElement("div");
-    application.appendChild(statusDiv);
+    scheduleDiv.appendChild(statusDiv);
     const buttonDiv = document.createElement("div");
-    application.appendChild(buttonDiv);
+    scheduleDiv.appendChild(buttonDiv);
 
     const DateAndTime = document.createElement("p");
     const SchoolDayType = document.createElement("p");
@@ -190,44 +193,15 @@ function startSched(application) {
         }, 50);
     }, false);
 
-    /*
-    const CurrentPeriodProgressRingContainer = new PIXI.Container();
-
-
-    const CurrentPeriodProgressRingBG = new PIXI.Graphics();
-    if (Settings.theme === "dark") {
-        CurrentPeriodProgressRingBG.lineStyle(6, ringBGColor, 1);
-        CurrentPeriodProgressRingBG.drawCircle(0, 0, 10);
-    } else {
-        CurrentPeriodProgressRingBG.lineStyle(1, ringBGColor, 1);
-        CurrentPeriodProgressRingBG.drawCircle(0, 0, 13);
-        CurrentPeriodProgressRingBG.drawCircle(0, 0, 7);
-        CurrentPeriodProgressRingBG.lineStyle(7, ringBGColor, 1);
-        CurrentPeriodProgressRingBG.drawCircle(0, 0, 10);
+    if (Settings.showTimeRemainingRing) {
+        const extraDiv = document.createElement("div");
+        application.appendChild(extraDiv);
+        const progressMeterContainer = document.createElement("div");
+        progressMeterContainer.classList.add("progress-meter");
+        extraDiv.appendChild(progressMeterContainer);
+        const progressMeter = document.createElement("div");
+        progressMeterContainer.appendChild(progressMeter);
     }
-
-    CurrentPeriodProgressRingContainer.addChild(CurrentPeriodProgressRingBG);
-
-    const CurrentPeriodProgressRing = new PIXI.Graphics();
-    CurrentPeriodProgressRing.lineStyle(57, ringColor, 1);
-    let percent = 0;
-    CurrentPeriodProgressRing.arc(0, 0, 100, -((Math.PI / 100) * percent), (Math.PI / 100) * percent);
-    //CurrentPeriodProgressRing.mask = CurrentPeriodProgressRingMask;
-    CurrentPeriodProgressRing.scale.x = 0.10;
-    CurrentPeriodProgressRing.scale.y = 0.10;
-    CurrentPeriodProgressRing.rotation = ((Math.PI / 100) * percent);
-    CurrentPeriodProgressRingContainer.addChild(CurrentPeriodProgressRing);
-
-
-    CurrentPeriodSeconds.x = CurrentPeriod.width;
-    CurrentPeriodProgressRingContainer.y = SchoolDayType.y + CurrentPeriodSeconds.height + (CurrentPeriodProgressRingBG.height / 2) - 2;
-    app.stage.addChild(CurrentPeriodProgressRingContainer);
-
-    CurrentPeriodProgressRingContainer.visible = Settings.showTimeRemainingRing;
-    CurrentPeriodProgressRingContainer.rotation = -Math.PI / 2;
-    CurrentPeriodProgressRingContainer.scale.x = 0.7;
-    CurrentPeriodProgressRingContainer.scale.y = -0.7;
-    */
 
     let currentDay = null;
     let startDate = new Date().getDate();
@@ -392,13 +366,7 @@ function startSched(application) {
         CBSHSched.period.remainingTime = count_down.toString() + ":" + seconds;
 
         let percent = ((event_sec - now_sec) / (event_sec - start_event_sec)) * 100;
-
-        /*
-        CurrentPeriodProgressRing.clear();
-        CurrentPeriodProgressRing.lineStyle(50, ringColor, 1);
-        CurrentPeriodProgressRing.arc(0, 0, 100, -((Math.PI / 100) * percent), (Math.PI / 100) * percent);
-        CurrentPeriodProgressRing.rotation = ((Math.PI / 100) * percent);
-     */
+        progressMeter.style.width = percent + "%";
     }
 
     function getEventName(EventName) {
