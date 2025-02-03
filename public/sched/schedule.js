@@ -2,8 +2,7 @@ const schedMessenger = new BroadcastChannel("sched-messenger");
 const appStyles = document.createElement("link");
 appStyles.rel = "stylesheet";
 appStyles.type = "text/css";
-//appStyles.href = "https://croomssched.tech/sched/app.css";
-appStyles.href = "http://localhost:3000/sched/app.css";
+appStyles.href = "https://croomssched.tech/sched/app.css";
 document.head.appendChild(appStyles);
 let CBSHSched = {
     "time": {
