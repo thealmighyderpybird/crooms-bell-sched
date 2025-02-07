@@ -183,11 +183,11 @@ document.documentElement.style.setProperty("--font", currentFont);
 const audio = document.createElement("audio");
 document.body.appendChild(audio);
 
-audio.src = "https://cdn.croomssched.tech/data/79b63214-ebc7-4f01-8802-9e2e3a2b436a/Background.wav";
-audio.src = "https://cdn.croomssched.tech/data/79b63214-ebc7-4f01-8802-9e2e3a2b436a/Foreground.wav";
-audio.src = "https://cdn.croomssched.tech/data/79b63214-ebc7-4f01-8802-9e2e3a2b436a/Confirmation.wav";
+audio.src = "https://croomssched-cdn.vercel.app/data/79b63214-ebc7-4f01-8802-9e2e3a2b436a/Background.wav";
+audio.src = "https://croomssched-cdn.vercel.app/data/79b63214-ebc7-4f01-8802-9e2e3a2b436a/Foreground.wav";
+audio.src = "https://croomssched-cdn.vercel.app/data/79b63214-ebc7-4f01-8802-9e2e3a2b436a/Confirmation.wav";
 
 function playAudio(soundName) {
-    audio.src = "https://cdn.croomssched.tech/data/79b63214-ebc7-4f01-8802-9e2e3a2b436a/" + soundName + ".wav";
+    audio.src = "https://croomssched-cdn.vercel.app/data/79b63214-ebc7-4f01-8802-9e2e3a2b436a/" + soundName + ".wav";
     audio.play().then(r => audio.currentTime = 0);
 }
