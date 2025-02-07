@@ -129,7 +129,7 @@
 
 @font-face {
     font-family: "SegoeUI";
-    src: url("https://croomssched-cdn.vercel.app/fonts/SegUIVar.woff2");
+    src: url("https://cdn.croomssched.tech/fonts/SegUIVar.woff2");
 }
 
 @supports (scrollbar-color: auto) {
