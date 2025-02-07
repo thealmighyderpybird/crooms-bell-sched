@@ -1,5 +1,5 @@
 body.wawwf::before {
-    background-image: url("https://croomssched-cdn.vercel.app/data/7291ef48-5f58-4f73-a79d-23f146afd471/WAWWF-light.png");
+    background-image: url("https://cdn.croomssched.tech/data/7291ef48-5f58-4f73-a79d-23f146afd471/WAWWF-light.png");
     background-position: center bottom;
     background-repeat: no-repeat;
     background-size: cover;
@@ -23,7 +23,7 @@ body.wawwf::after {
 
 @media screen and (prefers-color-scheme: dark) {
     body.wawwf::before {
-        background-image: url("https://croomssched-cdn.vercel.app/data/7291ef48-5f58-4f73-a79d-23f146afd471/WAWWF-dark.png");
+        background-image: url("https://cdn.croomssched.tech/data/7291ef48-5f58-4f73-a79d-23f146afd471/WAWWF-dark.png");
     }
 
     body.wawwf::after {
@@ -32,7 +32,7 @@ body.wawwf::after {
 }
 
 :root.light >body.wawwf::before {
-    background-image: url("https://croomssched-cdn.vercel.app/data/7291ef48-5f58-4f73-a79d-23f146afd471/WAWWF-light.png") !important;
+    background-image: url("https://cdn.croomssched.tech/data/7291ef48-5f58-4f73-a79d-23f146afd471/WAWWF-light.png") !important;
 }
 
 :root.light >body.wawwf::after {
@@ -40,7 +40,7 @@ body.wawwf::after {
 }
 
 :root.dark >body.wawwf::before {
-    background-image: url("https://croomssched-cdn.vercel.app/data/7291ef48-5f58-4f73-a79d-23f146afd471/WAWWF-dark.png") !important;
+    background-image: url("https://cdn.croomssched.tech/data/7291ef48-5f58-4f73-a79d-23f146afd471/WAWWF-dark.png") !important;
 }
 
 :root.dark >body.wawwf::after {
