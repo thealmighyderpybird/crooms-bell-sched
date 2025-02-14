@@ -79,6 +79,12 @@
       "check": true
     },
     {
+      "id": "polkadot",
+      "name": "Polka Dot Game",
+      "link": "https://www.polkadotgame.com/",
+      "check": false
+    },
+    {
       "id": "self",
       "name": "Crooms Bell Schedule",
       "link": "https://croomssched.tech",
