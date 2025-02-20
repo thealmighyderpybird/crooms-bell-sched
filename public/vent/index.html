@@ -44,6 +44,7 @@
             font-family: var(--font), system-ui;
             font-size: inherit;
             text-align: left;
+            resize: vertical;
             padding: 0.5rem;
             height: 400px;
             width: 100%;
@@ -52,6 +53,17 @@
         #feed-form > footer {
             text-align: center;
         }
+
+        #context-menu {
+            background: var(--pri);
+            border-radius: 0.5rem;
+            position: fixed;
+            display: none;
+        }
+
+        #context-menu > div {
+            padding: 0.5rem 0.75rem;
+        }
     </style>
 </head>
 <body>
@@ -59,22 +71,48 @@
 <div id="feed-form" style="display: none;">
     <header>
         <h1>Vent Box</h1>
-        <p>Vent in the box, when you put in here stays on your computer until you refresh the page.</p>
+        <p>Vent in the box, when you put in here gets stored locally on your computer.</p>
     </header>
     <main>
-        <div style="padding: 0 0 0.4rem;">
+        <div>
             <label for="vent" class="hidden">Vent Box</label>
             <textarea id="vent" placeholder="Vent Box" autocomplete="off"></textarea>
         </div>
     </main>
+    <footer>
+        <button>Clear</button>
+    </footer>
+</div>
+<div id="context-menu">
+    <div>Clear text box</div>
+    <div>Save to file...</div>
 </div>
 <script src="/scripts/commons.js"></script>
-<script src="/tools/feed-updates/submission.js"></script>
 <script>
     document.body.onload = () => {
         document.getElementById("loader").remove();
         document.getElementById("feed-form").removeAttribute("style");
-    }
+        document.getElementById("vent").value = localStorage.getItem("vent-content");
+    };
+
+    document.getElementById("vent").onkeyup = () => localStorage.setItem("vent-content", document.getElementById("vent").value);
+
+    document.querySelector("#context-menu > div:first-child").onclick = () => {
+        document.getElementById("vent").value = "";
+        localStorage.removeItem("vent-content");
+    };
+    document.querySelector("#context-menu > div:last-child").onclick = () => {
+        const vent = document.getElementById("vent").value;
+        function download(text, name, type) {
+            let file = new Blob([text], {type: type});
+            let a = document.createElement("a");
+            a.download = name;
+            a.href = URL.createObjectURL(file);
+            a.click();
+        }
+
+        download(vent, "rant.txt", "text/txt");
+    };
 </script>
 </body>
 </html>
