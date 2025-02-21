@@ -28,7 +28,7 @@
     --transition: var(--default-transition);
 
     --default-transition: all 0.1s;
-    --default-font: "SegoeUI", "Segoe UI Variable", "Segoe UI", system-ui;
+    --default-font: "SegoeUI", "Segoe UI Variable Display", "Segoe UI", system-ui;
 
     background: var(--background);
     color: var(--main);
