@@ -85,6 +85,18 @@
       "check": false
     },
     {
+      "id": "undertale",
+      "name": "Undertale",
+      "link": "https://bilxo.itch.io/undertale",
+      "check": true
+    },
+    {
+      "id": "arras.io",
+      "name": "Arras.io",
+      "link": "https://arras.io",
+      "check": false
+    },
+    {
       "id": "self",
       "name": "Crooms Bell Schedule",
       "link": "https://croomssched.tech",
