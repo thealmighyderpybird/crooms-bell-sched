@@ -127,11 +127,6 @@
     line-height: 1.3;
 }
 
-@font-face {
-    font-family: "SegoeUI";
-    src: url("https://cdn.croomssched.tech/fonts/SegUIVar.woff2");
-}
-
 @supports (scrollbar-color: auto) {
     :root, body {
         scrollbar-color: #A8A8A8 var(--pri);
