@@ -32,10 +32,12 @@ function createCBSHSched(element) {
     element.appendChild(application);
     application.id = "cbsh-application";
 
-    fetch("https://no.croomssched.tech/today").then((res) => {
-        return res.json();
+    fetch("https://api.croomssched.tech/today").then((res) => {
+        return res.text();
     }).then((res) => {
-        Schedules = res.data;
+        return JSON.parse(res).data;
+    }).then((res) => {
+        Schedules = res;
         if ((location.hostname === "croomssched.tech" || location.hostname === "localhost") && (location.pathname === "/" || location.pathname === "")) {
             window.addEventListener("blur", () =>
                 titleUpdateLoop = setInterval(
@@ -46,17 +48,8 @@ function createCBSHSched(element) {
                 clearInterval(titleUpdateLoop);
             });
         }
-
+    }).finally(() => {
         fixMissingSettings(application);
-    }).catch(() => {
-        const errorDiv = document.createElement("div");
-        errorDiv.classList.add("error");
-        application.appendChild(errorDiv);
-
-        const errorIcon = document.createElement("img");
-        errorIcon.src = "https://croomssched.tech/favicon.ico";
-        errorDiv.appendChild(errorIcon);
-        errorIcon.draggable = false;
     });
 }
 
