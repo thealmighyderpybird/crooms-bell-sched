@@ -56,10 +56,10 @@
     max-height: calc(100vh - 90px);
     overflow-y: auto;
     z-index: 10;
+}
 
-    div {
-        padding: 10px 15px;
-    }
+.subMenu > div {
+    padding: 10px 15px;
 }
 
 .menuItem:hover > .subMenu {

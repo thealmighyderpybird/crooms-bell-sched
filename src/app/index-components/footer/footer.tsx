@@ -21,10 +21,10 @@ export default function Footer() {
                         </p>
                     </div>
                 </div>
-                <div onClick="openSettings()">
+                <div>
                     <span className="icon">settings</span>
-                    <div className="popout" style="font-size: 0.75rem;">
-                        <span style="background: transparent;">Settings</span>
+                    <div className="popout" style={{fontSize: "0.75rem"}}>
+                        <span style={{background: "transparent"}}>Settings</span>
                     </div>
                 </div>
                 <div>
@@ -42,7 +42,7 @@ export default function Footer() {
                     <span id="current-period" className="active">IT Industry ends in 56:57</span>
                 </span>
                 <div className="popout">
-                    <!-- Schedule popout -->
+
                 </div>
             </div>
         </footer>
