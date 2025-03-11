@@ -1,5 +1,5 @@
 @import url("/styles/master.css");
-@import url("/styles/color-settings-app.css");
+@import url("/src/styles/color-settings-app.css");
 
 *.no-color {
     color: var(--main);

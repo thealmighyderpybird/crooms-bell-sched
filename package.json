@@ -14,6 +14,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@mui/material-nextjs": "^6.4.3",
     "@t3-oss/env-nextjs": "^0.10.1",
     "geist": "^1.3.0",
     "next": "^15.0.1",

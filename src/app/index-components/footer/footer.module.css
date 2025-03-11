@@ -1,0 +1,14 @@
+.footer {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: var(--pri);
+    width: 100%;
+    user-select: none;
+    z-index: 9;
+    box-shadow: black 0 0 10px;
+}
