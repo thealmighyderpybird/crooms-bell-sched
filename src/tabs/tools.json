@@ -2,8 +2,14 @@
   "tools": [
     {
       "id": "working-grade-calc",
-      "name": "Grade Calculator (that works)",
+      "name": "Grade Calculator",
       "link": "https://www.calculator.net/grade-calculator.html",
+      "check": false
+    },
+    {
+      "id": "advice",
+      "name": "Mikhail's Advice",
+      "link": "https://mikhail.croomssched.tech",
       "check": false
     },
     {

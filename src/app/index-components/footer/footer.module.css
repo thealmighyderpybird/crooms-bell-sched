@@ -12,3 +12,88 @@
     z-index: 9;
     box-shadow: black 0 0 10px;
 }
+
+.footer > div > div,
+.iconChain > div > div {
+    padding: 10px;
+    position: absolute;
+    z-index: 10;
+    transform: translateY(calc(-100% - 37px));
+    background: var(--pri);
+    display: none;
+    box-shadow: black 0 -10px 10px;
+}
+
+.footer > div > div h3,
+.footer > div > div h4,
+.footer > div > div p,
+.icon-chain > div > div h3,
+.icon-chain > div > div h4,
+.icon-chain > div > div p {
+    margin: 0;
+}
+
+.icon-chain > div > div p:not(:last-child) {
+    margin-bottom: 0.75rem;
+}
+
+.footer > div > span {
+    display: inline-block;
+    padding: 8px;
+}
+
+.footer > div:hover > span,
+.iconChain > div:hover > span {
+    background: var(--sec);
+}
+
+.footer > div:hover > div,
+.iconChain > div:hover > div {
+    display: block;
+}
+
+.iconChain {
+    display: flex;
+}
+
+.iconChain > div:not(.iconChain) {
+    display: revert;
+    padding: inherit;
+    position: revert;
+    z-index: revert;
+    transform: revert;
+    background: transparent;
+    box-shadow: none;
+}
+
+.iconChain > div > span {
+    display: inline-block;
+    padding: 8px 10px;
+}
+
+.iconChain:hover > div > span {
+    background: unset;
+}
+
+.footer > div:first-child > .popout {
+    max-width: 400px;
+}
+
+.footer > div > div > div.popout.submenu {
+    padding: 0;
+}
+
+.footer > div > div > .popout.submenu > a {
+    text-decoration: none !important;
+    color: var(--main) !important;
+    padding: 10px 15px;
+    display: block;
+}
+
+.footer > div > div > .popout.submenu > a:hover {
+    background-color: var(--sec);
+}
+
+.iconChain > div:first-child > .popout {
+    max-width: 400px;
+}

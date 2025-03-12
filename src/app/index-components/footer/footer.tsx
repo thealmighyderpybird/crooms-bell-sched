@@ -1,35 +1,37 @@
+import footerStyles from "./footer.module.css";
 import Link from "next/link";
 
 export default function Footer() {
     return (<>
-        <footer>
-            <div className="icon-chain">
+        <footer className={footerStyles.footer}>
+            <div className={footerStyles.iconChain}>
                 <div>
                     <span className="icon">info</span>
-                    <div className="popout">
+                    <div className={footerStyles.popout}>
                         <h3>Crooms Bell Schedule</h3>
                         <p>Designed and maintained by Andrew Jennings.</p>
                         <h4>Join the team!</h4>
-                        <p>Join the development team on our
-                            <a href="https://github.com/thealmightyderpybird/crooms-bell-sched/" target="CBSH_GitRepos">
-                                GitHub Repository</a>.
+                        <p>
+                            Join the development team on our <Link target="CBSH_GitRepos"
+                                                                   href="https://github.com/thealmightyderpybird/crooms-bell-sched/"
+                                                                    >GitHub Repository</Link>.
                         </p>
                         <h4>Support our development.</h4>
                         <p>
-                            <a href="https://buymeacoffee.com/croomssched" target="CBSH_buyUsACoffee">Buy us coffee</a>
-                            to help us keep our domain.
+                            <Link href="https://buymeacoffee.com/croomssched" target="CBSH_buyUsACoffee">
+                                Buy us coffee</Link> to help us keep our domain.
                         </p>
                     </div>
                 </div>
                 <div>
                     <span className="icon">settings</span>
-                    <div className="popout" style={{fontSize: "0.75rem"}}>
+                    <div className={footerStyles.popout} style={{fontSize: "0.75rem"}}>
                         <span style={{background: "transparent"}}>Settings</span>
                     </div>
                 </div>
                 <div>
                     <span className="icon">public</span>
-                    <div className="popout submenu">
+                    <div className={footerStyles.popout + " submenu"}>
                         <Link href="mailto:support@croomssched.tech" target="CBSHEmail">Email our Support</Link>
                         <Link href="https://discord.gg/9xjh5s5Bhb" target="CBSHDiscord">Join our Discord Server</Link>
                         <Link href="https://instagram.com/croomssched" target="CBSHInstagram">View our Instagram</Link>

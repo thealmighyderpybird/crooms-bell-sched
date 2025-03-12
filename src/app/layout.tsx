@@ -1,5 +1,6 @@
 import {AppRouterCacheProvider} from "@mui/material-nextjs/v13-appRouter";
-import Header from "~/app/index-components/header/header";
+import Header from "./index-components/header/header";
+import Footer from "./index-components/footer/footer";
 import rootStyles from "./root.module.css";
 import {type Metadata} from "next";
 import Head from "next/head";
@@ -41,6 +42,7 @@ export default function RootLayout({
             <body>
                 <Header />
                 <main className={rootStyles.main}>{children}</main>
+                <Footer />
             </body>
         </AppRouterCacheProvider>
         </html>
