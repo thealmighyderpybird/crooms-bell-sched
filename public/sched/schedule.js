@@ -393,6 +393,16 @@ function startSched(application) {
             EventName = "Break";
         } else if (EventName === 110) {
             EventName = "PSAT/SAT";
+        } else if (EventName === 111) {
+            EventName = "Session 1";
+        } else if (EventName === 112) {
+            EventName = "Session 2";
+        } else if (EventName === 113) {
+            EventName = "Session 3";
+        } else if (EventName === 114) {
+            EventName = "Session 5";
+        } else if (EventName === 115) {
+            EventName = "Field Day";
         } else {
             EventName = "Unknown Event";
         }
