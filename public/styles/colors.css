@@ -5,6 +5,7 @@
     --halloween: #4B0082;
     --winter: #1E90FF;
     --wawwf: #385E61;
+    --burn-the-ships: #4b709a
 }
 
 @media screen and (prefers-color-scheme: dark) {
@@ -53,4 +54,8 @@
 
 :root:has(body.wawwf) {
     --accent-color: var(--wawwf);
+}
+
+:root:has(body.burn-the-ships) {
+    --accent-color: var(--burn-the-ships);
 }
