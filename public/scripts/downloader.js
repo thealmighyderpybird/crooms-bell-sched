@@ -3,7 +3,7 @@ function downloadApp() {
     document.getElementById("download").style.left = "0";
 
     setTimeout(() => {
-        window.location.href = "https://app.croomssched.tech/download/win32/";
+        window.location.href = "https://update.croomssched.tech/download/win32/";
         document.getElementById("countdown").innerText = "has started";
     }, 2000)
 }

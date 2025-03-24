@@ -1,7 +1,12 @@
-try {
-    retrieveIdentity()
-} catch {
-    location.href = "https://admin.croomssched.tech/sso?host=croomssched.tech"
+if (retrieveIdentity().sid === undefined || retrieveIdentity().sid === null) location.href = "https://admin.croomssched.tech/sso?host=croomssched.tech";
+
+function retrieveIdentity() {
+    try {
+        return {uid: localStorage.getItem("UID"), sid: localStorage.getItem("SID")}
+    } catch {
+        alertBalloon("We couldn't post your Feed Update",
+            "Make sure you're signed into your account and try again.", 2);
+    }
 }
 
 document.querySelector("#feed-form > footer > button").addEventListener("click", async () => {
@@ -67,7 +72,7 @@ document.querySelector("#feed-form > footer > button").addEventListener("click",
             "data": data
         }),
         headers: {
-            "Authorization": JSON.stringify(retrieveIdentity()),
+            "Authorization": JSON.stringify(retrieveIdentity().sid),
             "Accept": "application/json",
             "Content-Type": "application/json"
         }
@@ -98,15 +103,3 @@ document.querySelector("#feed-form > footer > button").addEventListener("click",
         document.querySelector("button").addEventListener("click", () => {location.reload();})
     }
 });
-
-function retrieveIdentity() {
-    try {
-        return JSON.parse(document.cookie
-            .split("; ")
-            .find((row) => row.startsWith("credentials="))
-            ?.split("=")[1]);
-    } catch {
-        alertBalloon("We couldn't post your Feed Update",
-            "Make sure you're signed into your account and try again.", 2);
-    }
-}

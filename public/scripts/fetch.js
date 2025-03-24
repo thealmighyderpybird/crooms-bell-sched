@@ -48,21 +48,19 @@ const getFeed = () => {
 
 const loadFeed = (feeds) => {
     let amnt = objectLength(feeds);
-    if (amnt !== 0) {
-        document.getElementById("feed-updates").innerHTML = null;
-        feeds.forEach((update) => {
-            if (update.store === "public") {
-                let fu = document.createElement("li");
-                fu.innerHTML = `<span>${update.data}</span><span class="username">${update?.createdBy || ""}</span>`;
-                document.getElementById("feed-updates").appendChild(fu);
-            }
-        });
-    } else {
+    if (amnt === 0) {
         let noFeed = document.createElement("span");
         noFeed.innerHTML = "There are no Feed Updates. <a class='links' onclick='loadTool(`new-feed`, `/tools/feed-updates`, false)'>Submit one.</a>";
         noFeed.style.userSelect = "none";
         document.getElementById("feed-updates").innerHTML = noFeed.outerHTML;
     }
+
+    document.getElementById("feed-updates").innerHTML = null;
+    feeds.forEach((update) => {
+        let fu = document.createElement("li");
+        fu.innerHTML = `<span>${update.data}</span><span class="username">${update?.createdBy || ""}</span>`;
+        document.getElementById("feed-updates").appendChild(fu);
+    });
 }
 
 const getForecast = () => {
@@ -203,6 +201,6 @@ function parseTime(endtime) {
 
 getInfo(); setInterval(getInfo, 60000);
 getAlerts(); setInterval(getAlerts, 60000);
-getFeed(); setInterval(getFeed, 30000);
 getForecast(); setInterval(getForecast, 60000);
 getSurveys(); setInterval(getSurveys, 60000);
+getFeed(); setInterval(getFeed, 30000);

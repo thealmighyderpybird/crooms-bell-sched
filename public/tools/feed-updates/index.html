@@ -62,8 +62,10 @@
 <div id="feed-form" style="display: none;">
     <header>
         <h1>Feed</h1>
-        <p>By submitting a Feed Update, you agree to not club baby seals.</p>
-        <p>You also agree to the <a href="/terms" target="CBSH_Terms">Terms of Service</a>.</p>
+        <p>
+            By submitting a Feed Update, you agree to not club baby seals.<br><br>
+            You also agree to the <a href="/terms" target="CBSH_Terms">Terms of Service</a>.
+        </p>
     </header>
     <main>
         <div>
@@ -81,6 +83,8 @@
     </main>
     <footer>
         <button>Submit Feed Update</button>
+        <br><br>
+        <a class="links">Having issues submitting feed updates?</a>
     </footer>
 </div>
 <script src="/scripts/commons.js"></script>
@@ -90,6 +94,10 @@
         document.getElementById("loader").remove();
         document.getElementById("feed-form").removeAttribute("style");
     }
+
+    document.querySelector("body > div > footer > a.links").addEventListener("click", () => {
+        localStorage.removeItem("SID"); localStorage.removeItem("UID"); location.reload();
+    });
 </script>
 </body>
 </html>
