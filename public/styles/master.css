@@ -254,6 +254,18 @@ a:hover {
     animation: marquee 20s linear infinite;
 }
 
+svg.spinner {
+    display: block;
+    shape-rendering: auto;
+    background: transparent;
+    transition: none !important;
+    stroke: var(--accent-color);
+}
+
+svg.spinner > * {
+    transition: none !important;
+}
+
 body > header {
     background: var(--pri);
     position: fixed;

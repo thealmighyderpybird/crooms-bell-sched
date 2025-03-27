@@ -53,12 +53,18 @@ const loadFeed = (feeds) => {
         noFeed.innerHTML = "There are no Feed Updates. <a class='links' onclick='loadTool(`new-feed`, `/tools/feed-updates`, false)'>Submit one.</a>";
         noFeed.style.userSelect = "none";
         document.getElementById("feed-updates").innerHTML = noFeed.outerHTML;
+        return;
     }
 
     document.getElementById("feed-updates").innerHTML = null;
     feeds.forEach((update) => {
-        let fu = document.createElement("li");
-        fu.innerHTML = `<span>${update.data}</span><span class="username">${update?.createdBy || ""}</span>`;
+        const createTime = new Date(update.create);
+        let fu = document.createElement("div");
+        fu.innerHTML = `<span class="username"><b>${update?.createdBy || ""}</b><span>` +
+                           `${monthNames[createTime.getMonth()]}
+                            ${createTime.getDate()},
+                            ${createTime.getFullYear()}
+                        </span></span><span>${update.data}</span>`;
         document.getElementById("feed-updates").appendChild(fu);
     });
 }

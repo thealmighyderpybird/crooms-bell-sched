@@ -31,8 +31,8 @@ body > main {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    grid-template-areas: "extras lunch lunch"
-                         "feed feed weather";
+    grid-template-areas: "extras weather feed"
+                         "lunch lunch feed";
     user-select: none;
 }
 
@@ -213,19 +213,40 @@ div.widget h3 {
 #feed > div {
     margin-block-start: 1em;
     overflow-y: auto;
-    height: calc(100% - 70px);
-    max-height: 193px;
+    max-height: calc(100vh - 377px - 1em)
 }
 
 #feed-updates {
     margin: 0;
 }
 
-#feed-updates > li > span.username {
-    font-size: 9pt;
-    opacity: 0.5;
-    padding-left: 0.5rem;
+#feed-updates * {
+    word-break: break-word;
+}
+
+#feed-updates > div {
+    background: var(--sec);
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+}
+
+#feed-updates > div > span.username {
     user-select: none;
+    font-size: 10pt;
+    display: block;
+    opacity: 0.7;
+}
+
+#feed-updates > div > span.username > b {
+    padding-right: 0.5rem;
+    display: inline-block;
+}
+
+#feed-updates > div > span.username > span {
+    border-left: var(--main) 1px solid;
+    padding-left: 0.5rem;
+    opacity: 0.7;
 }
 
 #feed-updates > li i {
@@ -242,8 +263,7 @@ div.widget h3 {
 
 #surveys > div {
     overflow-y: auto;
-    height: calc(100% - 70px);
-    max-height: 193px;
+    max-height: calc(100vh - 377px - 1em)
 }
 
 #wx-alert-panel {

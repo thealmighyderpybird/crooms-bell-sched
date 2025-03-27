@@ -1,4 +1,6 @@
 const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
+                    "November", "December"];
 const today = new Date();
 let day = weekday[today.getDay()];
 if (0 < today.getDay() && today.getDay() < 6) {
