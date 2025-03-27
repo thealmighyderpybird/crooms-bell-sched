@@ -127,6 +127,12 @@
       "check": false
     },
     {
+      "id": "geforce-experience",
+      "name": "GeForce Experience (Opens in new tab)",
+      "link": "https://play.geforcenow.com/mall/",
+      "check": true
+    },
+    {
       "id": "self",
       "name": "Crooms Bell Schedule",
       "link": "https://croomssched.tech",
