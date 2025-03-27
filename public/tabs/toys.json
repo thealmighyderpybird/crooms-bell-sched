@@ -103,12 +103,6 @@
       "check": false
     },
     {
-      "id": "starblast",
-      "name": "Starblast.io",
-      "link": "https://starblast.io/",
-      "check": false
-    },
-    {
       "id": "doom",
       "name": "Doom",
       "link": "https://doomonline1.vercel.app/",
