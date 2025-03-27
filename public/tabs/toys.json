@@ -97,6 +97,42 @@
       "check": false
     },
     {
+      "id": "starblast",
+      "name": "Starblast.io",
+      "link": "https://starblast.io/",
+      "check": false
+    },
+    {
+      "id": "starblast",
+      "name": "Starblast.io",
+      "link": "https://starblast.io/",
+      "check": false
+    },
+    {
+      "id": "doom",
+      "name": "Doom",
+      "link": "https://doomonline1.vercel.app/",
+      "check": false
+    },
+    {
+      "id": "pokemon",
+      "name": "Pokémon Fire Red + Randomizer",
+      "link": "https://kbhgames.com/game/fire-red-randomizer",
+      "check": false
+    },
+    {
+      "id": "bonk",
+      "name": "Bonk.io",
+      "link": "https://bonk.io",
+      "check": false
+    },
+    {
+      "id": "zombsroyale",
+      "name": "Zombsroyale.io",
+      "link": "https://zombsroyale.io",
+      "check": false
+    },
+    {
       "id": "self",
       "name": "Crooms Bell Schedule",
       "link": "https://croomssched.tech",
