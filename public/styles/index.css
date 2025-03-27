@@ -249,7 +249,8 @@ div.widget h3 {
 #wx-alert-panel {
     position: fixed;
     top: 51px;
-    right: -100%;
+    right: 0;
+    transform: translateX(100%);
     box-shadow: black 0 0 10px;
     background-color: var(--pri);
     height: calc(100% - 2rem - 56px);
@@ -315,7 +316,7 @@ div.widget h3 {
 }
 
 #wx-alert-panel.active {
-    right: 0;
+    transform: translateX(0);
 }
 
 #download {
