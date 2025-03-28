@@ -249,11 +249,11 @@ div.widget h3 {
     opacity: 0.7;
 }
 
-#feed-updates > li i {
+#feed-updates > div i {
     user-select: none;
 }
 
-#feed-updates > li emoji {
+#feed-updates > div emoji {
     font-family: "GoogleEmoji", system-ui;
 }
 
@@ -374,6 +374,7 @@ div.widget h3 {
     margin-top: 1rem;
     display: block;
     height: calc(148px + 1rem);
+    user-select: none;
 }
 
 #teacherquote {
