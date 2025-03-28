@@ -4,7 +4,7 @@ function retrieveIdentity() {
     try {
         return {uid: localStorage.getItem("UID"), sid: localStorage.getItem("SID")}
     } catch {
-        alertBalloon("We couldn't post your Twat",
+        alertBalloon("We couldn't post your Tweet",
             "Make sure you're signed into your account and try again.", 2);
     }
 }
@@ -40,7 +40,7 @@ document.querySelector("#feed-form > footer > button").addEventListener("click",
     }
 
     if (feed.value === "") {
-        feedCreationError("Please enter a Twat.");
+        feedCreationError("Please enter a Tweet.");
         return;
     }
     if (link.value && !regex.test(link.value)) {
@@ -82,7 +82,7 @@ document.querySelector("#feed-form > footer > button").addEventListener("click",
     const status = await response.json();
 
     if (status.data.error === "One of the following keys is missing or is empty in request body: 'data'") {
-        feedCreationError("Please enter a Twat.");
+        feedCreationError("Please enter a Tweet.");
     } else if (status.data.error) {
         const error = document.createElement("p");
         error.innerText = status.data.error;
@@ -96,9 +96,9 @@ document.querySelector("#feed-form > footer > button").addEventListener("click",
     function showSuccessMessage() {
         document.querySelector("main").remove();
         const successHeader = document.createElement("h2");
-        successHeader.innerText = "Your Twat was submitted";
+        successHeader.innerText = "Your Tweet was submitted";
         document.querySelector("header > h1").replaceWith(successHeader);
-        document.querySelector("header > p").innerText = "It may take a moment for your Twat to be reviewed.";
+        document.querySelector("header > p").innerText = "It may take a moment for your Tweet to be reviewed.";
         document.querySelector("button").innerText = "Add another";
         document.querySelector("button").addEventListener("click", () => {location.reload();})
     }
