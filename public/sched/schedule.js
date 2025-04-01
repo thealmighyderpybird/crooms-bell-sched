@@ -356,6 +356,9 @@ function startSched(application) {
             CurrentPeriod.style.color = "unset";
             CurrentPeriodSeconds.style.color = "grey";
         }
+        if (event_sec - now_sec === 0) {
+            schedMessenger.postMessage("end of class");
+        }
 
         CurrentPeriod.innerText = EventName + ", Time Left: " + count_down.toString();
 
