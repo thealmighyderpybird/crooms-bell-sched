@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 newBalloon.remove();
             }, 10000);
-        } else if (event.data === "end of period") {donnan()}
+        } else if (event.data === "end of class") {donnan()}
     };
 
     let goto = new URL(document.location).searchParams.get("goto");
