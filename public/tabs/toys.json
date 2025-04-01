@@ -133,6 +133,12 @@
       "check": true
     },
     {
+      "id": "black-baby",
+      "name": "Black Baby (Opens in new tab)",
+      "link": "https://santaclos.itch.io/black-baby-classic",
+      "check": true
+    },
+    {
       "id": "self",
       "name": "Crooms Bell Schedule",
       "link": "https://croomssched.tech",
