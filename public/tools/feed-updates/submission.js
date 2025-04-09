@@ -9,7 +9,9 @@ function retrieveIdentity() {
     }
 }
 
-document.querySelector("#feed-form > footer > button").addEventListener("click", async () => {
+document.querySelector("#feed-form > footer > button").addEventListener("click", submitFeedUpdate);
+
+async function submitFeedUpdate() {
     const feed = document.getElementById("feed-update");
     const link = document.getElementById("feed-link");
     const regex = /^https:?\/\/(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4])|(?:(?:[a-z0-9\u00a1-\uffff][a-z0-9\u00a1-\uffff_-]{0,62})?[a-z0-9\u00a1-\uffff]\.)+[a-z\u00a1-\uffff]{2,}\.?)(?::\d{2,5})?(?:[\/?#]\S*)?$/i
@@ -36,7 +38,7 @@ document.querySelector("#feed-form > footer > button").addEventListener("click",
         document.querySelector("main").appendChild(error);
         error.classList.add("error");
         feed.addEventListener("keydown", () => {error.remove()});
-        document.querySelector("button").addEventListener("click", () => {error.remove()});
+        document.querySelector("button").addEventListener("click", () => error.remove());
     }
 
     if (feed.value === "") {
@@ -63,8 +65,6 @@ document.querySelector("#feed-form > footer > button").addEventListener("click",
     if (link.value) {
         data = "<a target=CBSHfeed href="+ link.value +">" + data + "</a>";
     }
-
-    console.log(data);
 
     const request = new Request("https://api.croomssched.tech/feed", {
         method: "POST",
@@ -94,12 +94,22 @@ document.querySelector("#feed-form > footer > button").addEventListener("click",
     }
 
     function showSuccessMessage() {
-        document.querySelector("main").remove();
+        document.querySelector("main").classList.add("hidden");
         const successHeader = document.createElement("h2");
         successHeader.innerText = "Your Tweet was submitted";
         document.querySelector("header > h1").replaceWith(successHeader);
         document.querySelector("header > p").innerText = "It may take a moment for your Tweet to be reviewed.";
         document.querySelector("button").innerText = "Add another";
-        document.querySelector("button").addEventListener("click", () => {location.reload();})
+        document.querySelector("button").removeEventListener("click", submitFeedUpdate);
+        document.querySelector("button").addEventListener("click", feedCreationToolReload);
     }
-});
+}
+
+function feedCreationToolReload() {
+    const header = document.createElement("h1"); header.innerText = "Tweeter";
+    document.querySelector("header > h2").replaceWith(header);
+    document.querySelectorAll("main > div > input").forEach((input) => input.value = "");
+    document.querySelector("button").addEventListener("click", submitFeedUpdate);
+    document.querySelector("button").removeEventListener("click", feedCreationToolReload);
+    document.querySelector("main").classList.remove("hidden");
+}
