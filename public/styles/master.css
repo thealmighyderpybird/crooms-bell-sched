@@ -287,18 +287,18 @@ nav {
     justify-content: space-between;
 }
 
-nav > div > div {
+nav > div > * {
     padding: 15px;
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
 }
 
-nav > div div:not(.submenu):not(.nolink):hover {
+nav > div *:not(.submenu):not(.nolink):hover {
     background: var(--sec);
 }
 
-nav > div div:not(.submenu):not(.nolink):active {
+nav > div *:not(.submenu):not(.nolink):active {
     background: var(--tri);
 }
 
@@ -312,7 +312,7 @@ nav > div div > img.app-logo {
     margin-right: 8px;
 }
 
-nav > div > div > div.submenu {
+nav > div > * > div.submenu {
     display: none;
     position: absolute;
     top: 51px;
@@ -328,7 +328,7 @@ nav > div > div > div.submenu {
     }
 }
 
-nav > div div:hover > div.submenu {
+nav > div *:hover > div.submenu {
     display: block;
 }
 
