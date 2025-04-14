@@ -64,6 +64,7 @@ const loadFeed = (feeds) => {
                            `${monthNames[createTime.getMonth()]}
                             ${createTime.getDate()},
                             ${createTime.getFullYear()}
+                            ${parseTime(new Date(createTime))}
                         </span></span><span>${update.data}</span>`;
         document.getElementById("feed-updates").appendChild(fu);
     });
