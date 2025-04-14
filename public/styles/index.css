@@ -535,7 +535,7 @@ div.widget h3 {
 @media (max-width: 599px) {
     #wx-alert-panel {
         width: 100vw;
-        right: 100vw;
+        right: 200vw;
     }
 
     #wx-alert-panel > pre {
