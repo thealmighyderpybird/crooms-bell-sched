@@ -37,6 +37,12 @@
       "check": false
     },
     {
+      "id": "citation-generator",
+      "name": "Citation Generator",
+      "link": "https://www.bibliography.com/generator/",
+      "check": false
+    },
+    {
       "id": "suggestion",
       "name": "Suggest a Tool",
       "link": "/tools/suggest/",

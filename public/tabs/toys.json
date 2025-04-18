@@ -139,6 +139,30 @@
       "check": true
     },
     {
+      "id": "geometry-dash-lite",
+      "name": "Geometry Dash Lite",
+      "link": "https://geometrydashlitepc.io/geometry-dash-lite.embed",
+      "check": false
+    },
+    {
+      "id": "pokemon-showdown",
+      "name": "Pokemon Showdown",
+      "link": "/tools/pokemon-showdown-launcher",
+      "check": false
+    },
+    {
+      "id": "ice-age-baby-2",
+      "name": "Kill Ice Age Baby 2 (Opens in new tab)",
+      "link": "https://roshaninteractive.itch.io/kill-the-ice-age-baby-adventure-5",
+      "check": true
+    },
+    {
+      "id": "crazy-cattle",
+      "name": "Crazy Cattle 3D",
+      "link": "https://4nn4t4t.itch.io/crazycattle3d",
+      "check": true
+    },
+    {
       "id": "self",
       "name": "Crooms Bell Schedule",
       "link": "https://croomssched.tech",
