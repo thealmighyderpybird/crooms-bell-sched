@@ -42,7 +42,7 @@ const getFeed = () => {
     }).then((res) => {
         loadFeed(res.data);
     }).catch((error) => {
-        alertBalloon("We encountered an issue loading the Feed.", error.message, 1);
+        alertBalloon("We encountered an issue loading .", error.message, 1);
     });
 }
 
@@ -50,13 +50,13 @@ const loadFeed = (feeds) => {
     let amnt = objectLength(feeds);
     if (amnt === 0) {
         let noFeed = document.createElement("span");
-        noFeed.innerHTML = "There are no Feed Updates. <a class='links' onclick='loadTool(`new-feed`, `/tools/feed-updates`, false)'>Submit one.</a>";
+        noFeed.innerHTML = "There are no Prowler posts. <a class='links' onclick='loadTool(`new-prowler-post`, `/tools/prowler`, false)'>Post something.</a>";
         noFeed.style.userSelect = "none";
-        document.getElementById("feed-updates").innerHTML = noFeed.outerHTML;
+        document.getElementById("prowler-posts").innerHTML = noFeed.outerHTML;
         return;
     }
 
-    document.getElementById("feed-updates").innerHTML = null;
+    document.getElementById("prowler-posts").innerHTML = null;
     feeds.forEach((update) => {
         const createTime = new Date(update.create);
         let fu = document.createElement("div");
@@ -66,7 +66,7 @@ const loadFeed = (feeds) => {
                             ${createTime.getFullYear()}
                             ${parseTime(new Date(createTime))}
                         </span></span><span>${update.data}</span>`;
-        document.getElementById("feed-updates").appendChild(fu);
+        document.getElementById("prowler-posts").appendChild(fu);
     });
 }
 
@@ -77,7 +77,7 @@ const getForecast = () => {
     foc.send();
     foc.onload = () => {
         let forecasts = new Array(14);
-        let data = JSON.parse(JSON.stringify(foc.response));
+        let data = JSON.parse(JSON.stringify(foc.response)).properties.periods;
         class Forecast {
             constructor(dayName, iconFile, desc, temp, windSpeed, windDir) {
                 this.dayName = dayName;
@@ -95,12 +95,12 @@ const getForecast = () => {
         let index = 0;
         while (index <= 5) {
             forecasts[index] = new Forecast(
-                data.properties.periods[index].name,
-                data.properties.periods[index].icon,
-                data.properties.periods[index].shortForecast,
-                data.properties.periods[index].temperature,
-                data.properties.periods[index].windSpeed,
-                data.properties.periods[index].windDirection
+                data[index].name,
+                data[index].icon,
+                data[index].shortForecast,
+                data[index].temperature,
+                data[index].windSpeed,
+                data[index].windDirection
             );
             index++;
         }

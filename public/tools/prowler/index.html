@@ -68,18 +68,18 @@
     <header>
         <h1>Tweeter</h1>
         <p>
-            By submitting a Tweet, you agree to not club baby seals.<br><br>
+            By posting something, you agree to not club baby seals.<br><br>
             You also agree to the <a href="/terms" target="CBSH_Terms">Terms of Service</a>.
         </p>
     </header>
     <main>
         <div>
-            <label for="feed-update" class="hidden">Tweet</label>
-            <input id="feed-update" placeholder="Tweet" autocomplete="off">
+            <label for="post" class="hidden">Post Content</label>
+            <input id="post" placeholder="Post" autocomplete="off">
         </div>
         <div style="padding: 0.2rem 0 0.4rem;">
-            <label for="feed-link" class="hidden">Tweet Link</label>
-            <input id="feed-link" placeholder="Link (optional)" autocomplete="off">
+            <label for="link" class="hidden">Link</label>
+            <input id="link" placeholder="Link (optional)" autocomplete="off">
         </div>
         <p class="footnote">
             To add text styling, use [em][/em] for <em>italics</em>, [b][/b] for <b>bold</b>, and [rainbow][/rainbow]
@@ -87,13 +87,13 @@
         </p>
     </main>
     <footer>
-        <button>Submit Tweet</button>
+        <button>Share Post</button>
         <br><br>
         <a class="links">Sign out of your account.</a>
     </footer>
 </div>
 <script src="/scripts/commons.js"></script>
-<script src="/tools/feed-updates/submission.js"></script>
+<script src="/tools/prowler/submission.js"></script>
 <script>
     document.body.onload = () => {
         document.getElementById("loader").remove();

@@ -1,10 +1,10 @@
-if (retrieveIdentity().sid === undefined || retrieveIdentity().sid === null) location.href = "https://admin.croomssched.tech/sso?host=croomssched.tech";
+if (retrieveIdentity().sid === undefined || retrieveIdentity().sid === null) location.href = "https://admin.croomssched.tech/sso?host=croomssched.tech&path=/tools/prowler";
 
 function retrieveIdentity() {
     try {
         return {uid: localStorage.getItem("UID"), sid: localStorage.getItem("SID")}
     } catch {
-        alertBalloon("We couldn't post your Tweet",
+        alertBalloon("We couldn't share your post",
             "Make sure you're signed into your account and try again.", 2);
     }
 }
@@ -12,8 +12,8 @@ function retrieveIdentity() {
 document.querySelector("#feed-form > footer > button").addEventListener("click", submitFeedUpdate);
 
 async function submitFeedUpdate() {
-    const feed = document.getElementById("feed-update");
-    const link = document.getElementById("feed-link");
+    const feed = document.getElementById("post");
+    const link = document.getElementById("link");
     const regex = /^https:?\/\/(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4])|(?:(?:[a-z0-9\u00a1-\uffff][a-z0-9\u00a1-\uffff_-]{0,62})?[a-z0-9\u00a1-\uffff]\.)+[a-z\u00a1-\uffff]{2,}\.?)(?::\d{2,5})?(?:[\/?#]\S*)?$/i
 
     function convertHTML(str) {
@@ -42,7 +42,7 @@ async function submitFeedUpdate() {
     }
 
     if (feed.value === "") {
-        feedCreationError("Please enter a Tweet.");
+        feedCreationError("Please add content to your post.");
         return;
     }
     if (link.value && !regex.test(link.value)) {
@@ -96,9 +96,9 @@ async function submitFeedUpdate() {
     function showSuccessMessage() {
         document.querySelector("main").classList.add("hidden");
         const successHeader = document.createElement("h2");
-        successHeader.innerText = "Your Tweet was submitted";
+        successHeader.innerText = "Your post was shared";
         document.querySelector("header > h1").replaceWith(successHeader);
-        document.querySelector("header > p").innerText = "It may take a moment for your Tweet to be reviewed.";
+        document.querySelector("header > p").innerText = "Congrats! Your post was shared! Feel free to take a moment to celebrate this achievement!";
         document.querySelector("button").innerText = "Add another";
         document.querySelector("button").removeEventListener("click", submitFeedUpdate);
         document.querySelector("button").addEventListener("click", feedCreationToolReload);
@@ -108,6 +108,7 @@ async function submitFeedUpdate() {
 function feedCreationToolReload() {
     const header = document.createElement("h1"); header.innerText = "Tweeter";
     document.querySelector("header > h2").replaceWith(header);
+    document.querySelector("button").innerText = "Share Post";
     document.querySelectorAll("main > div > input").forEach((input) => input.value = "");
     document.querySelector("button").addEventListener("click", submitFeedUpdate);
     document.querySelector("button").removeEventListener("click", feedCreationToolReload);

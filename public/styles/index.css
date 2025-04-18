@@ -64,7 +64,7 @@ body > main {
     border-radius: 0 0 10px 10px;
 }
 
-.widget.container.with-tabs > .content#feed {
+.widget.container.with-tabs > .content#prowler {
     height: calc(100% - 10px);
 }
 
@@ -205,55 +205,55 @@ div.widget h3 {
     height: fit-content;
 }
 
-#feed > p {
+#prowler > p {
     margin: 0;
     user-select: none;
 }
 
-#feed > div {
+#prowler > div {
     margin-block-start: 1em;
     overflow-y: auto;
     max-height: calc(100vh - 377px - 1em)
 }
 
-#feed-updates {
+#prowler-posts {
     margin: 0;
 }
 
-#feed-updates * {
+#prowler-posts * {
     word-break: break-word;
 }
 
-#feed-updates > div {
+#prowler-posts > div {
     background: var(--sec);
     border-radius: 0.5rem;
     margin-bottom: 0.5rem;
     padding: 0.5rem;
 }
 
-#feed-updates > div > span.username {
+#prowler-posts > div > span.username {
     user-select: none;
     font-size: 10pt;
     display: block;
     opacity: 0.7;
 }
 
-#feed-updates > div > span.username > b {
+#prowler-posts > div > span.username > b {
     padding-right: 0.5rem;
     display: inline-block;
 }
 
-#feed-updates > div > span.username > span {
+#prowler-posts > div > span.username > span {
     border-left: var(--main) 1px solid;
     padding-left: 0.5rem;
     opacity: 0.7;
 }
 
-#feed-updates > div i {
+#prowler-posts > div i {
     user-select: none;
 }
 
-#feed-updates > div emoji {
+#prowler-posts > div emoji {
     font-family: "GoogleEmoji", system-ui;
 }
 
@@ -499,7 +499,7 @@ div.widget h3 {
         display: none;
     }
 
-    #feed > div, #surveys > div {
+    #prowler > div, #surveys > div {
         max-height: 100%;
         overflow: auto;
     }
