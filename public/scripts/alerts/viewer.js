@@ -34,9 +34,9 @@ function viewAlert(id) {
             expiretime.toString() === "Wed Dec 31 1969 19:00:00 GMT-0500 (Eastern Standard Time)") {
             document.querySelector("#wx-alert-panel > ul > li:nth-child(2) > span").innerText = "When notified";
         } else if (endtime.toString() === "Wed Dec 31 1969 19:00:00 GMT-0500 (Eastern Standard Time)") {
-            document.querySelector("#wx-alert-panel > ul > li:nth-child(2) > span").innerText = parseTime(expiretime);
+            document.querySelector("#wx-alert-panel > ul > li:nth-child(2) > span").innerText = parseWxTime(expiretime);
         } else {
-            document.querySelector("#wx-alert-panel > ul > li:nth-child(2) > span").innerText = parseTime(endtime);
+            document.querySelector("#wx-alert-panel > ul > li:nth-child(2) > span").innerText = parseWxTime(endtime);
         }
     });
 
