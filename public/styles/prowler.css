@@ -17,15 +17,22 @@
     opacity: 0.8;
 }
 
-.corePostHeaderContent :last-child {
-    font-size: 0.75rem;
+.corePostHeaderContent .username {
+    align-items: center;
+    flex-flow: row;
+    display: flex;
 }
 
 .corePostHeaderContent .username svg {
-    transform: translateY(0.15rem);
+    transform: translateY(0.15rem) scale(1.25);
+    padding-left: 0.25rem;
     display: inline-block;
     height: 15px;
     width: 15px;
+}
+
+.corePostHeaderContent :last-child {
+    font-size: 0.75rem;
 }
 
 .profilePicture {
