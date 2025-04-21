@@ -42,11 +42,16 @@ const getFeed = () => {
     }).then((res) => {
         loadFeed(res.data);
     }).catch((error) => {
-        alertBalloon("We encountered an issue loading .", error.message, 1);
+        alertBalloon("We encountered an issue loading Prowler.", error.message, 1);
     });
 }
 
 const loadFeed = (feeds) => {
+    const verifiedSVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill-rule="evenodd" style="fill: rgb(66, 133, 244);">
+        <path d="M256 472.153L176.892 512l-41.725-81.129-86.275-16.654 11.596-91.422L0 256l60.488-66.795-11.596-91.422 86.275-16.654L176.892 0 256 39.847 335.108 0l41.725 81.129 86.275 16.654-11.596 91.422L512 256l-60.488 66.795 11.596 91.422-86.275 16.654L335.108 512z" />
+        <path d="M211.824 284.5L171 243.678l-36 36 40.824 40.824-.063.062 36 36 .063-.062.062.062 36-36-.062-.062L376.324 192l-36-36z" fill="#fff"/>
+    </svg>`;
+
     let amnt = objectLength(feeds);
     if (amnt === 0) {
         let noFeed = document.createElement("span");
@@ -60,12 +65,19 @@ const loadFeed = (feeds) => {
     feeds.forEach((update) => {
         const createTime = new Date(update.create);
         let fu = document.createElement("div");
-        fu.innerHTML = `<span class="username"><b>${update?.createdBy || ""}</b><span>` +
-                           `${monthNames[createTime.getMonth()]}
-                            ${createTime.getDate()},
-                            ${createTime.getFullYear()}
-                            ${parseTime(new Date(createTime))}
-                        </span></span><span>${update.data}</span>`;
+        fu.innerHTML = `<div class="corePostHeader">
+                            <div class="corePostHeaderContent">
+                                <span class="username">
+                                    ${update?.createdBy || ""}
+                                    ${update?.verified === true ? verifiedSVG : "" }
+                                </span>
+                                <span>` +
+                                   `${monthNames[createTime.getMonth()]}
+                                    ${createTime.getDate()},
+                                    ${createTime.getFullYear()}
+                                    ${parseTime(new Date(createTime))}
+                                </span>
+                            </div></div><div>${update.data}</div>`;
         document.getElementById("prowler-posts").appendChild(fu);
     });
 }
@@ -87,8 +99,8 @@ const getForecast = () => {
                 this.windSpeed = windSpeed;
                 this.windDir = windDir;
 
-                if (this.dayName.startsWith("This")) {this.dayName = this.dayName.substring(5);}
-                if (this.dayName.endsWith(" Night")) {this.dayName = "Night";}
+                if (this.dayName.startsWith("This")) this.dayName = this.dayName.substring(5);
+                if (this.dayName.endsWith(" Night")) this.dayName = "Night";
             }
         }
 
@@ -122,8 +134,7 @@ const loadAlerts = (wxalert) => {
     let amnt = objectLength(wxalert);
     if (amnt !== 0) {
         let index = 0;
-        let apm;
-        let isUrgent;
+        let apm, isUrgent;
         document.getElementById("alert-list").innerHTML = null
         while (index <= amnt - 1) {
             let endtime = new Date(wxalert[index].properties.ends);
@@ -132,10 +143,8 @@ const loadAlerts = (wxalert) => {
                 expiretime.toString() === "Wed Dec 31 1969 19:00:00 GMT-0500 (Eastern Standard Time)") {
                 endtime = "further notice"
             } else if (endtime.toString() === "Wed Dec 31 1969 19:00:00 GMT-0500 (Eastern Standard Time)") {
-                endtime = parseTime(expiretime);
-            } else {
-                endtime = parseTime(endtime);
-            }
+                endtime = parseWxTime(expiretime);
+            } else endtime = parseWxTime(endtime);
 
             let alertItem = document.createElement("li");
             alertItem.innerHTML = wxalert[index].properties.event + " until " + endtime;
@@ -188,7 +197,7 @@ const loadSurveys = (surveys) => {
     })
 }
 
-function parseTime(endtime) {
+function parseWxTime(endtime) {
     let apm;
     let endday = endtime.getDay();
     if (endday === new Date().getDay()) {endday = " "}
@@ -204,6 +213,20 @@ function parseTime(endtime) {
     if (endminute < 10) {endminute = "0"+endminute}
 
     return endday + endhour + ":" + endminute + " " + apm;
+}
+
+function parseTime(endtime) {
+    let apm;
+    let endhour = endtime.getHours();
+    if (endhour > 12) {endhour -= 12; apm = "PM"}
+    else if (endhour === 12) apm = "PM";
+    else if (endhour === 0) {endhour = 12; apm = "AM"}
+    else apm = "AM";
+
+    let endminute = endtime.getMinutes();
+    if (endminute < 10) endminute = "0"+endminute
+
+    return endhour + ":" + endminute + " " + apm;
 }
 
 getInfo(); setInterval(getInfo, 60000);

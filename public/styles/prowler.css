@@ -1,0 +1,55 @@
+.corePostHeader {
+    justify-content: center;
+    margin-bottom: 0.75rem;
+    text-decoration: none;
+    width: fit-content;
+    user-select: none;
+    flex-flow: row;
+    display: flex;
+}
+
+.corePostHeaderContent {
+    margin-left: 0.5rem;
+    font-size: 0.9rem;
+    flex-flow: column;
+    line-height: 1;
+    display: flex;
+    opacity: 0.8;
+}
+
+.corePostHeaderContent :last-child {
+    font-size: 0.75rem;
+}
+
+.corePostHeaderContent .username svg {
+    transform: translateY(0.15rem);
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+}
+
+.profilePicture {
+    -webkit-user-drag: none;
+    border-radius: 100%;
+    user-select: none;
+}
+
+.profilePictureSmall {
+    height: 16px;
+    width: 16px;
+}
+
+.profilePictureMedium {
+    height: 32px;
+    width: 32px;
+}
+
+.profilePictureLarge {
+    height: 64px;
+    width: 64px;
+}
+
+.profilePictureExtraLarge {
+    height: 96px;
+    width: 96px;
+}

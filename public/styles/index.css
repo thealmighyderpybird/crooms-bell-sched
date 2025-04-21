@@ -1,4 +1,5 @@
 @import url("/styles/master.css");
+@import url("/styles/prowler.css");
 
 body::before, body::after {
     content: "" !important;
