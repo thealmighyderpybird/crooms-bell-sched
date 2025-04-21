@@ -271,4 +271,3 @@ setInterval(getForecast, 60000);
 getSurveys();
 setInterval(getSurveys, 60000);
 getFeed();
-setInterval(getFeed, 30000);
