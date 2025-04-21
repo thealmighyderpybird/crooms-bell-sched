@@ -24,7 +24,7 @@
 }
 
 .corePostHeaderContent .username svg {
-    transform: translateY(0.15rem) scale(1.25);
+    transform: scale(1.25);
     padding-left: 0.25rem;
     display: inline-block;
     height: 15px;
