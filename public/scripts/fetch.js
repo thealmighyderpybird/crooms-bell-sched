@@ -72,10 +72,10 @@ const loadFeed = (feeds) => {
         const createTime = new Date(update.create);
         let fu = document.createElement("div");
         fu.innerHTML = `<div class="corePostHeader">
-            <img src="https://mikhail.croomssched.tech/crfsapi/FileController/ReadFile?name=${update.uid}.png&default=pfp"
+            <!--<img src="https://mikhail.croomssched.tech/crfsapi/FileController/ReadFile?name=${update.uid}.png&default=pfp"
                  alt="${update?.createdBy + "'s " || ""}Profile Picture"
                  title="${update?.createdBy + "'s " || ""}Profile Picture"
-                 draggable="false" class="profilePicture profilePictureMedium">
+                 draggable="false" class="profilePicture profilePictureMedium">-->
             <div class="corePostHeaderContent">
                 <span class="username">
                     ${update?.createdBy || ""}
