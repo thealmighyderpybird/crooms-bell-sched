@@ -17,7 +17,7 @@ const getProwler = () => {
 
         document.getElementById("prowler-posts").innerHTML = null;
         prowler.posts = data.data;
-        loadPosts(0, data.data.length);
+        loadPosts(0, data.data.length - 1);
     }).catch((error) => {
         alertBalloon("We encountered an issue loading Prowler.", error.message, 1);
     });
@@ -39,6 +39,7 @@ const loadProwler = (feeds) => {
     }
 
     feeds.forEach((update) => {
+        console.log(update)
         const createTime = new Date(update.create);
         let fu = document.createElement("div");
         fu.innerHTML = `<div class="corePostHeader">
@@ -58,14 +59,14 @@ const loadProwler = (feeds) => {
                     ${parseTime(new Date(createTime))}
                 </span>
             </div></div><div>${update.data}</div>`;
+
+        document.getElementById("prowler-posts").appendChild(fu);
     });
 }
 
 const loadPosts = (start, end) => {
     const posts = [];
     for (let i = start; i <= end; i++) {
-        const value = { index: i };
-        Object.assign(prowler.posts[i], value);
         posts.push(prowler.posts[i]);
     }
     loadProwler(posts);
