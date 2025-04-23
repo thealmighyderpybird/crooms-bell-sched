@@ -71,3 +71,4 @@ const loadPosts = (start, end) => {
 };
 
 getProwler();
+setInterval(getProwler, 60000);
