@@ -42,56 +42,6 @@ function setFun(information) {
     document.getElementById("teacher").innerHTML = information.teacherquote.teacher;
 }
 
-const getFeed = () => {
-    fetch("https://api.croomssched.tech/feed").then((res) => {
-        return res.json();
-    }).then((res) => {
-        loadFeed(res.data);
-    }).catch((error) => {
-        alertBalloon("We encountered an issue loading Prowler.", error.message, 1);
-    });
-}
-
-const loadFeed = (feeds) => {
-    const verifiedSVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill-rule="evenodd" style="fill: rgb(66, 133, 244);">
-        <path d="M256 472.153L176.892 512l-41.725-81.129-86.275-16.654 11.596-91.422L0 256l60.488-66.795-11.596-91.422 86.275-16.654L176.892 0 256 39.847 335.108 0l41.725 81.129 86.275 16.654-11.596 91.422L512 256l-60.488 66.795 11.596 91.422-86.275 16.654L335.108 512z" />
-        <path d="M211.824 284.5L171 243.678l-36 36 40.824 40.824-.063.062 36 36 .063-.062.062.062 36-36-.062-.062L376.324 192l-36-36z" fill="#fff"/>
-    </svg>`;
-
-    let amnt = objectLength(feeds);
-    if (amnt === 0) {
-        let noFeed = document.createElement("span");
-        noFeed.innerHTML = "There are no Prowler posts. <a class='links' onclick='loadTool(`new-prowler-post`, `/tools/prowler`, false)'>Post something.</a>";
-        noFeed.style.userSelect = "none";
-        document.getElementById("prowler-posts").innerHTML = noFeed.outerHTML;
-        return;
-    }
-
-    document.getElementById("prowler-posts").innerHTML = null;
-    feeds.forEach((update) => {
-        const createTime = new Date(update.create);
-        let fu = document.createElement("div");
-        fu.innerHTML = `<div class="corePostHeader">
-            <!--<img src="https://mikhail.croomssched.tech/crfsapi/FileController/ReadFile?name=${update.uid}.png&default=pfp"
-                 alt="${update?.createdBy + "'s " || ""}Profile Picture"
-                 title="${update?.createdBy + "'s " || ""}Profile Picture"
-                 draggable="false" class="profilePicture profilePictureMedium">-->
-            <div class="corePostHeaderContent">
-                <span class="username">
-                    ${update?.createdBy || ""}
-                    ${update?.verified === true ? verifiedSVG : ""}
-                </span>
-                <span>` + `
-                    ${monthNames[createTime.getMonth()]}
-                    ${createTime.getDate()},
-                    ${createTime.getFullYear()}
-                    ${parseTime(new Date(createTime))}
-                </span>
-            </div></div><div>${update.data}</div>`;
-        document.getElementById("prowler-posts").appendChild(fu);
-    });
-}
-
 const getForecast = () => {
     let foc = new XMLHttpRequest();
     foc.open('GET', 'https://api.weather.gov/gridpoints/MLB/28,80/forecast');
@@ -141,32 +91,31 @@ const getForecast = () => {
     }
 }
 
-const loadAlerts = (wxalert) => {
-    let amnt = objectLength(wxalert);
-    if (amnt !== 0) {
+const loadAlerts = (alerts) => {
+    let length = objectLength(alerts);
+    if (length !== 0) {
         let index = 0;
-        let apm, isUrgent;
         document.getElementById("alert-list").innerHTML = null
-        while (index <= amnt - 1) {
-            let endtime = new Date(wxalert[index].properties.ends);
-            let expiretime = new Date(wxalert[index].properties.expires);
-            if (endtime.toString() === "Wed Dec 31 1969 19:00:00 GMT-0500 (Eastern Standard Time)" &&
-                expiretime.toString() === "Wed Dec 31 1969 19:00:00 GMT-0500 (Eastern Standard Time)") {
-                endtime = "further notice"
-            } else if (endtime.toString() === "Wed Dec 31 1969 19:00:00 GMT-0500 (Eastern Standard Time)") {
-                endtime = parseWxTime(expiretime);
-            } else endtime = parseWxTime(endtime);
+        while (index <= length - 1) {
+            let endTime = new Date(alerts[index].properties.ends);
+            let expireTime = new Date(alerts[index].properties.expires);
+            if (endTime.toString() === "Wed Dec 31 1969 19:00:00 GMT-0500 (Eastern Standard Time)" &&
+                expireTime.toString() === "Wed Dec 31 1969 19:00:00 GMT-0500 (Eastern Standard Time)") {
+                endTime = "further notice"
+            } else if (endTime.toString() === "Wed Dec 31 1969 19:00:00 GMT-0500 (Eastern Standard Time)") {
+                endTime = parseWxTime(expireTime);
+            } else endTime = parseWxTime(endTime);
 
             let alertItem = document.createElement("li");
-            alertItem.innerHTML = wxalert[index].properties.event + " until " + endtime;
-            alertItem.dataset.id = wxalert[index].properties.id;
+            alertItem.innerHTML = alerts[index].properties.event + " until " + endTime;
+            alertItem.dataset.id = alerts[index].properties.id;
             alertItem.addEventListener("click", () => {
                 viewAlert(alertItem.dataset.id)
             }, false);
 
-            if (wxalert[index].properties.severity === "Extreme" && wxalert[index].properties.event.endsWith("Warning") || wxalert[index].properties.event.endsWith("Emergency")) {
+            if (alerts[index].properties.severity === "Extreme" && alerts[index].properties.event.endsWith("Warning") || alerts[index].properties.event.endsWith("Emergency")) {
                 alertItem.classList.add("urgent")
-            } else if (wxalert[index].properties.severity === "Extreme" && wxalert[index].properties.event.endsWith("Watch")) {
+            } else if (alerts[index].properties.severity === "Extreme" && alerts[index].properties.event.endsWith("Watch")) {
                 alertItem.classList.add("important")
             }
 
@@ -177,12 +126,12 @@ const loadAlerts = (wxalert) => {
     }
 }
 
-let altloc = "https://api.weather.gov/alerts/active?zone=FLC117";
-//altloc = "https://api.weather.gov/alerts/active?area=FL";
+let activeZone = "https://api.weather.gov/alerts/active?zone=FLC117";
+//activeZone = "https://api.weather.gov/alerts/active?area=FL";
 
 const getAlerts = () => {
     let art = new XMLHttpRequest();
-    art.open('GET', altloc);
+    art.open('GET', activeZone);
     art.responseType = 'json';
     art.send();
     art.onload = () => {
@@ -214,52 +163,33 @@ const loadSurveys = (surveys) => {
     })
 }
 
-function parseWxTime(endtime) {
-    let apm;
-    let endday = endtime.getDay();
-    if (endday === new Date().getDay()) {
-        endday = " "
+function parseWxTime(endTime) {
+    let endDay = endTime.getDay();
+    if (endDay === new Date().getDay()) {
+        endDay = " "
     } else {
-        endday = weekday[endday] + " at "
+        endDay = weekday[endDay] + " at "
     }
 
-    let endhour = endtime.getHours();
-    if (endhour > 12) {
-        endhour -= 12;
-        apm = "PM"
-    } else if (endhour === 12) {
-        apm = "PM"
-    } else if (endhour === 0) {
-        endhour = 12;
-        apm = "AM"
-    } else {
-        apm = "AM"
-    }
-
-    let endminute = endtime.getMinutes();
-    if (endminute < 10) {
-        endminute = "0" + endminute
-    }
-
-    return endday + endhour + ":" + endminute + " " + apm;
+    return endDay + parseTime(endTime);
 }
 
-function parseTime(endtime) {
+function parseTime(time) {
     let apm;
-    let endhour = endtime.getHours();
-    if (endhour > 12) {
-        endhour -= 12;
+    let endHour = time.getHours();
+    if (endHour > 12) {
+        endHour -= 12;
         apm = "PM"
-    } else if (endhour === 12) apm = "PM";
-    else if (endhour === 0) {
-        endhour = 12;
+    } else if (endHour === 12) apm = "PM";
+    else if (endHour === 0) {
+        endHour = 12;
         apm = "AM"
     } else apm = "AM";
 
-    let endminute = endtime.getMinutes();
-    if (endminute < 10) endminute = "0" + endminute
+    let endMinute = time.getMinutes();
+    if (endMinute < 10) endMinute = "0" + endMinute
 
-    return endhour + ":" + endminute + " " + apm;
+    return endHour + ":" + endMinute + " " + apm;
 }
 
 getInfo();
@@ -270,4 +200,3 @@ getForecast();
 setInterval(getForecast, 60000);
 getSurveys();
 setInterval(getSurveys, 60000);
-getFeed();
