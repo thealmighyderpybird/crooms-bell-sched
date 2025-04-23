@@ -64,7 +64,8 @@ const loadProwler = (feeds) => {
 const loadPosts = (start, end) => {
     const posts = [];
     for (let i = start; i <= end; i++) {
-        prowler.posts[i].index = i;
+        const value = { index: i };
+        Object.assign(prowler.posts[i], value);
         posts.push(prowler.posts[i]);
     }
     loadProwler(posts);
