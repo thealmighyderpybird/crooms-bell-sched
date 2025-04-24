@@ -76,6 +76,7 @@ div.widget h3 {
 
 #lunch {
     grid-area: lunch;
+    user-select: none;
 }
 
 #lunch h3, #lunch img {
