@@ -106,7 +106,7 @@ async function submitFeedUpdate() {
 }
 
 function feedCreationToolReload() {
-    const header = document.createElement("h1"); header.innerText = "Tweeter";
+    const header = document.createElement("h1"); header.innerText = "Prowler";
     document.querySelector("header > h2").replaceWith(header);
     document.querySelector("button").innerText = "Share Post";
     document.querySelectorAll("main > div > input").forEach((input) => input.value = "");
