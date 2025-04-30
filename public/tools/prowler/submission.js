@@ -105,6 +105,21 @@ async function submitFeedUpdate() {
     }
 }
 
+document.querySelector("body > div > footer > a.links").addEventListener("click", async () => {
+    const request = new Request("https://api.croomssched.tech/users/logout/" + retrieveIdentity().uid, {
+        method: "DELETE",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "Authorization": JSON.stringify(retrieveIdentity().sid)
+        }
+    });
+    await fetch(request);
+    localStorage.removeItem("SID");
+    localStorage.removeItem("UID");
+    location.reload();
+});
+
 function feedCreationToolReload() {
     const header = document.createElement("h1"); header.innerText = "Prowler";
     document.querySelector("header > h2").replaceWith(header);
