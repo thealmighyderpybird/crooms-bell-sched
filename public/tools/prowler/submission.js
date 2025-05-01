@@ -123,6 +123,8 @@ document.querySelector("body > div > footer > a.links").addEventListener("click"
 function feedCreationToolReload() {
     const header = document.createElement("h1"); header.innerText = "Prowler";
     document.querySelector("header > h2").replaceWith(header);
+    document.querySelector("header > p").innerHTML = "By posting something, you agree to not club baby seals.<br><br>" +
+        "You also agree to the <a href=\"/terms\" target=\"CBSH_Terms\">Terms of Service</a>.";
     document.querySelector("button").innerText = "Share Post";
     document.querySelectorAll("main > div > input").forEach((input) => input.value = "");
     document.querySelector("button").addEventListener("click", submitFeedUpdate);

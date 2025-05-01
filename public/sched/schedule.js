@@ -406,6 +406,8 @@ function startSched(application) {
             EventName = "Session 5";
         } else if (EventName === 115) {
             EventName = "Field Day";
+        } else if (EventName === 116) {
+            EventName = "Testing";
         } else {
             EventName = "Unknown Event";
         }
