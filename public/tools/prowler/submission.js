@@ -12,6 +12,10 @@ function retrieveIdentity() {
 document.querySelector("#feed-form > footer > button").addEventListener("click", submitFeedUpdate);
 
 async function submitFeedUpdate() {
+    document.querySelector("#feed-form > footer > button").removeEventListener("click", submitFeedUpdate);
+    document.querySelector("#feed-form > footer > button").innerText = "Please wait...";
+    document.querySelector("#feed-form > footer > button").disabled = true;
+
     const feed = document.getElementById("post");
     const link = document.getElementById("link");
     const regex = /^https:?\/\/(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4])|(?:(?:[a-z0-9\u00a1-\uffff][a-z0-9\u00a1-\uffff_-]{0,62})?[a-z0-9\u00a1-\uffff]\.)+[a-z\u00a1-\uffff]{2,}\.?)(?::\d{2,5})?(?:[\/?#]\S*)?$/i
@@ -39,6 +43,9 @@ async function submitFeedUpdate() {
         error.classList.add("error");
         feed.addEventListener("keydown", () => {error.remove()});
         document.querySelector("button").addEventListener("click", () => error.remove());
+        document.querySelector("#feed-form > footer > button").addEventListener("click", submitFeedUpdate);
+        document.querySelector("#feed-form > footer > button").innerText = "Share Post";
+        document.querySelector("#feed-form > footer > button").disabled = false;
     }
 
     if (feed.value === "") {
@@ -81,17 +88,9 @@ async function submitFeedUpdate() {
     const response = await fetch(request);
     const status = await response.json();
 
-    if (status.data.error === "One of the following keys is missing or is empty in request body: 'data'") {
-        feedCreationError("Please enter a Tweet.");
-    } else if (status.data.error) {
-        const error = document.createElement("p");
-        error.innerText = status.data.error;
-        document.querySelector("main").appendChild(error);
-        error.classList.add("error");
-        document.querySelector("button").addEventListener("click", () => {error.remove()});
-    } else {
-        showSuccessMessage();
-    }
+    if (status.data.error === "One of the following keys is missing or is empty in request body: 'data'") feedCreationError("Please enter a Tweet.");
+    else if (status.data.error) feedCreationError(status.data.error);
+    else showSuccessMessage();
 
     function showSuccessMessage() {
         document.querySelector("main").classList.add("hidden");
@@ -99,8 +98,8 @@ async function submitFeedUpdate() {
         successHeader.innerText = "Your post was shared";
         document.querySelector("header > h1").replaceWith(successHeader);
         document.querySelector("header > p").innerText = "Congrats! Your post was shared! Feel free to take a moment to celebrate this achievement!";
-        document.querySelector("button").innerText = "Add another";
-        document.querySelector("button").removeEventListener("click", submitFeedUpdate);
+        document.querySelector("#feed-form > footer > button").disabled = false;
+        document.querySelector("#feed-form > footer > button").innerText = "Add another";
         document.querySelector("button").addEventListener("click", feedCreationToolReload);
     }
 }
@@ -130,4 +129,6 @@ function feedCreationToolReload() {
     document.querySelector("button").addEventListener("click", submitFeedUpdate);
     document.querySelector("button").removeEventListener("click", feedCreationToolReload);
     document.querySelector("main").classList.remove("hidden");
+    document.querySelector("#feed-form > footer > button").addEventListener("click", submitFeedUpdate);
+    document.querySelector("#feed-form > footer > button").innerText = "Share Post";
 }
