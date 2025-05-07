@@ -3,7 +3,7 @@ function downloadApp() {
     document.getElementById("download").style.left = "0";
 
     setTimeout(() => {
-        window.location.href = "https://update.croomssched.tech/download/win32/";
+        window.location.href = "https://mikhail.croomssched.tech/updateapiv2/CroomsBellSchedule-win-Setup.exe";
         document.getElementById("countdown").innerText = "has started";
     }, 2000)
 }
