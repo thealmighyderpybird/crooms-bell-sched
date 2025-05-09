@@ -25,9 +25,7 @@ function setInfo(information) {
     document.getElementById("AllLunchItem").innerHTML = information.lunch[6];
     const dates = new Date;
     let day = dates.getDay();
-    if (0 < day && day < 6) {
-        document.getElementById("DailyLunchImage").src = information.lunch[day].image;
-    }
+    if (0 < day && day < 6) loadBlobImg(information.lunch[day].image, document.getElementById("DailyLunchImage"));
     document.querySelector("#quickbits > div > ol").innerHTML = "";
     information.quickBits.forEach((quickBit) => {
         let bitQuick = document.createElement("li");
@@ -80,8 +78,8 @@ const getForecast = () => {
 
         index = 0;
         while (index <= 4) {
+            loadBlobImg(forecasts[index].icon, document.getElementById(index + "-icon"));
             document.getElementById(index + "-name").innerHTML = forecasts[index].dayName;
-            document.getElementById(index + "-icon").src = forecasts[index].icon;
             document.getElementById(index + "-desc").innerHTML = forecasts[index].desc;
             document.getElementById(index + "-temp").innerHTML = forecasts[index].temp;
             document.getElementById(index + "-wind-dir").innerHTML = forecasts[index].windDir;

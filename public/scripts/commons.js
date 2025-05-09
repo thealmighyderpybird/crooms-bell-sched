@@ -157,6 +157,16 @@ async function copyText() {
     }
 }
 
+function loadBlobImg(location, element) {
+    fetch(location).then(async res => {
+        if (!res.ok) throw new Error("Network response was not ok");
+        const blob = await res.blob();
+        const blobURL = URL.createObjectURL(blob);
+        element.src = blobURL;
+        element.addEventListener("load", () => URL.revokeObjectURL(blobURL));
+    }).catch(e => console.error("Failed to fetch image:", e));
+}
+
 function objectLength(obj) {
     let result = 0;
     for(let prop in obj) {

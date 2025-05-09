@@ -8,7 +8,8 @@ const prowlerElement = document.getElementById("prowler-posts");
 
 const getProwlerVerifiedSvg = (uid) => {
     let color = "rgb(66, 133, 244)";
-    if (uid === "longerpassword") color = "rgb(250, 0, 0)";
+    if (uid.toLowerCase() === "ef6e35c9be") color = "var(--tri)";
+    if (uid.toLowerCase() === "guyfromchina") color = "transparent";
 
     return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill-rule="evenodd" style="fill: ${color};">
         <path d="M256 472.153L176.892 512l-41.725-81.129-86.275-16.654 11.596-91.422L0 256l60.488-66.795-11.596-91.422 86.275-16.654L176.892 0 256 39.847 335.108 0l41.725 81.129 86.275 16.654-11.596 91.422L512 256l-60.488 66.795 11.596 91.422-86.275 16.654L335.108 512z" />
@@ -23,11 +24,7 @@ const getProwler = () => {
             return;
         }
 
-        if (res.ok !== true) {
-            alertBalloon("We encountered an issue updating Prowler.", res.statusMessage || res.statusText, 1);
-            return;
-        }
-        
+        if (res.ok !== true) throw new Error(res.statusText || "Please retry in a few minutes.");
         return res.text();
     }).then((res) => {
                 const data = JSON.parse(res);
@@ -96,7 +93,6 @@ const getNewPosts = () => {
         }
 
         if (res.ok !== true) throw new Error(res.statusText || "Please retry in a few minutes.");
-
         return res.text();
     }).then((res) => {
         const data = JSON.parse(res);
@@ -104,6 +100,7 @@ const getNewPosts = () => {
             "We encountered an issue updating Prowler.", data.data.error.message, 1);
 
         const newPostCount = data.data.length - prowler.posts.length;
+        const newParent = document.createElement("div");
         data.data.forEach((post, i) => {
             const oldPost = prowler.posts[i - newPostCount]; let newPost;
             try {
@@ -136,9 +133,13 @@ const getNewPosts = () => {
                     </div></div><div class="corePostContent">${newPost.data}</div>`;
 
                 prowler.posts.unshift(newPost);
-                prowlerElement.prepend(fu);
+                newParent.appendChild(fu);
             }
         });
+
+        for (let i = newParent.children.length - 1; i >= 0; i--) {
+            prowlerElement.prepend(newParent.children.item(i));
+        }
     }).catch((error) => {
         alertBalloon("We encountered an issue updating Prowler.", error.message, 1);
     });
