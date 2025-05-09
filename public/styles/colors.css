@@ -5,7 +5,8 @@
     --halloween: #4B0082;
     --winter: #1E90FF;
     --wawwf: #385E61;
-    --burn-the-ships: #4b709a
+    --burn-the-ships: #4b709a;
+    --landon-homeless-camp: #4B0082;
 }
 
 @media screen and (prefers-color-scheme: dark) {
@@ -14,6 +15,7 @@
         --halloween: #FF8C00;
         --winter: #87CEEB;
         --wawwf: #99A893;
+        --landon-homeless-camp: #9400ff;
     }
 }
 
@@ -23,6 +25,7 @@
     --halloween: #4B0082 !important;
     --winter: #1E90FF !important;
     --wawwf: #385E61 !important;
+    --landon-homeless-camp: #4B0082 !important;
 }
 
 :root.dark {
@@ -30,6 +33,7 @@
     --halloween: #FF8C00 !important;
     --winter: #87CEEB !important;
     --wawwf: #99A893 !important;
+    --landon-homeless-camp: #9400ff !important;
 }
 
 :root:has(body.windows) {

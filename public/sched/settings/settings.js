@@ -70,10 +70,6 @@ function start() {
         periodNameElements[i].addEventListener("change", saveSettings);
     }
 
-
-    let fontName = Settings.font.values.find((font) => {if (font.id === Settings.font.value) {return font}});
-    document.querySelector(`div[data-isFontSetting="true"][title="${fontName.name}"]`).className = "active";
-
     document.querySelectorAll(`div[data-isFontSetting="true"]`).forEach((elem) => {
        elem.addEventListener("click", () => {
           let fontName = elem.getAttribute("title");
@@ -102,7 +98,10 @@ function start() {
         option.text = font.name;
         option.value = font.value;
         document.getElementById("fontSelector").appendChild(option);
-    })
+    });
+
+    let fontName = Settings.font.values.find((font) => {if (font.id === Settings.font.value) {return font}});
+    document.querySelector(`div[data-isFontSetting="true"][title="${fontName.name}"]`).className = "active";
 }
 
 document.addEventListener("DOMContentLoaded", fixMissingSettings);
