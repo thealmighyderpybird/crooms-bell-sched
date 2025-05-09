@@ -8,8 +8,8 @@ const prowlerElement = document.getElementById("prowler-posts");
 
 const getProwlerVerifiedSvg = (uid) => {
     let color = "rgb(66, 133, 244)";
-    if (uid.toLowerCase() === "ef6e35c9be") color = "var(--tri)";
-    if (uid.toLowerCase() === "guyfromchina") color = "transparent";
+    if (uid === "ef6e35c9be") color = "var(--tri)";
+    if (uid === "GuyFromChina") color = "transparent";
 
     return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill-rule="evenodd" style="fill: ${color};">
         <path d="M256 472.153L176.892 512l-41.725-81.129-86.275-16.654 11.596-91.422L0 256l60.488-66.795-11.596-91.422 86.275-16.654L176.892 0 256 39.847 335.108 0l41.725 81.129 86.275 16.654-11.596 91.422L512 256l-60.488 66.795 11.596 91.422-86.275 16.654L335.108 512z" />
