@@ -2,7 +2,7 @@ let installPrompt = null;
 const installRecommender = document.getElementById("pwa-installer");
 
 window.addEventListener("beforeinstallprompt", (event) => {
-    event.preventDefault();
+    event.prompt(); event.preventDefault();
 
     if (document.cookie.includes("PWAIgnore=true;")) {
         installPrompt = event;
