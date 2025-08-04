@@ -4,43 +4,37 @@
       "id": "working-grade-calc",
       "name": "Grade Calculator",
       "link": "https://www.calculator.net/grade-calculator.html",
-      "check": false
+      "popup": false
     },
     {
-      "id": "advice",
+      "id": "mikhail-advice",
       "name": "Mikhail's Advice",
-      "link": "https://mikhail.croomssched.tech",
-      "check": false
+      "link": "https://mikhail.croomssched.tech/advice",
+      "popup": false
     },
     {
       "id": "desmos",
       "name": "Desmos Calculator",
       "link": "https://www.desmos.com/calculator",
-      "check": false
+      "popup": true
     },
     {
       "id": "mathway",
       "name": "Math calculator",
       "link": "https://www.mathway.com/BasicMath",
-      "check": false
+      "popup": true
     },
     {
       "id": "gpa-calc",
       "name": "GPA Calculator",
       "link": "https://www.calculator.net/gpa-calculator.html",
-      "check": false
+      "popup": false
     },
     {
       "id": "typing",
       "name": "Typing Practice",
       "link": "https://www.keybr.com",
-      "check": false
-    },
-    {
-      "id": "suggestion",
-      "name": "Suggest a Tool",
-      "link": "/tools/suggest/",
-      "check": false
+      "popup": false
     }
   ]
 }

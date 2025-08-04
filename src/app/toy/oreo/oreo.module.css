@@ -1,0 +1,72 @@
+.container {
+    user-select: none;
+    overflow: hidden;
+    margin: 2rem;
+}
+
+.title {
+    font-style: italic;
+    font-weight: 500;
+}
+
+.input {
+    text-align: left !important;
+}
+
+.content {
+    max-height: calc(100vh - 5rem - 71px);
+    padding: 84px 42px 42px;
+    background: var(--sec);
+    border-radius: 10px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 1rem;
+    overflow-y: auto;
+    width: 200px;
+}
+
+.oreo {
+    flex-direction: column-reverse;
+    align-items: center;
+    display: flex;
+}
+
+.o {
+    border: 10px double #181008;
+    background: #2b1d0e;
+    border-radius: 100%;
+    position: relative;
+    margin-top: -37px;
+    width: 100px;
+    height: 50px;
+}
+
+.o:last-child::after {
+    transform: rotate3d(1, 0, 0, 45deg) translateX(-50%) translateY(-80%);
+    text-transform: uppercase;
+    position: absolute;
+    font-weight: bold;
+    content: 'oreo';
+    color: #181008;
+    left: 50%;
+    top: 50%;
+}
+
+.re {
+    border: 2px solid #E3E0E0;
+    background: #FDF9F9;
+    border-radius: 100%;
+    position: relative;
+    margin-top: -22px;
+    height: 25px;
+    width: 75px;
+}
+
+.space {
+    background: transparent;
+    border-radius: 100%;
+    position: relative;
+    margin-top: -37px;
+    width: 100px;
+    height: 75px;
+}

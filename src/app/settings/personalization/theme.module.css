@@ -1,0 +1,16 @@
+.grid {
+    margin-block-start: 1.5rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    display: flex;
+    gap: 0.25rem;
+}
+
+.theme {
+    border-radius: 0.5rem;
+    display: inline-block;
+}
+
+.svg {
+    border-radius: 0.5rem;
+}

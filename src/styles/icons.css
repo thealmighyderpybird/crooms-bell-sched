@@ -1,6 +1,6 @@
 @font-face {
     font-family: "MatIcons";
-    src: url("/fonts/MaterialSymbolsRounded.ttf");
+    src: url("/src/styles/fonts/fonts/MaterialSymbolsRounded.ttf");
 }
 
 .icon {

@@ -20,7 +20,7 @@ html {
 
 @font-face {
     font-family: "TorusNotched";
-    src: url("/fonts/Torus.woff2");
+    src: url("/src/styles/fonts/fonts/Torus.woff2");
 }
 
 @font-face {

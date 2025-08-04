@@ -1,178 +1,178 @@
 @font-face {
     font-family: "SegoeUI";
-    src: url("/fonts/SegUIVar.woff2");
+    src: url("/src/styles/fonts/fonts/SegUIVar.woff2");
 }
 
 @font-face {
     font-family: "GoogleEmoji";
-    src: url("/fonts/NotoColorEmoji.ttf");
+    src: url("/src/styles/fonts/fonts/NotoColorEmoji.ttf");
 }
 
 @font-face {
     font-family: "Torus";
-    src: url("/fonts/Torus.woff2");
+    src: url("/src/styles/fonts/fonts/Torus.woff2");
 }
 
 @font-face {
     font-family: "CACula";
-    src: url("/fonts/CACula.woff2");
+    src: url("/src/styles/fonts/fonts/CACula.woff2");
 }
 
 @font-face {
     font-family: "StudySans";
-    src: url("/fonts/CroomsschedSans/regular.eot")format("embedded-opentype"),
-    url("/fonts/CroomsschedSans/regular.woff2")format("woff2"),
-    url("/fonts/CroomsschedSans/regular.woff")format("woff"),
-    url("/fonts/CroomsschedSans/regular.ttf")format("truetype"),
-    url("/fonts/CroomsschedSans/regular.svg")format("svg");
+    src: url("/src/styles/fonts/fonts/CroomsschedSans/regular.eot")format("embedded-opentype"),
+    url("/src/styles/fonts/fonts/CroomsschedSans/regular.woff2")format("woff2"),
+    url("/src/styles/fonts/fonts/CroomsschedSans/regular.woff")format("woff"),
+    url("/src/styles/fonts/fonts/CroomsschedSans/regular.ttf")format("truetype"),
+    url("/src/styles/fonts/fonts/CroomsschedSans/regular.svg")format("svg");
 }
 
 @font-face {
     font-family: "SFPro";
-    src: url("/fonts/SF-Pro.ttf");
+    src: url("/src/styles/fonts/fonts/SF-Pro.ttf");
 }
 
 @font-face {
     font-family: "Avenir";
-    src: url("/fonts/AvenirNextLTPro.woff")format("woff"),
-    url("/fonts/AvenirNextLTPro.ttf")format("truetype");
+    src: url("/src/styles/fonts/fonts/AvenirNextLTPro.woff")format("woff"),
+    url("/src/styles/fonts/fonts/AvenirNextLTPro.ttf")format("truetype");
 }
 
 @font-face {
     font-family: "Avenir";
-    src: url("/fonts/AvenirLTPro/45.otf") format("opentype")
+    src: url("/src/styles/fonts/fonts/AvenirLTPro/45.otf") format("opentype")
 }
 
 @font-face {
     font-family: "Avenir";
     font-weight: 300;
-    src: url("/fonts/AvenirLTPro/35.otf") format("opentype")
+    src: url("/src/styles/fonts/fonts/AvenirLTPro/35.otf") format("opentype")
 }
 
 @font-face {
     font-family: "Avenir";
     font-weight: 500;
-    src: url("/fonts/AvenirLTPro/65.otf") format("opentype")
+    src: url("/src/styles/fonts/fonts/AvenirLTPro/65.otf") format("opentype")
 }
 
 @font-face {
     font-family: "Avenir";
     font-weight: 700;
-    src: url("/fonts/AvenirLTPro/85.otf") format("opentype")
+    src: url("/src/styles/fonts/fonts/AvenirLTPro/85.otf") format("opentype")
 }
 
 @font-face {
     font-family: "Avenir";
     font-weight: 900;
-    src: url("/fonts/AvenirLTPro/95.otf") format("opentype")
+    src: url("/src/styles/fonts/fonts/AvenirLTPro/95.otf") format("opentype")
 }
 
 @font-face {
     font-family: "Aptos";
-    src: url("/fonts/Aptos/Aptos.ttf") format("truetype");
+    src: url("/src/styles/fonts/fonts/Aptos/Aptos.ttf") format("truetype");
 }
 
 @font-face {
     font-family: "Aptos";
     font-style: italic;
-    src: url("/fonts/Aptos/Aptos-Italic.ttf") format("truetype");
+    src: url("/src/styles/fonts/fonts/Aptos/Aptos-Italic.ttf") format("truetype");
 }
 
 @font-face {
     font-family: "Aptos";
     font-weight: 300;
-    src: url("/fonts/Aptos/Aptos-Light.ttf") format("truetype");
+    src: url("/src/styles/fonts/fonts/Aptos/Aptos-Light.ttf") format("truetype");
 }
 
 @font-face {
     font-family: "Aptos";
     font-weight: 600;
-    src: url("/fonts/Aptos/Aptos-SemiBold.ttf") format("truetype");
+    src: url("/src/styles/fonts/fonts/Aptos/Aptos-SemiBold.ttf") format("truetype");
 }
 
 @font-face {
     font-family: "Aptos";
     font-weight: 700;
-    src: url("/fonts/Aptos/Aptos-Bold.ttf") format("truetype");
+    src: url("/src/styles/fonts/fonts/Aptos/Aptos-Bold.ttf") format("truetype");
 }
 
 @font-face {
     font-family: "Aptos";
     font-weight: 800;
-    src: url("/fonts/Aptos/Aptos-ExtraBold.ttf") format("truetype");
+    src: url("/src/styles/fonts/fonts/Aptos/Aptos-ExtraBold.ttf") format("truetype");
 }
 
 @font-face {
     font-family: "Aptos";
     font-weight: 900;
-    src: url("/fonts/Aptos/Aptos-Black.ttf") format("truetype");
+    src: url("/src/styles/fonts/fonts/Aptos/Aptos-Black.ttf") format("truetype");
 }
 
 @font-face {
     font-family: "Aptos";
     font-weight: 300;
     font-style: italic;
-    src: url("/fonts/Aptos/Aptos-Light-Italic.ttf") format("truetype");
+    src: url("/src/styles/fonts/fonts/Aptos/Aptos-Light-Italic.ttf") format("truetype");
 }
 
 @font-face {
     font-family: "Aptos";
     font-weight: 600;
     font-style: italic;
-    src: url("/fonts/Aptos/Aptos-SemiBold-Italic.ttf") format("truetype");
+    src: url("/src/styles/fonts/fonts/Aptos/Aptos-SemiBold-Italic.ttf") format("truetype");
 }
 
 @font-face {
     font-family: "Aptos";
     font-weight: 700;
     font-style: italic;
-    src: url("/fonts/Aptos/Aptos-Bold-Italic.ttf") format("truetype");
+    src: url("/src/styles/fonts/fonts/Aptos/Aptos-Bold-Italic.ttf") format("truetype");
 }
 
 @font-face {
     font-family: "Aptos";
     font-weight: 800;
     font-style: italic;
-    src: url("/fonts/Aptos/Aptos-ExtraBold-Italic.ttf") format("truetype");
+    src: url("/src/styles/fonts/fonts/Aptos/Aptos-ExtraBold-Italic.ttf") format("truetype");
 }
 
 @font-face {
     font-family: "Aptos";
     font-weight: 900;
     font-style: italic;
-    src: url("/fonts/Aptos/Aptos-Black-Italic.ttf") format("truetype");
+    src: url("/src/styles/fonts/fonts/Aptos/Aptos-Black-Italic.ttf") format("truetype");
 }
 
 @font-face {
     font-family: "Comic";
-    src: url("/fonts/Comic/comic.ttf") format("truetype");
+    src: url("/src/styles/fonts/fonts/Comic/comic.ttf") format("truetype");
 }
 
 @font-face {
     font-family: "Comic";
     font-weight: bold;
-    src: url("/fonts/Comic/comicbd.ttf") format("truetype");
+    src: url("/src/styles/fonts/fonts/Comic/comicbd.ttf") format("truetype");
 }
 
 @font-face {
     font-family: "Comic";
     font-style: italic;
-    src: url("/fonts/Comic/comici.ttf") format("truetype");
+    src: url("/src/styles/fonts/fonts/Comic/comici.ttf") format("truetype");
 }
 
 @font-face {
     font-family: "Comic";
     font-style: italic;
     font-weight: bold;
-    src: url("/fonts/Comic/comicz.ttf") format("truetype");
+    src: url("/src/styles/fonts/fonts/Comic/comicz.ttf") format("truetype");
 }
 
 @font-face {
     font-family: "DOS";
-    src: url("/fonts/dos.ttf") format("truetype");
+    src: url("/src/styles/fonts/fonts/dos.ttf") format("truetype");
 }
 
 @font-face {
     font-family: "Wingdings";
-    src: url("/fonts/wingding.ttf") format("truetype");
+    src: url("/src/styles/fonts/fonts/wingding.ttf") format("truetype");
 }

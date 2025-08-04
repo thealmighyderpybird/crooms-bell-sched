@@ -1,88 +1,172 @@
 {
   "tools": [
     {
-      "id": "oreo-toy",
+      "id": "oreo",
       "name": "Oreo",
       "link": "/oreo/",
-      "check": false
+      "popup": false
     },
     {
       "id": "the-useless-web",
       "name": "The Useless Web",
       "link": "https://theuselessweb.com",
-      "check": false
+      "popup": false
     },
     {
       "id": "bored-button",
       "name": "Bored Button",
       "link": "https://www.boredbutton.com/random",
-      "check": false
+      "popup": false
     },
     {
       "id": "neal",
       "name": "Neal.fun",
       "link": "https://neal.fun",
-      "check": false
+      "popup": true
     },
     {
       "id": "google-doodles",
       "name": "Google Doodles",
       "link": "https://doodles.google/",
-      "check": false
+      "popup": false
     },
     {
       "id": "fluid-sim",
       "name": "Fluid Simulator",
       "link": "https://paveldogreat.github.io/WebGL-Fluid-Simulation/",
-      "check": false
+      "popup": false
     },
     {
       "id": "petpet",
       "name": "petpet Generator",
       "link": "https://benisland.neocities.org/petpet/",
-      "check": false
+      "popup": false
     },
     {
       "id": "ice-age-baby",
-      "name": "Kill Ice Age Baby (Opens in new tab)",
+      "name": "Kill Ice Age Baby",
       "link": "https://kypello.itch.io/kill-the-ice-age-baby-adventure-the-game",
-      "check": true
+      "popup": true
     },
     {
       "id": "minion-hair",
       "name": "Minion Real Haircuts",
       "link": "https://www.yiv.com/Minion-Real-Haircuts",
-      "check": false
+      "popup": false
     },
     {
       "id": "diep",
-      "name": "Diep.io (Opens in new tab)",
+      "name": "Diep.io",
       "link": "https://diep.io",
-      "check": true
+      "popup": true
     },
     {
       "id": "powerline",
       "name": "Powerline.io",
       "link": "https://powerline.io/",
-      "check": false
+      "popup": true
     },
     {
-      "id": "fard",
-      "name": "Fun Platformer Games (Opens in new tab)",
+      "id": "suva",
+      "name": "Suva",
       "link": "https://fard-games-entertainment.itch.io/",
-      "check": true
+      "popup": true
+    },
+    {
+      "id": "hodge",
+      "name": "Mr. Hodge Fight",
+      "link": "https://scratch.mit.edu/projects/1110821875/",
+      "popup": true
+    },
+    {
+      "id": "polkadot",
+      "name": "Polka Dot Game",
+      "link": "https://www.polkadotgame.com/",
+      "popup": false
+    },
+    {
+      "id": "undertale",
+      "name": "Undertale",
+      "link": "https://bilxo.itch.io/undertale",
+      "popup": true
+    },
+    {
+      "id": "arras.io",
+      "name": "Arras.io",
+      "link": "https://arras.io",
+      "popup": true
+    },
+    {
+      "id": "starblast",
+      "name": "Starblast.io",
+      "link": "https://starblast.io/",
+      "popup": true
+    },
+    {
+      "id": "doom",
+      "name": "Doom",
+      "link": "https://doomonline1.vercel.app/",
+      "popup": true
+    },
+    {
+      "id": "pokemon",
+      "name": "Pokémon Fire Red + Randomizer",
+      "link": "https://kbhgames.com/game/fire-red-randomizer",
+      "popup": true
+    },
+    {
+      "id": "bonk",
+      "name": "Bonk.io",
+      "link": "https://bonk.io",
+      "popup": true
+    },
+    {
+      "id": "zombsroyale",
+      "name": "Zombsroyale.io",
+      "link": "https://zombsroyale.io",
+      "popup": true
+    },
+    {
+      "id": "geforce-experience",
+      "name": "GeForce Experience",
+      "link": "https://play.geforcenow.com/mall/",
+      "popup": true
+    },
+    {
+      "id": "black-baby",
+      "name": "Black Baby",
+      "link": "https://santaclos.itch.io/black-baby-classic",
+      "popup": true
+    },
+    {
+      "id": "geometry-dash-lite",
+      "name": "Geometry Dash Lite",
+      "link": "https://geometrydashlitepc.io/geometry-dash-lite.embed",
+      "popup": true
+    },
+    {
+      "id": "pokemon-showdown",
+      "name": "Pokemon Showdown",
+      "link": "https://play.pokemonshowdown.com/",
+      "popup": true
+    },
+    {
+      "id": "ice-age-baby-2",
+      "name": "Kill Ice Age Baby 2",
+      "link": "https://roshaninteractive.itch.io/kill-the-ice-age-baby-adventure-5",
+      "popup": true
+    },
+    {
+      "id": "crazy-cattle",
+      "name": "Crazy Cattle 3D",
+      "link": "https://4nn4t4t.itch.io/crazycattle3d",
+      "popup": true
     },
     {
       "id": "self",
       "name": "Crooms Bell Schedule",
       "link": "https://croomssched.tech",
-      "check": false
-    },
-    {
-      "id": "suggestion",
-      "name": "Suggest a Toy",
-      "link": "/tools/suggest/",
-      "check": false
+      "popup": false
     }
   ]
 }

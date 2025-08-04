@@ -1,10 +1,11 @@
 :root {
     --windows: #0078D4;
-    --gold: #DAA520;
     --nature: #006400;
     --halloween: #4B0082;
     --winter: #1E90FF;
     --wawwf: #385E61;
+    --burn-the-ships: #4b709a;
+    --landon-homeless-camp: #4B0082;
 }
 
 @media screen and (prefers-color-scheme: dark) {
@@ -13,15 +14,16 @@
         --halloween: #FF8C00;
         --winter: #87CEEB;
         --wawwf: #99A893;
+        --landon-homeless-camp: #9400ff;
     }
 }
 
 :root.light {
-    --gold: #DAA520 !important;
     --nature: #006400 !important;
     --halloween: #4B0082 !important;
     --winter: #1E90FF !important;
     --wawwf: #385E61 !important;
+    --landon-homeless-camp: #4B0082 !important;
 }
 
 :root.dark {
@@ -29,15 +31,13 @@
     --halloween: #FF8C00 !important;
     --winter: #87CEEB !important;
     --wawwf: #99A893 !important;
+    --landon-homeless-camp: #9400ff !important;
 }
 
 :root:has(body.windows) {
     --accent-color: var(--windows);
 }
 
-:root:has(body.gold) {
-    --accent-color: var(--gold);
-}
 
 :root:has(body.nature) {
     --accent-color: var(--nature);
@@ -53,4 +53,12 @@
 
 :root:has(body.wawwf) {
     --accent-color: var(--wawwf);
+}
+
+:root:has(body.burn-the-ships) {
+    --accent-color: var(--burn-the-ships);
+}
+
+:root:has(body.landon-homeless-camp) {
+    --accent-color: var(--landon-homeless-camp);
 }

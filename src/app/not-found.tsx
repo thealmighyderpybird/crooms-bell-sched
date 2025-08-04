@@ -1,4 +1,4 @@
-import errorStyles from "./root-components/error.module.css";
+import errorStyles from "../components/root/error.module.css";
 
 export default function NotFound() {
     return (

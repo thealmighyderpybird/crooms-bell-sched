@@ -1,0 +1,4 @@
+.tool {
+    height: calc(100vh - 51px - 37px);
+    display: block;
+}

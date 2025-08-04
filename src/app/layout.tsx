@@ -1,50 +1,77 @@
-import {AppRouterCacheProvider} from "@mui/material-nextjs/v13-appRouter";
-import Header from "./index-components/header/header";
-import Footer from "./index-components/footer/footer";
+import Header from "~/components/root/header/header";
+import Footer from "~/components/root/footer/footer";
+import getSiteSettings from "~/lib/getSettings";
+import { type Metadata, Viewport } from "next";
 import rootStyles from "./root.module.css";
-import {type Metadata} from "next";
-import Head from "next/head";
+import Fonts from "~/styles/fonts/fonts";
+import { type ReactNode } from "react";
+import Script from "next/script";
 import "~/styles/master.css";
 
-export const metadata: Metadata = {
-    title: "Crooms Bell Schedule",
-    description: "The Crooms Bell Schedule features an interactive bell schedule applet that keeps track of your periods and the time remaining in the period. Stay up-to-date with information with Quick Bits and Weather, and connect with other students with the Feed.",
-    icons: [{rel: "icon", url: "/favicon.ico"}],
+export const viewport: Viewport = {
+    width: "device-width",
+    themeColor: "#690D22",
+    initialScale: 1,
+    minimumScale: 0.5,
+    maximumScale: 2,
 };
 
-export default function RootLayout({
-                                       children,
-                                   }: Readonly<{ children: React.ReactNode }>) {
-    return (
-        <html lang="en">
-        <AppRouterCacheProvider>
-            <Head>
-                <meta charSet="utf-8"/>
-                <meta name="viewport"
-                      content="width=device-width, initial-scale=1, minimum-scale=0.5, maximum-scale=2"/>
-                <meta name="referrer" content="strict-origin-when-cross-origin"/>
-                <title>Crooms Bell Schedule</title>
-                <meta name="application-name" content="Crooms Bell Schedule"/>
-                <meta name="description"
-                      content="The Crooms Bell Schedule features an interactive bell schedule applet that keeps track of your periods and the time remaining in the period. Stay up-to-date with information with Quick Bits and Weather, and connect with other students with the Feed."/>
-                <meta name="keywords"
-                      content="Crooms, CAIT, CAoIT, Crooms Bell Schedule, Crooms Academy Bell Schedule, Crooms Academy, Crooms Schedule, Schedule, Bell Schedule, 2024-2025"/>
-                <meta name="author" content="Andrew Jennings"/>
-                <link rel="manifest" href="/manifest.json"/>
-                <meta name="theme-color" content="#690D22"/>
-                <meta name="og:description"
-                      content="The Crooms Bell Schedule features an interactive bell schedule applet that keeps track of your periods and the time remaining in the period. Stay up-to-date with information with Quick Bits and Weather, and connect with other students with the Feed."/>
-                <meta property="og:image" content="/favicon.ico"/>
-                <meta property="og:title" content="Crooms Bell Schedule"/>
-                <meta name="twitter:card" content="summary"/>
-                <meta name="robots" content="index, follow, nositelinkssearchbox"/>
-            </Head>
-            <body>
-                <Header />
-                <main className={rootStyles.main}>{children}</main>
-                <Footer />
+const title = "Crooms Bell Schedule";
+const description = "The Crooms Bell Schedule features an interactive bell schedule applet that keeps track of" +
+    " your periods and the time remaining in the period. Stay up-to-date with information with Quick Bits and Weather,"+
+    " and connect with others with Prowler.";
+const keywords = "Crooms, CAIT, CAoIT, Crooms Bell Schedule, Crooms Academy Bell Schedule, Crooms Academy," +
+    " Crooms Schedule, Schedule, Bell Schedule, 2024-2025, 2025-2026";
+
+export const metadata: Metadata = {
+    title: {
+        template: "%s | " + title,
+        default: title
+    },
+    applicationName: title,
+    description: description,
+    keywords: keywords,
+    robots: "index, follow, nositelinkssearchbox",
+    icons: [
+        {rel: "icon", url: "/favicon.ico"}
+    ],
+    openGraph: {
+        title: title,
+        type: "website",
+        description: description,
+    },
+    twitter: {
+        site: title,
+        title: title,
+        description: description,
+        card: "summary",
+    },
+    referrer: "strict-origin-when-cross-origin",
+};
+
+export default async function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
+    try {
+        const { theme, font, accentColor } = await getSiteSettings();
+
+        // @ts-expect-error string CAN be used to index via enum
+        return <html lang="en" className={ Fonts[font] + theme ? ` ${theme}` : "" }>
+            <body className={ accentColor ? accentColor : undefined }>
+            <Header />
+            <main className={ rootStyles.main }>{children}</main>
+            <Footer />
+            <Script src={"https://croomssched.statuspage.io/embed/script.js"} />
+            <Script src="/sched/schedule.js" />
             </body>
-        </AppRouterCacheProvider>
+        </html>;
+    } catch {
+        return <html lang="en" className={ Fonts["SegoeUI"] }>
+            <body>
+            <Header />
+            <main className={ rootStyles.main }>{children}</main>
+            <Footer />
+            <Script src={"https://croomssched.statuspage.io/embed/script.js"} />
+            <Script src="/sched/schedule.js" />
+            </body>
         </html>
-    );
+    }
 };

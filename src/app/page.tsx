@@ -1,9 +1,15 @@
+import CroomsBellScheduleApplet from "~/components/CroomsBellScheduleApplet";
+import WeatherWidget from "../components/cards/WeatherWidget";
+import LunchWidget from "../components/cards/LunchWidget";
+import CardLayout from "../components/index/CardLayout";
+import Card from "../components/index/Card";
+import RandExp from "randexp";
 import "~/styles/index.css";
 
 export default function Home() {
-    return (
-        <>
-            <h1>so can mrs hill give me an a?</h1>
-        </>
-    );
+    return <CardLayout>
+        <Card><CroomsBellScheduleApplet id={new RandExp(/[a-f0-9]\w{10}/).gen()} /></Card>
+        <LunchWidget />
+        <WeatherWidget />
+    </CardLayout>;
 }

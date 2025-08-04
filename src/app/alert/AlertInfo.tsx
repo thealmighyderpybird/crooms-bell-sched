@@ -1,0 +1,33 @@
+"use client";
+
+import styles from "~/components/cards/styles/alertPanel.module.css";
+import CardHeader from "~/components/index/CardHeader";
+import parseEndTime from "~/lib/parseEndTime";
+import { useRouter } from "next/navigation";
+import {useEffect, useState} from "react";
+
+export default function AlertInfo({ alertId }: { alertId: string | undefined }) {
+    const [alertInfo, setAlertInfo] = useState({});
+    const router = useRouter();
+
+    useEffect(() => {
+        if (!alertId) router.push("/not-found");
+        fetch("https://api.weather.gov/alerts/" + alertId)
+            .then(r => r.json())
+            .then(r => setAlertInfo(r.properties))
+            .catch(() => router.push("/not-found"));
+    }, []);
+
+    return alertInfo ? <>
+        { /* @ts-expect-error event, ends, and expires not included in generic type */ }
+        <CardHeader>{ alertInfo.event }</CardHeader>
+        <ul className={ styles.details }>
+            { /* @ts-expect-error event, ends, and expires not included in generic type */ }
+            <li><b>Issued by:</b> { alertInfo.senderName }</li>
+            { /* @ts-expect-error event, ends, and expires not included in generic type */ }
+            <li><b>Expires:</b> { parseEndTime(new Date(alertInfo.ends), new Date(alertInfo.expires)) }</li>
+        </ul>
+        { /* @ts-expect-error event, ends, and expires not included in generic type */ }
+        <pre className={ styles.pre }>{ alertInfo.description }</pre>
+    </> : null;
+}
