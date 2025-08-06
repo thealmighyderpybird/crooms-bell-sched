@@ -13,7 +13,7 @@ export default function ForecastImage({ icon }: { icon: string }) {
     }, []);
 
     return blob ?
-        <Image src={blob} alt={"Forecast Icon"} width={64} height={64} draggable={false} className={ styles.image }
+        <Image src={blob} alt="Forecast Icon" width={64} height={64} draggable={false} className={ styles.image }
                onLoad={() => URL.revokeObjectURL(blob)} />
     : null;
 };

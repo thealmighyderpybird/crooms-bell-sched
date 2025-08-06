@@ -2,13 +2,15 @@
 
 import { changeColorMode } from "~/lib/settingsManager";
 import OptionDescription from "~/components/settings/OptionDescription";
-import ThemeOptions from "~/app/settings/personalization/ThemeOptions";
 import SettingsOption from "~/components/settings/SettingsOption";
 import SettingsGroup from "~/components/settings/SettingsGroup";
 import OptionHeader from "~/components/settings/OptionHeader";
 import SettingsIcon from "~/components/settings/SettingsIcon";
 import OptionSelect from "~/components/settings/OptionSelect";
 import OptionGroup from "~/components/settings/OptionGroup";
+import styles from "../settings.module.css";
+import ThemeOptions from "./ThemeOptions";
+import Link from "next/link";
 
 export default function Personalization() {
     return <SettingsGroup>
@@ -38,5 +40,9 @@ export default function Personalization() {
             </OptionGroup>
             <ThemeOptions />
         </SettingsOption>
+        <div className={styles.actionBar}>
+            <Link href="/settings" className={styles.button + " button"}>Back</Link>
+            <button className={styles.button}>Save</button>
+        </div>
     </SettingsGroup>
 }

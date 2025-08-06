@@ -1,7 +1,7 @@
-import type { ChangeEvent } from "react";
+import type { FormEvent } from "react";
 
-export const changeColorMode = (e: ChangeEvent<HTMLSelectElement>) => {
-    const colorScheme = e.target.value;
+export const changeColorMode = (e: FormEvent<HTMLSelectElement>) => {
+    const colorScheme = e.currentTarget.value;
     document.querySelector("html")?.classList.remove("dark");
     document.querySelector("html")?.classList.remove("light");
     if (colorScheme !== "") document.querySelector("html")?.classList.add(colorScheme);

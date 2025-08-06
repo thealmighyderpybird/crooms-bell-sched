@@ -23,3 +23,17 @@
 .subheader:last-child {
     margin-bottom: 1.5rem;
 }
+
+.actionBar {
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: row;
+    margin-top: .5rem;
+    display: flex;
+    gap: 0.25rem;
+}
+
+.button {
+    text-align: center;
+    min-width: 108px;
+}
