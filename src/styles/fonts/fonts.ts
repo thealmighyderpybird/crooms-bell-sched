@@ -2,8 +2,9 @@ import localFont from "next/font/local";
 
 export const segoe = localFont({
     src: "/fonts/SegUIVar.ttf",
-    axes: ["opsz"],
     variable: "--segoe",
+    // @ts-expect-error axes may not exist, but is used
+    axes: ["opsz"],
 });
 
 export const torus = localFont({
@@ -69,7 +70,7 @@ enum fontEnum {
     wingdings = "Wingdings",
     studySans = "StudySans",
     avenir = "Avenir",
-    cosmic = "Cosmic",
+    comic = "Comic",
     segoe = "SegoeUI",
     torus = "Torus",
     aptos = "Aptos",
@@ -80,7 +81,7 @@ const fonts = {
     [fontEnum.wingdings]: wingdings.className,
     [fontEnum.studySans]: studySans.className,
     [fontEnum.avenir]: avenir.className,
-    [fontEnum.cosmic]: comic.className,
+    [fontEnum.comic]: comic.className,
     [fontEnum.segoe]: segoe.className,
     [fontEnum.torus]: torus.className,
     [fontEnum.aptos]: aptos.className,

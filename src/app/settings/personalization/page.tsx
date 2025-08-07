@@ -1,18 +1,19 @@
-"use client";
-
-import { changeColorMode } from "~/lib/settingsManager";
 import OptionDescription from "~/components/settings/OptionDescription";
 import SettingsOption from "~/components/settings/SettingsOption";
 import SettingsGroup from "~/components/settings/SettingsGroup";
 import OptionHeader from "~/components/settings/OptionHeader";
 import SettingsIcon from "~/components/settings/SettingsIcon";
-import OptionSelect from "~/components/settings/OptionSelect";
 import OptionGroup from "~/components/settings/OptionGroup";
+import ColorSchemeOptions from "./select/colorScheme";
+import getSiteSettings from "~/lib/getSettings";
 import styles from "../settings.module.css";
 import ThemeOptions from "./ThemeOptions";
+import FontOption from "./select/font";
 import Link from "next/link";
 
-export default function Personalization() {
+export default async function Personalization() {
+    const { font, theme } = await getSiteSettings();
+
     return <SettingsGroup>
         <SettingsOption>
             <OptionGroup>
@@ -21,11 +22,7 @@ export default function Personalization() {
                     <OptionHeader>Choose your mode</OptionHeader>
                     <OptionDescription>Change the colors that appear in the Crooms Bell Schedule</OptionDescription>
                 </div>
-                <OptionSelect onChange={e => changeColorMode(e)}>
-                    <option value="">System Theme</option>
-                    <option value="light">Light Theme</option>
-                    <option value="dark">Dark Theme</option>
-                </OptionSelect>
+                <ColorSchemeOptions theme={theme} />
             </OptionGroup>
         </SettingsOption>
         <SettingsOption>
@@ -40,9 +37,18 @@ export default function Personalization() {
             </OptionGroup>
             <ThemeOptions />
         </SettingsOption>
+        <SettingsOption>
+            <OptionGroup>
+                <SettingsIcon icon="text" viewBox={32} />
+                <div>
+                    <OptionHeader>Font</OptionHeader>
+                    <OptionDescription>Change the font that the Crooms Bell Schedule uses</OptionDescription>
+                </div>
+                <FontOption font={font} />
+            </OptionGroup>
+        </SettingsOption>
         <div className={styles.actionBar}>
             <Link href="/settings" className={styles.button + " button"}>Back</Link>
-            <button className={styles.button}>Save</button>
         </div>
     </SettingsGroup>
 }

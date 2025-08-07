@@ -54,7 +54,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
         const { theme, font, accentColor } = await getSiteSettings();
 
         // @ts-expect-error string CAN be used to index via enum
-        return <html lang="en" className={ Fonts[font] + theme ? ` ${theme}` : "" }>
+        return <html lang="en" className={ Fonts[font] + parseTheme(theme) }>
             <body className={ accentColor ? accentColor : undefined }>
             <Header />
             <main className={ rootStyles.main }>{children}</main>
@@ -75,3 +75,5 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
         </html>
     }
 };
+
+const parseTheme = (theme: string) => theme ? ` ${theme}` : "";
