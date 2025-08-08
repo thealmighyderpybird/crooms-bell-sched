@@ -11,7 +11,7 @@ export default function ({ theme }: { theme: string }) {
         changeColorMode(e);
         setColorScheme(e.currentTarget.value)
     }}>
-        <option value="">System Theme</option>
+        <option value="system">System Theme</option>
         <option value="light">Light Theme</option>
         <option value="dark">Dark Theme</option>
     </OptionSelect>;

@@ -17,9 +17,9 @@ export default function Header() {
                 <div id="games-tab" tabIndex={1} className={headerStyles.menuItem}>
                     Toys <ToysMenu/>
                 </div>
-                <div id="daily-poll" tabIndex={1} className={headerStyles.menuItem}>
+                <Link id="daily-poll" tabIndex={1} className={headerStyles.menuItem} href="/daily-poll">
                     Daily Poll
-                </div>
+                </Link>
             </div>
             <div className={headerStyles.navChild + " right"}>
                 <Link href={"/download"} tabIndex={1} className={headerStyles.menuItem}>
