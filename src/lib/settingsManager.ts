@@ -6,9 +6,7 @@ const saveSettings = async (settings: Partial<Settings>) => {
     await fetch("/api/settings", {
         method: "POST",
         body: JSON.stringify(settings),
-        headers: {
-            "Content-Type": "application/json",
-        }
+        headers: { "Content-Type": "application/json" },
     });
 };
 
@@ -16,6 +14,7 @@ export const changeColorMode = (e: FormEvent<HTMLSelectElement>) => {
     const colorScheme = e.currentTarget.value;
     document.querySelector("html")?.classList.remove("dark");
     document.querySelector("html")?.classList.remove("light");
+    document.querySelector("html")?.classList.remove("system");
     if (colorScheme !== "") document.querySelector("html")?.classList.add(colorScheme);
     // @ts-expect-error string color scheme not proper type
     void saveSettings({ theme: colorScheme });

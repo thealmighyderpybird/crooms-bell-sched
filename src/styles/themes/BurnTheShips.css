@@ -8,7 +8,6 @@ body.burn-the-ships::before {
     height: 100vh;
     width: 100vw;
     z-index: -1;
-    content: "";
 }
 
 body.burn-the-ships::after {
@@ -18,7 +17,6 @@ body.burn-the-ships::after {
     height: 100vh;
     width: 100vw;
     z-index: -1;
-    content: "";
 }
 
 @media screen and (prefers-color-scheme: dark) {

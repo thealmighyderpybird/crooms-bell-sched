@@ -4,12 +4,12 @@ import { cookies } from "next/headers";
 export default async function getSiteSettings(): Promise<SiteSettings> {
     const cookieStore = await cookies();
     return {
-        theme: cookieStore.get("theme")!.value === "dark" ? "dark" : cookieStore.get("theme")!.value === "light" ? "light" : "system",
+        theme: cookieStore.get("theme")?.value === "dark" ? "dark" : cookieStore.get("theme")?.value === "light" ? "light" : "system",
+        accentColor: cookieStore.get("accentColor")?.value ? cookieStore.get("accentColor")!.value : "default-accent",
         defaultLunch: cookieStore.get("defaultLunch")?.value === "A Lunch" ? "A Lunch" : "B Lunch",
+        font: cookieStore.get("font")?.value ? cookieStore.get("font")!.value : "SegoeUI",
         showTimeRemainingRing: cookieStore.get("showTimeRemainingRing")?.value === "true",
         clippy: cookieStore.get("clippy")?.value === "true",
-        accentColor: cookieStore.get("accentColor")!.value,
-        font: cookieStore.get("font")!.value,
         periodNames: getPeriodNames(),
     };
 

@@ -13,7 +13,6 @@ body.landon-homeless-camp::before {
     width: 100vw;
     z-index: -1;
     opacity: 0.6;
-    content: "";
 }
 
 body.landon-homeless-camp::after {
@@ -23,7 +22,6 @@ body.landon-homeless-camp::after {
     height: 100vh;
     width: 100vw;
     z-index: -1;
-    content: "";
 }
 
 @media screen and (prefers-color-scheme: dark) {

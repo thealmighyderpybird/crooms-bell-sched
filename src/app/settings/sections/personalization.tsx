@@ -4,11 +4,11 @@ import SettingsGroup from "~/components/settings/SettingsGroup";
 import OptionHeader from "~/components/settings/OptionHeader";
 import SettingsIcon from "~/components/settings/SettingsIcon";
 import OptionGroup from "~/components/settings/OptionGroup";
-import ColorSchemeOptions from "./select/colorScheme";
+import ColorSchemeOptions from "~/app/settings/components/select/colorScheme";
 import getSiteSettings from "~/lib/getSettings";
 import styles from "../settings.module.css";
-import ThemeOptions from "./ThemeOptions";
-import FontOption from "./select/font";
+import ThemeOptions from "../components/theme/ThemeOptions";
+import FontOption from "~/app/settings/components/select/font";
 import Link from "next/link";
 
 export default async function Personalization() {

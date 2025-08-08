@@ -13,7 +13,6 @@ body.christmas::before {
     width: 100vw;
     z-index: -1;
     opacity: 0.2;
-    content: "";
 }
 
 body.christmas::after {
@@ -23,7 +22,6 @@ body.christmas::after {
     height: 100vh;
     width: 100vw;
     z-index: -1;
-    content: "";
 }
 
 @media screen and (prefers-color-scheme: dark) {

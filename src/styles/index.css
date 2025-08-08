@@ -1,9 +1,5 @@
 @import url("./master.css");
 
-body::before, body::after {
-    content: "" !important;
-}
-
 body > main {
     padding: 51px 0 37px;
 }

@@ -1,0 +1,7 @@
+body:has(.provider)::before {
+    content: "" !important;
+}
+
+body:has(.provider)::after {
+    content: "" !important;
+}
