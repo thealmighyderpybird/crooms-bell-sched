@@ -1,4 +1,4 @@
-#cbsh-application {
+.cbsh-application {
     display: flex;
     flex-flow: column nowrap;
     user-select: none;
@@ -8,23 +8,23 @@
     --secondary-color: var(--accent-color);
 }
 
-#cbsh-application > div {
+.cbsh-application > div {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
 }
 
-#cbsh-application > div > div > p {
+.cbsh-application > div > div > p {
     margin: 0;
     font-size: 17px;
 }
 
-#cbsh-application > div > div > p > span {
+.cbsh-application > div > div > p > span {
     background: revert !important;
     transition: none;
 }
 
-#cbsh-application > div > div > button {
+.cbsh-application > div > div > button {
     display: block;
     background: var(--secondary-color);
     border-radius: 0.25rem;
@@ -34,39 +34,39 @@
     width: 65px;
 }
 
-#cbsh-application > div > div > button:not(:last-child) {
+.cbsh-application > div > div > button:not(:last-child) {
     margin-bottom: 2px;
 }
 
-#cbsh-application > div > div > button:hover {
+.cbsh-application > div > div > button:hover {
     opacity: 0.9;
 }
 
-#cbsh-application > div > div > button:active {
+.cbsh-application > div > div > button:active {
     opacity: 0.7;
 }
 
-#cbsh-application > div > div > button:disabled {
+.cbsh-application > div > div > button:disabled {
     opacity: 0.5;
 }
 
-#cbsh-application > div > div > button.active {
+.cbsh-application > div > div > button.active {
     background: var(--primary-color);
     color: black;
 }
 
-#cbsh-application > div:has(div.progress-meter) {
+.cbsh-application > div:has(div.progress-meter) {
     padding-top: 4px;
 }
 
-#cbsh-application > div > div.progress-meter {
+.cbsh-application > div > div.progress-meter {
     background-color: var(--sec);
     border-radius: 0.5rem;
     height: 4px;
     width: 100%;
 }
 
-#cbsh-application > div > div.progress-meter > div {
+.cbsh-application > div > div.progress-meter > div {
     background-color: var(--accent-color);
     border-radius: 0.5rem;
     height: 4px;

@@ -1,0 +1,28 @@
+.container {
+    margin-block-start: 0.5rem;
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    border-radius: 0.5rem;
+    flex-flow: row nowrap;
+    text-align: center;
+    user-select: none;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.content {
+    flex: 1;
+}
+
+.image {
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    border-radius: 0.5rem;
+    user-select: none;
+    min-width: 100%;
+    height: auto;
+}

@@ -1,0 +1,88 @@
+.dialog {
+    box-shadow: black 0 0.125rem 1rem;
+    transition: var(--transition);
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    background: var(--pri);
+    border-radius: 1rem;
+    max-width: 420px;
+    padding: 1.5rem;
+    display: flex;
+    z-index: 13;
+    gap: 0.5rem;
+}
+
+.modal {
+    background: var(--pri);
+    position: fixed;
+    opacity: 0.7;
+    height: 100%;
+    width: 100%;
+    z-index: 12;
+    inset: 0;
+}
+
+.dialog.controlledWidth {
+    max-width: 500px;
+    width: 100%;
+}
+
+.dialog.controlledHeight {
+    max-height: 300px;
+    height: 100%;
+}
+
+.dialog > header {
+    text-align: center;
+    user-select: none;
+}
+
+.dialog > header .small {
+    font-size: 1.75rem;
+}
+
+.dialog > footer {
+    justify-content: flex-end;
+    flex-flow: row nowrap;
+    align-items: center;
+    margin-top: 2rem;
+    font-size: 14px;
+    display: flex;
+    gap: 0.25rem;
+    width: 100%;
+}
+
+.dialog > footer .button,
+.dialog > footer button {
+    padding: 0.45rem 1rem;
+    font-size: inherit;
+    min-width: 108px;
+}
+
+.dialog .subText {
+    font-size: 0.8rem;
+}
+
+.dialog:has(.closeButton) {
+    position: relative;
+}
+
+.closeButton {
+    box-sizing: content-box;
+    border-radius: 100%;
+    position: absolute;
+    padding: 0.5rem;
+    height: 1.5rem;
+    width: 1.5rem;
+    right: 1rem;
+    top: 1rem;
+}
+
+.closeButton:hover {
+    background-color: var(--mid-pri);
+}
+
+.closeButton:active {
+    background-color: var(--sec);
+}

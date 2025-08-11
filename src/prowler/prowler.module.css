@@ -1,0 +1,61 @@
+.prowlerPostContainer {
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.corePost {
+    background: var(--sec);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+}
+
+.corePostHeader {
+    justify-content: center;
+    margin-bottom: 0.75rem;
+    text-decoration: none;
+    width: fit-content;
+    user-select: none;
+    flex-flow: row;
+    display: flex;
+}
+
+.corePostHeaderContent {
+    margin-left: 0.5rem;
+    font-size: 0.9rem;
+    flex-flow: column;
+    line-height: 1;
+    display: flex;
+}
+
+.corePostHeaderContent .username {
+    align-items: center;
+    flex-flow: row;
+    display: flex;
+}
+
+.corePostHeaderContent span {
+    line-height: 1;
+    opacity: 0.8;
+}
+
+.corePostHeaderContent > :last-child {
+    font-size: 0.75rem;
+}
+
+.corePostHeaderContent svg {
+    margin-left: 0.25rem;
+    margin-top: 1%;
+}
+
+.corePostContent {
+    word-break: break-word;
+}
+
+.profilePicture {
+    -webkit-user-drag: none;
+    border-radius: 100%;
+    user-select: none;
+}

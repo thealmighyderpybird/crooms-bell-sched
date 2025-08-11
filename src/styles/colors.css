@@ -1,0 +1,67 @@
+:root {
+    --windows: #0078D4;
+    --nature: #006400;
+    --halloween: #4B0082;
+    --winter: #1E90FF;
+    --wawwf: #385E61;
+    --burn-the-ships: #4b709a;
+    --landon-homeless-camp: #4B0082;
+}
+
+@media screen and (prefers-color-scheme: dark) {
+    :root {
+        --nature: #008000;
+        --halloween: #FF8C00;
+        --winter: #87CEEB;
+        --wawwf: #99A893;
+        --landon-homeless-camp: #9400ff;
+    }
+}
+
+:root.light {
+    --nature: #006400 !important;
+    --halloween: #4B0082 !important;
+    --winter: #1E90FF !important;
+    --wawwf: #385E61 !important;
+    --landon-homeless-camp: #4B0082 !important;
+}
+
+:root.dark {
+    --nature: #008000 !important;
+    --halloween: #FF8C00 !important;
+    --winter: #87CEEB !important;
+    --wawwf: #99A893 !important;
+    --landon-homeless-camp: #9400ff !important;
+}
+
+:root:has(body.windows) {
+    --accent-color: var(--windows);
+}
+
+
+:root:has(body.nature) {
+    --accent-color: var(--nature);
+}
+
+:root:has(body.halloween) {
+    --accent-color: var(--halloween);
+}
+
+:root:has(body.winter) {
+    --accent-color: var(--winter);
+}
+
+:root:has(body.wawwf) {
+    --accent-color: var(--wawwf);
+}
+
+:root:has(body.burn-the-ships) {
+    --accent-color: var(--burn-the-ships);
+<<<<<<< HEAD:public/styles/colors.css
+=======
+}
+
+:root:has(body.landon-homeless-camp) {
+    --accent-color: var(--landon-homeless-camp);
+>>>>>>> next-js-rewrite:src/styles/colors.css
+}

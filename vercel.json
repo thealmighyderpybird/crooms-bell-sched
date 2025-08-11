@@ -1,8 +1,0 @@
-{
-  "routes": [
-    { "handle": "filesystem" },
-    { "src": "/bob", "status": 516, "dest": "/error/516.html" },
-    { "src": "/derp", "status": 418, "dest": "/error/418.html" },
-    { "src": "/(.*)", "status": 404, "dest": "/error/404.html" }
-  ]
-}

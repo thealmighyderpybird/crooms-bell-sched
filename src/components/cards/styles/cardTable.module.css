@@ -1,0 +1,46 @@
+.table {
+    flex-direction: column;
+    display: flex;
+    gap: 2px;
+}
+
+.table > div {
+    display: flex;
+    gap: 2px;
+}
+
+.table > div > div {
+    border-color: transparent;
+    padding: 0.3125rem 0.5rem;
+    border-radius: 0.5rem;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.header {
+    border-color: var(--accent-color) !important;
+    color: var(--accent-color);
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    max-width: 98px;
+    display: flex;
+    width: 100%;
+}
+
+.header:not(.active):hover {
+    background-color: var(--mid-pri);
+}
+
+.header:not(.active):active {
+    background-color: var(--sec);
+}
+
+.header.active {
+    background-color: var(--accent-color);
+    color: var(--pri);
+}
+
+.vertical {
+    flex-direction: column;
+}

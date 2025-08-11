@@ -1,8 +1,0 @@
-@font-face {
-    font-family: "MatIcons";
-    src: url("/fonts/MaterialSymbolsRounded.ttf");
-}
-
-.icon {
-    font-family: "MatIcons", system-ui;
-}

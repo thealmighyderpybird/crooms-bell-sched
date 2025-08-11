@@ -1,0 +1,12 @@
+@font-face {
+    font-family: "MatIcons";
+<<<<<<< HEAD:public/styles/icons.css
+    src: url("/fonts/MaterialSymbolsRounded.ttf");
+=======
+    src: url("/src/styles/fonts/fonts/MaterialSymbolsRounded.ttf");
+>>>>>>> next-js-rewrite:src/styles/icons.css
+}
+
+.icon {
+    font-family: "MatIcons", system-ui;
+}

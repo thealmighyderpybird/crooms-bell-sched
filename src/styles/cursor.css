@@ -1,0 +1,55 @@
+:root {
+    --default-cursor: url("/cursors/light/arrow.png") 5 5, auto;
+    --pointer-cursor: url("/cursors/light/link.png") 5 5, pointer;
+    --move-cursor: url("/cursors/light/move.cur") 5 5, move;
+}
+
+:root * {
+    cursor: url("/cursors/light/arrow.png") 5 5, auto;
+}
+
+:root a:link, :root .links {
+    cursor: url("/cursors/light/link.png") 5 5, pointer !important;
+}
+
+:root .clippy {
+    cursor: url("/cursors/light/move.cur") 5 5, move;
+}
+
+@media screen and (prefers-color-scheme: dark) {
+    :root * {
+        cursor: url("/cursors/dark/arrow.png") 5 5, auto;
+    }
+
+    :root a:link, :root .links {
+        cursor: url("/cursors/dark/link.cur") 11 7, pointer !important;
+    }
+
+    :root .clippy {
+        cursor: url("/cursors/dark/move.cur") 5 5, move;
+    }
+}
+
+:root.light * {
+    cursor: url("/cursors/light/arrow.png") 5 5, auto;
+}
+
+:root.light a:link, :root.light .links {
+    cursor: url("/cursors/light/link.png") 5 5, pointer !important;
+}
+
+:root.light .clippy {
+    cursor: url("/cursors/light/move.cur") 5 5, move;
+}
+
+:root.dark * {
+    cursor: url("/cursors/dark/arrow.png") 5 5, auto;
+}
+
+:root.dark a:link, :root.dark .links {
+    cursor: url("/cursors/dark/link.cur") 11 7, pointer !important;
+}
+
+:root.dark .clippy {
+    cursor: url("/cursors/dark/move.cur") 5 5, move;
+}

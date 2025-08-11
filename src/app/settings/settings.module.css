@@ -1,0 +1,39 @@
+.header {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    line-height: 1;
+}
+
+.subheader {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    font-weight: normal;
+    color: var(--main);
+    user-select: none;
+    line-height: 1.3;
+}
+
+.header:last-child {
+    margin-bottom: 1.5rem;
+}
+
+.subheader:last-child {
+    margin-bottom: 1.5rem;
+}
+
+.actionBar {
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: row;
+    margin-top: .5rem;
+    display: flex;
+    gap: 0.25rem;
+}
+
+.button {
+    text-align: center;
+    min-width: 108px;
+}

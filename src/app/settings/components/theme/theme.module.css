@@ -1,0 +1,20 @@
+.grid {
+    margin-block-start: 1.5rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    display: flex;
+    gap: 0.25rem;
+}
+
+.theme {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    border-radius: 0.5rem;
+    display: inline-block;
+    user-select: none;
+}
+
+.svg {
+    border-radius: 0.5rem;
+}

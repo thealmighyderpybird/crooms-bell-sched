@@ -1,0 +1,24 @@
+.layout {
+    flex-direction: column;
+    max-width: 34.375rem;
+    padding: 2rem 1rem;
+    flex-wrap: nowrap;
+    margin: 0 auto;
+    display: flex;
+    width: 100%;
+    gap: 0.5rem;
+}
+
+.card {
+    background-color: var(--pri);
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+.header {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    line-height: 1;
+}

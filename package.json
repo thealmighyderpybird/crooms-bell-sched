@@ -1,14 +1,43 @@
 {
   "name": "crooms-bell-sched",
-  "version": "3.0.0",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "build": "next build",
+    "check": "next lint && tsc --noEmit",
+    "dev": "next dev --turbo",
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "preview": "next build && next start",
+    "start": "next start",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "cookie-parser": "~1.4.4",
-    "debug": "~4.3.4",
-    "express": "^4.19.2",
-    "morgan": "~1.9.1",
-    "rotating-file-stream": "^3.2.1"
-  }
+    "@t3-oss/env-nextjs": "^0.13.8",
+    "cookies-next": "^6.1.0",
+    "next": "^15.4.6",
+    "randexp": "^0.5.3",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-switch": "^7.1.0",
+    "sanitize-html": "^2.17.0",
+    "zod": "^4.0.16"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@types/node": "^20.14.10",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "eslint": "^9.23.0",
+    "eslint-config-next": "^15.2.3",
+    "typescript": "^5.8.2",
+    "typescript-eslint": "^8.27.0",
+    "@types/eslint": "^8.56.10",
+    "@types/sanitize-html": "^2.16.0"
+  },
+  "ct3aMetadata": {
+    "initVersion": "7.38.1"
+  },
+  "packageManager": "npm@11.3.0"
 }

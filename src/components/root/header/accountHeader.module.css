@@ -1,0 +1,23 @@
+.accountButton {
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: row;
+    padding: 0.75rem;
+    display: flex;
+}
+
+.profilePicture {
+    -webkit-user-drag: none;
+    border-radius: 100%;
+    aspect-ratio: 1/1;
+    height: 28px;
+    width: 28px;
+}
+
+.accountDetails {
+    padding-inline-start: 0.3125rem;
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+    gap: 0.25rem;
+}
