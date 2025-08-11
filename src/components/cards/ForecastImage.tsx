@@ -9,7 +9,9 @@ export default function ForecastImage({ icon }: { icon: string }) {
 
     useEffect(() => {
         fetch(icon).then(r => r.blob())
-            .then(r => setBlob(URL.createObjectURL(r)));
+            .then(r => setBlob(URL.createObjectURL(r)))
+            .catch(e => console.error(e));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return blob ?

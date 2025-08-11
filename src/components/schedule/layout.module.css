@@ -1,0 +1,51 @@
+.croomsBellScheduleApplication {
+    flex-flow: column nowrap;
+    user-select: none;
+    overflow: hidden;
+    display: flex;
+}
+
+.mainContentContainer {
+    justify-content: space-between;
+    flex-flow: row nowrap;
+    display: flex;
+}
+
+.content {
+    font-size: 1.0625rem;
+    margin: 0;
+}
+
+.button {
+    background: var(--accent-color);
+    margin-block-end: 0.125rem;
+    padding: 0.125rem 0.5rem;
+    border-radius: 0.25rem;
+    font-family: inherit;
+    width: 4.0625rem;
+    display: block;
+    border: none;
+}
+
+.button:last-child {
+    margin-block-end: 0;
+}
+
+.button.active {
+    background-color: #e0991d;
+}
+
+.lessThan10 {
+    color: rgb(255,100,100);
+}
+
+@keyframes flash {
+    0% { color: rgb(255,100,100); }
+    50% { color: var(--main); }
+    100% { color: rgb(255,100,100); }
+}
+
+.lessThan1 {
+    animation: flash 2s infinite;
+    transition: none !important;
+}

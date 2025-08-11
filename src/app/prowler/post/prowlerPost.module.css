@@ -1,0 +1,24 @@
+.prowlerForm {
+    flex-direction: column;
+    display: flex;
+}
+
+.prowlerForm > input {
+    text-align: left !important;
+    font-size: inherit;
+    width: 100%;
+}
+
+.actionBar {
+    margin-block-start: 1rem;
+    text-align: center;
+}
+
+.button {
+    min-width: 108px;
+}
+
+.error {
+    font-size: 0.8rem;
+    color: var(--warn);
+}

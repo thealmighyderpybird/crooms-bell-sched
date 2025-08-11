@@ -38,10 +38,10 @@ const oreoClass = {
 };
 
 const setCookies = (value: string) => {
-    let val = value.toLowerCase();
+    const val = value.toLowerCase();
 
-    let chars = val.split("");
-    let tokens: string[] = [];
+    const chars = val.split("");
+    const tokens: string[] = [];
 
     chars.forEach((ch, i, chars) => {
         if (ch === "o") tokens.push("o");
@@ -59,8 +59,9 @@ const setCookies = (value: string) => {
 
     document.getElementById("oreo")!.innerHTML = "";
     tokens.forEach(token => {
-        let el = document.createElement("div");
+        const el = document.createElement("div");
         // @ts-expect-error ignore that issue that won't happen ever
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         el.classList.add(oreoClass[token]);
         document.getElementById("oreo")!.appendChild(el);
     })

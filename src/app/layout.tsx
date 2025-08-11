@@ -1,7 +1,8 @@
 import Header from "~/components/root/header/header";
 import Footer from "~/components/root/footer/footer";
 import getSiteSettings from "~/lib/getSettings";
-import { type Metadata, Viewport } from "next";
+import type { Metadata, Viewport } from "next";
+import { AlertProvider } from "~/AlertContext";
 import rootStyles from "./root.module.css";
 import Fonts from "~/styles/fonts/fonts";
 import { type ReactNode } from "react";
@@ -18,8 +19,8 @@ export const viewport: Viewport = {
 
 const title = "Crooms Bell Schedule";
 const description = "The Crooms Bell Schedule features an interactive bell schedule applet that keeps track of" +
-    " your periods and the time remaining in the period. Stay up-to-date with information with Quick Bits and Weather,"+
-    " and connect with others with Prowler.";
+    " your periods and the time remaining in the period. Stay up-to-date with Quick Bits and connect with others with" +
+    " Prowler.";
 const keywords = "Crooms, CAIT, CAoIT, Crooms Bell Schedule, Crooms Academy Bell Schedule, Crooms Academy," +
     " Crooms Schedule, Schedule, Bell Schedule, 2024-2025, 2025-2026";
 
@@ -56,21 +57,27 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
         // @ts-expect-error string CAN be used to index via enum
         return <html lang="en" className={ Fonts[font] + parseTheme(theme) }>
             <body className={ accentColor ? accentColor : undefined }>
-            <Header />
-            <main className={ rootStyles.main }>{children}</main>
-            <Footer />
-            <Script src={"https://croomssched.statuspage.io/embed/script.js"} />
-            <Script src="/sched/schedule.js" />
+            <AlertProvider>
+                <Header />
+                <main className={ rootStyles.main }>{children}</main>
+                <Footer />
+                <Script src={"https://croomssched.statuspage.io/embed/script.js"} />
+                <Script src="/sched/schedule.js" />
+                <div id="modal-portal" />
+            </AlertProvider>
             </body>
         </html>;
     } catch {
-        return <html lang="en" className={ Fonts["SegoeUI"] }>
+        return <html lang="en" className={ Fonts.SegoeUI }>
             <body>
-            <Header />
-            <main className={ rootStyles.main }>{children}</main>
-            <Footer />
-            <Script src={"https://croomssched.statuspage.io/embed/script.js"} />
-            <Script src="/sched/schedule.js" />
+            <AlertProvider>
+                <Header />
+                <main className={ rootStyles.main }>{children}</main>
+                <Footer />
+                <Script src={"https://croomssched.statuspage.io/embed/script.js"} />
+                <Script src="/sched/schedule.js" />
+                <div id="modal-portal" />
+            </AlertProvider>
             </body>
         </html>
     }

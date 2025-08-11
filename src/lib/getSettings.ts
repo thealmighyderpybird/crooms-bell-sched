@@ -1,4 +1,4 @@
-import SiteSettings from "~/types/settings";
+import type SiteSettings from "~/types/settings";
 import { cookies } from "next/headers";
 
 export default async function getSiteSettings(): Promise<SiteSettings> {
@@ -15,9 +15,18 @@ export default async function getSiteSettings(): Promise<SiteSettings> {
 
     function getPeriodNames() {
         try {
-            return JSON.parse(cookieStore.get("periodNames")!.value)
+            return cookieStore.get("periodNames")!.value;
         } catch {
-            return undefined;
+            return JSON.stringify([
+                "1st Period",
+                "2nd Period",
+                "3rd Period",
+                "4th Period",
+                "5th Period",
+                "6th Period",
+                "7th Period",
+                "Homeroom",
+            ]);
         }
     }
 }

@@ -4,36 +4,40 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbo",
     "build": "next build",
-    "start": "next start",
+    "check": "next lint && tsc --noEmit",
+    "dev": "next dev --turbo",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
-    "check": "next lint && tsc --noEmit",
     "preview": "next build && next start",
+    "start": "next start",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@t3-oss/env-nextjs": "^0.10.1",
-    "next": "^15.4.5",
+    "@t3-oss/env-nextjs": "^0.13.8",
+    "cookies-next": "^6.1.0",
+    "next": "^15.4.6",
     "randexp": "^0.5.3",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "zod": "^3.23.3"
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-switch": "^7.1.0",
+    "sanitize-html": "^2.17.0",
+    "zod": "^4.0.16"
   },
   "devDependencies": {
-    "@types/eslint": "^8.56.10",
+    "@eslint/eslintrc": "^3.3.1",
     "@types/node": "^20.14.10",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
-    "@typescript-eslint/eslint-plugin": "^8.1.0",
-    "@typescript-eslint/parser": "^8.1.0",
-    "eslint": "^8.57.0",
-    "eslint-config-next": "^15.0.1",
-    "typescript": "^5.5.3"
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "eslint": "^9.23.0",
+    "eslint-config-next": "^15.2.3",
+    "typescript": "^5.8.2",
+    "typescript-eslint": "^8.27.0",
+    "@types/eslint": "^8.56.10",
+    "@types/sanitize-html": "^2.16.0"
   },
   "ct3aMetadata": {
     "initVersion": "7.38.1"
   },
-  "packageManager": "npm@10.8.1"
+  "packageManager": "npm@11.3.0"
 }

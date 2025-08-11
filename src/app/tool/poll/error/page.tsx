@@ -25,7 +25,7 @@ export default function PollPageError() {
             </svg>
             <h3 className={ styles.header }>Something went wrong...</h3>
             <p className={ styles.content }>
-                Our server is probably broken. We're working on fixing it.
+                Our server is probably broken. We&apos;re working on fixing it.
             </p>
             <p className={ styles.small }>
                 Please consult your owner&apos;s manual to ensure that no toasters are near the Crooms Bell Schedule

@@ -1,15 +1,13 @@
 import OptionDescription from "~/components/settings/OptionDescription";
+import ColorSchemeOptions from "../components/controls/colorScheme";
 import SettingsOption from "~/components/settings/SettingsOption";
 import SettingsGroup from "~/components/settings/SettingsGroup";
 import OptionHeader from "~/components/settings/OptionHeader";
 import SettingsIcon from "~/components/settings/SettingsIcon";
 import OptionGroup from "~/components/settings/OptionGroup";
-import ColorSchemeOptions from "~/app/settings/components/select/colorScheme";
-import getSiteSettings from "~/lib/getSettings";
-import styles from "../settings.module.css";
 import ThemeOptions from "../components/theme/ThemeOptions";
-import FontOption from "~/app/settings/components/select/font";
-import Link from "next/link";
+import FontOption from "../components/controls/font";
+import getSiteSettings from "~/lib/getSettings";
 
 export default async function Personalization() {
     const { font, theme } = await getSiteSettings();
@@ -47,8 +45,5 @@ export default async function Personalization() {
                 <FontOption font={font} />
             </OptionGroup>
         </SettingsOption>
-        <div className={styles.actionBar}>
-            <Link href="/settings" className={styles.button + " button"}>Back</Link>
-        </div>
     </SettingsGroup>
-}
+};

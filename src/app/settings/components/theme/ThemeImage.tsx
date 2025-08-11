@@ -10,7 +10,9 @@ export default function ThemeImage({ src, theme }: { src: string, theme: string 
     useEffect(() => {
         fetch(src)
             .then(res => res.blob())
-            .then(blob => setImage(URL.createObjectURL(blob)));
+            .then(blob => setImage(URL.createObjectURL(blob)))
+            .catch(e => console.error(e));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     if (image)

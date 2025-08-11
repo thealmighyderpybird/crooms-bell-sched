@@ -5,9 +5,10 @@ import { useEffect } from "react";
 
 export default function PollClientSideRedirTool() {
     useEffect(() => {
-        fetch(CBSHServerURL + "/infofetch/poll")
+        fetch(CBSHServerURL + "/infofetch/daily-poll")
             .then(r => r.json())
-            .then(d => d.status)
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-member-access
+            .then(d => d.data)
             .then(url => {
                 if (typeof url === "string") window.location.href = url;
                 else window.location.href = "/tool/poll/error"

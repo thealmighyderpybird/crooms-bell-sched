@@ -4,7 +4,7 @@ import OptionSelect from "~/components/settings/OptionSelect";
 import { changeColorMode } from "~/lib/settingsManager";
 import { useState } from "react";
 
-export default function ({ theme }: { theme: string }) {
+export default function ColorScheme({ theme }: { theme: string }) {
     const [colorScheme, setColorScheme] = useState(theme);
 
     return <OptionSelect value={colorScheme} onChange={(e) => {

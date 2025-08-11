@@ -4,6 +4,12 @@ import ForecastImage from "./ForecastImage";
 import Card from "~/components/index/Card";
 import AlertPanel from "./AlertPanel";
 
+interface Forecast {
+    properties: {
+        periods: { name: string; icon: string; temperature: number; windSpeed: string; windDirection: string; }[],
+    },
+}
+
 export default async function WeatherWidget() {
     const forecasts = await getWeather();
     return <Card>
@@ -25,7 +31,7 @@ export default async function WeatherWidget() {
 
 const getWeather = async () => {
     const e = await fetch("https://api.weather.gov/gridpoints/MLB/28,80/forecast");
-    const r = await e.json();
+    const r = await e.json() as Forecast;
     const { periods } = r.properties;
     const forecasts: { dayName: string; icon: string; temp: number; windSpeed: string; windDirection: string; }[] = [];
 

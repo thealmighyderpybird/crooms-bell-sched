@@ -7,8 +7,12 @@
 }
 
 .theme {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     border-radius: 0.5rem;
     display: inline-block;
+    user-select: none;
 }
 
 .svg {

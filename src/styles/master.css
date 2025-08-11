@@ -287,8 +287,10 @@ a:hover {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
+    align-items: center;
     border-radius: 10px;
     box-shadow: black 0 0 10px;
+    max-width: 480px;
 }
 
 #alert-floater > .alert {
@@ -328,41 +330,25 @@ a:hover {
     margin-right: 10px;
 }
 
-#alert-floater > .alert > div > .icon:before {
-    content: "error";
-}
-
-#alert-floater > .warn > div > .icon:before {
-    content: "warning";
-}
-
-#alert-floater > .info > div > .icon:before {
-    content: "info";
+#alert-floater > * svg {
+    flex-shrink: 0;
+    height: 1em;
+    width: 1em;
 }
 
 #alert-floater > * > .close {
-    font-family: "MatIcons", system-ui;
-    font-size: 1.5rem;
-    margin-left: 10px;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-}
-
-#alert-floater > * > .close > *:after {
-    content: "close";
-}
-
-#alert-floater > * > .close > * {
     border-radius: 0.5rem;
+    margin-left: 10px;
     padding: 0.5rem;
+    height: 2.5rem;
+    width: auto;
 }
 
-#alert-floater > * > .close > *:hover {
+#alert-floater > * > .close:hover {
     background: #fff4;
 }
 
-#alert-floater > * > .close > *:active {
+#alert-floater > * > .close:active {
     background: #fff5;
 }
 
@@ -430,17 +416,21 @@ button:disabled, a.button:disabled, input[type="button"]:disabled, input[type="s
     opacity: 0.6;
 }
 
-div.dialog {
-    background: var(--pri);
-    padding: 1rem;
-    border-radius: 1rem;
+#modal-portal {
+    -webkit-user-select: none;
+    flex-flow: column nowrap;
+    justify-content: center;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    align-items: center;
+    user-select: none;
     position: fixed;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    box-shadow: black 0 0 10px;
-    z-index: 13;
-    min-width: 400px;
-    max-width: 40vw !important;
+    display: flex;
+    z-index: 10;
+}
+
+#modal-portal:has(div) {
+    inset: 0 !important;
 }
 
 div.dialog > header {
@@ -599,4 +589,8 @@ clippy *:not(.context-menu) {
         width: 100vw;
         border-radius: 0;
     }
+}
+
+:has(.react-switch-bg):has(input[type="checkbox"][aria-checked="true"]) .react-switch-bg {
+    background-color: var(--accent-color) !important;
 }

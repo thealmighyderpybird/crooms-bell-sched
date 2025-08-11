@@ -1,4 +1,4 @@
-const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+export const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
 const parseEndTime = (endTime: Date, expireTime: Date) => {
     if (endTime.toString() === "Wed Dec 31 1969 19:00:00 GMT-0500 (Eastern Standard Time)" &&
@@ -20,7 +20,7 @@ const parseWxTime = (endTime: Date) => {
     return endDay + parseTime(endTime);
 };
 
-const parseTime = (time: Date) => {
+export const parseTime = (time: Date) => {
     let apm;
     let endHour = time.getHours();
     if (endHour > 12) {

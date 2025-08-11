@@ -1,0 +1,14 @@
+.progressMeter {
+    background-color: var(--sec);
+    border-radius: 0.5rem;
+    margin-top: 0.25rem;
+    height: 0.25rem;
+    display: flex;
+    width: 100%;
+}
+
+.progressMeterBar {
+    background-color: var(--accent-color);
+    border-radius: 0.5rem;
+    height: 0.25rem;
+}
