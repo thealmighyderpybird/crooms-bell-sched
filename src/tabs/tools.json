@@ -1,7 +1,7 @@
 {
   "tools": [
     {
-      "id": "working-grade-calc",
+      "id": "workingGradeCalc",
       "name": "Grade Calculator",
       "link": "https://www.calculator.net/grade-calculator.html",
       "popup": false
@@ -40,23 +40,19 @@
       "id": "typing",
       "name": "Typing Practice",
       "link": "https://www.keybr.com",
-<<<<<<< HEAD:public/tabs/tools.json
-      "check": false
+      "popup": false
     },
     {
       "id": "citation-generator",
       "name": "Citation Generator",
       "link": "https://www.bibliography.com/generator/",
-      "check": false
+      "popup": false
     },
     {
       "id": "suggestion",
       "name": "Suggest a Tool",
       "link": "/tools/suggest/",
-      "check": false
-=======
       "popup": false
->>>>>>> next-js-rewrite:src/tabs/tools.json
     }
   ]
 }
