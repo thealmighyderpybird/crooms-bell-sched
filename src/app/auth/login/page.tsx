@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 
 export default async function AuthLogin() {
     const session = await getSession();
-    if (session.uid && session.sid) redirect("/")
+    if (session.uid !== "" && session.sid !== "") redirect("/")
 
     return <Card>
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "0 0.5rem" }}>

@@ -18,14 +18,13 @@ interface SSOIDReq {
 
 export default function LoginTool({ ssoId, appId }: { ssoId: string, appId: string }) {
     const { createAlertBalloon } = useAlert();
-    const router = useRouter();
 
     useEffect(() => {
         async function doAction() {
             const session = await signIn(ssoId, appId, createAlertBalloon);
             if (session === "fail") return;
             await setSession(session);
-            router.push("/");
+            window.location.href = "/";
         } void doAction();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);

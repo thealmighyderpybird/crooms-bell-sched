@@ -28,7 +28,7 @@ export const getDateTime = () => {
 };
 
 export const getSchedule = async () => {
-    const r = await fetch(CBSHServerURL + "/schedule/normal");
+    const r = await fetch(CBSHServerURL + "/today");
     const res = await r.json() as ScheduleRequest;
 
     if (res.status !== "OK") return { error: "An error occurred. " + res.data.error } as Schedule;
@@ -43,9 +43,11 @@ export const sec2hms = (sec: number) => {
     let hms;
     const hours = Math.floor(sec / 3600);
     remaining -= hours * 3600;
-    const minutes = Math.floor(remaining / 60);
+    let minutes = Math.floor(remaining / 60);
     remaining -= minutes * 60;
     const seconds = remaining;
+
+    minutes += 1;
 
     if (sec < 3600) hms = "";
     else hms = hours.toString() + ":";

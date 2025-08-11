@@ -7,14 +7,45 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Verified from "~/components/Verified";
 
+interface CBSHUserAPIResponse {
+    status: "OK" | "FAILED",
+    data: CBSHUser
+}
+
+interface CBSHUser {
+    error: string,
+    code: string,
+    id: string,
+    username: string,
+    displayname: string,
+    role: "user" | "mod" | "admin",
+    verified: boolean,
+    providers: CBSHProvider[],
+}
+
+interface CBSHProvider {
+    id: string,
+    email: string,
+    name: string,
+    image: string,
+}
+
 export default function AccountHeader({ session }: { session: { uid: string | undefined, sid: string | undefined } }) {
+    const [sessionInfo, setSessionInfo] = useState({
+        error: "",
+        code: "",
+        id: "",
+        username: "",
+        displayname: "",
+        role: "user",
+        verified: false,
+        providers: [{ id: "", name: "", email: "", image: "" }],
+});
     const [isTrayOpen, setIsTrayOpen] = useState(false);
-    const [sessionInfo, setSessionInfo] = useState({});
     const router = useRouter();
 
     useEffect(() => {
         async function doAction() {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
             setSessionInfo(await getSessionInfo(session.sid))
         }
         void doAction();
@@ -24,7 +55,7 @@ export default function AccountHeader({ session }: { session: { uid: string | un
     return <>
         <div className={`${headerStyles.menuItem} ${styles.accountButton}`}
              onClick={() => {
-                 if (session) setIsTrayOpen(true);
+                 if (session.sid !== "") setIsTrayOpen(true);
                  else router.push("/auth/login");
              }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -38,7 +69,7 @@ export default function AccountHeader({ session }: { session: { uid: string | un
     </>
 };
 
-const getSessionInfo = async (sid) => {
+const getSessionInfo = async (sid: string | undefined) => {
     const r = await fetch(CBSHServerURL + "/users/userDetails", {
         method: "POST",
         headers: {
@@ -46,9 +77,6 @@ const getSessionInfo = async (sid) => {
             "Authorization": JSON.stringify(sid)
         },
     });
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const res = await r.json();
-
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-member-access
+    const res = await r.json() as CBSHUserAPIResponse;
     return res.data;
 };

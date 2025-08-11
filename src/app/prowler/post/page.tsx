@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default async function ProwlerPost() {
     const session = await getSession();
-    if (!session.uid || !session.sid) redirect("/auth/login");
+    if (session.uid === "" || session.sid === "") redirect("/auth/login");
 
     return <Card>
         <h2>Share a Post</h2>

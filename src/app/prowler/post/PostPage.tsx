@@ -25,16 +25,17 @@ export default function PostPage({ session }: { session: { uid: string, sid: str
         { onPostErrorContent !== "" ? <p className={ styles.error }>{ onPostErrorContent }</p> : null }
         <div className={ styles.actionBar }>
             <button onClick={(e) => {
-                e.target.innerHTML = "Please wait...";
+                e.currentTarget.innerHTML = "Please wait...";
                 setOnPostErrorContent("");
-                e.target.disabled = true;
+                e.currentTarget.disabled = true;
 
                 try { void sharePost(postContent, postLink, session.sid, setOnPostErrorContent, router) }
                 catch (error) {
-                    e.target.disabled = false;
-                    e.target.innerHTML = "Share Post";
+                    e.currentTarget.disabled = false;
+                    e.currentTarget.innerHTML = "Share Post";
+                    // @ts-expect-error message may not exist
                     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-                    createAlertBalloon("Something went wrong", error.message, 2);
+                    createAlertBalloon("Something went wrong", error?.message, 2);
                 }
             }} className={ styles.button } disabled={ postContent === "" }>Share Post</button>
         </div>
@@ -94,6 +95,7 @@ const convertHTML = (str: string): string => {
     };
     return str
         .split("")
+        // @ts-expect-error index it with string or else
         // eslint-disable-next-line @typescript-eslint/no-unsafe-return
         .map(entity => htmlEntities[entity] ?? entity)
         .join("");
