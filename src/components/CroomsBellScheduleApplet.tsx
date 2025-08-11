@@ -38,6 +38,7 @@ export default function CroomsBellScheduleApplet({ id, settings }: { id: string,
     useEffect(() => {
         async function fetchSchedule() { setSchedule(await getSchedule()); }
         void fetchSchedule();
+        let eventNumber = 1;
 
         function mainLoop() {
             const currentDay = schedule.schedule[currentLunchMap[currentLunch]]!;
@@ -61,7 +62,7 @@ export default function CroomsBellScheduleApplet({ id, settings }: { id: string,
             }
             setCurrentEvent(currentDay[eventNumber - 1]!);
             setPeriod(getPeriodAndTimeRemaining(schedule, settings, currentLunch, currentEvent, setPeriodClassName, setProgress));
-            console.log(currentDay, currentEvent, schedule);
+            // console.log(currentDay, currentEvent, schedule.schedule);
         }
 
         //the main loop is called twice before being used in setInterval so that the text doesn't say "Loading..." or the current period text isn't wrong for 2 seconds.
@@ -100,8 +101,6 @@ export default function CroomsBellScheduleApplet({ id, settings }: { id: string,
         { settings.showTimeRemainingRing ? <ProgressMeter progress={progress} /> : null }
     </div>;
 };
-
-let eventNumber = 1;
 
 const getPeriodAndTimeRemaining = (
     schedule: Schedule, settings: Settings, currentLunch: "A Lunch" | "B Lunch", currentEvent: number[],

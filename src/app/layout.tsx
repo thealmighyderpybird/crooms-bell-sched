@@ -62,7 +62,6 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
                 <main className={ rootStyles.main }>{children}</main>
                 <Footer />
                 <Script src={"https://croomssched.statuspage.io/embed/script.js"} />
-                <Script src="/sched/schedule.js" />
                 <div id="modal-portal" />
             </AlertProvider>
             </body>
@@ -75,7 +74,6 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
                 <main className={ rootStyles.main }>{children}</main>
                 <Footer />
                 <Script src={"https://croomssched.statuspage.io/embed/script.js"} />
-                <Script src="/sched/schedule.js" />
                 <div id="modal-portal" />
             </AlertProvider>
             </body>
