@@ -16,7 +16,7 @@
       "id": "mikhail-advice",
       "name": "Mikhail's Advice",
       "link": "https://mikhail.croomssched.tech/advice.html",
-      "check": false
+      "popup": false
     },
     {
       "id": "desmos",
