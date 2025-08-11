@@ -3,9 +3,9 @@
     transition: var(--transition);
     flex-flow: column nowrap;
     justify-content: center;
+    align-items: flex-start;
     background: var(--pri);
     border-radius: 1rem;
-    align-items: start;
     max-width: 420px;
     padding: 1.5rem;
     display: flex;
