@@ -25,22 +25,53 @@ export default function CroomsBellScheduleApplet({ id, settings }: { id: string,
     });
 
     const [periodClassName, setPeriodClassName] = useState("");
+    const [currentEvent, setCurrentEvent] = useState([0,0,0,23,59]);
     const [progress, setProgress] = useState(0);
+    
+    useEffect(() => {
+        setCurrentTime(getDateTime());
+        setTimeout(() => {
+            setInterval(() => setCurrentTime(getDateTime()), 1000);
+        }, new Date().getMilliseconds());
+    }, []);
 
     useEffect(() => {
         async function fetchSchedule() { setSchedule(await getSchedule()); }
         void fetchSchedule();
 
-        setCurrentTime(getDateTime());
-        setPeriod(getPeriodAndTimeRemaining(schedule, settings, currentLunch, setPeriodClassName, setProgress));
-        setPeriod(getPeriodAndTimeRemaining(schedule, settings, currentLunch, setPeriodClassName, setProgress));
-        setTimeout(() => {
-            setInterval(() => {
-                setCurrentTime(getDateTime());
-                setPeriod(getPeriodAndTimeRemaining(schedule, settings, currentLunch, setPeriodClassName, setProgress));
-            }, 1000);
-        }, new Date().getMilliseconds());
+        function mainLoop() {
+            const currentDay = schedule.schedule[currentLunchMap[currentLunch]]!;
+            const now = new Date();
 
+            for (let i = 0; i < currentDay.length; i++) {
+                const eventSec = hms2sec(currentDay[i]![3]!, currentDay[i]![4]!, 0);
+                const nowSec = hms2sec(now.getHours(), now.getMinutes(), now.getSeconds());
+                if (eventSec - nowSec < 0) {
+                    // hopefully this works
+                    eventNumber = i + 2;
+                } else {
+                    if (eventNumber >= currentDay.length) {
+                        eventNumber = 0;
+                    }
+                    break;
+                }
+                if (eventNumber >= currentDay.length) {
+                    eventNumber = 0;
+                }
+            }
+            setCurrentEvent(currentDay[eventNumber - 1]!);
+            setPeriod(getPeriodAndTimeRemaining(schedule, settings, currentLunch, currentEvent, setPeriodClassName, setProgress));
+            console.log(currentDay, currentEvent, schedule);
+        }
+
+        //the main loop is called twice before being used in setInterval so that the text doesn't say "Loading..." or the current period text isn't wrong for 2 seconds.
+        mainLoop();
+        mainLoop();
+
+        setTimeout(() => {
+            setInterval(mainLoop, 1000);
+        }, new Date().getMilliseconds());
+        
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -73,30 +104,10 @@ export default function CroomsBellScheduleApplet({ id, settings }: { id: string,
 let eventNumber = 1;
 
 const getPeriodAndTimeRemaining = (
-    schedule: Schedule, settings: Settings, currentLunch: "A Lunch" | "B Lunch",
+    schedule: Schedule, settings: Settings, currentLunch: "A Lunch" | "B Lunch", currentEvent: number[],
     setCurrentPeriodClass: (className: string) => void, setProgress: (progress: number) => void,
 ) => {
-    const currentDay = schedule.schedule[currentLunchMap[currentLunch]]!;
     const now = new Date();
-
-    for (let i = 0; i < currentDay.length; i++) {
-        const eventSec = hms2sec(currentDay[i]![3]!, currentDay[i]![4]!, 0);
-        const nowSec = hms2sec(now.getHours(), now.getMinutes(), now.getSeconds());
-        if (eventSec - nowSec < 0) {
-            // hopefully this works
-            eventNumber = i + 2;
-        } else {
-            if (eventNumber >= currentDay.length) {
-                eventNumber = 0;
-            }
-            break;
-        }
-        if (eventNumber >= currentDay.length) {
-            eventNumber = 0;
-        }
-    }
-
-    const currentEvent = currentDay[eventNumber - 1]!;
 
     const startHour = currentEvent !== undefined ? currentEvent[0]! : 0;
     const startMinute = currentEvent !== undefined ? currentEvent[1]! : 0;
