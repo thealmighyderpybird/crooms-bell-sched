@@ -1,13 +1,4 @@
-<<<<<<< HEAD:public/styles/index.css
-@import url("/styles/master.css");
-@import url("/styles/prowler.css");
-
-body::before, body::after {
-    content: "" !important;
-}
-=======
 @import url("./master.css");
->>>>>>> next-js-rewrite:src/styles/index.css
 
 body > main {
     padding: 51px 0 37px;
@@ -36,13 +27,8 @@ body > main {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-<<<<<<< HEAD:public/styles/index.css
     grid-template-areas: "extras weather feed"
                          "lunch lunch feed";
-=======
-    grid-template-areas: "extras lunch lunch"
-                         "feed feed weather";
->>>>>>> next-js-rewrite:src/styles/index.css
     user-select: none;
 }
 
@@ -221,81 +207,12 @@ div.widget h3 {
     user-select: none;
 }
 
-#prowler > div {
-    margin-block-start: 1em;
-    overflow-y: auto;
-<<<<<<< HEAD:public/styles/index.css
-    max-height: calc(100vh - 377px - 1em)
-=======
-    height: calc(100% - 70px);
-    max-height: 193px;
->>>>>>> next-js-rewrite:src/styles/index.css
-}
-
-#prowler-posts {
-    margin: 0;
-}
-
-<<<<<<< HEAD:public/styles/index.css
-#prowler-posts * {
-    word-break: break-word;
-}
-
-#prowler-posts > div {
-    background: var(--sec);
-    border-radius: 0.5rem;
-    margin-bottom: 0.5rem;
-    padding: 0.5rem;
-}
-
-#prowler-posts > div > span.username {
-    user-select: none;
-    font-size: 10pt;
-    display: block;
-    opacity: 0.7;
-}
-
-#prowler-posts > div > span.username > b {
-    padding-right: 0.5rem;
-    display: inline-block;
-}
-
-#prowler-posts > div > span.username > span {
-    border-left: var(--main) 1px solid;
-    padding-left: 0.5rem;
-    opacity: 0.7;
-}
-
-#prowler-posts > div i {
-=======
-#feed-updates > li > span.username {
-    font-size: 9pt;
-    opacity: 0.5;
-    padding-left: 0.5rem;
-    user-select: none;
-}
-
-#feed-updates > li i {
->>>>>>> next-js-rewrite:src/styles/index.css
-    user-select: none;
-}
-
-#prowler-posts > div emoji {
-    font-family: "GoogleEmoji", system-ui;
-}
-
 #surveys {
     user-select: none;
 }
 
 #surveys > div {
     overflow-y: auto;
-<<<<<<< HEAD:public/styles/index.css
-    max-height: calc(100vh - 377px - 1em)
-=======
-    height: calc(100% - 70px);
-    max-height: 193px;
->>>>>>> next-js-rewrite:src/styles/index.css
 }
 
 #wx-alert-panel {

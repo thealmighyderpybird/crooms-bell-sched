@@ -1,21 +1,3 @@
-<<<<<<< HEAD:public/styles/master.css
-@import url("/styles/themes/all.css");
-@import url("/styles/colors.css");
-@import url("/styles/cursor.css");
-@import url("/styles/icons.css");
-@import url("/styles/fonts.css");
-@import url("/styles/app.css");
-
-:root {
-    font-family: var(--font), var(--default-font), system-ui;
-    background: var(--background);
-    color-scheme: light dark;
-    color: var(--main);
-    line-height: 1.3;
-}
-
-:root.light {
-=======
 @import url("./themes/all.css");
 @import url("./colors.css");
 @import url("./cursor.css");
@@ -106,13 +88,10 @@
     background: var(--background);
     color: var(--main);
 
->>>>>>> next-js-rewrite:src/styles/master.css
     color-scheme: light !important;
 }
 
 :root.dark {
-<<<<<<< HEAD:public/styles/master.css
-=======
     --background: #111111 !important;
     --main: white !important;
     --rev: black !important;
@@ -137,7 +116,6 @@
     background: var(--background);
     color: var(--main);
 
->>>>>>> next-js-rewrite:src/styles/master.css
     color-scheme: dark !important;
 }
 
@@ -295,7 +273,6 @@ a:hover {
     animation: marquee 20s linear infinite;
 }
 
-<<<<<<< HEAD:public/styles/master.css
 svg.spinner {
     display: block;
     shape-rendering: auto;
@@ -467,8 +444,6 @@ body > footer > div.icon-chain > div:hover {
     div {display: block;}
 }
 
-=======
->>>>>>> next-js-rewrite:src/styles/master.css
 #alert-floater {
     position: fixed;
     left: 50%; top: 60px;
