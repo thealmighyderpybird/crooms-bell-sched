@@ -323,10 +323,7 @@ div.widget h3 {
     margin-top: 1rem;
     display: block;
     height: calc(148px + 1rem);
-<<<<<<< HEAD:public/styles/index.css
     user-select: none;
-=======
->>>>>>> next-js-rewrite:src/styles/index.css
 }
 
 #teacherquote {
