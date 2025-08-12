@@ -12,6 +12,7 @@
 }
 
 .content {
+    transition: none !important;
     font-size: 1.0625rem;
     margin: 0;
 }
