@@ -77,7 +77,7 @@ export default function ProwlerRoot() {
         const onScroll = () => {
             if (
                 window.innerHeight + window.scrollY >=
-                document.documentElement.scrollHeight * 0.95
+                document.documentElement.scrollHeight * 0.9
             ) {
                 void getPosts();
             }
