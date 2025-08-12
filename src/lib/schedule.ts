@@ -61,29 +61,26 @@ export const sec2hms = (sec: number) => {
 };
 
 export const getEventName = (EventName: number | undefined, settings: Settings) => {
-    let eventName;
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument,@typescript-eslint/no-unsafe-assignment
+    const periodNames: string[] = JSON.parse(JSON.parse(JSON.stringify(settings.periodNames)));
     if (EventName === 1 || EventName === 2 || EventName === 3 || EventName === 4 || EventName === 5
-        || EventName === 6 || EventName === 7 || EventName === 8) eventName = settings.periodNames[EventName];
+        || EventName === 6 || EventName === 7 || EventName === 8) return periodNames[EventName - 1];
 
-    else if (EventName === 0) eventName = "Nothing";
-    else if (EventName === 100) eventName = "Morning";
-    else if (EventName === 101) eventName = "Welcome";
-    else if (EventName === 102) eventName = "Lunch";
-    else if (EventName === 103) eventName = "Homeroom";
-    else if (EventName === 104) eventName = "Dismissal";
-    else if (EventName === 105) eventName = "After School";
-    else if (EventName === 106) eventName = "End";
-    else if (EventName === 107) eventName = "Break";
-    else if (EventName === 110) eventName = "PSAT/SAT";
-    else if (EventName === 111) eventName = "Session 1";
-    else if (EventName === 112) eventName = "Session 2";
-    else if (EventName === 113) eventName = "Session 3";
-    else if (EventName === 114) eventName = "Session 5";
-    else if (EventName === 115) eventName = "Field Day";
-    else if (EventName === 116) eventName = "Testing";
-    else eventName = "Unknown Event";
-
-    if (EventName === undefined) eventName = "Unknown Event";
-
-    return eventName;
+    else if (EventName === 0) return "Nothing";
+    else if (EventName === 100) return "Morning";
+    else if (EventName === 101) return "Welcome";
+    else if (EventName === 102) return "Lunch";
+    else if (EventName === 103) return "Homeroom";
+    else if (EventName === 104) return "Dismissal";
+    else if (EventName === 105) return "After School";
+    else if (EventName === 106) return "End";
+    else if (EventName === 107) return "Break";
+    else if (EventName === 110) return "PSAT/SAT";
+    else if (EventName === 111) return "Session 1";
+    else if (EventName === 112) return "Session 2";
+    else if (EventName === 113) return "Session 3";
+    else if (EventName === 114) return "Session 5";
+    else if (EventName === 115) return "Field Day";
+    else if (EventName === 116) return "Testing";
+    else return "Unknown Event";
 };

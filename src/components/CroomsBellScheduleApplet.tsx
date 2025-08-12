@@ -3,7 +3,7 @@
 import { getDateTime, getSchedule, hms2sec, sec2hms, getEventName, type Schedule } from "~/lib/schedule";
 import { useState, useEffect, type Dispatch, type SetStateAction } from "react";
 import ProgressMeter from "~/components/ProgressMeter";
-import layout from "./schedule/layout.module.css";
+import layout from "./schedule/schedule.module.css";
 import type Settings from "~/types/settings";
 import { useRouter } from "next/navigation";
 
