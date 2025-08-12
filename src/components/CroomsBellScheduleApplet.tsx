@@ -2,10 +2,10 @@
 
 import { getDateTime, getSchedule, hms2sec, sec2hms, getEventName, type Schedule } from "~/lib/schedule";
 import { useState, useEffect, type Dispatch, type SetStateAction } from "react";
+import ProgressMeter from "~/components/ProgressMeter";
 import layout from "./schedule/layout.module.css";
 import type Settings from "~/types/settings";
 import { useRouter } from "next/navigation";
-import ProgressMeter from "~/components/ProgressMeter";
 
 enum L { A = "A Lunch", B = "B Lunch" }
 const currentLunchMap = { [L.A]: 0, [L.B]: 1 };
@@ -25,7 +25,6 @@ export default function CroomsBellScheduleApplet({ id, settings }: { id: string,
     });
 
     const [periodClassName, setPeriodClassName] = useState("");
-    const [currentEvent, setCurrentEvent] = useState([0,0,0,23,59]);
     const [progress, setProgress] = useState(0);
     
     useEffect(() => {
@@ -33,48 +32,47 @@ export default function CroomsBellScheduleApplet({ id, settings }: { id: string,
         setTimeout(() => {
             setInterval(() => setCurrentTime(getDateTime()), 1000);
         }, new Date().getMilliseconds());
+        async function fetchSchedule() { setSchedule(await getSchedule()); }
+        void fetchSchedule();
     }, []);
 
     useEffect(() => {
-        async function fetchSchedule() { setSchedule(await getSchedule()); }
-        void fetchSchedule();
-        let eventNumber = 1;
+        if (!schedule?.schedule) return;
 
         function mainLoop() {
             const currentDay = schedule.schedule[currentLunchMap[currentLunch]]!;
             const now = new Date();
+            const nowSec = hms2sec(now.getHours(), now.getMinutes(), now.getSeconds());
 
+            // Find the first event that hasn't ended yet
+            let index = currentDay.length - 1; // default to last event
             for (let i = 0; i < currentDay.length; i++) {
-                const eventSec = hms2sec(currentDay[i]![3]!, currentDay[i]![4]!, 0);
-                const nowSec = hms2sec(now.getHours(), now.getMinutes(), now.getSeconds());
-                if (eventSec - nowSec < 0) {
-                    // hopefully this works
-                    eventNumber = i + 2;
-                } else {
-                    if (eventNumber >= currentDay.length) {
-                        eventNumber = 0;
-                    }
+                const endSec = hms2sec(currentDay[i]![3]!, currentDay[i]![4]!, 0);
+                if (nowSec < endSec) {
+                    index = i;
                     break;
                 }
-                if (eventNumber >= currentDay.length) {
-                    eventNumber = 0;
-                }
             }
-            setCurrentEvent(currentDay[eventNumber - 1]!);
-            setPeriod(getPeriodAndTimeRemaining(schedule, settings, currentLunch, currentEvent, setPeriodClassName, setProgress));
-            // console.log(currentDay, currentEvent, schedule.schedule);
+
+            const newEvent = currentDay[index]!;
+            setPeriod(
+                getPeriodAndTimeRemaining(
+                    schedule,
+                    settings,
+                    currentLunch,
+                    newEvent,
+                    setPeriodClassName,
+                    setProgress
+                )
+            );
         }
 
-        //the main loop is called twice before being used in setInterval so that the text doesn't say "Loading..." or the current period text isn't wrong for 2 seconds.
-        mainLoop();
+        // Run immediately so there's no "loading" delay
         mainLoop();
 
-        setTimeout(() => {
-            setInterval(mainLoop, 1000);
-        }, new Date().getMilliseconds());
-        
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+        const interval = setInterval(mainLoop, 1000);
+        return () => clearInterval(interval);
+    }, [schedule, currentLunch, settings]);
 
     const isActive = (selectedLunch: string) => {
         return selectedLunch === currentLunch ? ` ${layout.active}` : "";

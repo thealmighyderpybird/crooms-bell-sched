@@ -1,7 +1,6 @@
 "use client";
 
 import CBSHServerURL from "~/lib/CBSHServerURL";
-import { useRouter } from "next/navigation";
 import { setSession } from "~/lib/session";
 import useAlert from "~/AlertContext";
 import { useEffect } from "react";
