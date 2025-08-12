@@ -43,11 +43,9 @@ export const sec2hms = (sec: number) => {
     let hms;
     const hours = Math.floor(sec / 3600);
     remaining -= hours * 3600;
-    let minutes = Math.floor(remaining / 60);
+    const minutes = Math.floor(remaining / 60);
     remaining -= minutes * 60;
     const seconds = remaining;
-
-    minutes += 1;
 
     if (sec < 3600) hms = "";
     else hms = hours.toString() + ":";
