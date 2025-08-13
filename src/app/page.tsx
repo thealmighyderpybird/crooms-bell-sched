@@ -6,6 +6,7 @@ import CardLayout from "../components/index/CardLayout";
 import ThemeProvider from "~/components/ThemeProvider";
 import getSiteSettings from "~/lib/getSettings";
 import Card from "../components/index/Card";
+import AdFrame from "~/components/AdFrame";
 import RandExp from "randexp";
 import "~/styles/index.css";
 
@@ -15,6 +16,7 @@ export default async function Home() {
             <Card>
                 <CroomsBellScheduleApplet id={new RandExp(/[a-f0-9]\w{10}/).gen()}
                                           settings={await getSiteSettings()} />
+                <AdFrame style={{ marginBlockStart: "1rem" }} />
             </Card>
             <LunchWidget />
             <WeatherWidget />
