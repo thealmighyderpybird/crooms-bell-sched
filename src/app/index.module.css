@@ -175,3 +175,14 @@
 .submitButton:hover {
   background-color: rgb(255 255 255 / 0.2);
 }
+
+.ad {
+    user-select: none;
+}
+
+.sharePostLink {
+    margin-block-end: 1rem;
+    display: inline-block;
+    width: fit-content;
+    user-select: none;
+}
