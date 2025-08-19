@@ -55,7 +55,7 @@ export default function AccountHeader({ session }: { session: { uid: string | un
     return <>
         <div className={`${headerStyles.menuItem} ${styles.accountButton}`}
              onClick={() => {
-                 if (session.sid !== "") setIsTrayOpen(true);
+                 if (session.sid !== "") setIsTrayOpen(toggleIsTrayOpen(isTrayOpen));
                  else router.push("/auth/login");
              }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -63,9 +63,22 @@ export default function AccountHeader({ session }: { session: { uid: string | un
                  alt={"Profile Picture"} className={ styles.profilePicture } />
             <div className={ styles.accountDetails }>
                 { sessionInfo?.displayname ?? (sessionInfo?.username ? `@${sessionInfo.username}` : "Sign In") }
-                { sessionInfo?.verified ? <Verified size={15} /> : null }
+                { sessionInfo?.verified && <Verified size={15} /> }
             </div>
         </div>
+        { isTrayOpen && <div className={ styles.accountPopout }>
+            <div className={ styles.accountPopoutCard }>
+                <img src={`https://mikhail.croomssched.tech/crfsapi/FileController/ReadFile?default=pfp&name=${session.uid}.png`}
+                     alt={"Profile Picture"} className={ styles.profilePicture } />
+                <div>
+                    <h2>
+                        { sessionInfo?.displayname ?? `@${sessionInfo.username}` }
+                        { sessionInfo?.verified && <Verified size={16} /> }
+                    </h2>
+                    { sessionInfo.displayname && <span> @{sessionInfo.username}</span> }
+                </div>
+            </div>
+        </div> }
     </>
 };
 
@@ -80,3 +93,5 @@ const getSessionInfo = async (sid: string | undefined) => {
     const res = await r.json() as CBSHUserAPIResponse;
     return res.data;
 };
+
+const toggleIsTrayOpen = (isTrayOpen: boolean) => !isTrayOpen;

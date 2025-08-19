@@ -90,3 +90,15 @@
     color: inherit !important;
     text-decoration: none;
 }
+
+.download {
+    justify-content: center;
+    display: flex;
+    gap: 0.5rem;
+}
+
+@media screen and (max-width: 859px) {
+    .download span {
+        display: none;
+    }
+}

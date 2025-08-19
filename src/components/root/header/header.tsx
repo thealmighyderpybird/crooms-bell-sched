@@ -1,12 +1,16 @@
 import headerStyles from "./header.module.css";
 import getSession from "~/lib/session.server";
 import AccountHeader from "./AccountHeader";
+import { userAgent } from "next/server";
+import { headers } from "next/headers";
 import ToolsMenu from "./ToolsMenu";
 import ToysMenu from "./ToysMenu";
 import Image from "next/image";
 import Link from "next/link";
 
 export default async function Header() {
+    const { os } = userAgent({ headers: headers() });
+    const osName = os.name ?? "Unknown";
     const session = await getSession();
 
     return <header className={headerStyles.header}>
@@ -28,14 +32,18 @@ export default async function Header() {
                 </Link>
             </div>
             <div className={headerStyles.navChild + " right"}>
+                { osName === "Windows" &&
                 <Link href="https://mikhail.croomssched.tech/apps/bellscheduleapp" className={headerStyles.menuItem}
                       title="Download the app" tabIndex={1} target="CBSHApp">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="1.5rem" height="1.5em" style={{ cursor: "inherit" }}>
-                        <path d="M17 4a1 1 0 1 0-2 0v16.586l-5.293-5.293a1 1 0 0 0-1.414 1.414l7 7a1 1 0 0 0 1.414 0l7-7a1 1 0 0 0-1.414-1.414L17 20.586zM7 27a1 1 0 1 0 0 2h18a1 1 0 1 0 0-2z"
-                              fill="currentColor" style={{ cursor: "inherit" }} />
-                    </svg>
+                    <div className={headerStyles.download}>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="1.5rem" height="1.5em" style={{ cursor: "inherit" }}>
+                            <path d="M17 4a1 1 0 1 0-2 0v16.586l-5.293-5.293a1 1 0 0 0-1.414 1.414l7 7a1 1 0 0 0 1.414 0l7-7a1 1 0 0 0-1.414-1.414L17 20.586zM7 27a1 1 0 1 0 0 2h18a1 1 0 1 0 0-2z"
+                                  fill="currentColor" style={{ cursor: "inherit" }} />
+                        </svg>
+                        <span>Download the app</span>
+                    </div>
                     <div className={headerStyles.subMenu} style={{ padding: "0.5rem", fontSize: "0.8rem" }}>Download the app</div>
-                </Link>
+                </Link>}
                 <AccountHeader session={session} />
             </div>
         </nav>

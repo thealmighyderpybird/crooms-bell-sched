@@ -21,3 +21,41 @@
     display: flex;
     gap: 0.25rem;
 }
+
+@media screen and (max-width: 799px) {
+    .accountDetails {
+        display: none;
+    }
+}
+
+.accountPopout {
+    background-color: var(--pri);
+    box-shadow: black 0 10px 10px;
+    position: fixed;
+    padding: 1rem;
+    top: 51px;
+    right: 0;
+}
+
+.accountPopoutCard {
+    justify-content: center;
+    flex-flow: row nowrap;
+    align-items: center;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.accountPopoutCard .profilePicture {
+    height: 52px;
+    width: 52px;
+}
+
+.accountPopoutCard div * {
+    line-height: 1;
+}
+
+.accountPopoutCard div h2 {
+    align-items: center;
+    display: flex;
+    gap: 0.125rem;
+}
