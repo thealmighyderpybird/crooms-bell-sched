@@ -59,3 +59,13 @@
     display: flex;
     gap: 0.125rem;
 }
+
+.links {
+    flex-flow: column nowrap;
+    margin-top: 0.5rem;
+    display: flex;
+}
+
+.links a {
+    width: fit-content;
+}

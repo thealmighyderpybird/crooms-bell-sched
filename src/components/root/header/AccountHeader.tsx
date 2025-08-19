@@ -3,9 +3,10 @@
 import styles from "./accountHeader.module.css";
 import CBSHServerURL from "~/lib/CBSHServerURL";
 import headerStyles from "./header.module.css";
+import Verified from "~/components/Verified";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Verified from "~/components/Verified";
+import Link from "next/link";
 
 interface CBSHUserAPIResponse {
     status: "OK" | "FAILED",
@@ -77,6 +78,10 @@ export default function AccountHeader({ session }: { session: { uid: string | un
                     </h2>
                     { sessionInfo.displayname && <span> @{sessionInfo.username}</span> }
                 </div>
+            </div>
+            <div className={ styles.links }>
+                <Link href="https://account.croomssched.tech/account-center"
+    target="CBSHAccountCenter">Manage your account</Link>
             </div>
         </div> }
     </>
