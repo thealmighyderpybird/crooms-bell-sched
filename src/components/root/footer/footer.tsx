@@ -19,7 +19,7 @@ export default async function Footer() {
                     <h4>Join the team!</h4>
                     <p>
                         Join the development team on our <Link target="CBSH_GitRepos"
-                                                               href="https://github.com/thealmightyderpybird/crooms-bell-sched/"
+                                                               href="https://github.com/thealmighyderpybird/crooms-bell-sched/"
                                                                 >GitHub Repository</Link>.
                     </p>
                     <h4>Support our development.</h4>
