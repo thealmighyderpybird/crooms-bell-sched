@@ -66,6 +66,10 @@
     display: flex;
 }
 
-.links a {
+.links * {
     width: fit-content;
+}
+
+.links button {
+    min-width: 7rem;
 }

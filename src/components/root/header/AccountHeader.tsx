@@ -1,6 +1,7 @@
 "use client";
 
 import styles from "./accountHeader.module.css";
+import { eventSignOut } from "~/lib/ssrSession";
 import CBSHServerURL from "~/lib/CBSHServerURL";
 import headerStyles from "./header.module.css";
 import Verified from "~/components/Verified";
@@ -82,7 +83,11 @@ export default function AccountHeader({ session }: { session: { uid: string | un
             </div>
             <div className={ styles.links }>
                 <Link href="https://account.croomssched.tech/account-center"
-    target="CBSHAccountCenter">Manage your account</Link>
+                      target="CBSHAccountCenter">Manage your account</Link>
+                <button onClick={() => {
+                    void eventSignOut();
+                    router.refresh();
+                }}>Sign out</button>
             </div>
         </div> }
     </>
