@@ -9,7 +9,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default async function Header() {
-    const { os } = userAgent({ headers: headers() });
+    const { os } = userAgent({ headers: await headers() });
     const osName = os.name ?? "Unknown";
     const session = await getSession();
 

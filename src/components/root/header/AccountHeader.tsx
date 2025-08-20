@@ -69,6 +69,7 @@ export default function AccountHeader({ session }: { session: { uid: string | un
         </div>
         { isTrayOpen && <div className={ styles.accountPopout }>
             <div className={ styles.accountPopoutCard }>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={`https://mikhail.croomssched.tech/crfsapi/FileController/ReadFile?default=pfp&name=${session.uid}.png`}
                      alt={"Profile Picture"} className={ styles.profilePicture } />
                 <div>
