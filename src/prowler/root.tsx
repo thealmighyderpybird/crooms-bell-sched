@@ -12,22 +12,34 @@ interface ProwlerRequestGET {
     data: Post[],
 }
 
-const prowler = {
+interface ProwlerData {
+    source: string,
+    incrementor: number,
+    posts: Post[],
+}
+
+const prowler: ProwlerData = {
     source: CBSHServerURL + "/feed",
-    incrementor: 25,
+    incrementor: 50,
+    posts: [],
 };
 
-export default function ProwlerRoot() {
+export default function ProwlerRoot({ sid }: { sid: string }) {
     const { createAlertBalloon } = useAlert();
     // @ts-expect-error force type on react state
     const [posts, setPosts]: [Post[], Dispatch<SetStateAction<Post[]>>] = useState([]);
+    const [isTriggered, setIsTriggered] = useState(false);
     const [hasMore, setHasMore] = useState(true);
     const [startAt, setStartAt] = useState(0);
 
-    
     const getPosts = useCallback(async () => {
         try {
-            const r = await fetch(prowler.source + `/part/${startAt}/${startAt + prowler.incrementor - 1}`);
+            const r = await fetch(prowler.source, {
+                headers: {
+                    "Authorization": JSON.stringify(sid),
+                    "Content-Type": "application/json",
+                }
+            });
             const res = await r.json() as ProwlerRequestGET;
 
             if (res.status !== "OK") {
@@ -35,20 +47,26 @@ export default function ProwlerRoot() {
                     `Failed to fetch the latest from Prowler. Error details: ${res.data.error}`, 1);
                 return;
             }
-
-            const data = res.data;
-            if (data.length === 0) {
-                setHasMore(false);
-                return;
-            }
-            
-            setPosts((prev) => [...prev, ...data]);
-            setStartAt((prev) => prev + prowler.incrementor);
+            prowler.posts = res.data;
+            loadPosts();
         } catch (e) {
             createAlertBalloon("Something went wrong", // @ts-expect-error it's unknown but known
                 "Failed to fetch the latest from Prowler. Error details: " + e.message, 2);
         }
-    }, [createAlertBalloon, startAt]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    const loadPosts = () => {
+        const data: Post[] = [];
+
+        for (let i = startAt; i < startAt + prowler.incrementor - 1; i++) {
+            if (prowler.posts[i]) data.push(prowler.posts[i]!)
+        }
+
+        setPosts((prev: Post[]) => [...prev, ...data]);
+        setStartAt((prev) => prev + prowler.incrementor);
+        setIsTriggered(false);
+    }
 
     const getNewPosts = async () => {
         const r = await fetch(prowler.source + `/after/${posts[0]?.id ?? ''}`);
@@ -62,7 +80,7 @@ export default function ProwlerRoot() {
 
         const data = res.data;
         if (data.length > 0) {
-            setPosts((prev) => [...data, ...prev]);
+            setPosts((prev: Post[]) => [...data, ...prev]);
         }
     };
 
@@ -75,17 +93,23 @@ export default function ProwlerRoot() {
         if (!hasMore) return;
 
         const onScroll = () => {
-            if (
-                window.innerHeight + window.scrollY >=
-                document.documentElement.scrollHeight * 0.9
-            ) {
-                void getPosts();
+            const scrollHeight = document.documentElement.scrollHeight;
+            const clientHeight = document.documentElement.clientHeight;
+            const scrollTop = document.documentElement.scrollTop;
+
+            const scrollPercent = (scrollTop + clientHeight) / scrollHeight * 100;
+
+            if (!isTriggered && scrollPercent >= 95 && scrollPercent < 100) {
+                console.log("scroll triggered");
+                setIsTriggered(true);
+                loadPosts();
             }
         };
 
         window.addEventListener('scroll', onScroll);
         return () => window.removeEventListener('scroll', onScroll);
-    }, [startAt, hasMore, getPosts]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [startAt]);
 
     useEffect(() => {
         const interval = setInterval(() => {

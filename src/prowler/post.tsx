@@ -20,24 +20,25 @@ const monthNames = [
 ];
 
 export default function Post({ post }: { post: Post }) {
-    const createTime = new Date(post.create);
-    return <div data-id={ post.id } className={ styles.corePost }>
+    return <div data-id={ post?.id ? post.id : "" } className={ styles.corePost }>
         <div className={ styles.corePostHeader }>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
+            { post?.createdBy && post?.uid ? // eslint-disable-next-line @next/next/no-img-element
             <img src={`https://mikhail.croomssched.tech/crfsapi/FileController/ReadFile?name=${post.uid}.png&default=pfp`}
                  alt={ post.createdBy + "'s profile picture" } title={ post.createdBy + "'s profile picture" }
-                 className={ styles.profilePicture } width={32} height={32} />
+                 className={ styles.profilePicture } width={32} height={32} /> : null }
             <div className={ styles.corePostHeaderContent }>
+                { post?.createdBy &&
                 <div className={ styles.username }>
                     <span>{ post.createdBy }</span>
-                    { post.verified ? <Verified size={15} /> : null }
-                </div>
+                    { post.verified ? <Verified size={14} /> : null }
+                </div> }
+                { post?.create &&
                 <span>
-                    {monthNames[createTime.getMonth()]} {createTime.getDate()}, {createTime.getFullYear()
-                    } {parseTime(new Date(createTime))}
-                </span>
+                    {monthNames[new Date(post.create).getMonth()]} {new Date(post.create).getDate()},
+                    {new Date(post.create).getFullYear()} {parseTime(new Date(post.create))}
+                </span> }
             </div>
         </div>
-        <div className={ styles.corePostContent } dangerouslySetInnerHTML={{ __html: sanitizeHtml(post.data) }} />
+        <div className={ styles.corePostContent } dangerouslySetInnerHTML={{ __html: sanitizeHtml(post?.data) }} />
     </div>;
 };

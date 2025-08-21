@@ -84,10 +84,10 @@ export default function AccountHeader({ session }: { session: { uid: string | un
             <div className={ styles.links }>
                 <Link href="https://account.croomssched.tech/account-center"
                       target="CBSHAccountCenter">Manage your account</Link>
-                <button onClick={() => {
+                <Link href="#" onClick={() => {
                     void eventSignOut();
                     router.refresh();
-                }}>Sign out</button>
+                }}>Sign out</Link>
             </div>
         </div> }
     </>
