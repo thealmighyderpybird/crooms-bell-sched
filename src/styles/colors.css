@@ -72,5 +72,5 @@
 }
 
 :root:has(body.pride) {
-    --accent-color: var(--pride);
+    --accent-color: var(--mid-qua);
 }

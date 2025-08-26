@@ -1,0 +1,30 @@
+body.pride::before {
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/6/60/Intersex-inclusive_pride_flag.svg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    z-index: -1;
+    inset: 0;
+}
+
+body.pride::after {
+    backdrop-filter: blur(10px);
+    position: fixed;
+    z-index: -1;
+    inset: 0;
+}
+
+@media screen and (prefers-color-scheme: dark) {
+    body.pride::after {
+        backdrop-filter: blur(10px) brightness(60%);
+    }
+}
+
+:root.light > body.pride::after {
+    backdrop-filter: blur(10px) !important;
+}
+
+:root.dark > body.pride::after {
+    backdrop-filter: blur(10px) brightness(60%) !important;
+}
