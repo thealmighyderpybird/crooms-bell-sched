@@ -1,0 +1,20 @@
+.surveyContainer {
+    padding-inline-start: 1.25rem;
+    margin: 0;
+}
+
+.input {
+    text-align: left !important;
+    font-size: 0.9rem;
+    width: 100%;
+}
+
+.actionBar {
+    margin-block-start: 1rem;
+    justify-content: center;
+    display: flex;
+}
+
+.actionBar button {
+    min-width: 6rem;
+}
