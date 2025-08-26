@@ -51,5 +51,9 @@ export default function ThemeOptions() {
             <ThemeImage src="https://cdn.croomssched.tech/data/7291ef48-5f58-4f73-a79d-23f146afd471/landon.png"
                         theme="Landon's Homeless Camp" />
         </ThemeOption>
+        <ThemeOption id="jetbrains" title="Jetbrains">
+            <ThemeImage src="https://cdn.croomssched.tech/data/7291ef48-5f58-4f73-a79d-23f146afd471/jetbrains.png"
+                        theme="Jetbrains" />
+        </ThemeOption>
     </ThemeGrid>;
 }
