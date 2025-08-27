@@ -48,20 +48,20 @@ export default function Post({ post }: { post: Post }) {
                 "small", "span", "strong", "sub", "sup", "time", "u", "var", "wbr", "caption",
                 "col", "colgroup", "table", "tbody", "td", "tfoot", "th", "thead", "tr", "rainbow"
             ],
-            disallowedTagsMode: 'discard',
+            disallowedTagsMode: "discard",
             allowedAttributes: {
-                a: [ 'href', 'name', 'target' ],
-                img: [ 'src', 'srcset', 'alt', 'title', 'width', 'height', 'loading' ],
-                '*': [ 'mention' ]
+                a: [ "href", "name", "target" ],
+                img: [ "src", "srcset", "alt", "title", "width", "height", "loading" ],
+                "*": [ "mention" ]
             },
             allowedClasses: {
-                a: [ 'links' ],
+                a: [ "links" ],
             },
-            selfClosing: [ 'img', 'br', 'hr', 'area', 'base', 'basefont', 'input' ],
+            selfClosing: [ "img", "br", "hr", "area", "base", "basefont", "input" ],
             // URL schemes we permit
-            allowedSchemes: [ 'http', 'https', 'ftp', 'mailto', 'tel' ],
+            allowedSchemes: [ "http", "https", "ftp", "mailto", "tel" ],
             allowedSchemesByTag: {},
-            allowedSchemesAppliedToAttributes: [ 'href', 'src', 'cite' ],
+            allowedSchemesAppliedToAttributes: [ "href", "src", "cite" ],
             allowProtocolRelative: true,
             enforceHtmlBoundary: false,
             parseStyleAttributes: true
