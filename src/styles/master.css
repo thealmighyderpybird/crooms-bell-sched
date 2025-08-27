@@ -236,6 +236,7 @@ header, main, section, article, aside, footer {
 
 ::selection {
     background-color: var(--accent-color);
+    color: var(--main);
 }
 
 .emoji {
