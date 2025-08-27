@@ -1,9 +1,4 @@
 import Card from "~/components/index/Card";
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-    title: "Terms of Service",
-};
 
 export default function TermsOfService() {
     return <Card>
@@ -130,4 +125,4 @@ export default function TermsOfService() {
                 agree to be bound by these Terms of Service.</strong>
         </p>
     </Card>
-};
+}

@@ -1,11 +1,13 @@
 "use client";
 
 import styles from "./accountHeader.module.css";
+import { eventSignOut } from "~/lib/ssrSession";
 import CBSHServerURL from "~/lib/CBSHServerURL";
 import headerStyles from "./header.module.css";
+import Verified from "~/components/Verified";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Verified from "~/components/Verified";
+import Link from "next/link";
 
 interface CBSHUserAPIResponse {
     status: "OK" | "FAILED",
@@ -55,7 +57,7 @@ export default function AccountHeader({ session }: { session: { uid: string | un
     return <>
         <div className={`${headerStyles.menuItem} ${styles.accountButton}`}
              onClick={() => {
-                 if (session.sid !== "") setIsTrayOpen(true);
+                 if (session.sid !== "") setIsTrayOpen(toggleIsTrayOpen(isTrayOpen));
                  else router.push("/auth/login");
              }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -63,9 +65,31 @@ export default function AccountHeader({ session }: { session: { uid: string | un
                  alt={"Profile Picture"} className={ styles.profilePicture } />
             <div className={ styles.accountDetails }>
                 { sessionInfo?.displayname ?? (sessionInfo?.username ? `@${sessionInfo.username}` : "Sign In") }
-                { sessionInfo?.verified ? <Verified size={15} /> : null }
+                { sessionInfo?.verified && <Verified size={15} /> }
             </div>
         </div>
+        { isTrayOpen && <div className={ styles.accountPopout }>
+            <div className={ styles.accountPopoutCard }>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={`https://mikhail.croomssched.tech/crfsapi/FileController/ReadFile?default=pfp&name=${session.uid}.png`}
+                     alt={"Profile Picture"} className={ styles.profilePicture } />
+                <div>
+                    <h2>
+                        { sessionInfo?.displayname ?? `@${sessionInfo.username}` }
+                        { sessionInfo?.verified && <Verified size={16} /> }
+                    </h2>
+                    { sessionInfo.displayname && <span> @{sessionInfo.username}</span> }
+                </div>
+            </div>
+            <div className={ styles.links }>
+                <Link href="https://account.croomssched.tech/account-center"
+                      target="CBSHAccountCenter">Manage your account</Link>
+                <Link href="#" onClick={() => {
+                    void eventSignOut();
+                    router.refresh();
+                }}>Sign out</Link>
+            </div>
+        </div> }
     </>
 };
 
@@ -80,3 +104,5 @@ const getSessionInfo = async (sid: string | undefined) => {
     const res = await r.json() as CBSHUserAPIResponse;
     return res.data;
 };
+
+const toggleIsTrayOpen = (isTrayOpen: boolean) => !isTrayOpen;

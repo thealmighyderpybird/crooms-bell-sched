@@ -1,0 +1,34 @@
+body.jetbrains::before {
+    background-position: right center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    z-index: -1;
+    left: 0;
+    top: 0;
+}
+
+body.jetbrains::after {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    z-index: -1;
+    left: 0;
+    top: 0;
+}
+
+@media screen and (prefers-color-scheme: dark) {
+    body.jetbrains::before {
+        background-image: url("https://resources.jetbrains.com/storage/desktop-art/general/jetbrains/Wallpapers/1920x1080-jetbrains2024_1.png");
+    }
+}
+
+:root.light > body.jetbrains::before {
+    background-image: none !important;
+}
+
+:root.dark > body.jetbrains::before {
+    background-image: url("https://resources.jetbrains.com/storage/desktop-art/general/jetbrains/Wallpapers/1920x1080-jetbrains2024_1.png") !important;
+}

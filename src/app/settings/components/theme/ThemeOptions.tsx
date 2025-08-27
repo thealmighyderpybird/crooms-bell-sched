@@ -51,5 +51,13 @@ export default function ThemeOptions() {
             <ThemeImage src="https://cdn.croomssched.tech/data/7291ef48-5f58-4f73-a79d-23f146afd471/landon.png"
                         theme="Landon's Homeless Camp" />
         </ThemeOption>
+        <ThemeOption id="jetbrains" title="JetBrains">
+            <ThemeImage src="https://cdn.croomssched.tech/data/7291ef48-5f58-4f73-a79d-23f146afd471/jetbrains.png"
+                        theme="JetBrains" />
+        </ThemeOption>
+        <ThemeOption id="pride" title="Pride">
+            <ThemeImage src="https://upload.wikimedia.org/wikipedia/commons/6/60/Intersex-inclusive_pride_flag.svg"
+                        theme="Pride" />
+        </ThemeOption>
     </ThemeGrid>;
 }

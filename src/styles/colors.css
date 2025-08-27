@@ -6,6 +6,7 @@
     --wawwf: #385E61;
     --burn-the-ships: #4b709a;
     --landon-homeless-camp: #4B0082;
+    --jetbrains: #763390;
 }
 
 @media screen and (prefers-color-scheme: dark) {
@@ -15,6 +16,7 @@
         --winter: #87CEEB;
         --wawwf: #99A893;
         --landon-homeless-camp: #9400ff;
+        --jetbrains: #ea5d8e;
     }
 }
 
@@ -24,6 +26,7 @@
     --winter: #1E90FF !important;
     --wawwf: #385E61 !important;
     --landon-homeless-camp: #4B0082 !important;
+    --jetbrains: #763390 !important;
 }
 
 :root.dark {
@@ -32,6 +35,7 @@
     --winter: #87CEEB !important;
     --wawwf: #99A893 !important;
     --landon-homeless-camp: #9400ff !important;
+    --jetbrains: #ea5d8e !important;
 }
 
 :root:has(body.windows) {
@@ -61,4 +65,12 @@
 
 :root:has(body.landon-homeless-camp) {
     --accent-color: var(--landon-homeless-camp);
+}
+
+:root:has(body.jetbrains) {
+    --accent-color: var(--jetbrains);
+}
+
+:root:has(body.pride) {
+    --accent-color: var(--mid-qua);
 }

@@ -1,6 +1,6 @@
 import CroomsBellScheduleApplet from "~/components/CroomsBellScheduleApplet";
 import WeatherWidget from "../components/cards/WeatherWidget";
-import ProwlerWidget from "~/components/cards/ProwlerWidget";
+import SocialWidget from "~/components/cards/SocialWidget";
 import LunchWidget from "../components/cards/LunchWidget";
 import CardLayout from "../components/index/CardLayout";
 import ThemeProvider from "~/components/ThemeProvider";
@@ -20,7 +20,7 @@ export default async function Home() {
             </Card>
             <LunchWidget />
             <WeatherWidget />
-            <ProwlerWidget />
+            <SocialWidget />
         </CardLayout>
     </ThemeProvider>;
 };
