@@ -55,7 +55,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
         const { theme, font, accentColor } = await getSiteSettings();
 
         // @ts-expect-error string CAN be used to index via enum
-        return <html lang="en" className={ Fonts[font] + parseTheme(theme) }>
+        return <html lang="en" className={ Fonts[font] + isSuvan(theme) }>
             <body className={ accentColor ? accentColor : undefined }>
             <AlertProvider>
                 <Header />
@@ -81,4 +81,5 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
     }
 };
 
+const isSuvan = (theme: string, userId: string) => userId === "kone" ? parseTheme(theme) : " pride";
 const parseTheme = (theme: string) => theme ? ` ${theme}` : "";
