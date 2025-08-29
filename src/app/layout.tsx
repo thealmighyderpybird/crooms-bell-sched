@@ -8,6 +8,7 @@ import Fonts from "~/styles/fonts/fonts";
 import { type ReactNode } from "react";
 import Script from "next/script";
 import "~/styles/master.css";
+import getSession from "~/lib/session.server";
 
 export const viewport: Viewport = {
     width: "device-width",
@@ -53,10 +54,11 @@ export const metadata: Metadata = {
 export default async function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
     try {
         const { theme, font, accentColor } = await getSiteSettings();
+        const { uid } = await getSession();
 
         // @ts-expect-error string CAN be used to index via enum
-        return <html lang="en" className={ Fonts[font] + isSuvan(theme) }>
-            <body className={ accentColor ? accentColor : undefined }>
+        return <html lang="en" className={ Fonts[font] + parseTheme(theme) }>
+            <body className={ accentColor ? parseAccentColor(accentColor, uid) : undefined }>
             <AlertProvider>
                 <Header />
                 <main className={ rootStyles.main }>{children}</main>
@@ -81,5 +83,5 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
     }
 };
 
-const isSuvan = (theme: string, userId: string) => userId === "kone" ? parseTheme(theme) : " pride";
 const parseTheme = (theme: string) => theme ? ` ${theme}` : "";
+const parseAccentColor = (accent: string, uid: string) => uid === "kone" ? "pride" : accent;
