@@ -32,8 +32,12 @@ export default function UserCard({ username }: { username: string }) {
     }, [username]);
 
     return <Card>
+        { username && userData?.id ? // eslint-disable-next-line @next/next/no-img-element
+            <img src={`https://mikhail.croomssched.tech/crfsapi/FileController/ReadFile?name=${userData.id}.png&default=profile_banner`}
+                 alt={ username + "'s profile banner" } title={ username + "'s profile banner" }
+                 className={ prowlerStyles.profileBanner + " " + prowlerStyles.userPageBanner } /> : null }
         <div className={ prowlerStyles.corePostHeader } style={{ marginBlockEnd: "0", }}>
-            { username /* && data?.id */ ? // eslint-disable-next-line @next/next/no-img-element
+            { username && userData?.id ? // eslint-disable-next-line @next/next/no-img-element
                 <img src={`https://mikhail.croomssched.tech/crfsapi/FileController/ReadFile?name=${userData.id}.png&default=pfp`}
                      alt={ username + "'s profile picture" } title={ username + "'s profile picture" }
                      className={ prowlerStyles.profilePicture } width={64} height={64} /> : null }
