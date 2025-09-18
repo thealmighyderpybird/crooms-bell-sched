@@ -61,7 +61,7 @@ export default function AccountHeader({ session }: { session: { uid: string | un
                  else router.push("/auth/login");
              }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`https://mikhail.croomssched.tech/crfsapi/FileController/ReadFile?default=pfp&name=${session.uid}.png`}
+            <img src={`https://mikhail.croomssched.tech/apiv2/fs/pfp/${session.uid}.png`}
                  alt={"Profile Picture"} className={ styles.profilePicture } />
             <div className={ styles.accountDetails }>
                 { sessionInfo?.displayname ?? (sessionInfo?.username ? `@${sessionInfo.username}` : "Sign In") }
@@ -71,7 +71,7 @@ export default function AccountHeader({ session }: { session: { uid: string | un
         { isTrayOpen && <div className={ styles.accountPopout }>
             <div className={ styles.accountPopoutCard }>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={`https://mikhail.croomssched.tech/crfsapi/FileController/ReadFile?default=pfp&name=${session.uid}.png`}
+                <img src={`https://mikhail.croomssched.tech/apiv2/fs/pfp/${session.uid}.png`}
                      alt={"Profile Picture"} className={ styles.profilePicture } />
                 <div>
                     <h2>

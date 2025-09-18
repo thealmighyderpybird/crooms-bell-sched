@@ -3,12 +3,12 @@ import Footer from "~/components/root/footer/footer";
 import getSiteSettings from "~/lib/getSettings";
 import type { Metadata, Viewport } from "next";
 import { AlertProvider } from "~/AlertContext";
+import getSession from "~/lib/session.server";
 import rootStyles from "./root.module.css";
 import Fonts from "~/styles/fonts/fonts";
 import { type ReactNode } from "react";
 import Script from "next/script";
 import "~/styles/master.css";
-import getSession from "~/lib/session.server";
 
 export const viewport: Viewport = {
     width: "device-width",

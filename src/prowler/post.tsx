@@ -23,7 +23,7 @@ export default function Post({ post }: { post: Post }) {
     return <div data-id={ post?.id ? post.id : "" } className={ styles.corePost }>
         <div className={ styles.corePostHeader }>
             { post?.createdBy && post?.uid ? // eslint-disable-next-line @next/next/no-img-element
-            <img src={`https://mikhail.croomssched.tech/crfsapi/FileController/ReadFile?name=${post.uid}.png&default=pfp`}
+            <img src={`https://mikhail.croomssched.tech/apiv2/fs/pfp/${post.uid}.png`}
                  alt={ post.createdBy + "'s profile picture" } title={ post.createdBy + "'s profile picture" }
                  className={ styles.profilePicture } width={32} height={32} /> : null }
             <div className={ styles.corePostHeaderContent }>
