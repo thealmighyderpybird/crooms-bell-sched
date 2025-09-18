@@ -1,0 +1,54 @@
+.liveEdit {
+    box-sizing: border-box;
+}
+
+.liveEditor {
+    border: none;
+    border-bottom: 2px solid var(--tri);
+    border-radius: 0.75rem 0.75rem 0 0;
+    background-color: var(--mid-pri);
+    min-height: 100px;
+    resize: vertical;
+    font-size: 1rem;
+    outline: none;
+    width: 100%;
+}
+
+.liveEditor:hover {
+    border-bottom-color: var(--qua);
+}
+
+.liveEditor:focus, .liveEditor.focus {
+    border-bottom-color: var(--accent-color);
+}
+
+.optionBar {
+    background-color: var(--pri);
+    margin-block-end: 0.25rem;
+    border-radius: 0.5rem;
+    flex-flow: row nowrap;
+    padding: 0.25rem;
+    display: flex;
+}
+
+.icon {
+    box-sizing: content-box;
+    border-radius: 0.55rem;
+    fill: var(--main);
+    padding: 0.325rem;
+    height: 1.25rem;
+    width: 1.25rem;
+    display: block;
+}
+
+.icon * {
+    display: block;
+}
+
+.icon:hover {
+    background-color: var(--mid-pri);
+}
+
+.icon:active, .icon.active {
+    background-color: var(--sec);
+}
