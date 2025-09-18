@@ -540,6 +540,10 @@ clippy *:not(.context-menu) {
     transition: none;
 }
 
+.rainbow *, rainbow * {
+    transition: none !important;
+}
+
 @keyframes anim-rainbow {
     0% {
         color: hsla(0deg 100% 50%);
