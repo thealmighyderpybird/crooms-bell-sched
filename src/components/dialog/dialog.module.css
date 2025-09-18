@@ -28,9 +28,36 @@
     width: 100%;
 }
 
+.dialog.controlledWidth > div {
+    box-sizing: content-box;
+    width: 100%;
+}
+
 .dialog.controlledHeight {
     max-height: 300px;
     height: 100%;
+}
+
+.dialog.separatedContent {
+    justify-content: space-between;
+}
+
+.dialog .actionButtons {
+    justify-content: flex-end;
+    flex-flow: row nowrap;
+    align-items: center;
+    margin-top: 2rem;
+    font-size: 14px;
+    display: flex;
+    gap: 0.25rem;
+    width: 100%;
+}
+
+.dialog .actionButtons button,
+.dialog .actionButtons .button {
+    padding: 0.45rem 1rem;
+    font-size: inherit;
+    min-width: 108px;
 }
 
 .dialog > header {
@@ -66,6 +93,19 @@
 
 .dialog:has(.closeButton) {
     position: relative;
+}
+
+.dialog .input {
+    width: 100%;
+}
+
+.dialog .iframeBody {
+    margin-block-start: 0.5rem;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    width: 100%;
 }
 
 .closeButton {

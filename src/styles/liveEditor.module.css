@@ -7,6 +7,7 @@
     border-bottom: 2px solid var(--tri);
     border-radius: 0.75rem 0.75rem 0 0;
     background-color: var(--mid-pri);
+    user-select: none;
     min-height: 100px;
     resize: vertical;
     font-size: 1rem;
@@ -23,11 +24,16 @@
 }
 
 .optionBar {
+    justify-content: space-between;
     background-color: var(--pri);
     margin-block-end: 0.25rem;
     border-radius: 0.5rem;
-    flex-flow: row nowrap;
     padding: 0.25rem;
+    display: flex;
+}
+
+.optionBar > div {
+    flex-flow: row nowrap;
     display: flex;
 }
 
