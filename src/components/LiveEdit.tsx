@@ -171,7 +171,7 @@ export default function LiveEdit({ value, onChange, style, preview = false }:
             const cursorPos = sel.anchorOffset;
 
             // Match @word followed by a space
-            const match = /@(\w+)\s$/.exec(text.slice(0, cursorPos));
+            const match = /@[A-Za-z0-9._]{3,30}\s$/.exec(text.slice(0, cursorPos));
             if (!match) return;
 
             const mentionText = match[0].trim(); // remove trailing space
