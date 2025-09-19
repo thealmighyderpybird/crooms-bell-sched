@@ -13,7 +13,7 @@ const SanitizeContent = (html: string) => sanitizeHtml(html, {
     allowedAttributes: {
         a: [ "href", "name", "target" ],
         img: [ "src", "srcset", "alt", "title", "width", "height", "loading" ],
-        "*": [ "mention", "style" ]
+        "*": [ "mention", "style", "class" ]
     },
     allowedClasses: {
         span: [ "rainbow" ],
