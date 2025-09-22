@@ -3,6 +3,7 @@ import { parseTime } from "~/lib/parseEndTime";
 import Verified from "~/components/Verified";
 import type Post from "~/types/ProwlerPost";
 import styles from "./prowler.module.css";
+import Link from "next/link";
 
 const monthNames = [
     "January",
@@ -21,7 +22,7 @@ const monthNames = [
 
 export default function Post({ post }: { post: Post }) {
     return <div data-id={ post?.id ? post.id : "" } className={ styles.corePost }>
-        <div className={ styles.corePostHeader }>
+        <Link className={ styles.corePostHeader } href={"/prowler/" + post.createdBy}>
             { post?.createdBy && post?.uid ? // eslint-disable-next-line @next/next/no-img-element
             <img src={`https://mikhail.croomssched.tech/apiv2/fs/pfp/${post.uid}.png`}
                  alt={ post.createdBy + "'s profile picture" } title={ post.createdBy + "'s profile picture" }
@@ -38,7 +39,7 @@ export default function Post({ post }: { post: Post }) {
                     {new Date(post.create).getFullYear()} {parseTime(new Date(post.create))}
                 </span> }
             </div>
-        </div>
+        </Link>
         <div className={ styles.corePostContent } dangerouslySetInnerHTML={{ __html: sanitizeContent(post.data) }} />
     </div>;
 };

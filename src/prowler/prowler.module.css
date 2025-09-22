@@ -13,16 +13,19 @@
 }
 
 .corePostHeader {
+    text-decoration: none !important;
     justify-content: center;
     margin-bottom: 0.75rem;
-    text-decoration: none;
     width: fit-content;
     user-select: none;
+    cursor: inherit;
     flex-flow: row;
+    color: inherit;
     display: flex;
 }
 
 .corePostHeaderContent {
+    text-decoration: none;
     margin-left: 0.5rem;
     font-size: 0.9rem;
     flex-flow: column;
@@ -37,6 +40,8 @@
 }
 
 .corePostHeaderContent span {
+    text-decoration: none;
+    color: var(--main);
     line-height: 1;
     opacity: 0.8;
 }
