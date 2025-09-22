@@ -18,10 +18,13 @@
     margin-bottom: 0.75rem;
     width: fit-content;
     user-select: none;
-    cursor: inherit;
     flex-flow: row;
     color: inherit;
     display: flex;
+}
+
+.corePostHeader * {
+    cursor: inherit;
 }
 
 .corePostHeaderContent {
