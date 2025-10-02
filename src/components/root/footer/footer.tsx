@@ -27,6 +27,11 @@ export default async function Footer() {
                         <Link href="https://buymeacoffee.com/croomssched" target="CBSH_buyUsACoffee">
                             Buy us coffee</Link> to help us keep our domain.
                     </p>
+                    <h4>License</h4>
+                    <p>
+                        This website and it's content is licensed by <Link href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+                        CC BY-NC-ND 4.0</Link>.
+                    </p>
                 </div>
             </div>
             <div>
