@@ -29,7 +29,7 @@ export default async function Footer() {
                     </p>
                     <h4>License</h4>
                     <p>
-                        This website and it's content is licensed by <Link href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
+                        This website and its content is licensed by <Link href="https://creativecommons.org/licenses/by-nc-nd/4.0/">
                         CC BY-NC-ND 4.0</Link>.
                     </p>
                 </div>
