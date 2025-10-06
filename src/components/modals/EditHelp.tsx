@@ -1,5 +1,5 @@
-import DialogCloseButton from "./dialog/DialogCloseButton";
-import overlayStyles from "./dialog/dialog.module.css";
+import DialogCloseButton from "../dialog/DialogCloseButton";
+import overlayStyles from "../dialog/dialog.module.css";
 
 export default function EditHelpDialog({ setIsActive }: { setIsActive: (arg0: boolean) => void }) {
     const isLight = document.querySelector("html")!.classList.contains("light");

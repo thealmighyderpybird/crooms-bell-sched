@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, type CSSProperties } from "react";
 import sanitizeContent from "~/lib/SanitizeContent";
 import styles from "~/styles/liveEditor.module.css";
-import EditHelpDialog from "~/components/EditHelpDialog";
+import EditHelp from "~/components/modals/EditHelp";
 import {createPortal} from "react-dom";
 
 export default function LiveEdit({ value, onChange, style, preview = false }:
@@ -368,7 +368,7 @@ export default function LiveEdit({ value, onChange, style, preview = false }:
         const el = sel.anchorNode?.parentElement;
         if (el?.tagName.toLowerCase() === "a" && !el.hasAttribute("mention")) {
             // Replace the <a> with just its text
-            const text = doc.createTextNode(el.textContent || "");
+            const text = doc.createTextNode(el.textContent ?? "");
             el.replaceWith(text);
 
             // Reset cursor after text
@@ -479,7 +479,7 @@ export default function LiveEdit({ value, onChange, style, preview = false }:
         </div>
         <iframe ref={iframeRef} className={ styles.liveEditor } style={style ?? {}} />
         { preview && <div dangerouslySetInnerHTML={{ __html: sanitizeContent(html) }} /> }
-        { isHelpEnabled && createPortal(<EditHelpDialog setIsActive={setIsHelpEnabled} />, document.getElementById("modal-portal")!) }
+        { isHelpEnabled && createPortal(<EditHelp setIsActive={setIsHelpEnabled} />, document.getElementById("modal-portal")!) }
     </div>;
 };
 

@@ -56,6 +56,7 @@
 .dialog .actionButtons button,
 .dialog .actionButtons .button {
     padding: 0.45rem 1rem;
+    text-align: center;
     font-size: inherit;
     min-width: 108px;
 }
