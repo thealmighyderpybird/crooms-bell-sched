@@ -44,7 +44,7 @@ const sharePost = async (content: string, sid: string, setError: (error: string)
         setError("Scripts, embedded webpages, and embedded objects are not allowed.");
         return;
     }
-    if (content.includes("<img") || content.includes("<picture") || content.includes("<audio") || content.includes("<video") || content.includes("<source")) {
+    if (content.includes("<audio") || content.includes("<video")) {
         setError("Please add a link to your multimedia content.");
         return;
     }
