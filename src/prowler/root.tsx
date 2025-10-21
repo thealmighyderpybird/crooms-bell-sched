@@ -2,9 +2,10 @@
 
 import { type Dispatch, type SetStateAction, useEffect, useState, useCallback } from "react";
 import CBSHServerURL from "~/lib/CBSHServerURL";
-import styles from "./prowler.module.css";
 import type Post from "~/types/ProwlerPost";
+import styles from "./prowler.module.css";
 import useAlert from "~/AlertContext";
+import type User from "~/types/user";
 import ProwlerPost from "./post";
 
 interface ProwlerRequestGET {
@@ -24,7 +25,7 @@ const prowler: ProwlerData = {
     posts: [],
 };
 
-export default function ProwlerRoot({ sid }: { sid: string }) {
+export default function ProwlerRoot({ sid, uid, session }: { sid: string, uid: string, session: User }) {
     const { createAlertBalloon } = useAlert();
     // @ts-expect-error force type on react state
     const [posts, setPosts]: [Post[], Dispatch<SetStateAction<Post[]>>] = useState([]);
@@ -63,7 +64,7 @@ export default function ProwlerRoot({ sid }: { sid: string }) {
             if (prowler.posts[i]) data.push(prowler.posts[i]!)
         }
 
-        setPosts((prev: Post[]) => [...prev, ...data]);
+        setPosts((prev: Post[]) => uniquePosts([...prev, ...data]));
         setStartAt((prev) => prev + prowler.incrementor);
         setIsTriggered(false);
     }
@@ -80,9 +81,18 @@ export default function ProwlerRoot({ sid }: { sid: string }) {
 
         const data = res.data;
         if (data.length > 0) {
-            setPosts((prev: Post[]) => [...data, ...prev]);
+            setPosts((prev: Post[]) => uniquePosts([...data, ...prev]));
         }
     };
+
+    function uniquePosts(posts: Post[]) {
+        const seen = new Set<string>();
+        return posts.filter(post => {
+            if (seen.has(post.id)) return false;
+            seen.add(post.id);
+            return true;
+        });
+    }
 
     useEffect(() => {
         void getPosts();
@@ -121,7 +131,7 @@ export default function ProwlerRoot({ sid }: { sid: string }) {
 
     return <div id="prowler">
         <div className={ styles.prowlerPostContainer }>
-            { posts.map((post: Post, index) => <ProwlerPost post={post} key={index} />) }
+            { posts.map((post: Post) => <ProwlerPost post={post} sid={sid} uid={uid} session={session} key={post.id} />) }
         </div>
     </div>;
 };

@@ -14,12 +14,21 @@
 
 .corePostHeader {
     text-decoration: none !important;
-    justify-content: center;
+    justify-content: space-between;
     margin-bottom: 0.75rem;
-    width: fit-content;
     user-select: none;
     flex-flow: row;
     color: inherit;
+    display: flex;
+    width: 100%;
+}
+
+.corePostHeaderItem {
+    text-decoration: none !important;
+    justify-content: center;
+    width: fit-content;
+    user-select: none;
+    flex-flow: row;
     display: flex;
 }
 
@@ -60,11 +69,27 @@
 
 .corePostContent {
     word-break: break-word;
+    overflow-y: hidden;
+    /* max-height: 200px; */
 }
 
-.corePostContent > img {
+.corePostContent img {
     height: auto;
     width: 100%;
+}
+
+.viewMoreButton {
+    text-decoration: underline;
+    font-size: 0.75rem;
+    user-select: none;
+}
+
+.viewMoreButton:hover {
+    text-decoration: none;
+}
+
+.corePostContent.viewMore {
+    max-height: none;
 }
 
 .profilePicture {
@@ -87,4 +112,91 @@
     position: relative;
     left: -1rem;
     top: -1rem;
+}
+
+.actionBar {
+    flex-flow: row nowrap;
+    display: flex;
+}
+
+.actionButton {
+    background-color: transparent;
+    min-width: revert !important;
+    max-height: fit-content;
+    opacity: 1 !important;
+    border-radius: 100%;
+    padding: 0;
+}
+
+.actionIcon {
+    box-sizing: content-box;
+    fill: var(--main);
+    padding: 0.5rem;
+    height: 1.25rem;
+    width: 1.25rem;
+    display: block;
+}
+
+.actionButton:hover {
+    background-color: var(--mid-sec);
+}
+
+.actionButton:active {
+    background-color: var(--tri);
+}
+
+.menu {
+    background-color: var(--mid-pri);
+    box-shadow: 0 0 10px black;
+    border-radius: 0.5rem;
+    position: absolute;
+    z-index: 6;
+}
+
+.menu button {
+    border-radius: 0.5rem;
+    flex-flow: row nowrap;
+    align-items: center;
+    display: flex;
+    width: 100%;
+}
+
+.menu button:hover {
+    background-color: var(--sec);
+}
+
+.menu button:active {
+    background-color: var(--tri);
+}
+
+.menu button:first-child {
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.menu button:last-child {
+    border-radius: 0 0 0.5rem 0.5rem;
+}
+
+.menu button:first-child:last-child {
+    border-radius: 0.5rem;
+}
+
+.menu button span {
+    padding: 0 0.75rem 0 0;
+    color: var(--main);
+    font-size: 1rem;
+    line-height: 1;
+    display: block;
+}
+
+.menu hr {
+    border-width: 0.031rem;
+    margin: 0;
+}
+
+.closeArea {
+    pointer-events: fill;
+    position: fixed;
+    z-index: 5;
+    inset: 0;
 }
