@@ -5,6 +5,7 @@ import CBSHServerURL from "~/lib/CBSHServerURL";
 import styles from "./prowler.module.css";
 import type Post from "~/types/ProwlerPost";
 import useAlert from "~/AlertContext";
+import type User from "~/types/user";
 import ProwlerPost from "./post";
 
 interface UserData {
@@ -31,7 +32,7 @@ const prowler: ProwlerData = {
     posts: [],
 };
 
-export default function ProwlerRoot({ sid, user }: { sid: string, user: string }) {
+export default function ProwlerRoot({ sid, uid, session, user }: { sid: string, uid: string, session: User, user: string }) {
     const [userData, setUserData]: [UserData, Dispatch<SetStateAction<UserData>>]  = useState({
         displayname: "",
         username: "",
@@ -124,7 +125,7 @@ export default function ProwlerRoot({ sid, user }: { sid: string, user: string }
 
     return <div id="prowler" style={{ marginBlockStart: "0.5rem" }}>
         <div className={ styles.prowlerPostContainer }>
-            { posts.map((post: Post, index) => <ProwlerPost post={post} key={index} />) }
+            { posts.map((post: Post) => <ProwlerPost post={post} key={post.id} sid={sid} uid={uid} session={session} />) }
         </div>
     </div>;
 };
