@@ -10,6 +10,7 @@ import ProwlerPost from "./post";
 
 interface ProwlerRequestGET {
     status: "OK" | "FAILED",
+    code: string
     data: Post[],
 }
 
@@ -72,6 +73,15 @@ export default function ProwlerRoot({ sid, uid, session }: { sid: string, uid: s
     const getNewPosts = async () => {
         const r = await fetch(prowler.source + `/after/${posts[0]?.id ?? ''}`);
         const res = await r.json() as ProwlerRequestGET;
+
+        if (res.code == "ERR_NO_SUCH_ID")
+        {
+            // Prowler is out of sync, do a full refresh
+            console.log("prowler is out of sync, do full refresh");
+            prowler.posts = [];
+            loadPosts();
+            return;
+        }
 
         if (res.status !== "OK") {
             createAlertBalloon("Something went wrong", // @ts-expect-error error is not explicitly defined
