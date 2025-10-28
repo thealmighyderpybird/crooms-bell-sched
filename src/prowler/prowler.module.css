@@ -70,7 +70,7 @@
 .corePostContent {
     word-break: break-word;
     overflow-y: hidden;
-    /* max-height: 200px; */
+    max-height: 200px;
 }
 
 .corePostContent img {

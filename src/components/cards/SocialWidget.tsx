@@ -1,12 +1,11 @@
-import indexStyles from "../../app/index.module.css";
 import CBSHServerURL from "~/lib/CBSHServerURL";
 import getSession from "~/lib/session.server";
 import CardHeader from "../index/CardHeader";
+import SharePostLink from "./SharePostLink";
 import Surveys from "~/prowler/surveyRoot";
 import type User from "~/types/user";
 import Prowler from "~/prowler/root";
 import Card from "../index/Card";
-import Link from "next/link";
 
 export default async function SocialWidget() {
     const { sid, uid } = await getSession();
@@ -20,11 +19,15 @@ export default async function SocialWidget() {
     const res = await r.json() as { status: "OK" | "FAILED", data: User };
     const user = res.data;
 
+    const canIPostRes = await (await fetch(CBSHServerURL + "/feed/can-i-post", {
+        headers: { "Authorization": JSON.stringify(sid) }, method: "POST",
+    })).json() as { status: "OK" | "FAILED", data: boolean };
+
     return <>
         <Surveys />
         <Card>
             <CardHeader>Prowler</CardHeader>
-            <Link href="/prowler/post" className={ indexStyles.sharePostLink }>Share a post</Link>
+            <SharePostLink sid={sid} canIPost={canIPostRes.data}>Share a post</SharePostLink>
             <Prowler sid={sid} uid={uid} session={user} />
         </Card>
     </>;

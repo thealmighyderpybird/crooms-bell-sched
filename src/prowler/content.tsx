@@ -12,8 +12,8 @@ export default function Content({ content }: { content: string }) {
     const isViewingMore = () => viewingMore ? ` ${styles.viewMore}` : "";
 
     useEffect(() => {
-        //// @ts-expect-error clientHeight works even though it isn't explicit
-        if (contentRef.current) setNeedViewMore(false)//contentRef.current.clientHeight >= 200)
+        // @ts-expect-error clientHeight works even though it isn't explicit
+        if (contentRef.current) setNeedViewMore(contentRef.current.clientHeight >= 200)
     }, []);
 
     return <>

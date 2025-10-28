@@ -64,7 +64,7 @@ export default function AccountHeader({ session }: { session: { uid: string | un
             <img src={`https://mikhail.croomssched.tech/apiv2/fs/pfp/${session.uid}.png`}
                  alt={"Profile Picture"} className={ styles.profilePicture } />
             <div className={ styles.accountDetails }>
-                { sessionInfo?.displayname ?? (sessionInfo?.username ? `@${sessionInfo.username}` : "Sign In") }
+                { sessionInfo?.displayname ? sessionInfo.displayname : (sessionInfo?.username ? `@${sessionInfo.username}` : "Sign In") }
                 { sessionInfo?.verified && <Verified size={15} /> }
             </div>
         </div>
@@ -75,7 +75,7 @@ export default function AccountHeader({ session }: { session: { uid: string | un
                      alt={"Profile Picture"} className={ styles.profilePicture } />
                 <div>
                     <h2>
-                        { sessionInfo?.displayname ?? `@${sessionInfo.username}` }
+                        { sessionInfo?.displayname ? sessionInfo.displayname : `@${sessionInfo.username}` }
                         { sessionInfo?.verified && <Verified size={16} /> }
                     </h2>
                     { sessionInfo.displayname && <span> @{sessionInfo.username}</span> }
