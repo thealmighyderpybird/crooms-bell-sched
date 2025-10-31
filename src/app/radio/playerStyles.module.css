@@ -1,0 +1,43 @@
+.audioPlayer {
+    background-color: var(--tri);
+    border-radius: 1rem;
+    user-select: none;
+    padding: 0.25rem;
+    display: flex;
+}
+
+.icon {
+    border-radius: 100%;
+    fill: var(--main);
+    padding: 0.4rem;
+    flex-shrink: 0;
+    display: flex;
+    height: 2rem;
+    width: auto;
+}
+
+.icon:hover {
+    background-color: var(--qua);
+}
+
+.icon:active {
+    background-color: var(--mid-qua);
+}
+
+.nowPlaying {
+    padding-inline-start: 0.25rem;
+    justify-content: center;
+    flex-flow: column;
+    display: flex;
+}
+
+.nowPlaying b {
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.nowPlaying span {
+    font-size: 0.75rem;
+}

@@ -1,0 +1,59 @@
+.cardRoot {
+    background-color: var(--pri);
+    border-radius: 1rem;
+}
+
+.cardContent {
+    padding: 1rem;
+}
+
+.radioHeader {
+    border-radius: 1rem 1rem 0 0;
+    background-color: white;
+    align-items: center;
+    user-select: none;
+    padding: 1rem;
+    display: flex;
+    color: black;
+    gap: 0.5rem;
+}
+
+.radioHeader div {
+    flex-flow: column;
+    display: flex;
+}
+
+.radioHeader div span {
+    line-height: 1;
+}
+
+.radioHeader div :first-child {
+    font-size: 1.675rem;
+    font-weight: bold;
+}
+
+.radioHeader img {
+    display: block;
+}
+
+.cardHolder {
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.cardItem {
+    background-color: var(--sec);
+    border-radius: 1rem;
+    max-width: 400px;
+    width: 100%;
+}
+
+.cardItemContent {
+    padding: 1rem;
+}
+
+.cardItemContent * {
+    line-height: 1;
+}
