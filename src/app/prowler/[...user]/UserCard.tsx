@@ -75,7 +75,7 @@ export default function UserCard({ username }: { username: string }) {
             <img src={`https://mikhail.croomssched.tech/apiv2/fs/profile_banner/${userData.id}.png`}
                  alt={ username + "'s profile banner" } title={ username + "'s profile banner" }
                  className={ prowlerStyles.profileBanner + " " + prowlerStyles.userPageBanner } /> : null }
-        <div className={ prowlerStyles.corePostHeader } style={{ marginBlockEnd: "0", }}>
+        <div className={ prowlerStyles.corePostHeaderItem } style={{ marginBlockEnd: "0", }}>
             { username && userData?.id ? // eslint-disable-next-line @next/next/no-img-element
                 <img src={`https://mikhail.croomssched.tech/apiv2/fs/pfp/${userData.id}.png`}
                      alt={ username + "'s profile picture" } title={ username + "'s profile picture" }
