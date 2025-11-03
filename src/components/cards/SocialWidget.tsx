@@ -1,3 +1,4 @@
+import type { WidgetSettings } from "~/types/settings";
 import CBSHServerURL from "~/lib/CBSHServerURL";
 import getSession from "~/lib/session.server";
 import CardHeader from "../index/CardHeader";
@@ -7,7 +8,7 @@ import type User from "~/types/user";
 import Prowler from "~/prowler/root";
 import Card from "../index/Card";
 
-export default async function SocialWidget() {
+export default async function SocialWidget({ widgetSettings }: { widgetSettings: WidgetSettings }) {
     const { sid, uid } = await getSession();
     const r = await fetch(CBSHServerURL + "/users/userDetails", {
         method: "POST",
@@ -24,11 +25,11 @@ export default async function SocialWidget() {
     })).json() as { status: "OK" | "FAILED", data: boolean };
 
     return <>
-        <Surveys />
-        <Card>
+        { widgetSettings.surveys && <Surveys /> }
+        { widgetSettings.prowler && <Card>
             <CardHeader>Prowler</CardHeader>
             <SharePostLink sid={sid} canIPost={canIPostRes.data}>Share a post</SharePostLink>
             <Prowler sid={sid} uid={uid} session={user} />
-        </Card>
+        </Card> }
     </>;
 };

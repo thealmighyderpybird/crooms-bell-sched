@@ -6,6 +6,7 @@
 }
 
 .icon {
+    fill: var(--main);
     flex-shrink: 0;
     width: 1.5rem;
     height: auto;

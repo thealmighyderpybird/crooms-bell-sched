@@ -1,9 +1,10 @@
-import type SiteSettings from "~/types/settings";
+import type SiteSettings, {WidgetSettings} from "~/types/settings";
 import { cookies } from "next/headers";
 
 export default async function getSiteSettings(): Promise<SiteSettings> {
     const cookieStore = await cookies();
     return {
+        widgets: cookieStore.get("widgets")?.value ? JSON.parse(cookieStore.get("widgets")!.value) as WidgetSettings : defaultWidgetSettings,
         theme: cookieStore.get("theme")?.value === "dark" ? "dark" : cookieStore.get("theme")?.value === "light" ? "light" : "system",
         accentColor: cookieStore.get("accentColor")?.value ? cookieStore.get("accentColor")!.value : "default-accent",
         defaultLunch: cookieStore.get("defaultLunch")?.value === "A Lunch" ? "A Lunch" : "B Lunch",
@@ -29,4 +30,11 @@ export default async function getSiteSettings(): Promise<SiteSettings> {
             ]);
         }
     }
+};
+
+const defaultWidgetSettings: WidgetSettings = {
+    lunch: true,
+    weather: true,
+    surveys: true,
+    prowler: true,
 }

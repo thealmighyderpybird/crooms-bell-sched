@@ -1,8 +1,8 @@
 import streamServerURL from "~/lib/StreamServerURL";
 import http from "http";
 
-export async function GET(_: Request, { params }: { params: { streamName: string } }) {
-    const mount = params?.streamName ? `/${params.streamName}` : "/stream";
+export async function GET(_: Request, { params }: { params: Promise<{ streamName: string }> }) {
+    const mount = (await params)?.streamName ? `/${(await params).streamName}` : "/stream";
 
     return new Promise((resolve) => {
         const req = http.get(

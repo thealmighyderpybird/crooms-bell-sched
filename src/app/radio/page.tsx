@@ -23,7 +23,7 @@ export default function RadioPage() {
         title: "",
         dummy: null
     } satisfies SourceInfo);
-    const [title, setTitle] = useState(streamInfo.title)
+    const [title, setTitle] = useState(streamInfo.title);
 
     const getStreamInfo = useCallback(async () => {
         const r = await fetch(streamServerURL + "/status-json.xsl");
@@ -33,6 +33,7 @@ export default function RadioPage() {
 
     const getStreamTitle = useCallback(async () => {
         const r = await fetch("/api/radio/title/stream");
+        if (!r.ok) { setTitle("An error occurred"); return; }
         const title = await r.json() as { title: string };
         setTitle(title.title);
     }, []);

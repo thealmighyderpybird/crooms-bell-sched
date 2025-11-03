@@ -11,6 +11,8 @@ import RandExp from "randexp";
 import "~/styles/index.css";
 
 export default async function Home() {
+    const { widgets } = await getSiteSettings();
+
     return <ThemeProvider>
         <CardLayout>
             <Card>
@@ -18,9 +20,9 @@ export default async function Home() {
                                           settings={await getSiteSettings()} />
                 <AdFrame style={{ marginBlockStart: "1rem" }} />
             </Card>
-            <LunchWidget />
-            <WeatherWidget />
-            <SocialWidget />
+            { widgets.lunch && <LunchWidget /> }
+            { widgets.weather && <WeatherWidget /> }
+            <SocialWidget widgetSettings={widgets} />
         </CardLayout>
     </ThemeProvider>;
 };
