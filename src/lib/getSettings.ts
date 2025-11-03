@@ -1,4 +1,6 @@
-import type SiteSettings, {WidgetSettings} from "~/types/settings";
+import defaultWidgetSettings from "~/lib/defaultWidgetSettings";
+import type { WidgetSettings } from "~/types/settings";
+import type SiteSettings from "~/types/settings";
 import { cookies } from "next/headers";
 
 export default async function getSiteSettings(): Promise<SiteSettings> {
@@ -31,10 +33,3 @@ export default async function getSiteSettings(): Promise<SiteSettings> {
         }
     }
 };
-
-const defaultWidgetSettings: WidgetSettings = {
-    lunch: true,
-    weather: true,
-    surveys: true,
-    prowler: true,
-}

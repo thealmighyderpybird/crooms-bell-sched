@@ -57,3 +57,33 @@
 .cardItemContent * {
     line-height: 1;
 }
+
+.cardHeader {
+    border-radius: 1rem 1rem 0 0;
+    background-color: white;
+    min-height: 12rem;
+    display: flex;
+}
+
+.defaultHeader {
+    background-image: url("/images/radio.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 144px;
+}
+
+.christmas {
+    background-image: url("https://cdn.croomssched.tech/data/7291ef48-5f58-4f73-a79d-23f146afd471/Drummer%20Boy%20Christmas%20Wide.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.christmas::after {
+    border-radius: 1rem 1rem 0 0;
+    backdrop-filter: blur(5px);
+    position: relative;
+    width: calc(100%);
+    content: "";
+    inset: 0;
+}

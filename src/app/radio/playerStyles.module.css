@@ -26,6 +26,7 @@
 
 .nowPlaying {
     padding-inline-start: 0.25rem;
+    max-width: calc(100% - 32px);
     justify-content: center;
     flex-flow: column;
     display: flex;
@@ -33,9 +34,9 @@
 
 .nowPlaying b {
     text-overflow: ellipsis;
-    display: -webkit-box;
+    scrollbar-width: none;
     white-space: nowrap;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 .nowPlaying span {

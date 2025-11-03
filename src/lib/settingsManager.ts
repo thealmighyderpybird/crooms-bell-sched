@@ -1,3 +1,4 @@
+import defaultWidgetSettings from "~/lib/defaultWidgetSettings";
 import type Settings from "~/types/settings";
 import fonts from "~/styles/fonts/fonts";
 import type { FormEvent } from "react";
@@ -66,6 +67,7 @@ export const updatePeriodNames = (periodNames: string[]) => {
 
 export const resetSettings = () => {
     void saveSettings({
+        widgets: defaultWidgetSettings,
         accentColor: "default-accent",
         showTimeRemainingRing: true,
         defaultLunch: "A Lunch",

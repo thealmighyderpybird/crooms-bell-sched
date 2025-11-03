@@ -23,7 +23,7 @@ export default function RadioPage() {
         title: "",
         dummy: null
     } satisfies SourceInfo);
-    const [title, setTitle] = useState(streamInfo.title);
+    const [title, setTitle] = useState("");
 
     const getStreamInfo = useCallback(async () => {
         const r = await fetch(streamServerURL + "/status-json.xsl");
@@ -33,13 +33,15 @@ export default function RadioPage() {
 
     const getStreamTitle = useCallback(async () => {
         const r = await fetch("/api/radio/title/stream");
-        if (!r.ok) { setTitle("An error occurred"); return; }
+        if (!r.ok) { setTitle("The stream may be offline. - An error occurred"); return; }
         const title = await r.json() as { title: string };
         setTitle(title.title);
     }, []);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => void getStreamInfo(), []);
+// eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(() => void getStreamTitle(), []);
 
     useEffect(() => {
         const i = setInterval(() => void getStreamTitle(), 15000);
@@ -51,12 +53,20 @@ export default function RadioPage() {
         <p>Listen in to our available streams.</p>
         <div className={ styles.cardHolder }>
             <div className={ styles.cardItem }>
+                <div className={ styles.cardHeader + " " + getHeaderTheme(streamInfo?.server_name ?? "none") } />
                 <div className={ styles.cardItemContent }>
-                    <h2>{ streamInfo.server_name }</h2>
-                    <p>{ streamInfo.server_description }</p>
+                    <h2>{ streamInfo?.server_name ?? "Stream offline" }</h2>
+                    <p>{ streamInfo?.server_description ?? "This stream is offline. Please check back later." }</p>
                     <RadioPlayer source={streamServerURL + "/stream"} nowPlaying={title} />
                 </div>
             </div>
         </div>
     </>;
+};
+
+const getHeaderTheme = (streamName: string) => {
+    switch (streamName) {
+        case "A Crooms Christmas": return styles.christmas;
+        default: return styles.defaultHeader;
+    }
 };

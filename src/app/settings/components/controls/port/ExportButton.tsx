@@ -1,6 +1,8 @@
 "use client";
 
 import { type CookieValueTypes, type OptionsType, useGetCookie } from "cookies-next/client";
+import defaultWidgetSettings from "~/lib/defaultWidgetSettings";
+import type { WidgetSettings } from "~/types/settings";
 import type Settings from "~/types/settings";
 
 export default function ExportButton() {
@@ -39,6 +41,7 @@ const getSettings = (getCookie: (key: string, options?: (OptionsType)) => Cookie
     }
 
     return {
+        widgets: getCookie("widgets")?.toString() ? JSON.parse(getCookie("widgets")!.toString()) as WidgetSettings : defaultWidgetSettings,
         accentColor: getCookie("accentColor")?.toString() ? getCookie("accentColor")!.toString() : "default-accent",
         theme: getCookie("theme") === "dark" ? "dark" : getCookie("theme") === "light" ? "light" : "system",
         font: getCookie("font")?.toString() ? getCookie("font")!.toString() : "SegoeUI",
