@@ -5,6 +5,7 @@ import streamServerURL from "~/lib/StreamServerURL";
 import type { SourceInfo } from "./RadioPlayer";
 import styles from "./styles.module.css";
 import RadioPlayer from "./RadioPlayer";
+import CBSHServerURL from "~/lib/CBSHServerURL";
 
 export default function RadioPage() {
     const [streamInfo, setStreamInfo] = useState({
@@ -32,7 +33,7 @@ export default function RadioPage() {
     }, []);
 
     const getStreamTitle = useCallback(async () => {
-        const r = await fetch("/api/radio/title/stream");
+        const r = await fetch(CBSHServerURL + "/radio/title");
         if (!r.ok) { setTitle("The stream may be offline. - An error occurred"); return; }
         const title = await r.json() as { title: string };
         setTitle(title.title);
