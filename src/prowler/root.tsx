@@ -33,6 +33,66 @@ export default function ProwlerRoot({ sid, uid, session }: { sid: string, uid: s
     const [isTriggered, setIsTriggered] = useState(false);
     const [hasMore, setHasMore] = useState(true);
     const [startAt, setStartAt] = useState(0);
+    let ws: WebSocket;
+    let reconnectTimer: any = undefined;
+
+    const createWebsocket = () => {
+        ws = new WebSocket(CBSHServerURL.replace("http://", "ws://"));
+        ws.addEventListener('open', event => {
+            console.log('Connected to Prowler');
+
+            if (reconnectTimer) {
+                clearInterval(reconnectTimer);
+                reconnectTimer = undefined;
+
+                createAlertBalloon("Prowler", "Reconnected to server", 0);
+            }
+        });
+
+        ws.addEventListener('close', event => {
+            // https://developer.mozilla.org/en-US/docs/Web/API/CloseEvent/code
+            // 1001: going away
+            console.log("disconnected with code " + event.code)
+            if (event.code !== 1001) {
+                createAlertBalloon("Prowler", `Disconnected from server`, 1);
+
+                if (!reconnectTimer) {
+                    console.log("create reconnect timer");
+                    reconnectTimer = setInterval(() => {
+                        console.log("attempting to reconnect");
+                        createWebsocket();
+                    }, 5000);
+                }
+            }
+        });
+
+        ws.addEventListener('message', event => {
+            console.log(event.data);
+
+            var data = JSON.parse(event.data);
+
+            if (data.Message === "DeletePost") {
+                for (let index = 0; index < prowler.posts.length; index++) {
+                    if (prowler.posts[index]?.id == data.ID) {
+                        //prowler.posts.splice(index, 1);
+                        //setPosts(prowler.posts);
+                        //console.log("deleted post " + index);
+                        //prowler.posts.slice(index);
+                        break;
+
+                        // TODO: this doesnt work
+                    }
+                }
+            }
+            else if (data.Message === "UpdatePost") {
+                // TODO
+                // schema, ID NewContent
+            }
+            else if (data.Message === "NewPost") {
+                setPosts((prev: Post[]) => uniquePosts([data.Data, ...prev]));
+            }
+        });
+    };
 
     const getPosts = useCallback(async () => {
         try {
@@ -51,6 +111,9 @@ export default function ProwlerRoot({ sid, uid, session }: { sid: string, uid: s
             }
             prowler.posts = res.data;
             loadPosts();
+
+            createWebsocket();
+
         } catch (e) {
             createAlertBalloon("Something went wrong", // @ts-expect-error it's unknown but known
                 "Failed to fetch the latest from Prowler. Error details: " + e.message, 2);
@@ -74,8 +137,7 @@ export default function ProwlerRoot({ sid, uid, session }: { sid: string, uid: s
         const r = await fetch(prowler.source + `/after/${posts[0]?.id ?? ''}`);
         const res = await r.json() as ProwlerRequestGET;
 
-        if (res.code == "ERR_NO_SUCH_ID")
-        {
+        if (res.code == "ERR_NO_SUCH_ID") {
             // Prowler is out of sync, do a full refresh
             console.log("prowler is out of sync, do full refresh");
             prowler.posts = [];
@@ -131,17 +193,9 @@ export default function ProwlerRoot({ sid, uid, session }: { sid: string, uid: s
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [startAt]);
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            void getNewPosts();
-        }, 30000);
-        return () => clearInterval(interval);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [posts]);
-
     return <div id="prowler">
-        <div className={ styles.prowlerPostContainer }>
-            { posts.map((post: Post) => <ProwlerPost post={post} sid={sid} uid={uid} session={session} key={post.id} />) }
+        <div className={styles.prowlerPostContainer}>
+            {posts.map((post: Post) => <ProwlerPost post={post} sid={sid} uid={uid} session={session} key={post.id} />)}
         </div>
     </div>;
 };

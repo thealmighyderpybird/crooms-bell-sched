@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import useAlert from "~/AlertContext";
 import { useState } from "react";
 import LiveEdit from "~/components/LiveEdit";
+import CBSHServerURL from "~/lib/CBSHServerURL";
 
 export default function PostPage({ session }: { session: { uid: string, sid: string } }) {
     const [onPostErrorContent, setOnPostErrorContent] = useState("");
@@ -49,7 +50,7 @@ const sharePost = async (content: string, sid: string, setError: (error: string)
         return;
     }
 
-    const request = new Request("https://api.croomssched.tech/feed", {
+    const request = new Request(CBSHServerURL + "/feed", {
         method: "POST",
         body: JSON.stringify({ "data": content }),
         headers: {
