@@ -34,10 +34,10 @@ export default async function SocialWidget({ widgetSettings }: { widgetSettings:
             </Card>}
         </>;
     }
-    catch (e: any) {
+    catch {
         return <Card>
             <CardHeader>Server Error</CardHeader>
-            <p>A fatal error has occured while connecting to the server. {e.message}</p>
+            <p>A fatal error has occured while connecting to the server.</p>
         </Card>
     }
 };

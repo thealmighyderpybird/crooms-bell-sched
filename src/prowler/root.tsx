@@ -26,6 +26,23 @@ const prowler: ProwlerData = {
     posts: [],
 };
 
+interface WebsocketMessage {
+    Message: string
+}
+interface DeletePostWebsocketMessage {
+    Message: string,
+    ID: string
+}
+interface UpdatePostWebsocketMessage {
+    Message: string,
+    ID: string,
+    NewContent: string
+}
+interface NewPostWebsocketMessage {
+    Message: string,
+    Data: Post
+}
+
 export default function ProwlerRoot({ sid, uid, session }: { sid: string, uid: string, session: User }) {
     const { createAlertBalloon } = useAlert();
     // @ts-expect-error force type on react state
@@ -34,7 +51,7 @@ export default function ProwlerRoot({ sid, uid, session }: { sid: string, uid: s
     const [hasMore, setHasMore] = useState(true);
     const [startAt, setStartAt] = useState(0);
     let ws: WebSocket;
-    let reconnectTimer: any = undefined;
+    let reconnectTimer: NodeJS.Timeout = undefined!;
 
     const createWebsocket = () => {
         ws = new WebSocket(CBSHServerURL.replace("http://", "ws://"));
@@ -43,7 +60,7 @@ export default function ProwlerRoot({ sid, uid, session }: { sid: string, uid: s
 
             if (reconnectTimer) {
                 clearInterval(reconnectTimer);
-                reconnectTimer = undefined;
+                reconnectTimer = undefined!;
 
                 createAlertBalloon("Prowler", "Reconnected to server", 0);
             }
@@ -67,13 +84,12 @@ export default function ProwlerRoot({ sid, uid, session }: { sid: string, uid: s
         });
 
         ws.addEventListener('message', event => {
-            console.log(event.data);
-
-            const data = JSON.parse(event.data);
+            const data: WebsocketMessage = JSON.parse(event.data as string) as WebsocketMessage;
 
             if (data.Message === "DeletePost") {
-                for (let index = 0; index < prowler.posts.length; index++) {
-                    if (prowler.posts[index]?.id == data.ID) {
+                const delPost = data as DeletePostWebsocketMessage;
+                /*for (let index = 0; index < prowler.posts.length; index++) {
+                    if (prowler.posts[index]?.id == delPost.ID) {
                         //prowler.posts.splice(index, 1);
                         //setPosts(prowler.posts);
                         //console.log("deleted post " + index);
@@ -82,14 +98,15 @@ export default function ProwlerRoot({ sid, uid, session }: { sid: string, uid: s
 
                         // TODO: this doesnt work
                     }
-                }
+                }*/
             }
             else if (data.Message === "UpdatePost") {
                 // TODO
                 // schema, ID NewContent
             }
             else if (data.Message === "NewPost") {
-                setPosts((prev: Post[]) => uniquePosts([data.Data, ...prev]));
+                const newPost = data as NewPostWebsocketMessage;
+                setPosts((prev: Post[]) => uniquePosts([newPost.Data, ...prev]));
             }
         });
     };
@@ -132,30 +149,6 @@ export default function ProwlerRoot({ sid, uid, session }: { sid: string, uid: s
         setStartAt((prev) => prev + prowler.incrementor);
         setIsTriggered(false);
     }
-
-    const getNewPosts = async () => {
-        const r = await fetch(prowler.source + `/after/${posts[0]?.id ?? ''}`);
-        const res = await r.json() as ProwlerRequestGET;
-
-        if (res.code == "ERR_NO_SUCH_ID") {
-            // Prowler is out of sync, do a full refresh
-            console.log("prowler is out of sync, do full refresh");
-            prowler.posts = [];
-            loadPosts();
-            return;
-        }
-
-        if (res.status !== "OK") {
-            createAlertBalloon("Something went wrong", // @ts-expect-error error is not explicitly defined
-                `Failed to fetch the latest from Prowler. Error details: ${res.data.error}`, 1);
-            return;
-        }
-
-        const data = res.data;
-        if (data.length > 0) {
-            setPosts((prev: Post[]) => uniquePosts([...data, ...prev]));
-        }
-    };
 
     function uniquePosts(posts: Post[]) {
         const seen = new Set<string>();
