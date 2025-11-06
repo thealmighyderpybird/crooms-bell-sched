@@ -1,3 +1,4 @@
+import AnnouncementsTrigger from "~/components/modals/AnnouncementsTrigger";
 import headerStyles from "./header.module.css";
 import getSession from "~/lib/session.server";
 import AccountHeader from "./AccountHeader";
@@ -44,6 +45,7 @@ export default async function Header() {
                     </div>
                     <div className={headerStyles.subMenu} style={{ padding: "0.5rem", fontSize: "0.8rem" }}>Download the app</div>
                 </Link>}
+                <AnnouncementsTrigger />
                 <AccountHeader session={session} />
             </div>
         </nav>
