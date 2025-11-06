@@ -28,11 +28,16 @@ export const getDateTime = () => {
 };
 
 export const getSchedule = async () => {
-    const r = await fetch(CBSHServerURL + "/today");
-    const res = await r.json() as ScheduleRequest;
+    try {
+        const r = await fetch(CBSHServerURL + "/today");
+        const res = await r.json() as ScheduleRequest;
 
-    if (res.status !== "OK") return { error: "An error occurred. " + res.data.error } as Schedule;
-    return res.data;
+        if (res.status !== "OK") return { error: "An error occurred. " + res.data.error } as Schedule;
+        return res.data;
+    }
+    catch {
+        return { error: "An error occurred. "} as Schedule;
+    }
 };
 
 export const hms2sec = (hours: number, minutes: number, seconds: number) =>

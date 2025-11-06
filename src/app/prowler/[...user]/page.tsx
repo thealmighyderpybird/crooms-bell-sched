@@ -10,21 +10,32 @@ export default async function Page({ params }: { params: Promise<{ user: string 
     const username = (await params).user;
     const { sid, uid } = await getSession();
 
-    const r = await fetch(CBSHServerURL + "/users/userDetails", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": JSON.stringify(sid)
-        }
-    });
-    const res = await r.json() as { status: "OK" | "FAILED", data: User };
-    const user = res.data;
-    
-    return <>
-        <UserCard username={username} />
-        <Card>
-            <CardHeader>Posts</CardHeader>
-            <ProwlerRoot sid={sid} uid={uid} session={user} user={username} />
-        </Card>
-    </>;
+    try {
+        const r = await fetch(CBSHServerURL + "/users/userDetails", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": JSON.stringify(sid)
+            }
+        });
+        const res = await r.json() as { status: "OK" | "FAILED", data: User };
+        const user = res.data;
+
+        return <>
+            <UserCard username={username} />
+            <Card>
+                <CardHeader>Posts</CardHeader>
+                <ProwlerRoot sid={sid} uid={uid} session={user} user={username} />
+            </Card>
+        </>;
+    }
+    catch {
+        <>
+            <UserCard username={username} />
+            <Card>
+                <CardHeader>Posts</CardHeader>
+                <p>Unable to connect to server</p>
+            </Card>
+        </>;
+    }
 }

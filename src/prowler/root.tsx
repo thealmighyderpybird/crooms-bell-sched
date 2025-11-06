@@ -52,11 +52,13 @@ export default function ProwlerRoot({ sid, uid, session }: { sid: string, uid: s
     const [startAt, setStartAt] = useState(0);
     let ws: WebSocket;
     let reconnectTimer: NodeJS.Timeout = undefined!;
+    let shownDisconnected = false;
 
     const createWebsocket = () => {
         ws = new WebSocket(CBSHServerURL.replace("http://", "ws://"));
         ws.addEventListener('open', event => {
             console.log('Connected to Prowler');
+            shownDisconnected = false;
 
             if (reconnectTimer) {
                 clearInterval(reconnectTimer);
@@ -71,7 +73,11 @@ export default function ProwlerRoot({ sid, uid, session }: { sid: string, uid: s
             // 1001: going away
             console.log("disconnected with code " + event.code)
             if (event.code !== 1001) {
-                createAlertBalloon("Prowler", `Disconnected from server`, 1);
+                if (!shownDisconnected) {
+                    createAlertBalloon("Prowler", `Disconnected from server`, 1);
+                    shownDisconnected = true;
+                }
+
 
                 if (!reconnectTimer) {
                     console.log("create reconnect timer");

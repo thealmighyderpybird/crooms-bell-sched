@@ -48,7 +48,10 @@ export default function AccountHeader({ session }: { session: { uid: string | un
 
     useEffect(() => {
         async function doAction() {
-            setSessionInfo(await getSessionInfo(session.sid))
+            try{
+                setSessionInfo(await getSessionInfo(session.sid))
+            }
+            catch {}
         }
         void doAction();
         // eslint-disable-next-line react-hooks/exhaustive-deps
