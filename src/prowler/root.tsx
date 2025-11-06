@@ -69,7 +69,7 @@ export default function ProwlerRoot({ sid, uid, session }: { sid: string, uid: s
         ws.addEventListener('message', event => {
             console.log(event.data);
 
-            var data = JSON.parse(event.data);
+            const data = JSON.parse(event.data);
 
             if (data.Message === "DeletePost") {
                 for (let index = 0; index < prowler.posts.length; index++) {
