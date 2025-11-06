@@ -7,7 +7,6 @@ import Surveys from "~/prowler/surveyRoot";
 import type User from "~/types/user";
 import Prowler from "~/prowler/root";
 import Card from "../index/Card";
-import { ca } from "zod/locales";
 
 export default async function SocialWidget({ widgetSettings }: { widgetSettings: WidgetSettings }) {
     try {

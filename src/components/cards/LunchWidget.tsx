@@ -2,7 +2,6 @@ import cardTableStyles from "./styles/cardTable.module.css";
 import CardHeader from "~/components/index/CardHeader";
 import CBSHServerURL from "~/lib/CBSHServerURL";
 import Card from "~/components/index/Card";
-import { ca } from "zod/locales";
 
 interface LunchFetch {
     status: "OK" | "FAILED",
