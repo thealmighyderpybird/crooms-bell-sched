@@ -11,21 +11,28 @@ const getSession = async (): Promise<{ uid: string, sid: string }> => {
 };
 
 export const verifySession = async (uid: string, sid: string) => {
-    const r = await fetch(CBSHServerURL + "/users/validateSID/" + uid, {
-        method: "POST",
-        headers: {
-            "Authorization": JSON.stringify(sid),
-            "Content-Type": "application/json",
-            "Accept": "application/json",
-        }
-    });
-    const res = await r.json() as { status: "OK" | "FAILED", data: { error: string, code: string, result: boolean } };
+    try {
+        const r = await fetch(CBSHServerURL + "/users/validateSID/" + uid, {
+            method: "POST",
+            headers: {
+                "Authorization": JSON.stringify(sid),
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+            }
+        });
+        const res = await r.json() as {
+            status: "OK" | "FAILED",
+            data: { error: string, code: string, result: boolean }
+        };
 
-    if (!res.data.result) {
-        await serverSignOut();
-        return { uid: "", sid: "" };
+        if (!res.data.result) {
+            await serverSignOut();
+            return {uid: "", sid: ""};
+        }
+        return res.data.result ? {uid: uid, sid: sid} : {uid: "", sid: ""};
+    } catch {
+        return { uid, sid };
     }
-    return res.data.result ? { uid: uid, sid: sid } : { uid: "", sid: "" };
 };
 
 export const serverSignOut = async () => {
