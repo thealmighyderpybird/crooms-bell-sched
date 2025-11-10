@@ -10,4 +10,5 @@ export default interface User {
         name: string,
         image: string
     }[],
+    userTags: string[],
 }

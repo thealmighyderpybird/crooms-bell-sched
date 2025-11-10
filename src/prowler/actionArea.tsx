@@ -10,7 +10,7 @@ import useAlert from "~/AlertContext";
 import type User from "~/types/user";
 import { useState } from "react";
 
-export default function ActionArea({ session, post, sid, uid }: { session: User, post: Post, sid: string, uid: string }) {
+export default function ActionArea({ session, post, sid, uid, deviceType }: { session: User, post: Post, sid: string, uid: string, deviceType: string }) {
     const [reportDialogEnabled, setReportDialogEnabled] = useState(false);
     const [deleteDialogEnabled, setDeleteDialogEnabled] = useState(false);
     const [editDialogEnabled, setEditDialogEnabled] = useState(false);
@@ -18,26 +18,38 @@ export default function ActionArea({ session, post, sid, uid }: { session: User,
     const { createAlertBalloon } = useAlert();
 
     return <div className={ styles.actionBar }>
-        { uid === post.uid && <button className={ styles.actionButton } title="Edit Post" onClick={() => setEditDialogEnabled(true)}>
+        { (uid === post.uid && deviceType !== "mobile" && deviceType !== "tablet" && deviceType !== "wearable") && <>
+        <button className={ styles.actionButton } title="Edit Post" onClick={() => setEditDialogEnabled(true)}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" className={ styles.actionIcon }>
                 <path d="M32.206 6.025a6.907 6.907 0 1 1 9.768 9.767L39.77 18L30 8.23zM28.233 10L8.038 30.197a6 6 0 0 0-1.572 2.758L4.039 42.44a1.25 1.25 0 0 0 1.52 1.52l9.487-2.424a6 6 0 0 0 2.76-1.572l20.195-20.198z" />
             </svg>
-        </button> }
-        { uid === post.uid && <button className={ styles.actionButton } title="Delete Post" onClick={() => setDeleteDialogEnabled(true)}>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" className={ styles.actionIcon }>
-                <path d="M20 10.5v.5h8v-.5a4 4 0 0 0-8 0m-2.5.5v-.5a6.5 6.5 0 1 1 13 0v.5h11.25a1.25 1.25 0 1 1 0 2.5h-2.917l-2 23.856A7.25 7.25 0 0 1 29.608 44H18.392a7.25 7.25 0 0 1-7.224-6.644l-2-23.856H6.25a1.25 1.25 0 1 1 0-2.5zm4 9.25a1.25 1.25 0 1 0-2.5 0v14.5a1.25 1.25 0 1 0 2.5 0zM27.75 19c-.69 0-1.25.56-1.25 1.25v14.5a1.25 1.25 0 1 0 2.5 0v-14.5c0-.69-.56-1.25-1.25-1.25" />
-            </svg>
-        </button> }
+        </button>
+            <button className={ styles.actionButton } title="Delete Post" onClick={() => setDeleteDialogEnabled(true)}>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" className={ styles.actionIcon }>
+                    <path d="M20 10.5v.5h8v-.5a4 4 0 0 0-8 0m-2.5.5v-.5a6.5 6.5 0 1 1 13 0v.5h11.25a1.25 1.25 0 1 1 0 2.5h-2.917l-2 23.856A7.25 7.25 0 0 1 29.608 44H18.392a7.25 7.25 0 0 1-7.224-6.644l-2-23.856H6.25a1.25 1.25 0 1 1 0-2.5zm4 9.25a1.25 1.25 0 1 0-2.5 0v14.5a1.25 1.25 0 1 0 2.5 0zM27.75 19c-.69 0-1.25.56-1.25 1.25v14.5a1.25 1.25 0 1 0 2.5 0v-14.5c0-.69-.56-1.25-1.25-1.25" />
+                </svg>
+            </button></> }
         <button className={ styles.actionButton } title="More Options" onClick={() => setMenuEnabled(true)}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 49" className={ styles.actionIcon }>
-
                 <path d="M16.668 24a3.5 3.5 0 1 1-7 0a3.5 3.5 0 0 1 7 0z" />
                 <path d="M28.168 24a3.5 3.5 0 1 1-7 0a3.5 3.5 0 0 1 7 0z" />
                 <path d="M36.168 27.5a3.5 3.5 0 1 0 0-7a3.5 3.5 0 0 0 0 7z" />
-
             </svg>
         </button>
         { menuEnabled && <><div className={ styles.menu }>
+            { (uid === post.uid && (deviceType === "mobile" || deviceType === "tablet" || deviceType === "wearable")) && <>
+            <button className={ styles.actionButton } title="Edit Post" onClick={() => setEditDialogEnabled(true)}>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" className={ styles.actionIcon }>
+                    <path d="M32.206 6.025a6.907 6.907 0 1 1 9.768 9.767L39.77 18L30 8.23zM28.233 10L8.038 30.197a6 6 0 0 0-1.572 2.758L4.039 42.44a1.25 1.25 0 0 0 1.52 1.52l9.487-2.424a6 6 0 0 0 2.76-1.572l20.195-20.198z" />
+                </svg>
+                <span>Edit Post</span>
+            </button>
+            <button className={ styles.actionButton } title="Delete Post" onClick={() => setDeleteDialogEnabled(true)}>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" className={ styles.actionIcon }>
+                    <path d="M20 10.5v.5h8v-.5a4 4 0 0 0-8 0m-2.5.5v-.5a6.5 6.5 0 1 1 13 0v.5h11.25a1.25 1.25 0 1 1 0 2.5h-2.917l-2 23.856A7.25 7.25 0 0 1 29.608 44H18.392a7.25 7.25 0 0 1-7.224-6.644l-2-23.856H6.25a1.25 1.25 0 1 1 0-2.5zm4 9.25a1.25 1.25 0 1 0-2.5 0v14.5a1.25 1.25 0 1 0 2.5 0zM27.75 19c-.69 0-1.25.56-1.25 1.25v14.5a1.25 1.25 0 1 0 2.5 0v-14.5c0-.69-.56-1.25-1.25-1.25" />
+                </svg>
+                <span>Delete Post</span>
+            </button><hr /></> }
             <button className={ styles.actionButton } title="Call Dr. Eason" onClick={(e) => {
                 e.stopPropagation(); setMenuEnabled(false);
                 createAlertBalloon("Call sent", "Dr. Eason has been called.", 0);
@@ -59,6 +71,7 @@ export default function ActionArea({ session, post, sid, uid }: { session: User,
         { editDialogEnabled && createPortal(<EditDialog post={post} sid={sid} setIsActive={setEditDialogEnabled} />, document.getElementById("modal-portal")!) }
         { deleteDialogEnabled && createPortal(<DeleteDialog post={post} sid={sid} setIsActive={setDeleteDialogEnabled} />, document.getElementById("modal-portal")!) }
         { reportDialogEnabled && createPortal(<ReportDialog post={post} sid={sid} setIsActive={setReportDialogEnabled} />, document.getElementById("modal-portal")!) }
+        { session && <></> }
     </div>
 };
 

@@ -4,10 +4,14 @@ import CBSHServerURL from "~/lib/CBSHServerURL";
 import ProwlerRoot from "~/prowler/rootByUser";
 import getSession from "~/lib/session.server";
 import Card from "~/components/index/Card";
+import { userAgent } from "next/server";
+import { headers } from "next/headers";
 import type User from "~/types/user";
 
 export default async function Page({ params }: { params: Promise<{ user: string }> }) {
     const username = (await params).user;
+    const { device } = userAgent({ headers: await headers() });
+    const deviceType = device.type ?? "Unknown";
     const { sid, uid } = await getSession();
 
     try {
@@ -25,12 +29,13 @@ export default async function Page({ params }: { params: Promise<{ user: string 
             <UserCard username={username} />
             <Card>
                 <CardHeader>Posts</CardHeader>
-                <ProwlerRoot sid={sid} uid={uid} session={user} user={username} />
+                {deviceType}
+                <ProwlerRoot sid={sid} uid={uid} session={user} user={username} deviceType={deviceType} />
             </Card>
         </>;
     }
     catch {
-        <>
+        return <>
             <UserCard username={username} />
             <Card>
                 <CardHeader>Posts</CardHeader>

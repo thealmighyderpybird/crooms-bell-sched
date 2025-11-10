@@ -8,13 +8,6 @@ import useAlert from "~/AlertContext";
 import type User from "~/types/user";
 import ProwlerPost from "./post";
 
-interface UserData {
-    displayname: string,
-    username: string,
-    verified: boolean,
-    id: string,
-}
-
 interface ProwlerRequestGET {
     status: "OK" | "FAILED",
     data: Post[],
@@ -32,32 +25,11 @@ const prowler: ProwlerData = {
     posts: [],
 };
 
-export default function ProwlerRoot({ sid, uid, session, user }: { sid: string, uid: string, session: User, user: string }) {
-    const [userData, setUserData]: [UserData, Dispatch<SetStateAction<UserData>>]  = useState({
-        displayname: "",
-        username: "",
-        verified: false,
-        id: "",
-    } as UserData);
-
-    useEffect(() => {
-        async function doAction() {
-            const r = await fetch(CBSHServerURL + "/users/" + user, {
-                headers: {
-                    "Authorization": JSON.stringify(sid)
-                }
-            });
-            const res = await r.json() as { status: "OK" | "FAILED", data: UserData };
-            setUserData(res.data);
-        }
-        void doAction();
-    }, [user]);
-
+export default function ProwlerRoot({ sid, uid, session, user, deviceType }: { sid: string, uid: string, session: User, user: string, deviceType: string }) {
     const { createAlertBalloon } = useAlert();
-    // @ts-expect-error force type on react state
+    // @ts-expect-error force type on React state
     const [posts, setPosts]: [Post[], Dispatch<SetStateAction<Post[]>>] = useState([]);
     const [isTriggered, setIsTriggered] = useState(false);
-    const [hasMore, setHasMore] = useState(true);
     const [startAt, setStartAt] = useState(0);
 
     const getPosts = useCallback(async () => {
@@ -102,8 +74,6 @@ export default function ProwlerRoot({ sid, uid, session, user }: { sid: string, 
     }, []);
 
     useEffect(() => {
-        if (!hasMore) return;
-
         const onScroll = () => {
             const scrollHeight = document.documentElement.scrollHeight;
             const clientHeight = document.documentElement.clientHeight;
@@ -125,7 +95,8 @@ export default function ProwlerRoot({ sid, uid, session, user }: { sid: string, 
 
     return <div id="prowler" style={{ marginBlockStart: "0.5rem" }}>
         <div className={ styles.prowlerPostContainer }>
-            { posts.map((post: Post) => <ProwlerPost post={post} key={post.id} sid={sid} uid={uid} session={session} />) }
+            { posts.map((post: Post) => <ProwlerPost post={post} sid={sid} uid={uid} session={session}
+                                                              deviceType={deviceType} key={post.id} />) }
         </div>
     </div>;
 };

@@ -43,7 +43,7 @@ interface NewPostWebsocketMessage {
     Data: Post
 }
 
-export default function ProwlerRoot({ sid, uid, session }: { sid: string, uid: string, session: User }) {
+export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: string, uid: string, session: User, deviceType: string }) {
     const { createAlertBalloon } = useAlert();
     // @ts-expect-error force type on react state
     const [posts, setPosts]: [Post[], Dispatch<SetStateAction<Post[]>>] = useState([]);
@@ -194,7 +194,8 @@ export default function ProwlerRoot({ sid, uid, session }: { sid: string, uid: s
 
     return <div id="prowler">
         <div className={styles.prowlerPostContainer}>
-            {posts.map((post: Post) => <ProwlerPost post={post} sid={sid} uid={uid} session={session} key={post.id} />)}
+            {posts.map((post: Post) => <ProwlerPost post={post} sid={sid} uid={uid} session={session}
+                                                             deviceType={deviceType} key={post.id} />)}
         </div>
     </div>;
 };

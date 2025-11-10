@@ -5,4 +5,5 @@ export default interface Post {
     create: string;
     createdBy: string;
     verified: boolean;
+    userTags: string[];
 }

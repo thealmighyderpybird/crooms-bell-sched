@@ -200,3 +200,19 @@
     z-index: 5;
     inset: 0;
 }
+
+.userTagContainer {
+    margin-inline-start: 0.5rem;
+    flex-flow: row nowrap;
+    align-items: center;
+    display: flex;
+    gap: 0.125rem;
+}
+
+.userTagContainer img {
+    border-radius: 0.25rem;
+    object-fit: cover;
+    display: block;
+    height: 1rem;
+    width: 1rem;
+}

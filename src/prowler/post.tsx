@@ -5,6 +5,7 @@ import type Post from "~/types/ProwlerPost";
 import styles from "./prowler.module.css";
 import Content from "~/prowler/content";
 import type User from "~/types/user";
+import UserTags from "./UserTags";
 import Link from "next/link";
 
 const monthNames = [
@@ -22,7 +23,7 @@ const monthNames = [
     "December",
 ];
 
-export default function Post({ post, session, sid, uid }: { post: Post, session: User, sid: string, uid: string }) {
+export default function Post({ post, session, sid, uid, deviceType }: { post: Post, session: User, sid: string, uid: string, deviceType: string }) {
     return <div data-id={ post?.id ? post.id : "" } className={ styles.corePost }>
         <div className={ styles.corePostHeader }>
             <Link className={ styles.corePostHeaderItem } href={"/prowler/" + post.createdBy}>
@@ -35,6 +36,7 @@ export default function Post({ post, session, sid, uid }: { post: Post, session:
                     <div className={ styles.username }>
                         <span>{ post.createdBy }</span>
                         { post.verified ? <Verified size={14} /> : null }
+                        <UserTags userTagList={post.userTags} />
                     </div> }
                     { post?.create &&
                     <span>
@@ -43,7 +45,7 @@ export default function Post({ post, session, sid, uid }: { post: Post, session:
                     </span> }
                 </div>
             </Link>
-            <ActionArea session={session} post={post} sid={sid} uid={uid} />
+            <ActionArea session={session} post={post} sid={sid} uid={uid} deviceType={deviceType} />
         </div>
         <Content content={post.data} />
     </div>;

@@ -4,12 +4,17 @@ import getSession from "~/lib/session.server";
 import CardHeader from "../index/CardHeader";
 import SharePostLink from "./SharePostLink";
 import Surveys from "~/prowler/surveyRoot";
+import { userAgent } from "next/server";
+import { headers } from "next/headers";
 import type User from "~/types/user";
 import Prowler from "~/prowler/root";
 import Card from "../index/Card";
 
 export default async function SocialWidget({ widgetSettings }: { widgetSettings: WidgetSettings }) {
     try {
+        const { device } = userAgent({ headers: await headers() });
+        const deviceType = device.type ?? "Unknown";
+
         const { sid, uid } = await getSession();
         const r = await fetch(CBSHServerURL + "/users/userDetails", {
             method: "POST",
@@ -30,7 +35,7 @@ export default async function SocialWidget({ widgetSettings }: { widgetSettings:
             {widgetSettings.prowler && <Card>
                 <CardHeader>Prowler</CardHeader>
                 <SharePostLink sid={sid} canIPost={canIPostRes.data}>Share a post</SharePostLink>
-                <Prowler sid={sid} uid={uid} session={user} />
+                <Prowler sid={sid} uid={uid} session={user} deviceType={deviceType} />
             </Card>}
         </>;
     }
