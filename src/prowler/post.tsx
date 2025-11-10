@@ -35,7 +35,8 @@ export default function Post({ post, session, sid, uid, deviceType }: { post: Po
                     { post?.createdBy &&
                     <div className={ styles.username }>
                         <span>{ post.createdBy }</span>
-                        { post.verified ? <Verified size={14} /> : null }
+                        { post.verified && <Verified size={14} /> }
+                        { (post.verified && post.uid === "ef10ea555a") && <Verified size={14} /> }
                         <UserTags userTagList={post.userTags} />
                     </div> }
                     { post?.create &&
