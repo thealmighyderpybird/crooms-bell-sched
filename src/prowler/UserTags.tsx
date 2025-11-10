@@ -91,7 +91,12 @@ const friendlyTagList: Record<string, TagInfo> = {
         name: "Transgender",
         description: "This user identifies as transgender.",
         image: "https://upload.wikimedia.org/wikipedia/commons/b/b0/Transgender_Pride_flag.svg"
-    }
+    },
+    "croomsConnect": {
+        name: "Crooms Connect",
+        description: "This user is a Crooms Connect user.",
+        image: "https://cdn.croomssched.tech/data/b0e90fd7-e0de-4cba-901b-563f3cc272d0/croomsconnect.png"
+    },
 };
 
 export default function UserTags({ userTagList }: { userTagList: string[] }) {
