@@ -8,6 +8,7 @@ import useAlert from "~/AlertContext";
 import { useState } from "react";
 
 export default function NewPostDialog({ sid, setIsActive }: { sid: string, setIsActive: (arg0: boolean) => void }) {
+    const [disabled, setDisabled] = useState(false);
     const [content, setContent] = useState("");
     const { createAlertBalloon } = useAlert();
 
@@ -22,14 +23,16 @@ export default function NewPostDialog({ sid, setIsActive }: { sid: string, setIs
             </div>
             <div className={styles.actionButtons}>
                 <button onClick={() => setIsActive(false)}>Cancel</button>
-                <button onClick={() => createPost(sid, content, setIsActive, createAlertBalloon)}>Post</button>
+                <button onClick={() => createPost(sid, content, setIsActive, setDisabled, createAlertBalloon)}
+                        disabled={disabled}>Post</button>
             </div>
         </div>
     </>
 };
 
-const createPost = async (sid: string, content: string, setIsActive: (arg0: boolean) => void,
+const createPost = async (sid: string, content: string, setIsActive: (arg0: boolean) => void, setIsDisabled: (arg0: boolean) => void,
                           createAlertBalloon: (title: string, message: string, severity: -1|0|1|2) => void) => {
+    setIsDisabled(true);
     const r = await fetch(CBSHServerURL + "/feed", {
         method: "POST",
         body: JSON.stringify({
@@ -45,6 +48,7 @@ const createPost = async (sid: string, content: string, setIsActive: (arg0: bool
     if (r.status === 429) {
         createAlertBalloon("Give us a second", "Our server is currently busy, " +
             "please wait 15 seconds before trying again.", 0);
+        setIsDisabled(false);
         return;
     }
 
@@ -52,6 +56,7 @@ const createPost = async (sid: string, content: string, setIsActive: (arg0: bool
 
     if (res.status !== "OK") {
         createAlertBalloon("Failed to post", res.data.error, 2);
+        setIsDisabled(false);
         return;
     }
 
