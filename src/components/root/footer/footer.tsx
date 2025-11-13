@@ -53,7 +53,7 @@ export default async function Footer() {
                 <div className={footerStyles.popout + " " + footerStyles.submenu}>
                     <Link href="mailto:support@croomssched.tech" target="CBSHEmail">Email our Support</Link>
                     <Link href="https://discord.gg/9xjh5s5Bhb" target="CBSHDiscord">Join our Discord Server</Link>
-                    <Link href="https://instagram.com/croomssched" target="CBSHInstagram">View our Instagram</Link>
+                    <Link href="https://instagram.com/croomsbellschedule" target="CBSHInstagram">View our Instagram</Link>
                 </div>
             </div>
         </div>
