@@ -85,7 +85,7 @@ const friendlyTagList: Record<string, TagInfo> = {
     "Genderfluid" : {
         name: "Genderfluid",
         description: "This users indentifies as genderfluid.",
-        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Genderfluidity_Pride-Flag.svg"
+        image: "https://upload.wikimedia.org/wikipedia/commons/b/b8/Genderfluidity_Pride-Flag.svg"
 
     },
     "pan": {
