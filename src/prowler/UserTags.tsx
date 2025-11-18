@@ -83,6 +83,11 @@ const friendlyTagList: Record<string, TagInfo> = {
         description: "This user identifies as nonbinary.",
         image: "https://upload.wikimedia.org/wikipedia/commons/7/75/Nonbinary_flag.svg"
     },
+    "genderfluid" : {
+        name: "Genderfluid",
+        description: "This users identifies as genderfluid.",
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Genderfluidity_Pride-Flag.svg"
+    },
     "pan": {
         name: "Pansexual",
         description: "This user identifies as pansexual.",

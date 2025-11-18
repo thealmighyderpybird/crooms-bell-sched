@@ -20,7 +20,7 @@ interface CBSHUser {
     id: string,
     username: string,
     displayname: string,
-    role: "user" | "mod" | "admin",
+    role: "user" | "mod" | "admin" | "dev",
     verified: boolean,
     providers: CBSHProvider[],
 }
