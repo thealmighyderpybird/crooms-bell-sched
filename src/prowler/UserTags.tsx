@@ -1,4 +1,5 @@
 import styles from "./prowler.module.css";
+import easonmas from "./27.png";
 
 type TagInfo = {
     name: string;
@@ -96,6 +97,11 @@ const friendlyTagList: Record<string, TagInfo> = {
         name: "Crooms Connect",
         description: "This user is a Crooms Connect user.",
         image: "https://cdn.croomssched.tech/data/b0e90fd7-e0de-4cba-901b-563f3cc272d0/croomsconnect.png"
+    },
+    "easonOrnament": {
+        name: "Easonmas",
+        description: "This user celebrates Easonmas.",
+        image: easonmas.src,
     },
 };
 
