@@ -89,6 +89,16 @@ const friendlyTagList: Record<string, TagInfo> = {
         description: "This users identifies as genderfluid.",
         image: "https://upload.wikimedia.org/wikipedia/commons/b/b8/Genderfluidity_Pride-Flag.svg"
     },
+    "Aromantic" : {
+        name: "Aromantic",
+        description: "This users identifies as aromantic.",
+        image: "https://upload.wikimedia.org/wikipedia/commons/a/ad/Aromantic_Pride_Flag.svg"
+    },
+     "Aroace" : {
+        name: "Aroace",
+        description: "This users identifies as aroace.",
+        image: "https://upload.wikimedia.org/wikipedia/commons/1/12/Aroace_flag.svg"
+    },
     "pan": {
         name: "Pansexual",
         description: "This user identifies as pansexual.",
