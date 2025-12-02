@@ -1,4 +1,6 @@
 import styles from "./prowler.module.css";
+import nearpod from "./nearpod.webp";
+import easonmas from "./27.png";
 
 type TagInfo = {
     name: string;
@@ -95,7 +97,7 @@ const friendlyTagList: Record<string, TagInfo> = {
     "genderfluid" : {
         name: "Genderfluid",
         description: "This users identifies as genderfluid.",
-        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Genderfluidity_Pride-Flag.svg"
+        image: "https://upload.wikimedia.org/wikipedia/commons/b/b8/Genderfluidity_Pride-Flag.svg"
     },
     "pan": {
         name: "Pansexual",
@@ -111,6 +113,16 @@ const friendlyTagList: Record<string, TagInfo> = {
         name: "Crooms Connect",
         description: "This user is a Crooms Connect user.",
         image: "https://cdn.croomssched.tech/data/b0e90fd7-e0de-4cba-901b-563f3cc272d0/croomsconnect.png"
+    },
+    "easonOrnament": {
+        name: "Easonmas",
+        description: "This user celebrates Easonmas.",
+        image: easonmas.src,
+    },
+    "nearpod": {
+        name: "Nearpod",
+        description: "This user likes Nearpod.",
+        image: nearpod.src,
     },
 };
 
