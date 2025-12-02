@@ -57,6 +57,16 @@ const friendlyTagList: Record<string, TagInfo> = {
         description: "This user identifies as asexual.",
         image: "https://upload.wikimedia.org/wikipedia/commons/9/9e/Asexual_Pride_Flag.svg",
     },
+    "Aromantic" : {
+        name: "Aromantic",
+        description: "This users identifies as aromantic.",
+        image: "https://upload.wikimedia.org/wikipedia/commons/a/ad/Aromantic_Pride_Flag.svg"
+    },
+    "Aroace" : {
+        name: "Aroace",
+        description: "This users identifies as aroace.",
+        image: "https://upload.wikimedia.org/wikipedia/commons/1/12/Aroace_flag.svg"
+    },
     "bi": {
         name: "Bisexual",
         description: "This user identifies as bisexual.",
