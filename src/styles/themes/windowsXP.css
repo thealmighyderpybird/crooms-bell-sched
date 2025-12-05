@@ -1,0 +1,34 @@
+body.windowsXP::before {
+    background-position: right center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    z-index: -1;
+    left: 0;
+    top: 0;
+}
+
+body.windowsXP::after {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    z-index: -1;
+    left: 0;
+    top: 0;
+}
+
+@media screen and (prefers-color-scheme: dark) {
+    body.windowsXP::before {
+        background-image: url("https://frutigeraeroarchive.org/images/wallpapers/windows_7/windows_7_2.jpg");
+    }
+}
+
+:root.light > body.windowsXP::before {
+    background-image: none !important;
+}
+
+:root.light > body.windowsXP::before {
+    background-image: url("https://frutigeraeroarchive.org/images/wallpapers/windows_7/windows_7_2.jpg") !important;
+}
