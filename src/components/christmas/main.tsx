@@ -1,9 +1,9 @@
 "use client";
 
 import styles from "./main.module.css";
+import ChristmasButton from "./Button";
 import ChristmasMenu from "./Menu";
 import { useState } from "react";
-import ChristmasButton from "~/components/christmas/Button";
 
 export default function ChristmasCorner() {
     const [menuActive, setMenuActive] = useState(false);
