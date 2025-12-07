@@ -1,4 +1,6 @@
 body {
+    height: revert;
+
     header, footer, nav, #christmas-menu {
         display: none !important;
     }
@@ -6,4 +8,8 @@ body {
     main {
         padding-block: 0 !important;
     }
+}
+
+#cbsh-application-embed {
+    margin: 0.5rem;
 }
