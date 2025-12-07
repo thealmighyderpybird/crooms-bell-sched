@@ -1,5 +1,5 @@
 body:has(.pollLoader) {
-    header, footer, nav {
+    header, footer, nav, #christmas-menu {
         display: none !important;
     }
 

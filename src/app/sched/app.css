@@ -1,0 +1,9 @@
+body {
+    header, footer, nav, #christmas-menu {
+        display: none !important;
+    }
+
+    main {
+        padding: 0;
+    }
+}
