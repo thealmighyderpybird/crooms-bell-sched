@@ -9,6 +9,7 @@ import Fonts from "~/styles/fonts/fonts";
 import { type ReactNode } from "react";
 import Script from "next/script";
 import "~/styles/master.css";
+import ChristmasCorner from "~/components/christmas/main";
 
 export const viewport: Viewport = {
     width: "device-width",
@@ -65,6 +66,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
                 <Footer />
                 <Script src={"https://croomssched.statuspage.io/embed/script.js"} />
                 <div id="modal-portal" />
+                <ChristmasCorner />
             </AlertProvider>
             </body>
         </html>;
@@ -77,6 +79,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
                 <Footer />
                 <Script src={"https://croomssched.statuspage.io/embed/script.js"} />
                 <div id="modal-portal" />
+                <ChristmasCorner />
             </AlertProvider>
             </body>
         </html>

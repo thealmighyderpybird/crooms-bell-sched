@@ -1,0 +1,35 @@
+.button {
+    background-image: url("https://decomytree.croomssched.tech/favicon.png");
+    background-origin: content-box;
+    background-repeat: no-repeat;
+    background-color: var(--pri);
+    background-position: center;
+    box-shadow: 0 0 1rem black;
+    background-size: contain;
+    border-radius: 100%;
+    width: fit-content;
+    padding: 0.75rem;
+}
+
+.button:hover {
+    background-color: var(--mid-pri);
+}
+
+.button:active {
+    background-color: var(--sec);
+}
+
+.child {
+    padding: 1.25rem;
+}
+
+.toolTip {
+    background-color: var(--pri);
+    box-shadow: 0 0 1rem black;
+    border-radius: 0.6125rem;
+    margin-bottom: 0.625rem;
+    padding-inline: 0.7rem;
+    padding-block: 0.5rem;
+    font-size: small;
+    line-height: 1;
+}

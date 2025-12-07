@@ -1,11 +1,10 @@
 "use client";
 
+import ChristmasRadio from "~/components/christmas/Radio";
 import { useCallback, useState, useEffect } from "react";
 import streamServerURL from "~/lib/StreamServerURL";
 import type { SourceInfo } from "./RadioPlayer";
 import styles from "./styles.module.css";
-import RadioPlayer from "./RadioPlayer";
-import CBSHServerURL from "~/lib/CBSHServerURL";
 
 export default function RadioPage() {
     const [streamInfo, setStreamInfo] = useState({
@@ -24,7 +23,6 @@ export default function RadioPage() {
         title: "",
         dummy: null
     } satisfies SourceInfo);
-    const [title, setTitle] = useState("");
 
     const getStreamInfo = useCallback(async () => {
         const r = await fetch(streamServerURL + "/status-json.xsl");
@@ -32,23 +30,8 @@ export default function RadioPage() {
         setStreamInfo(icestats.source);
     }, []);
 
-    const getStreamTitle = useCallback(async () => {
-        const r = await fetch(CBSHServerURL + "/radio/title");
-        if (!r.ok) { setTitle("The stream may be offline. - An error occurred"); return; }
-        const title = await r.json() as { title: string };
-        setTitle(title.title);
-    }, []);
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => void getStreamInfo(), []);
-// eslint-disable-next-line react-hooks/exhaustive-deps
-    useEffect(() => void getStreamTitle(), []);
-
-    useEffect(() => {
-        const i = setInterval(() => void getStreamTitle(), 15000);
-        return () => clearInterval(i);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
 
     return <>
         <p>Listen in to our available streams.</p>
@@ -58,7 +41,7 @@ export default function RadioPage() {
                 <div className={ styles.cardItemContent }>
                     <h2>{ streamInfo?.server_name ?? "Stream offline" }</h2>
                     <p>{ streamInfo?.server_description ?? "This stream is offline. Please check back later." }</p>
-                    <RadioPlayer source={streamServerURL + "/stream"} nowPlaying={title} />
+                    <ChristmasRadio />
                 </div>
             </div>
         </div>
@@ -68,6 +51,7 @@ export default function RadioPage() {
 const getHeaderTheme = (streamName: string) => {
     switch (streamName) {
         case "A Crooms Christmas": return styles.christmas;
+        case "Crooms Christmas": return styles.christmas;
         default: return styles.defaultHeader;
     }
 };

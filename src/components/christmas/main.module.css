@@ -1,0 +1,10 @@
+.main {
+    justify-content: flex-end;
+    flex-flow: column nowrap;
+    align-items: flex-end;
+    bottom: 3.5125rem;
+    position: fixed;
+    display: flex;
+    right: 1rem;
+    width: 100%;
+}

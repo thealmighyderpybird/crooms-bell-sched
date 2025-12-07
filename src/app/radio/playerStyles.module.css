@@ -37,8 +37,10 @@
     scrollbar-width: none;
     white-space: nowrap;
     overflow-x: hidden;
+    line-height: 1;
 }
 
 .nowPlaying span {
     font-size: 0.75rem;
+    line-height: 1;
 }

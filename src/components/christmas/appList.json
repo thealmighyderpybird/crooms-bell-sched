@@ -1,0 +1,19 @@
+{
+  "list": [
+    {
+      "title": "Deco My Tree",
+      "iconSrc": "https://decomytree.croomssched.tech/favicon.png",
+      "appUrl": "https://decomytree.croomssched.tech/dashboard/app-launcher"
+    },
+    {
+      "title": "Crooms Radio",
+      "iconSrc": "/images/radio.png",
+      "appUrl": "/radio"
+    },
+    {
+      "title": "Winter Live Stream",
+      "iconSrc": "https://img.icons8.com/?size=96&id=U7aCoVxqVPJB",
+      "appUrl": "https://mikhail.croomssched.tech/live"
+    }
+  ]
+}
