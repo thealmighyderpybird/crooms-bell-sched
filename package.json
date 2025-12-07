@@ -16,26 +16,26 @@
   "dependencies": {
     "@t3-oss/env-nextjs": "^0.13.8",
     "cookies-next": "^6.1.0",
-    "next": "^16.0.1",
+    "next": "16.0.7",
     "randexp": "^0.5.3",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
     "react-switch": "^7.1.0",
     "sanitize-html": "^2.17.0",
     "websocket": "^1.0.35",
-    "zod": "^4.0.16"
+    "zod": "^4.1.13"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.3.1",
-    "@types/eslint": "^8.56.10",
-    "@types/node": "^20.14.10",
-    "@types/react": "^19.1.0",
-    "@types/react-dom": "^19.1.0",
+    "@eslint/eslintrc": "^3.3.3",
+    "@types/eslint": "^9.6.1",
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
     "@types/sanitize-html": "^2.16.0",
-    "eslint": "^9.23.0",
-    "eslint-config-next": "^15.2.3",
-    "typescript": "^5.8.2",
-    "typescript-eslint": "^8.27.0"
+    "eslint": "^9.39.1",
+    "eslint-config-next": "^16.0.7",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.48.1"
   },
   "ct3aMetadata": {
     "initVersion": "7.38.1"
