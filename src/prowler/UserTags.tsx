@@ -124,6 +124,11 @@ const friendlyTagList: Record<string, TagInfo> = {
         description: "This user likes Nearpod.",
         image: nearpod.src,
     },
+    "drummerBoy": {
+        name: "Drummer Boy Christmas",
+        description: "This user has completed a Christmas quest.",
+        image: "https://cdn.croomssched.tech/data/b0e90fd7-e0de-4cba-901b-563f3cc272d0/drummerboy.png",
+    },
 };
 
 export default function UserTags({ userTagList }: { userTagList: string[] }) {
