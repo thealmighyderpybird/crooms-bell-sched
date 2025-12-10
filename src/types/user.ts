@@ -11,4 +11,5 @@ export default interface User {
         image: string
     }[],
     userTags: string[],
+    croomsPro: boolean,
 }
