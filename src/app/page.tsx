@@ -4,13 +4,13 @@ import SocialWidget from "~/components/cards/SocialWidget";
 import LunchWidget from "../components/cards/LunchWidget";
 import CardLayout from "../components/index/CardLayout";
 import ThemeProvider from "~/components/ThemeProvider";
+import getSessionInfo from "~/lib/getSessionInfo";
 import getSiteSettings from "~/lib/getSettings";
 import getSession from "~/lib/session.server";
 import Card from "../components/index/Card";
 import AdFrame from "~/components/AdFrame";
 import RandExp from "randexp";
 import "~/styles/index.css";
-import getSessionInfo from "~/lib/getSessionInfo";
 
 export default async function Home() {
     const userDetails = await getSessionInfo((await getSession()).sid);
