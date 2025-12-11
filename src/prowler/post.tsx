@@ -1,4 +1,5 @@
 import { parseTime } from "~/lib/parseEndTime";
+import CroomsPro from "~/components/CroomsPro";
 import ActionArea from "~/prowler/actionArea";
 import Verified from "~/components/Verified";
 import type Post from "~/types/ProwlerPost";
@@ -37,6 +38,7 @@ export default function Post({ post, session, sid, uid, deviceType }: { post: Po
                         <span>{ post.createdBy }</span>
                         { post.verified && <Verified size={14} /> }
                         { (post.verified && post.uid === "ef10ea555a") && <Verified size={14} /> }
+                        { post.userTags.includes("croomsPro") && <CroomsPro /> }
                         <UserTags userTagList={post.userTags} />
                     </div> }
                     { post?.create &&
