@@ -11,6 +11,9 @@ import { useRef, useState } from "react";
 import useAlert from "~/AlertContext";
 import Link from "next/link";
 
+const pronounList = ["he", "him", "his", "she", "her", "hers", "they", "them", "theirs", "it", "ce", "cir",
+    "co", "cos", "cy", "cos", "cy", "cyr", "ey", "em", "eir", "hey", "hem", "heir", "ne", "nem", "nir", "qui", "quem",
+    "quis", "sie", "hir", "tey", "tem", "teir", "xe", "xem", "xyr", "xie", "yo", "yos", "ze", "zir", "ve", "vis", "ver"];
 type NewAlert = (title: string, message: string, severity: -1|0|1|2) => void;
 
 export default function EditButton({ sid, pronouns, bio }: { sid: string, pronouns: string[], bio: string }) {
@@ -28,7 +31,6 @@ export default function EditButton({ sid, pronouns, bio }: { sid: string, pronou
 const EditDialog = ({ setActive, ogDetails, sid, newAlert }: {
         setActive: (value: boolean) => void, ogDetails: { bio: string, pronouns: string[] }, sid: string, newAlert: NewAlert
 }) => {
-    const pronounList = ["he", "him", "his", "she", "her", "hers", "they", "them", "theirs", "it"];
     const [pronouns, setPronouns] = useState<string[]>(ogDetails.pronouns);
     const [selectedIndex, setSelectedIndex] = useState(0);
     const [query, setQuery] = useState("");
