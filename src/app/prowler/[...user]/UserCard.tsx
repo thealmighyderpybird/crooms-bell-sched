@@ -93,7 +93,7 @@ export default async function UserCard({ username }: { username: string }) {
                     </div> }
             </div>
         </div>
-        { userData?.bio && <div className={ prowlerStyles.bio }>{ sanitizeContent(userData.bio) }</div> }
+        { userData?.bio && <div className={ prowlerStyles.bio } dangerouslySetInnerHTML={{ __html: sanitizeContent(userData.bio) }} /> }
         { uid === userData?.id && <div className={ prowlerStyles.buttonBar }>
             <EditButton pronouns={userData?.pronouns ?? []} bio={userData?.bio ?? ""} sid={sid} />
             <ShareButton username={username} displayName={userData.displayname} />
