@@ -62,7 +62,7 @@
     font-size: 0.75rem;
 }
 
-.corePostHeaderContent svg {
+.corePostHeaderContent svg{
     margin-left: 0.25rem;
     margin-top: 1%;
 }
@@ -96,6 +96,7 @@
     -webkit-user-drag: none;
     border-radius: 100%;
     user-select: none;
+    pointer-events: none;
 }
 
 .profileBanner {
@@ -215,4 +216,59 @@
     display: block;
     height: 1rem;
     width: 1rem;
+}
+
+.pronouns {
+    margin-block-start: 0.5rem !important;
+    background-color: var(--sec);
+    font-size: 0.7rem !important;
+    line-height: 8px !important;
+    border-radius: 0.3125rem;
+    max-width: fit-content;
+    opacity: 1 !important;
+    padding: 0.3125rem;
+    display: block;
+}
+
+.bio {
+    margin-block-start: 1rem;
+}
+
+.buttonBar {
+    margin-block-start: 1rem;
+    display: flex;
+    gap: 0.25rem;
+}
+
+.buttonBar button {
+    color: var(--main) !important;
+    background-color: var(--sec);
+    line-height: 1 !important;
+    font-size: inherit;
+    width: 100%;
+}
+
+.buttonBar button:hover {
+    background-color: var(--mid-sec);
+    opacity: 1;
+}
+
+.buttonBar button:active {
+    background-color: var(--mid-pri);
+    opacity: 1;
+}
+
+.usernameFlex {
+    opacity: 1 !important;
+    align-items: center;
+    display: flex;
+}
+
+.usernameFlex span {
+    opacity: 0.8;
+}
+
+.usernameFlex img {
+    margin-left: 0.25rem !important;
+    margin-top: 1%;
 }

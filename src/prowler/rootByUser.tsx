@@ -96,7 +96,8 @@ export default function ProwlerRoot({ sid, uid, session, user, deviceType }: { s
     return <div id="prowler" style={{ marginBlockStart: "0.5rem" }}>
         <div className={ styles.prowlerPostContainer }>
             { posts.map((post: Post) => <ProwlerPost post={post} sid={sid} uid={uid} session={session}
-                                                              deviceType={deviceType} key={post.id} />) }
+                                                              key={`${post.id}-${Math.ceil(Math.random() * 100)}`}
+                                                              deviceType={deviceType}/>) }
         </div>
     </div>;
 };

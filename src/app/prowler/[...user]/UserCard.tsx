@@ -1,16 +1,21 @@
-"use client";
-
-import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
 import prowlerStyles from "~/prowler/prowler.module.css";
+import sanitizeContent from "~/lib/SanitizeContent";
 import CBSHServerURL from "~/lib/CBSHServerURL";
+import CroomsPro from "~/components/CroomsPro";
+import getSession from "~/lib/session.server";
 import Verified from "~/components/Verified";
 import Card from "~/components/index/Card";
 import styles from "./style.module.css";
+import ShareButton from "./ShareButton";
+import EditButton from "~/app/prowler/[...user]/EditButton";
 
 type UserData = ErrorData & {
     displayname: string,
     username: string,
     verified: boolean,
+    croomsPro: boolean,
+    pronouns: string[],
+    bio: string,
     id: string,
 }
 
@@ -19,24 +24,11 @@ interface ErrorData {
     code: string,
 }
 
-export default function UserCard({ username }: { username: string }) {
-    const [userData, setUserData]: [UserData, Dispatch<SetStateAction<UserData>>]  = useState({
-        displayname: "",
-        username: "",
-        verified: false,
-        id: "",
-        code: "",
-        error: "",
-    } as UserData);
-    
-    useEffect(() => {
-        async function doAction() {
-            const r = await fetch(CBSHServerURL + "/users/" + username);
-            const res = await r.json() as { status: "OK" | "FAILED", data: UserData };
-            setUserData(res.data);
-        }
-        void doAction();
-    }, [username]);
+export default async function UserCard({ username }: { username: string }) {
+    const r = await fetch(CBSHServerURL + "/users/" + username);
+    const res = await r.json() as { status: "OK" | "FAILED", data: UserData };
+    const { uid, sid } = await getSession();
+    const userData = res.data;
 
     if (userData.code === "ERR_USER_NOT_FOUND") {
         return <Card>
@@ -70,6 +62,10 @@ export default function UserCard({ username }: { username: string }) {
         </Card>;
     }
 
+    let pronounString = "";
+    userData?.pronouns.forEach((pronoun, index) => pronounString +=
+        pronoun + (index < userData.pronouns.length -1 ? "/" : ""));
+
     return <Card>
         { username && userData?.id ? // eslint-disable-next-line @next/next/no-img-element
             <img src={`https://mikhail.croomssched.tech/apiv2/fs/profile_banner/${userData.id}.png`}
@@ -79,17 +75,28 @@ export default function UserCard({ username }: { username: string }) {
             { username && userData?.id ? // eslint-disable-next-line @next/next/no-img-element
                 <img src={`https://mikhail.croomssched.tech/apiv2/fs/pfp/${userData.id}.png`}
                      alt={ username + "'s profile picture" } title={ username + "'s profile picture" }
-                     className={ prowlerStyles.profilePicture } width={64} height={64} /> : null }
+                     className={ prowlerStyles.profilePicture } width={64} height={64} draggable="false" /> : null }
             <div className={`${prowlerStyles.corePostHeaderContent} ${styles.userContainer} ${styles.header}`}>
                 { username &&
                     <div className={ styles.userContainer }>
-                        <h2>{ userData.displayname ? userData.displayname : `@${username}` }</h2>
-                        <span>
-                            { userData.displayname && <span>@{username}</span> }
+                        <h2 className={ !userData.displayname && (userData?.verified || userData?.croomsPro) ? prowlerStyles.usernameFlex : undefined }>
+                            { userData.displayname ? userData.displayname : `@${username}` }
+                            { (!userData.displayname && userData?.verified) && <Verified size={18} /> }
+                            { (!userData.displayname && userData?.croomsPro) && <CroomsPro /> }
+                        </h2>
+                        { userData.displayname && <span className={ prowlerStyles.usernameFlex + " smaller" }>
+                            <span>@{username}</span>
                             { userData?.verified && <Verified size={16} /> }
-                        </span>
+                            { userData.croomsPro && <CroomsPro /> }
+                        </span> }
+                        { pronounString && <span className={ prowlerStyles.pronouns }>{ pronounString }</span> }
                     </div> }
             </div>
         </div>
+        { userData?.bio && <div className={ prowlerStyles.bio }>{ sanitizeContent(userData.bio) }</div> }
+        { uid === userData?.id && <div className={ prowlerStyles.buttonBar }>
+            <EditButton pronouns={userData?.pronouns ?? []} bio={userData?.bio ?? ""} sid={sid} />
+            <ShareButton username={username} displayName={userData.displayname} />
+        </div> }
     </Card>;
 }

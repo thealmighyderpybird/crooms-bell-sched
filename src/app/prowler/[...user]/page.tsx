@@ -29,7 +29,6 @@ export default async function Page({ params }: { params: Promise<{ user: string 
             <UserCard username={username} />
             <Card>
                 <CardHeader>Posts</CardHeader>
-                {deviceType}
                 <ProwlerRoot sid={sid} uid={uid} session={user} user={username} deviceType={deviceType} />
             </Card>
         </>;
