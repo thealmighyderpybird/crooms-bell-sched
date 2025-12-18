@@ -66,13 +66,13 @@
     display: block;
 }
 
-@media (max-width: 615px) {
+@media (max-width: 359px) {
     .navChild.right {
         display: none;
     }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 620px) {
     .appLogoParent {
         padding-right: 8px;
     }
@@ -99,6 +99,12 @@
 
 @media screen and (max-width: 859px) {
     .download span {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 424px) {
+    .menuItem:has(.download) {
         display: none;
     }
 }

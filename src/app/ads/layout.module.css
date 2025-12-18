@@ -1,0 +1,32 @@
+.header {
+    justify-content: center;
+    flex-direction: column;
+    margin: 1rem auto 2rem;
+    align-items: flex-end;
+    width: fit-content;
+    display: flex;
+}
+
+.dynamicText {
+    --gradient: #429fd4 -3.08%,#2766b1 14.74%,#3080d1 72.12%;
+    background: -webkit-linear-gradient(353.8deg, var(--gradient));
+    background: -moz-linear-gradient(353.8deg, var(--gradient));
+    background: -o-linear-gradient(353.8deg, var(--gradient));
+    background: linear-gradient(96.2deg, var(--gradient));
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    margin-block-start: -0.625rem;
+    text-fill-color: transparent;
+    -o-background-clip: text;
+    background-clip: text;
+    font-weight: normal;
+    font-size: 1.75rem;
+    user-select: none;
+    line-height: .85;
+}
+
+@media screen and (prefers-color-scheme: dark) {
+    .dynamicText {
+        --gradient: #2766b1 -3.08%, #429fd4 14.74%, #3080d1 72.12%;
+    }
+}

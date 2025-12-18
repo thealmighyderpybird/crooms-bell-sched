@@ -32,7 +32,7 @@ export default async function Header() {
                     Daily Poll
                 </Link>
             </div>
-            <div className={headerStyles.navChild + " right"}>
+            <div className={`${headerStyles.navChild} ${headerStyles.right}`}>
                 { osName === "Windows" &&
                 <Link href="https://mikhail.croomssched.tech/apps/bellscheduleapp" className={headerStyles.menuItem}
                       title="Download the app" tabIndex={1} target="CBSHApp">

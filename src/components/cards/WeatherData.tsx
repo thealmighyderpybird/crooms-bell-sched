@@ -1,5 +1,6 @@
 import styles from "./styles/forecastImage.module.css";
 import ForecastImage from "./ForecastImage";
+import "./styles/forecast.css";
 
 interface Forecast {
     dayName: string; icon: string; temp: number; windSpeed: string; windDirection: string;
@@ -7,7 +8,7 @@ interface Forecast {
 
 const WeatherData = ({ forecasts }: { forecasts: Forecast[] }) => {
     return forecasts.map((forecast: Forecast, index: number) => {
-        return <div className={styles.content} key={index}>
+        return <div className={styles.content} key={index} id={"forecast-" + index}>
             <h4>{forecast.dayName}</h4>
             <ForecastImage icon={forecast.icon}/>
             <h6>

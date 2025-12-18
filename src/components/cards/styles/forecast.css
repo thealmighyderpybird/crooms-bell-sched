@@ -1,0 +1,17 @@
+@media (max-width: 480px) {
+    #forecast-4 {
+        display: none;
+    }
+}
+
+@media (max-width: 350px) {
+    #forecast-3 {
+        display: none;
+    }
+}
+
+@media (max-width: 270px) {
+    #forecast-2 {
+        display: none;
+    }
+}
