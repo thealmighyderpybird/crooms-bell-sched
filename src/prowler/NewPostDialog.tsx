@@ -18,7 +18,7 @@ export default function NewPostDialog({ sid, setIsActive }: { sid: string, setIs
             <div className={postStyles.content}>
                 <header><h2 style={{ marginBlockEnd: "0.5rem" }}>Create Post</h2></header>
                 <main className={postStyles.content}>
-                    <LiveEdit value={content} onChange={(e) => setContent(e)} />
+                    <LiveEdit value={content} mentionHelper onChange={(e) => setContent(e)} />
                 </main>
             </div>
             <div className={styles.actionButtons}>

@@ -1,13 +1,16 @@
 "use client";
 
+import dialogStyles from "~/app/prowler/[...user]/dialogStyles.module.css";
 import { useState, useEffect, useRef, type CSSProperties } from "react";
 import sanitizeContent from "~/lib/SanitizeContent";
 import styles from "~/styles/liveEditor.module.css";
 import EditHelp from "~/components/modals/EditHelp";
-import {createPortal} from "react-dom";
+import CBSHServerURL from "~/lib/CBSHServerURL";
+import { createPortal } from "react-dom";
+import type User from "~/types/user";
 
-export default function LiveEdit({ value, onChange, style, preview = false }:
-                                 { value?: string, onChange: (newContent: string) => void, style?: CSSProperties, preview?: boolean }
+export default function LiveEdit({ value, onChange, style, preview = false, mentionHelper = false }:
+    { value?: string, onChange: (newContent: string) => void, style?: CSSProperties, preview?: boolean, mentionHelper?: boolean }
 ) {
     const iframeRef = useRef<HTMLIFrameElement>(null);
     const [isHelpEnabled, setIsHelpEnabled] = useState(false);
@@ -20,9 +23,13 @@ export default function LiveEdit({ value, onChange, style, preview = false }:
         a: false,
         rainbow: false,
     });
+    const [mentionAnchor, setMentionAnchor] = useState({ top: 0, left: 0 });
+    const [usernameList, setUsernameList] = useState<string[]>([]);
+    const [suggestions, setSuggestions] = useState<string[]>([]);
+    const [activeIndex, setActiveIndex] = useState(0);
     const [html, setHtml] = useState(value ?? "");
 
-    // Start LiveEditor initialization
+    // Start LiveEdit initialization
     useEffect(() => {
         const iframe = iframeRef.current; if (!iframe) return;
         const doc = iframe.contentDocument; if (!doc) return;
@@ -33,13 +40,21 @@ export default function LiveEdit({ value, onChange, style, preview = false }:
                 <head>
                     <style>
                         html {
+                            --pri: ${getComputedStyle(iframe).getPropertyValue("--pri")};
+                            --sec: ${getComputedStyle(iframe).getPropertyValue("--sec")};
+                            --tri: ${getComputedStyle(iframe).getPropertyValue("--tri")};
+                            --qua: ${getComputedStyle(iframe).getPropertyValue("--qua")};
+                            
+                            --mid-pri: ${getComputedStyle(iframe).getPropertyValue("--mid-pri")};
+                            --mid-sec: ${getComputedStyle(iframe).getPropertyValue("--mid-sec")};
+                            --mid-tri: ${getComputedStyle(iframe).getPropertyValue("--mid-tri")};
+                            --mid-qua: ${getComputedStyle(iframe).getPropertyValue("--mid-qua")};
+                        
                             background-color: ${getComputedStyle(iframe).getPropertyValue("--mid-pri")};
                             height: 100%;
                         }
                     
-                        body {                            
-                            --main: black;
-                            
+                        body {
                             --sucess: darkgreen;
                             --warn: goldenrod;
                             --alert: darkred;
@@ -50,18 +65,10 @@ export default function LiveEdit({ value, onChange, style, preview = false }:
                             height: calc(100% - 1rem);
                             background: transparent;
                             font: 11pt system-ui;
-                            color-scheme: light;
-                            color: var(--main);
+                            color: ${getComputedStyle(iframe).getPropertyValue("--main")};
                             line-height: 1.3;
                             padding: 0.5rem;
                             margin: 0;
-                        }
-                        
-                        @media screen and (prefers-color-scheme: dark) {
-                            body {
-                                color-scheme: dark;
-                                --main: white;
-                            }
                         }
                         
                         a:any-link, a:-webkit-any-link, a.links {
@@ -78,7 +85,7 @@ export default function LiveEdit({ value, onChange, style, preview = false }:
                             padding-inline: 20px;
                         }
                         
-                        .rainbow, rainbow {
+                        .rainbow {
                             animation: anim-rainbow 5s infinite;
                         }
                         
@@ -249,6 +256,129 @@ export default function LiveEdit({ value, onChange, style, preview = false }:
         return () => doc.removeEventListener("keydown", handleKey as (e: KeyboardEvent) => void);
     }, []);
 
+    useEffect(() => {
+        async function doAction() {
+            const r = await fetch(CBSHServerURL + "/users/all");
+            const res = await r.json() as { data: User[] };
+            const data: string[] = [];
+
+            res.data.forEach(user => data.push(user.username));
+            setUsernameList(data);
+        } if (mentionHelper) void doAction();
+    }, []);
+
+    // For mention suggestions
+    useEffect(() => {
+        const doc = iframeRef.current?.contentDocument;
+        if (!doc || !mentionHelper) return;
+
+        const handleInput = () => {
+            const sel = doc.getSelection();
+            if (!sel?.anchorNode) return;
+            const text = sel.anchorNode.textContent ?? "";
+            const cursorPos = sel.anchorOffset;
+            const left = text.slice(0, cursorPos);
+            const match = left.match(/@(\w*)$/);
+            if (match) {
+                const query = match[1]!.toLowerCase();
+                const filtered = usernameList.filter(u => u.toLowerCase().startsWith(query));
+                if (query.length >= 1) setSuggestions(filtered);
+                setActiveIndex(0);
+            } else {
+                setSuggestions([]);
+            }
+            updateDropdownPos();
+        };
+
+        doc.body.addEventListener("input", handleInput);
+        return () => doc.body.removeEventListener("input", handleInput);
+    }, [usernameList]);
+
+    const insertMention = (username: string) => {
+        const doc = iframeRef.current?.contentDocument; if (!doc) return;
+        const sel = doc.getSelection(); if (!sel?.anchorNode) return;
+
+        const textNode = sel.anchorNode;
+        const text = textNode.textContent ?? "";
+        const cursorPos = sel.anchorOffset;
+        const left = text.slice(0, cursorPos);
+        const match = left.match(/@(\w*)$/);
+        if (!match) return;
+
+        const start = cursorPos - match[0].length;
+        const end = cursorPos;
+        const before = text.slice(0, start);
+        const after = text.slice(end);
+
+        const parent = textNode.parentNode!;
+        if (before) parent.insertBefore(doc.createTextNode(before), textNode);
+
+        const a = doc.createElement("a");
+        a.className = "links";
+        a.setAttribute("mention", username);
+        a.textContent = `@${username}`;
+        parent.insertBefore(a, textNode);
+
+        const nextSpan = doc.createElement("span");
+        nextSpan.textContent = "\u200B "; // zero-width space + real space
+        parent.insertBefore(nextSpan, textNode);
+
+        if (after) nextSpan.insertBefore(doc.createTextNode(after), null);
+        parent.removeChild(textNode);
+
+        const range = doc.createRange();
+        range.setStart(nextSpan, 1);
+        range.collapse(true);
+        sel.removeAllRanges();
+        sel.addRange(range);
+
+        setSuggestions([]);
+    };
+
+    const updateDropdownPos = () => {
+        const doc = iframeRef.current?.contentDocument;
+        const iframe = iframeRef.current;
+        if (!doc || !iframe) return;
+
+        const sel = doc.getSelection();
+        if (!sel || sel.rangeCount === 0) return;
+
+        const range = sel.getRangeAt(0).cloneRange();
+        range.collapse(true);
+        const rect = range.getBoundingClientRect();
+
+        setMentionAnchor({
+            top: rect.bottom - iframe.contentDocument!.documentElement.scrollTop,
+            left: rect.left - iframe.contentDocument!.documentElement.scrollLeft,
+        });
+    };
+
+    useEffect(() => {
+        const doc = iframeRef.current?.contentDocument;
+        if (!doc) return;
+
+        const handleKey = (e: KeyboardEvent) => {
+            if (suggestions.length === 0) return;
+
+            if (e.key === "ArrowDown") {
+                e.preventDefault();
+                setActiveIndex(prev => (prev + 1) % suggestions.length);
+            } else if (e.key === "ArrowUp") {
+                e.preventDefault();
+                setActiveIndex(prev => (prev - 1 + suggestions.length) % suggestions.length);
+            } else if (e.key === "Enter" || e.key === "Tab") {
+                e.preventDefault();
+                insertMention(suggestions[activeIndex]!);
+            } else if (e.key === "Escape") {
+                e.preventDefault();
+                setSuggestions([]);
+            }
+        };
+
+        doc.addEventListener("keydown", handleKey);
+        return () => doc.removeEventListener("keydown", handleKey);
+    }, [suggestions, activeIndex]);
+
     // Detection for rainbow button
     const updateFormatData = () => {
         const doc = iframeRef.current?.contentDocument; if (!doc) return;
@@ -387,8 +517,6 @@ export default function LiveEdit({ value, onChange, style, preview = false }:
         if (!sel || sel.rangeCount === 0) return;
         const range = sel.getRangeAt(0);
 
-
-
         if (formats.underline) execCmd("underline");
         if (formats.italic) execCmd("italic");
         if (formats.bold) execCmd("bold");
@@ -477,7 +605,18 @@ export default function LiveEdit({ value, onChange, style, preview = false }:
                 </svg>
             </div>
         </div>
-        <iframe ref={iframeRef} className={ styles.liveEditor } style={style ?? {}} />
+        <div style={{ position: "relative" }}>
+            <iframe ref={iframeRef} className={ styles.liveEditor } style={style ?? {}} />
+            { (mentionHelper && suggestions.length > 0) &&
+            <ul className={`${dialogStyles.suggestions} ${styles.suggestions}`} style={mentionAnchor}>
+                {suggestions.sort().map((u, i) => (
+                    <li key={u} style={{ background: i === activeIndex ? "var(--tri)" : "transparent" }}
+                        onMouseDown={e => { e.preventDefault(); insertMention(u); }}>
+                        @{u}
+                    </li>
+                ))}
+            </ul>}
+        </div>
         { preview && <div dangerouslySetInnerHTML={{ __html: sanitizeContent(html) }} /> }
         { isHelpEnabled && createPortal(<EditHelp setIsActive={setIsHelpEnabled} />, document.getElementById("modal-portal")!) }
     </div>;

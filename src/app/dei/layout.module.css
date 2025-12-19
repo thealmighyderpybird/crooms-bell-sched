@@ -8,7 +8,6 @@
 }
 
 .dynamicText {
-    --gradient: #429fd4 -3.08%,#2766b1 14.74%,#3080d1 72.12%;
     background: -webkit-linear-gradient(353.8deg, var(--gradient));
     background: -moz-linear-gradient(353.8deg, var(--gradient));
     background: linear-gradient(96.2deg, var(--gradient));
@@ -17,14 +16,30 @@
     margin-block-start: -0.625rem;
     text-fill-color: transparent;
     background-clip: text;
-    font-weight: normal;
-    font-size: 1.75rem;
+    font-weight: bolder;
+    font-size: 1.5rem;
     user-select: none;
-    line-height: .85;
+    line-height: 1.3;
+}
+
+.green {
+    --gradient: #3fb442 -3.08%,#46a127 14.74%,#60a130 72.12%;
+}
+
+.red {
+    --gradient: #7f0402 -3.08%,#b12706 14.74%,#913000 72.12%;
+}
+
+.blue {
+    --gradient: #429fd4 -3.08%,#2766b1 14.74%,#3080d1 72.12%;
 }
 
 @media screen and (prefers-color-scheme: dark) {
-    .dynamicText {
+    .blue {
         --gradient: #2766b1 -3.08%, #429fd4 14.74%, #3080d1 72.12%;
+    }
+
+    .red {
+        --gradient: #ef0402 -3.08%,#b12706 14.74%,#d13000 72.12%;
     }
 }

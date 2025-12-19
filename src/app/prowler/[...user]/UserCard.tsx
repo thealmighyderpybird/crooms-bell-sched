@@ -1,5 +1,6 @@
 import prowlerStyles from "~/prowler/prowler.module.css";
 import sanitizeContent from "~/lib/SanitizeContent";
+import type { UserData } from "~/types/UserData";
 import CBSHServerURL from "~/lib/CBSHServerURL";
 import CroomsPro from "~/components/CroomsPro";
 import getSession from "~/lib/session.server";
@@ -7,22 +8,8 @@ import Verified from "~/components/Verified";
 import Card from "~/components/index/Card";
 import styles from "./style.module.css";
 import ShareButton from "./ShareButton";
-import EditButton from "~/app/prowler/[...user]/EditButton";
+import EditButton from "./EditButton";
 
-type UserData = ErrorData & {
-    displayname: string,
-    username: string,
-    verified: boolean,
-    croomsPro: boolean,
-    pronouns: string[],
-    bio: string,
-    id: string,
-}
-
-interface ErrorData {
-    error: string,
-    code: string,
-}
 
 export default async function UserCard({ username }: { username: string }) {
     const r = await fetch(CBSHServerURL + "/users/" + username);

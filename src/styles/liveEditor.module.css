@@ -58,3 +58,11 @@
 .icon:active, .icon.active {
     background-color: var(--sec);
 }
+
+.suggestions {
+    border-radius: 0.5rem !important;
+    width: 24rem !important;
+    overflow-x: hidden;
+    max-height: 10rem;
+    overflow-y: auto;
+}

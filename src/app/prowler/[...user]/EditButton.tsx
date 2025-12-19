@@ -98,7 +98,7 @@ const EditDialog = ({ setActive, ogDetails, sid, newAlert }: {
                         <h3>Bio</h3>
                         <p style={{ marginBlockEnd: "0.5rem" }}>Make good first impressions with your bio.
                             Make it all about you, your interests, and hobbies.</p>
-                        <LiveEdit onChange={html => setBio(sanitizeContent(html))} value={bio} />
+                        <LiveEdit onChange={html => setBio(sanitizeContent(html))} value={bio} mentionHelper />
                     </div>
                 </main>
             </div>

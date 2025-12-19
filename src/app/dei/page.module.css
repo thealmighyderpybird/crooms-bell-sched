@@ -1,0 +1,23 @@
+.dynamicText {
+    background: -webkit-linear-gradient(353.8deg, var(--gradient));
+    background: -moz-linear-gradient(353.8deg, var(--gradient));
+    background: linear-gradient(96.2deg, var(--gradient));
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    text-fill-color: transparent;
+    background-clip: text;
+}
+
+.badgeContainer {
+    margin: 0.5rem 0 1rem;
+}
+
+.badgeContainer > div {
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.badgeContainer > div > img {
+    height: 1.75rem;
+    width: 1.75rem;
+}

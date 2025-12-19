@@ -109,6 +109,21 @@ const friendlyTagList: Record<string, TagInfo> = {
         description: "This user identifies as transgender.",
         image: "https://upload.wikimedia.org/wikipedia/commons/b/b0/Transgender_Pride_flag.svg"
     },
+    "arab": {
+        name: "Arab",
+        description: "This user is Arabian or of Arabian descent.",
+        image: "https://upload.wikimedia.org/wikipedia/commons/2/24/Flag_of_Hejaz_%281917%29.svg"
+    },
+    "african": {
+        name: "African",
+        description: "This user is African or of African descent.",
+        image: "https://upload.wikimedia.org/wikipedia/commons/a/ab/Flag_of_the_UNIA.svg"
+    },
+    "hispanic": {
+        name: "Hispanic",
+        description: "This user is Hispanic or of Hispanic descent.",
+        image: "https://upload.wikimedia.org/wikipedia/commons/a/ad/Flag_of_the_Hispanic_peoples.svg"
+    },
     "croomsConnect": {
         name: "Crooms Connect",
         description: "This user is a Crooms Connect user.",

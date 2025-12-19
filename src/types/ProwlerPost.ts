@@ -6,4 +6,6 @@ export default interface Post {
     createdBy: string;
     verified: boolean;
     userTags: string[];
+    pronouns: string[];
+    displayName: string;
 }

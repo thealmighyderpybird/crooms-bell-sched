@@ -16,6 +16,7 @@
     text-decoration: none !important;
     justify-content: space-between;
     margin-bottom: 0.75rem;
+    position: relative;
     user-select: none;
     flex-flow: row;
     color: inherit;
@@ -206,12 +207,14 @@
     margin-inline-start: 0.5rem;
     flex-flow: row nowrap;
     align-items: center;
+    user-select: none;
     display: flex;
     gap: 0.125rem;
 }
 
 .userTagContainer img {
     border-radius: 0.25rem;
+    pointer-events: none;
     object-fit: cover;
     display: block;
     height: 1rem;
@@ -271,4 +274,15 @@
 .usernameFlex img {
     margin-left: 0.25rem !important;
     margin-top: 1%;
+}
+
+.hoverCard {
+    transform: translate(-0.25rem, 0.5rem);
+    background-color: var(--pri);
+    box-shadow: 0 0 1rem black;
+    border-radius: 1rem;
+    position: absolute;
+    max-width: 24rem;
+    padding: 1rem;
+    z-index: 10;
 }
