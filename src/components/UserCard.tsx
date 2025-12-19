@@ -6,9 +6,9 @@ import Verified from "~/components/Verified";
 export default function UserCard({ userData }: { userData: {
     username: string, id: string, displayName: string, verified: boolean, croomsPro: boolean, pronouns: string[]
 } }) {
-    let pronounString = "";
+    let pronounString = ""; /*
     userData?.pronouns.forEach((pronoun: string, index: number) => pronounString +=
-        pronoun + (index < userData.pronouns.length -1 ? "/" : ""));
+        pronoun + (index < userData.pronouns.length -1 ? "/" : "")); */
 
     return <div className={ prowlerStyles.corePostHeaderItem } style={{ marginBlockEnd: "0" }}>
         { userData?.username && userData?.id ? // eslint-disable-next-line @next/next/no-img-element
