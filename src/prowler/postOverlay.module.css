@@ -15,3 +15,34 @@
 .input {
     text-align: left;
 }
+
+.closeFriends {
+    max-width: calc(100% - 1rem);
+    background-color: #129f3b;
+    align-items: flex-start;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    display: flex;
+    color: white;
+    gap: 0.25rem;
+}
+
+.closeFriends > input {
+    height: 1rem;
+    width: 1rem;
+}
+
+.closeFriends > label {
+    font-size: small;
+    line-height: 1;
+    width: 100%;
+}
+
+.closeFriends > label > strong {
+    font-size: 1rem;
+    display: block;
+}
+
+.closeFriends > label > a {
+    color: inherit !important;
+}

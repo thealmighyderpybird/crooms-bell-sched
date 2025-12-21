@@ -132,6 +132,7 @@
 
 .actionIcon {
     box-sizing: content-box;
+    position: relative;
     fill: var(--main);
     padding: 0.5rem;
     height: 1.25rem;
@@ -152,7 +153,8 @@
     box-shadow: 0 0 10px black;
     border-radius: 0.5rem;
     position: absolute;
-    z-index: 6;
+    z-index: 7;
+    right: 0;
 }
 
 .menu button {
@@ -285,4 +287,28 @@
     max-width: 24rem;
     padding: 1rem;
     z-index: 10;
+}
+
+.corePostHeader > div:has(.closeFriends) {
+    display: flex;
+}
+
+.closeFriends {
+    background-color: #129f3b;
+    border-radius: 0.75rem;
+    width: fit-content;
+    padding: 0.625rem;
+}
+
+.closeFriends:hover {
+    background-color: #3abd63;
+}
+
+.closeFriends:active {
+    opacity: 0.6;
+}
+
+.closeFriends > svg {
+    display: block;
+    fill: white;
 }

@@ -44,7 +44,6 @@ export default function GlobalError({ error }: { error: Error & { digest?: strin
                 <pre style={ styles.pre }>
                     { error.stack }
                 </pre>
-                <p style={ styles.digest }>Digest: { error.digest }</p>
             </div>
             <button style={ styles.button } onClick={() => window.location.reload()}>Try again</button>
         </body>
