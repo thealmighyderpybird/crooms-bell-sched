@@ -17,7 +17,7 @@ export default function AccountHeader({ session }: { session: CBSHUser | null })
                                       onClick={() => {router.push("/auth/login")}}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={`https://mikhail.croomssched.tech/apiv2/fs/pfp/null.png`}
-             alt={"Profile Picture"} className={ styles.profilePicture } />
+             alt="Profile Picture" className={ styles.profilePicture } />
         <div className={ styles.accountDetails }>Sign In</div>
     </div>
 
@@ -26,7 +26,9 @@ export default function AccountHeader({ session }: { session: CBSHUser | null })
              onClick={() => setIsTrayOpen(toggleIsTrayOpen(isTrayOpen))}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={`https://mikhail.croomssched.tech/apiv2/fs/pfp/${session.id}.png`}
-                 alt={"Profile Picture"} className={ styles.profilePicture } />
+                 alt={ (session.displayname ? session.displayname : `@${session.username}`) + "'s Profile Picture"}
+                 title={ (session.displayname ? session.displayname : `@${session.username}`) + "'s Profile Picture"}
+                 className={ styles.profilePicture } />
             <div className={ styles.accountDetails }>
                 { session.displayname !== "" ? session.displayname : `@${session.username}` }
                 { session.verified && <Verified size={15} /> }
@@ -36,7 +38,9 @@ export default function AccountHeader({ session }: { session: CBSHUser | null })
             <div className={ styles.accountPopoutCard }>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={`https://mikhail.croomssched.tech/apiv2/fs/pfp/${session.id}.png`}
-                     alt={"Profile Picture"} className={ styles.profilePicture } />
+                     alt={ (session.displayname ? session.displayname : `@${session.username}`) + "'s Profile Picture"}
+                     title={ (session.displayname ? session.displayname : `@${session.username}`) + "'s Profile Picture"}
+                     className={ styles.profilePicture } />
                 <div>
                     <h2>
                         { session.displayname ? session.displayname : `@${session.username}` }
