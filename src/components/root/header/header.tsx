@@ -1,4 +1,5 @@
 import AnnouncementsTrigger from "~/components/modals/AnnouncementsTrigger";
+import getSessionInfo from "~/lib/getSessionInfo";
 import headerStyles from "./header.module.css";
 import getSession from "~/lib/session.server";
 import AccountHeader from "./AccountHeader";
@@ -13,6 +14,7 @@ export default async function Header() {
     const { os } = userAgent({ headers: await headers() });
     const osName = os.name ?? "Unknown";
     const session = await getSession();
+    const sessionInfo = await getSessionInfo(session.sid);
 
     return <header className={headerStyles.header}>
         <nav className={headerStyles.nav}>
@@ -46,7 +48,7 @@ export default async function Header() {
                     <div className={headerStyles.subMenu} style={{ padding: "0.5rem", fontSize: "0.8rem" }}>Download the app</div>
                 </Link>}
                 <AnnouncementsTrigger />
-                <AccountHeader session={session} />
+                <AccountHeader session={sessionInfo} />
             </div>
         </nav>
     </header>;
