@@ -1,6 +1,5 @@
 "use client";
 
-import CloseFriendsInfo from "./CloseFriendsInfo";
 import { parseTime } from "~/lib/parseEndTime";
 import CroomsPro from "~/components/CroomsPro";
 import ActionArea from "~/prowler/actionArea";
@@ -9,7 +8,6 @@ import UserCard from "~/components/UserCard";
 import type Post from "~/types/ProwlerPost";
 import styles from "./prowler.module.css";
 import { useRef, useState } from "react";
-import { createPortal } from "react-dom";
 import Content from "~/prowler/content";
 import type User from "~/types/user";
 import UserTags from "./UserTags";
@@ -31,7 +29,6 @@ const monthNames = [
 ];
 
 export default function Post({ post, session, sid, uid, deviceType }: { post: Post, session: User, sid: string, uid: string, deviceType: string }) {
-    const [closeFriendsActive, setCloseFriendsActive] = useState(false);
     const [hoverCardActive, setHoverCardActive] = useState(false);
     const sleeper = useRef(setTimeout(() => {}, 1));
 
@@ -80,17 +77,7 @@ export default function Post({ post, session, sid, uid, deviceType }: { post: Po
                         id: post.uid,
                     }} /></div> }
             </div>
-            <div onClick={() => setCloseFriendsActive(true)}>
-                { post.store === "closeFriends" && <div className={ styles.closeFriends }>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" width="1rem" height="1rem">
-                        <path d="M12.701 3.908c.532-1.078 2.069-1.078 2.6 0l2.692 5.452l6.017.875c1.19.173 1.664 1.634.804 2.473l-4.355 4.244l1.028 5.993c.204 1.185-1.04 2.088-2.103 1.529l-5.382-2.83l-5.382 2.83c-1.064.559-2.307-.344-2.104-1.529l1.028-5.993l-4.355-4.244c-.86-.839-.385-2.3.804-2.473l6.017-.875z"
-                              fill="currentColor" />
-                    </svg>
-                </div> }
-                { closeFriendsActive && createPortal(<CloseFriendsInfo setActiveAction={setCloseFriendsActive} post={post} />,
-                    document.getElementById("modal-portal")!) }
-                <ActionArea session={session} post={post} sid={sid} uid={uid} deviceType={deviceType} />
-            </div>
+            <ActionArea session={session} post={post} sid={sid} uid={uid} deviceType={deviceType} />
         </div>
         <Content content={post.data} />
     </div>;
