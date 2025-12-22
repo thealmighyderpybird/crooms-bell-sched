@@ -8,8 +8,8 @@ import { useState } from "react";
 export default function ChristmasCorner() {
     const [menuActive, setMenuActive] = useState(false);
 
-    return <div className={ styles.main } id="christmas-menu">
+    return <aside className={ styles.main } id="christmas-menu">
         <ChristmasMenu disableAction={() => setMenuActive(false)} hidden={!menuActive} />
         <ChristmasButton onClickAction={() => setMenuActive(true)} hidden={menuActive} />
-    </div>
+    </aside>
 }
