@@ -216,7 +216,6 @@
 
 .userTagContainer img {
     border-radius: 0.25rem;
-    pointer-events: none;
     object-fit: cover;
     display: block;
     height: 1rem;
