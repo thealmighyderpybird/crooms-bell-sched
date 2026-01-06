@@ -9,7 +9,6 @@ import Fonts from "~/styles/fonts/fonts";
 import { type ReactNode } from "react";
 import Script from "next/script";
 import "~/styles/master.css";
-import ChristmasCorner from "~/components/christmas/main";
 
 export const viewport: Viewport = {
     width: "device-width",
@@ -25,6 +24,7 @@ const description = "The Crooms Bell Schedule features an interactive bell sched
     " Prowler.";
 const keywords = "Crooms, CAIT, CAoIT, Crooms Bell Schedule, Crooms Academy Bell Schedule, Crooms Academy," +
     " Crooms Schedule, Schedule, Bell Schedule, 2024-2025, 2025-2026";
+const statusPageURL = "https://croomssched.statuspage.io/embed/script.js";
 
 export const metadata: Metadata = {
     title: {
@@ -64,9 +64,8 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
                 <Header />
                 <main className={ rootStyles.main }>{children}</main>
                 <Footer />
-                <Script src={"https://croomssched.statuspage.io/embed/script.js"} />
+                <Script src={statusPageURL} />
                 <div id="modal-portal" />
-                <ChristmasCorner />
             </AlertProvider>
             </body>
         </html>;
@@ -77,9 +76,8 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
                 <Header />
                 <main className={ rootStyles.main }>{children}</main>
                 <Footer />
-                <Script src={"https://croomssched.statuspage.io/embed/script.js"} />
+                <Script src={statusPageURL} />
                 <div id="modal-portal" />
-                <ChristmasCorner />
             </AlertProvider>
             </body>
         </html>
