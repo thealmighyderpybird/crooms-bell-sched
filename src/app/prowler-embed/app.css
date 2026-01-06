@@ -1,0 +1,16 @@
+html, body {
+    background-color: transparent !important;
+    color-scheme: revert !important;
+}
+
+body {
+    height: revert;
+
+    header, footer, nav, #christmas-menu {
+        display: none !important;
+    }
+
+    main {
+        padding-block: 0 !important;
+    }
+}
