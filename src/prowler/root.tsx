@@ -53,6 +53,7 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
     let ws: WebSocket;
     let reconnectTimer: NodeJS.Timeout = undefined!;
     let shownDisconnected = false;
+    let loading = false;
 
     const createWebsocket = () => {
         ws = new WebSocket(CBSHServerURL.replace("http://", "ws://"));
@@ -94,21 +95,30 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
 
             if (data.Message === "DeletePost") {
                 const delPost = data as DeletePostWebsocketMessage;
-                /*for (let index = 0; index < prowler.posts.length; index++) {
+                for (let index = 0; index < prowler.posts.length; index++) {
                     if (prowler.posts[index]?.id == delPost.ID) {
-                        //prowler.posts.splice(index, 1);
-                        //setPosts(prowler.posts);
-                        //console.log("deleted post " + index);
+                        prowler.posts = prowler.posts.splice(index, 1);
+                        setPosts(prowler.posts);
+                        console.log("deleted post " + index);
                         //prowler.posts.slice(index);
                         break;
 
                         // TODO: this doesnt work
                     }
-                }*/
+                }
             }
             else if (data.Message === "UpdatePost") {
-                // TODO
-                // schema, ID NewContent
+                const updatePost = data as UpdatePostWebsocketMessage;
+                for (let index = 0; index < prowler.posts.length; index++) {
+                    let post = prowler.posts[index];
+                    if (post === undefined) return;
+                    if (post.id == updatePost.ID) {
+                        post.data = updatePost.NewContent;
+                        prowler.posts[index] = post;
+                        break;
+                    }
+                }
+                setPosts(prowler.posts);
             }
             else if (data.Message === "NewPost") {
                 const newPost = data as NewPostWebsocketMessage;
@@ -117,9 +127,35 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
         });
     };
 
+    const loadPostsBefore = useCallback(async (beforeId: string) => {
+        try {
+            console.log("fetch before " + beforeId + ", 50 items");
+            const r = await fetch(CBSHServerURL + "/feed/before/" + beforeId + "?limit=50", {
+                headers: {
+                    "Authorization": JSON.stringify(sid),
+                    "Content-Type": "application/json",
+                }
+            });
+            const res = await r.json() as ProwlerRequestGET;
+
+            if (res.status !== "OK") {
+                createAlertBalloon("Something went wrong", // @ts-expect-error error is not explicitly defined
+                    `Failed to fetch the latest from Prowler. Error details: ${res.data.error}`, 1);
+                return;
+            }
+
+            prowler.posts = [...prowler.posts, ...res.data];
+
+        } catch (e) {
+            createAlertBalloon("Something went wrong", // @ts-expect-error it's unknown but known
+                "Failed to fetch the latest from Prowler. Error details: " + e.message, 2);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     const getPosts = useCallback(async () => {
         try {
-            const r = await fetch(prowler.source, {
+            const r = await fetch(CBSHServerURL + "/feed?limit=50", {
                 headers: {
                     "Authorization": JSON.stringify(sid),
                     "Content-Type": "application/json",
@@ -144,16 +180,19 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const loadPosts = () => {
+    const loadPosts = async () => {
         const data: Post[] = [];
 
-        for (let i = startAt; i < startAt + prowler.incrementor - 1; i++) {
-            if (prowler.posts[i]) data.push(prowler.posts[i]!)
-        }
+        console.log("[Prowler] loading old posts, current len: " + prowler.posts.length);
+        const lastItem = prowler.posts[prowler.posts.length - 1];
+        if (!lastItem) return;
+        await loadPostsBefore(lastItem.id);
 
-        setPosts((prev: Post[]) => uniquePosts([...prev, ...data]));
+        setPosts((prev: Post[]) => prowler.posts);
         setStartAt((prev) => prev + prowler.incrementor);
         setIsTriggered(false);
+
+        console.log("[Prowler] done, result len: " + prowler.posts.length);
     }
 
     function uniquePosts(posts: Post[]) {
@@ -173,7 +212,8 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
     useEffect(() => {
         if (!hasMore) return;
 
-        const onScroll = () => {
+        const onScroll = async () => {
+            if (loading) return;
             const scrollHeight = document.documentElement.scrollHeight;
             const clientHeight = document.documentElement.clientHeight;
             const scrollTop = document.documentElement.scrollTop;
@@ -181,9 +221,11 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
             const scrollPercent = (scrollTop + clientHeight) / scrollHeight * 100;
 
             if (!isTriggered && scrollPercent >= 95 && scrollPercent < 100) {
+                loading = true;
                 console.log("scroll triggered");
                 setIsTriggered(true);
-                loadPosts();
+                await loadPosts();
+                loading = false;
             }
         };
 
@@ -195,7 +237,7 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
     return <div id="prowler">
         <div className={styles.prowlerPostContainer}>
             {posts.map((post: Post) => <ProwlerPost post={post} sid={sid} uid={uid} session={session}
-                                                             deviceType={deviceType} key={post.id} />)}
+                deviceType={deviceType} key={post.id} />)}
         </div>
     </div>;
 };
