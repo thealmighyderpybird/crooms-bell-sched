@@ -190,7 +190,7 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
         await loadPostsBefore(lastItem.id);
 
         setPosts((prev: Post[]) => prowler.posts);
-        setStartAt((prev) => prev + prowler.incrementor);
+        setStartAt(prev => prev + prowler.incrementor);
         setIsTriggered(false);
 
         console.log("[Prowler] done, result len: " + prowler.posts.length);
@@ -237,7 +237,7 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
 
     return <div id="prowler">
         <div className={styles.prowlerPostContainer}>
-            <p>{loadingText}</p>
+            { loadingText !== "" && <p>{loadingText}</p> }
             {posts.map((post: Post) => <ProwlerPost post={post} sid={sid} uid={uid} session={session}
                 deviceType={deviceType} key={post.id} />)}
         </div>
