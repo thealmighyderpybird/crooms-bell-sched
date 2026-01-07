@@ -54,11 +54,13 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
     let reconnectTimer: NodeJS.Timeout = undefined!;
     let shownDisconnected = false;
     let loading = false;
+    let [loadingText, setLoadingText] = useState("Connecting to Crooms Bell Schedule Services");
 
     const createWebsocket = () => {
         ws = new WebSocket(CBSHServerURL.replace("http://", "ws://"));
         ws.addEventListener('open', event => {
-            console.log('Connected to Prowler');
+            console.log('[Prowler] Connected!');
+            setLoadingText("Connected");
             shownDisconnected = false;
 
             if (reconnectTimer) {
@@ -78,7 +80,7 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
                     createAlertBalloon("Prowler", `Disconnected from server`, 1);
                     shownDisconnected = true;
                 }
-
+                setLoadingText("Disconnected from server, reconnecting...");
 
                 if (!reconnectTimer) {
                     console.log("create reconnect timer");
@@ -100,10 +102,7 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
                         prowler.posts = prowler.posts.splice(index, 1);
                         setPosts(prowler.posts);
                         console.log("deleted post " + index);
-                        //prowler.posts.slice(index);
                         break;
-
-                        // TODO: this doesnt work
                     }
                 }
             }
@@ -129,6 +128,7 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
 
     const loadPostsBefore = useCallback(async (beforeId: string) => {
         try {
+            setLoadingText("Loading data");
             console.log("fetch before " + beforeId + ", 50 items");
             const r = await fetch(CBSHServerURL + "/feed/before/" + beforeId + "?limit=50", {
                 headers: {
@@ -150,11 +150,13 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
             createAlertBalloon("Something went wrong", // @ts-expect-error it's unknown but known
                 "Failed to fetch the latest from Prowler. Error details: " + e.message, 2);
         }
+        setLoadingText("");
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const getPosts = useCallback(async () => {
         try {
+            setLoadingText("Loading data...");
             const r = await fetch(CBSHServerURL + "/feed?limit=50", {
                 headers: {
                     "Authorization": JSON.stringify(sid),
@@ -177,12 +179,11 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
             createAlertBalloon("Something went wrong", // @ts-expect-error it's unknown but known
                 "Failed to fetch the latest from Prowler. Error details: " + e.message, 2);
         }
+        setLoadingText("");
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const loadPosts = async () => {
-        const data: Post[] = [];
-
         console.log("[Prowler] loading old posts, current len: " + prowler.posts.length);
         const lastItem = prowler.posts[prowler.posts.length - 1];
         if (!lastItem) return;
@@ -236,6 +237,7 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
 
     return <div id="prowler">
         <div className={styles.prowlerPostContainer}>
+            <p>{loadingText}</p>
             {posts.map((post: Post) => <ProwlerPost post={post} sid={sid} uid={uid} session={session}
                 deviceType={deviceType} key={post.id} />)}
         </div>
