@@ -1,6 +1,6 @@
 "use client";
 
-import { type Dispatch, type SetStateAction, useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback } from "react";
 import CBSHServerURL from "~/lib/CBSHServerURL";
 import type Post from "~/types/ProwlerPost";
 import styles from "./prowler.module.css";
@@ -45,10 +45,8 @@ interface NewPostWebsocketMessage {
 
 export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: string, uid: string, session: User, deviceType: string }) {
     const { createAlertBalloon } = useAlert();
-    // @ts-expect-error force type on react state
-    const [posts, setPosts]: [Post[], Dispatch<SetStateAction<Post[]>>] = useState([]);
+    const [posts, setPosts] = useState<Post[]>([]);
     const [isTriggered, setIsTriggered] = useState(false);
-    const [hasMore, setHasMore] = useState(true);
     const [startAt, setStartAt] = useState(0);
     let ws: WebSocket;
     let reconnectTimer: NodeJS.Timeout = undefined!;
@@ -57,8 +55,8 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
     let [loadingText, setLoadingText] = useState("Connecting to Crooms Bell Schedule Services");
 
     const createWebsocket = () => {
-        ws = new WebSocket(CBSHServerURL.replace("http://", "ws://"));
-        ws.addEventListener('open', event => {
+        ws = new WebSocket(CBSHServerURL.replace("http://", "ws://").replace("https://", "ws://"));
+        ws.addEventListener('open', () => {
             console.log('[Prowler] Connected!');
             setLoadingText("Connected");
             shownDisconnected = false;
@@ -171,7 +169,7 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
                 return;
             }
             prowler.posts = res.data;
-            loadPosts();
+            await loadPosts();
 
             createWebsocket();
 
@@ -189,7 +187,7 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
         if (!lastItem) return;
         await loadPostsBefore(lastItem.id);
 
-        setPosts((prev: Post[]) => prowler.posts);
+        setPosts(() => prowler.posts);
         setStartAt(prev => prev + prowler.incrementor);
         setIsTriggered(false);
 
@@ -211,8 +209,6 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
     }, []);
 
     useEffect(() => {
-        if (!hasMore) return;
-
         const onScroll = async () => {
             if (loading) return;
             const scrollHeight = document.documentElement.scrollHeight;
@@ -237,7 +233,7 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
 
     return <div id="prowler">
         <div className={styles.prowlerPostContainer}>
-            { loadingText !== "" && <p>{loadingText}</p> }
+            { (loadingText !== "" && loadingText !== "Connected") && <p>{loadingText}</p> }
             {posts.map((post: Post) => <ProwlerPost post={post} sid={sid} uid={uid} session={session}
                 deviceType={deviceType} key={post.id} />)}
         </div>
