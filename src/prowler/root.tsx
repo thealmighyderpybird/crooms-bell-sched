@@ -55,7 +55,7 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
     let [loadingText, setLoadingText] = useState("Connecting to Crooms Bell Schedule Services");
 
     const createWebsocket = () => {
-        ws = new WebSocket(CBSHServerURL.replace("http://", "ws://").replace("https://", "ws://"));
+        ws = new WebSocket(CBSHServerURL.replace("http://", "ws://"));
         ws.addEventListener('open', () => {
             console.log('[Prowler] Connected!');
             setLoadingText("Connected");

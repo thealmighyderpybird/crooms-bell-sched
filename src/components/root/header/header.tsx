@@ -48,7 +48,7 @@ export default async function Header() {
                     <div className={headerStyles.subMenu} style={{ padding: "0.5rem", fontSize: "0.8rem" }}>Download the app</div>
                 </Link>}
                 <AnnouncementsTrigger />
-                <AccountHeader session={sessionInfo} />
+                <AccountHeader session={typeof sessionInfo.username === "undefined" ? null : sessionInfo} />
             </div>
         </nav>
     </header>;
