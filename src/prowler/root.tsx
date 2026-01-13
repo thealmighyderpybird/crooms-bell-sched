@@ -97,7 +97,7 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
                 const delPost = data as DeletePostWebsocketMessage;
                 for (let index = 0; index < prowler.posts.length; index++) {
                     if (prowler.posts[index]?.id == delPost.ID) {
-                        prowler.posts = prowler.posts.splice(index, 1);
+                        prowler.posts.splice(index, 1);
                         setPosts(prowler.posts);
                         console.log("deleted post " + index);
                         break;
