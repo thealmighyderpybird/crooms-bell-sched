@@ -51,6 +51,34 @@ export default function ThemeOptions() {
             <ThemeImage src="https://cdn.croomssched.tech/data/7291ef48-5f58-4f73-a79d-23f146afd471/landon.png"
                         theme="Landon's Homeless Camp" />
         </ThemeOption>
+        <ThemeOption id="clouds" title="Clouds">
+            <ThemeImage src="https://mikhail.croomssched.tech/apiv2/fs/attached/Clouds_preview.jpg"
+                        theme="Clouds" />
+        </ThemeOption>
+        <ThemeOption id="COW" title="Cow!">
+            <ThemeImage src="https://mikhail.croomssched.tech/apiv2/fs/attached/COW_preview.png"
+                        theme="Cow" />
+        </ThemeOption>
+        <ThemeOption id="rezero" title="Re:Zero">
+            <ThemeImage src="https://mikhail.croomssched.tech/apiv2/fs/attached/rezr_bg.png"
+                        theme="Re:Zero" />
+        </ThemeOption>
+        <ThemeOption id="eva" title="Neon Genesis Evangelion">
+            <ThemeImage src="https://mikhail.croomssched.tech/apiv2/fs/attached/EVA_preview.png"
+                        theme="Neon Genesis Evangelion" />
+        </ThemeOption>
+        <ThemeOption id="frieren" title="Frieren: Beyond Journey's End">
+            <ThemeImage src="https://mikhail.croomssched.tech/apiv2/fs/attached/Frieren_preview.jpg"
+                        theme="Frieren: Beyond Journey's End" />
+        </ThemeOption>
+        <ThemeOption id="zzz" title="Zenless Zone Zero">
+            <ThemeImage src="https://mikhail.croomssched.tech/apiv2/fs/attached/ZZZ_Preview.png"
+                        theme="Zenless Zone Zero" />
+        </ThemeOption>
+        <ThemeOption id="bacon" title="Bacon">
+            <ThemeImage src="https://mikhail.croomssched.tech/apiv2/fs/attached/Bacon_preview.png"
+                        theme="Bacon" />
+        </ThemeOption>
         <ThemeOption id="jetbrains" title="JetBrains">
             <ThemeImage src="https://cdn.croomssched.tech/data/7291ef48-5f58-4f73-a79d-23f146afd471/jetbrains.png"
                         theme="JetBrains" />
