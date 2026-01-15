@@ -101,10 +101,10 @@
     --tri: #444444 !important;
     --qua: #555555 !important;
 
-    --mid-pri: #262626 !important;
-    --mid-sec: #c6c6c6 !important;
-    --mid-tri: #b6b6b6 !important;
-    --mid-qua: #a6a6a6 !important;
+    --mid-pri: #282828 !important;
+    --mid-sec: #393939 !important;
+    --mid-tri: #4A4A4A !important;
+    --mid-qua: #5B5B5B !important;
 
     --default-accent: #FF1010 !important;
     --sucess: green !important;
@@ -527,20 +527,20 @@ iframe {
     border: none;
 }
 
-clippy .clippy {
+#clippy .clippy {
     z-index: 2;
 }
 
-clippy *:not(.context-menu) {
+#clippy *:not(.context-menu) {
     transition: none;
 }
 
-.rainbow, rainbow {
+.rainbow {
     animation: anim-rainbow 5s infinite;
     transition: none;
 }
 
-.rainbow *, rainbow * {
+.rainbow * {
     transition: none !important;
 }
 
