@@ -14,6 +14,8 @@ export interface CBSHUser {
     verified: boolean,
     userTags: string[],
     croomsPro: boolean,
+    role: "user" | "mod" | "dev" | "admin",
+    providers: [],
 }
 
 const getSessionInfo = async (sid: string) => {

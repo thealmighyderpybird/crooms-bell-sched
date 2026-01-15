@@ -1,6 +1,6 @@
 "use client";
 
-import { type Dispatch, type SetStateAction, useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback } from "react";
 import CBSHServerURL from "~/lib/CBSHServerURL";
 import type Post from "~/types/ProwlerPost";
 import styles from "./prowler.module.css";
@@ -45,19 +45,20 @@ interface NewPostWebsocketMessage {
 
 export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: string, uid: string, session: User, deviceType: string }) {
     const { createAlertBalloon } = useAlert();
-    // @ts-expect-error force type on react state
-    const [posts, setPosts]: [Post[], Dispatch<SetStateAction<Post[]>>] = useState([]);
+    const [posts, setPosts] = useState<Post[]>([]);
     const [isTriggered, setIsTriggered] = useState(false);
-    const [hasMore, setHasMore] = useState(true);
     const [startAt, setStartAt] = useState(0);
     let ws: WebSocket;
     let reconnectTimer: NodeJS.Timeout = undefined!;
     let shownDisconnected = false;
+    let loading = false;
+    let [loadingText, setLoadingText] = useState("Connecting to Crooms Bell Schedule Services");
 
     const createWebsocket = () => {
         ws = new WebSocket(CBSHServerURL.replace("http://", "ws://"));
-        ws.addEventListener('open', event => {
-            console.log('Connected to Prowler');
+        ws.addEventListener('open', () => {
+            console.log('[Prowler] Connected!');
+            setLoadingText("Connected");
             shownDisconnected = false;
 
             if (reconnectTimer) {
@@ -77,7 +78,7 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
                     createAlertBalloon("Prowler", `Disconnected from server`, 1);
                     shownDisconnected = true;
                 }
-
+                setLoadingText("Disconnected from server, reconnecting...");
 
                 if (!reconnectTimer) {
                     console.log("create reconnect timer");
@@ -94,21 +95,27 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
 
             if (data.Message === "DeletePost") {
                 const delPost = data as DeletePostWebsocketMessage;
-                /*for (let index = 0; index < prowler.posts.length; index++) {
+                for (let index = 0; index < prowler.posts.length; index++) {
                     if (prowler.posts[index]?.id == delPost.ID) {
-                        //prowler.posts.splice(index, 1);
-                        //setPosts(prowler.posts);
-                        //console.log("deleted post " + index);
-                        //prowler.posts.slice(index);
+                        prowler.posts.splice(index, 1);
+                        setPosts(prowler.posts);
+                        console.log("deleted post " + index);
                         break;
-
-                        // TODO: this doesnt work
                     }
-                }*/
+                }
             }
             else if (data.Message === "UpdatePost") {
-                // TODO
-                // schema, ID NewContent
+                const updatePost = data as UpdatePostWebsocketMessage;
+                for (let index = 0; index < prowler.posts.length; index++) {
+                    let post = prowler.posts[index];
+                    if (post === undefined) return;
+                    if (post.id == updatePost.ID) {
+                        post.data = updatePost.NewContent;
+                        prowler.posts[index] = post;
+                        break;
+                    }
+                }
+                setPosts(prowler.posts);
             }
             else if (data.Message === "NewPost") {
                 const newPost = data as NewPostWebsocketMessage;
@@ -117,9 +124,38 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
         });
     };
 
+    const loadPostsBefore = useCallback(async (beforeId: string) => {
+        try {
+            setLoadingText("Loading data");
+            console.log("fetch before " + beforeId + ", 50 items");
+            const r = await fetch(CBSHServerURL + "/feed/before/" + beforeId + "?limit=50", {
+                headers: {
+                    "Authorization": JSON.stringify(sid),
+                    "Content-Type": "application/json",
+                }
+            });
+            const res = await r.json() as ProwlerRequestGET;
+
+            if (res.status !== "OK") {
+                createAlertBalloon("Something went wrong", // @ts-expect-error error is not explicitly defined
+                    `Failed to fetch the latest from Prowler. Error details: ${res.data.error}`, 1);
+                return;
+            }
+
+            prowler.posts = [...prowler.posts, ...res.data];
+
+        } catch (e) {
+            createAlertBalloon("Something went wrong", // @ts-expect-error it's unknown but known
+                "Failed to fetch the latest from Prowler. Error details: " + e.message, 2);
+        }
+        setLoadingText("");
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     const getPosts = useCallback(async () => {
         try {
-            const r = await fetch(prowler.source, {
+            setLoadingText("Loading data...");
+            const r = await fetch(CBSHServerURL + "/feed?limit=50", {
                 headers: {
                     "Authorization": JSON.stringify(sid),
                     "Content-Type": "application/json",
@@ -133,7 +169,7 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
                 return;
             }
             prowler.posts = res.data;
-            loadPosts();
+            await loadPosts();
 
             createWebsocket();
 
@@ -141,19 +177,21 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
             createAlertBalloon("Something went wrong", // @ts-expect-error it's unknown but known
                 "Failed to fetch the latest from Prowler. Error details: " + e.message, 2);
         }
+        setLoadingText("");
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const loadPosts = () => {
-        const data: Post[] = [];
+    const loadPosts = async () => {
+        console.log("[Prowler] loading old posts, current len: " + prowler.posts.length);
+        const lastItem = prowler.posts[prowler.posts.length - 1];
+        if (!lastItem) return;
+        await loadPostsBefore(lastItem.id);
 
-        for (let i = startAt; i < startAt + prowler.incrementor - 1; i++) {
-            if (prowler.posts[i]) data.push(prowler.posts[i]!)
-        }
-
-        setPosts((prev: Post[]) => uniquePosts([...prev, ...data]));
-        setStartAt((prev) => prev + prowler.incrementor);
+        setPosts(() => prowler.posts);
+        setStartAt(prev => prev + prowler.incrementor);
         setIsTriggered(false);
+
+        console.log("[Prowler] done, result len: " + prowler.posts.length);
     }
 
     function uniquePosts(posts: Post[]) {
@@ -171,9 +209,8 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
     }, []);
 
     useEffect(() => {
-        if (!hasMore) return;
-
-        const onScroll = () => {
+        const onScroll = async () => {
+            if (loading) return;
             const scrollHeight = document.documentElement.scrollHeight;
             const clientHeight = document.documentElement.clientHeight;
             const scrollTop = document.documentElement.scrollTop;
@@ -181,9 +218,11 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
             const scrollPercent = (scrollTop + clientHeight) / scrollHeight * 100;
 
             if (!isTriggered && scrollPercent >= 95 && scrollPercent < 100) {
+                loading = true;
                 console.log("scroll triggered");
                 setIsTriggered(true);
-                loadPosts();
+                await loadPosts();
+                loading = false;
             }
         };
 
@@ -194,8 +233,9 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
 
     return <div id="prowler">
         <div className={styles.prowlerPostContainer}>
+            { (loadingText !== "" && loadingText !== "Connected") && <p>{loadingText}</p> }
             {posts.map((post: Post) => <ProwlerPost post={post} sid={sid} uid={uid} session={session}
-                                                             deviceType={deviceType} key={post.id} />)}
+                deviceType={deviceType} key={post.id} />)}
         </div>
     </div>;
 };

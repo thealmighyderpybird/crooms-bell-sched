@@ -119,3 +119,39 @@ div:has(.footerIcon) {
 .iconChain > div:first-child > .popout {
     max-width: 400px;
 }
+
+.iconMenu {
+    margin-inline: auto;
+    flex-flow: row wrap;
+    width: fit-content;
+    display: flex;
+}
+
+.iconMenu > a {
+    justify-content: center;
+    border-radius: 0.75rem;
+    align-items: center;
+    min-width: 2.25rem;
+    color: var(--main);
+    padding: 0.5rem;
+    display: flex;
+}
+
+.iconMenu > a:hover {
+    background: var(--sec);
+}
+
+.iconMenu > a:active {
+    background: var(--mid-sec);
+}
+
+.iconMenu > a > svg {
+    fill: var(--main);
+    display: block;
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+.iconMenu > a > svg * {
+    fill: var(--main);
+}
