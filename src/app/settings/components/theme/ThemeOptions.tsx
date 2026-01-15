@@ -75,6 +75,10 @@ export default function ThemeOptions() {
             <ThemeImage src="https://mikhail.croomssched.tech/apiv2/fs/attached/ZZZ_Preview.png"
                         theme="Zenless Zone Zero" />
         </ThemeOption>
+        <ThemeOption id="goldenfish" title="Golden Fish">
+            <ThemeImage src="https://mikhail.croomssched.tech/apiv2/fs/attached/sora-sagano.jpg"
+                        theme="Golden Fish" />
+        </ThemeOption>
         <ThemeOption id="bacon" title="Bacon">
             <ThemeImage src="https://mikhail.croomssched.tech/apiv2/fs/attached/Bacon_preview.png"
                         theme="Bacon" />
