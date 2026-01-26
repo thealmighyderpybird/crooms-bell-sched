@@ -76,8 +76,8 @@ const friendlyTagList: Record<string, TagInfo> = {
         image: "https://upload.wikimedia.org/wikipedia/commons/2/2a/Bisexual_Pride_Flag.svg"
     },
     "gay": {
-        name: "Gay",
-        description: "This user identifies as gay.",
+        name: "MLM",
+        description: "This user identifies as a gay male.",
         image: "https://upload.wikimedia.org/wikipedia/commons/0/0a/Gay_Men_Pride_Flag.svg",
     },
     "intersex": {
