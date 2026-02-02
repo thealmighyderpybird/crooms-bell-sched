@@ -52,35 +52,35 @@ export default function ThemeOptions() {
                         theme="Landon's Homeless Camp" />
         </ThemeOption>
         <ThemeOption id="clouds" title="Clouds">
-            <ThemeImage src="https://mikhail.croomssched.tech/apiv2/fs/attached/Clouds_preview.jpg"
+            <ThemeImage src="https://mikhail.croomssched.tech/apiv2/fs/assets/Clouds_preview.jpg"
                         theme="Clouds" />
         </ThemeOption>
         <ThemeOption id="COW" title="Cow!">
-            <ThemeImage src="https://mikhail.croomssched.tech/apiv2/fs/attached/COW_preview.png"
+            <ThemeImage src="https://mikhail.croomssched.tech/apiv2/fs/assets/COW_preview.png"
                         theme="Cow" />
         </ThemeOption>
         <ThemeOption id="rezero" title="Re:Zero">
-            <ThemeImage src="https://mikhail.croomssched.tech/apiv2/fs/attached/rezr_bg.png"
+            <ThemeImage src="https://mikhail.croomssched.tech/apiv2/fs/assets/rezr_bg.png"
                         theme="Re:Zero" />
         </ThemeOption>
         <ThemeOption id="eva" title="Neon Genesis Evangelion">
-            <ThemeImage src="https://mikhail.croomssched.tech/apiv2/fs/attached/EVA_preview.png"
+            <ThemeImage src="https://mikhail.croomssched.tech/apiv2/fs/assets/EVA_preview.png"
                         theme="Neon Genesis Evangelion" />
         </ThemeOption>
         <ThemeOption id="frieren" title="Frieren: Beyond Journey's End">
-            <ThemeImage src="https://mikhail.croomssched.tech/apiv2/fs/attached/Frieren_preview.jpg"
+            <ThemeImage src="https://mikhail.croomssched.tech/apiv2/fs/assets/Frieren_preview.jpg"
                         theme="Frieren: Beyond Journey's End" />
         </ThemeOption>
         <ThemeOption id="zzz" title="Zenless Zone Zero">
-            <ThemeImage src="https://mikhail.croomssched.tech/apiv2/fs/attached/ZZZ_Preview.png"
+            <ThemeImage src="https://mikhail.croomssched.tech/apiv2/fs/assets/ZZZ_Preview.png"
                         theme="Zenless Zone Zero" />
         </ThemeOption>
         <ThemeOption id="goldenfish" title="Golden Fish">
-            <ThemeImage src="https://mikhail.croomssched.tech/apiv2/fs/attached/sora-sagano.jpg"
+            <ThemeImage src="https://mikhail.croomssched.tech/apiv2/fs/assets/sora-sagano.jpg"
                         theme="Golden Fish" />
         </ThemeOption>
         <ThemeOption id="bacon" title="Bacon">
-            <ThemeImage src="https://mikhail.croomssched.tech/apiv2/fs/attached/Bacon_preview.png"
+            <ThemeImage src="https://mikhail.croomssched.tech/apiv2/fs/assets/Bacon_preview.png"
                         theme="Bacon" />
         </ThemeOption>
         <ThemeOption id="jetbrains" title="JetBrains">

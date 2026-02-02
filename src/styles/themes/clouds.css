@@ -3,7 +3,7 @@
 }
 
 body.clouds::before {
-    background-image: url("https://mikhail.croomssched.tech/apiv2/fs/attached/Clouds_bg.jpg");
+    background-image: url("https://mikhail.croomssched.tech/apiv2/fs/assets/Clouds_bg.jpg");
     background-position: center bottom;
     background-repeat: no-repeat;
     background-size: cover;
