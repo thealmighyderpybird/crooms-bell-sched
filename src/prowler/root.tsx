@@ -104,17 +104,13 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
                     }
                 }
             }
+
             else if (data.Message === "UpdatePost") {
                 const updatePost = data as UpdatePostWebsocketMessage;
-                for (let index = 0; index < prowler.posts.length; index++) {
-                    let post = prowler.posts[index];
-                    if (post === undefined) return;
-                    if (post.id == updatePost.ID) {
-                        post.data = updatePost.NewContent;
-                        prowler.posts[index] = post;
-                        break;
-                    }
-                }
+                const postIndex = prowler.posts.findIndex(post => post.id === updatePost.ID);
+                if (postIndex <= -1) return;
+
+                prowler.posts[postIndex]!.data = updatePost.NewContent;
                 setPosts(prowler.posts);
             }
             else if (data.Message === "NewPost") {
