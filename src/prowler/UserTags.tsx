@@ -1,7 +1,7 @@
 import styles from "./prowler.module.css";
 import nearpod from "./nearpod.webp";
 import easonmas from "./27.png";
-import RandExp from "randexp";
+import chorb from "./chorb.gif";
 
 type TagInfo = {
     name: string;
@@ -144,6 +144,11 @@ const friendlyTagList: Record<string, TagInfo> = {
         name: "Drummer Boy Christmas",
         description: "This user has completed a Christmas quest.",
         image: "https://cdn.croomssched.tech/data/b0e90fd7-e0de-4cba-901b-563f3cc272d0/drummerboy.png",
+    },
+    "chorb": {
+        name: "Chorb",
+        description: "Nobody knows what this does...",
+        image: chorb.src,
     },
 };
 
