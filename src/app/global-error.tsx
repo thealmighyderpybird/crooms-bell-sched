@@ -4,6 +4,7 @@ import CroomsBellScheduleLogo from "~/components/CBSHLogo";
 import type { Properties } from "csstype";
 import fonts from "~/styles/fonts/fonts";
 import Link from "next/link";
+import "~/styles/master.css";
 
 const styles: Record<string, Properties<string | number, string & {}>> = {
     main: {
@@ -27,6 +28,7 @@ const styles: Record<string, Properties<string | number, string & {}>> = {
         marginBlockEnd: 0,
     }, button: {
         padding: "0.65rem 0.85rem",
+        userSelect: "none",
         fontSize: "0.9rem",
         lineHeight: 1,
     }
