@@ -108,13 +108,3 @@
         display: none;
     }
 }
-
-@media screen and (max-height: 300px) {
-    .header {
-        display: none;
-    }
-
-    body > main {
-        padding: 0 !important;
-    }
-}

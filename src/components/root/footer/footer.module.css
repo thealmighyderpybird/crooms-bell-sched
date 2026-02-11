@@ -155,8 +155,3 @@ div:has(.footerIcon) {
 .iconMenu > a > svg * {
     fill: var(--main);
 }
-@media screen and (max-height: 300px) {
-    .footer {
-        display: none;
-    }
-}
