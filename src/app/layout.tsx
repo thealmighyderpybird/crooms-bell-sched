@@ -1,5 +1,6 @@
 import Header from "~/components/root/header/header";
 import Footer from "~/components/root/footer/footer";
+import Maintenance from "~/components/Maintenance";
 import getSiteSettings from "~/lib/getSettings";
 import type { Metadata, Viewport } from "next";
 import { AlertProvider } from "~/AlertContext";
@@ -8,7 +9,13 @@ import rootStyles from "./root.module.css";
 import Fonts from "~/styles/fonts/fonts";
 import { type ReactNode } from "react";
 import Script from "next/script";
+import "~/styles/themes/all.css";
+import "~/styles/colors.css";
+import "~/styles/cursor.css";
 import "~/styles/master.css";
+import "~/styles/globals.css";
+
+const maintenance = false;
 
 export const viewport: Viewport = {
     width: "device-width",
@@ -57,15 +64,15 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
         const { theme, font, accentColor } = await getSiteSettings();
         const { uid } = await getSession();
 
-        // @ts-expect-error string CAN be used to index via enum
         return <html lang="en" className={ Fonts[font] + parseTheme(theme) }>
             <body className={ accentColor ? parseAccentColor(accentColor, uid) : undefined }>
             <AlertProvider>
+                { maintenance ? <Maintenance /> : <>
                 <Header />
                 <main className={ rootStyles.main }>{children}</main>
                 <Footer />
                 <Script src={statusPageURL} />
-                <div id="modal-portal" />
+                <div id="modal-portal" /></> }
             </AlertProvider>
             </body>
         </html>;
@@ -73,11 +80,12 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
         return <html lang="en" className={ Fonts.SegoeUI }>
             <body>
             <AlertProvider>
+                { maintenance ? <Maintenance /> : <>
                 <Header />
                 <main className={ rootStyles.main }>{children}</main>
                 <Footer />
                 <Script src={statusPageURL} />
-                <div id="modal-portal" />
+                <div id="modal-portal" /></> }
             </AlertProvider>
             </body>
         </html>

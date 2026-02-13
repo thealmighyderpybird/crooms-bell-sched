@@ -1,4 +1,5 @@
 import localFont from "next/font/local";
+import type {NextFontWithVariable} from "next/dist/compiled/@next/font";
 
 export const segoe = localFont({
     src: "/fonts/SegUIVar.ttf",
@@ -77,7 +78,7 @@ enum fontEnum {
     dos = "DOS",
 }
 
-const fonts = {
+const fonts: Record<string, string> = {
     [fontEnum.wingdings]: wingdings.className,
     [fontEnum.studySans]: studySans.className,
     [fontEnum.avenir]: avenir.className,
