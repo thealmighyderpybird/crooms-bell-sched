@@ -13,7 +13,6 @@ import "~/styles/themes/all.css";
 import "~/styles/colors.css";
 import "~/styles/cursor.css";
 import "~/styles/master.css";
-import "~/styles/globals.css";
 
 const maintenance = true;
 
