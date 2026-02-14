@@ -14,9 +14,9 @@ export default function DeleteDialog({ sid, post, setIsActive }: { sid: string, 
         <div className="modal" onClick={() => setIsActive(false)}></div>
         <div className={`${styles.dialog} ${styles.controlledWidth} ${styles.controlledHeight} ${styles.separatedContent}`}>
             <div className={postStyles.content}>
-                <header><h2>Delete Post</h2></header>
+                <header><h2>Delete Message</h2></header>
                 <main className={postStyles.content}>
-                    <p>Are you sure you want to delete this post?</p>
+                    <p>Are you sure you want to delete this message?</p>
                     <div className={postStyles.post}>
                         { sanitizeHtml(post.data) }
                     </div>

@@ -1,6 +1,6 @@
 import layoutStyles from "./layout.module.css";
 import getSession from "~/lib/session.server";
-import UserTags from "~/prowler/UserTags";
+import UserTags from "~/prowler/post/UserTags";
 import styles from "./page.module.css";
 import Link from "next/link";
 

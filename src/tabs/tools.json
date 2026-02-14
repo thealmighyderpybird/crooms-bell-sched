@@ -13,12 +13,6 @@
       "popup": false
     },
     {
-      "id": "mikhail-advice",
-      "name": "Mikhail's Advice",
-      "link": "https://mikhail.croomssched.tech/advice.html",
-      "popup": false
-    },
-    {
       "id": "desmos",
       "name": "Desmos Calculator",
       "link": "https://www.desmos.com/calculator",

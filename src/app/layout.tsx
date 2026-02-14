@@ -5,7 +5,6 @@ import getSiteSettings from "~/lib/getSettings";
 import type { Metadata, Viewport } from "next";
 import { AlertProvider } from "~/AlertContext";
 import getSession from "~/lib/session.server";
-import rootStyles from "./root.module.css";
 import Fonts from "~/styles/fonts/fonts";
 import { type ReactNode } from "react";
 import Script from "next/script";
@@ -68,7 +67,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
             <AlertProvider>
                 { maintenance ? <Maintenance /> : <>
                 <Header />
-                <main className={ rootStyles.main }>{children}</main>
+                <main className="pt-13 pb-7.75">{children}</main>
                 <Footer />
                 <Script src={statusPageURL} />
                 <div id="modal-portal" /></> }
@@ -81,7 +80,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
             <AlertProvider>
                 { maintenance ? <Maintenance /> : <>
                 <Header />
-                <main className={ rootStyles.main }>{children}</main>
+                <main className="pt-13 pb-7.75">{children}</main>
                 <Footer />
                 <Script src={statusPageURL} />
                 <div id="modal-portal" /></> }

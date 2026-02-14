@@ -1,7 +1,6 @@
-import styles from "./prowler.module.css";
-import nearpod from "./nearpod.webp";
-import easonmas from "./27.png";
-import chorb from "./chorb.gif";
+import nearpod from "../nearpod.webp";
+import easonmas from "../27.png";
+import chorb from "../chorb.gif";
 
 type TagInfo = {
     name: string;
@@ -153,10 +152,11 @@ const friendlyTagList: Record<string, TagInfo> = {
 };
 
 export default function UserTags({ userTagList }: { userTagList: string[] }) {
-    return <div className={ styles.userTagContainer }>{ userTagList?.length > 0 && userTagList.filter(tag => tag !== "croomsPro").map(tag =>
+    return <div className="ml-2 flex items-center gap-0.5 select-none">
+        { userTagList?.length > 0 && userTagList.filter(tag => tag !== "croomsPro").map(tag =>
         // eslint-disable-next-line @next/next/no-img-element
         <img src={ friendlyTagList[tag]!.image } alt={ friendlyTagList[tag]!.name + " Badge" } width={24} height={24}
              key={`${friendlyTagList[tag]!.name.toLowerCase()}-${Math.ceil(Math.random() * 10000) * Math.ceil(Math.random() * 10000)}`}
-             title={ friendlyTagList[tag]!.description } draggable={false} />
+             title={ friendlyTagList[tag]!.description } draggable={false} className="rounded-sm block w-4 h-4 object-cover" />
     )}</div>;
 };

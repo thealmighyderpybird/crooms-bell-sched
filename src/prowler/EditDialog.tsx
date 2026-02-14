@@ -16,7 +16,7 @@ export default function EditDialog({ sid, post, setIsActive }: { sid: string, po
         <div className="modal" onClick={() => setIsActive(false)}></div>
         <div className={`${styles.dialog} ${styles.controlledWidth} ${styles.controlledHeight} ${styles.separatedContent}`}>
             <div className={postStyles.content}>
-                <header><h2 style={{ marginBlockEnd: "0.5rem" }}>Edit Post</h2></header>
+                <header><h2 style={{ marginBlockEnd: "0.5rem" }}>Edit Message</h2></header>
                 <main className={postStyles.content}>
                     <LiveEdit value={newContent} mentionHelper onChange={(e) => setNewContent(e)}
                               style={{ height: "102px", resize: "none" }} />

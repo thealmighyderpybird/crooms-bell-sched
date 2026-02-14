@@ -6,7 +6,7 @@
     max-width: 100px;
     margin: auto;
 
-    height: calc(100vh - 53px - 31px);
+    height: calc(100vh - 84px);
     user-select: none;
 }
 
