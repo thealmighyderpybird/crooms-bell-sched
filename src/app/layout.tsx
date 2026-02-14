@@ -15,7 +15,7 @@ import "~/styles/cursor.css";
 import "~/styles/master.css";
 import "~/styles/globals.css";
 
-const maintenance = false;
+const maintenance = true;
 
 export const viewport: Viewport = {
     width: "device-width",
