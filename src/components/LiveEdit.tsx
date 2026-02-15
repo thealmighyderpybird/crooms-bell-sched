@@ -211,6 +211,12 @@ export default function LiveEdit({ value, onChange, style, preview = false, ment
             range.collapse(true);
             sel.removeAllRanges();
             sel.addRange(range);
+
+            const htmlContent = doc.body.innerHTML;
+            setHtml(htmlContent);
+
+            // Set the HTML state
+            onChange(html);
         };
 
         doc.body.addEventListener("input", handleInput);
@@ -249,6 +255,12 @@ export default function LiveEdit({ value, onChange, style, preview = false, ment
                 range.collapse(false);
                 sel.removeAllRanges();
                 sel.addRange(range);
+
+                const htmlContent = doc.body.innerHTML;
+                setHtml(htmlContent);
+
+                // Set the HTML state
+                onChange(html);
             }
         };
 
@@ -331,8 +343,13 @@ export default function LiveEdit({ value, onChange, style, preview = false, ment
         range.collapse(true);
         sel.removeAllRanges();
         sel.addRange(range);
-
         setSuggestions([]);
+
+        const htmlContent = doc.body.innerHTML;
+        setHtml(htmlContent);
+
+        // Set the HTML state
+        onChange(html);
     };
 
     const updateDropdownPos = () => {
@@ -435,6 +452,9 @@ export default function LiveEdit({ value, onChange, style, preview = false, ment
         updateFormatData();
         const htmlContent = doc.body.innerHTML;
         setHtml(htmlContent);
+
+        // Set the HTML state
+        onChange(html);
     }
 
     // Command manager for items
@@ -559,8 +579,11 @@ export default function LiveEdit({ value, onChange, style, preview = false, ment
         sel.removeAllRanges();
         sel.addRange(range);
 
-        // Sync state immediately
-        setHtml(doc.body.innerHTML);
+        const htmlContent = doc.body.innerHTML;
+        setHtml(htmlContent);
+
+        // Set the HTML state
+        onChange(html);
     }
 
     // Editor and toolbar
