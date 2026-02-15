@@ -46,7 +46,7 @@ export default async function Header() {
                             <path d="M17 4a1 1 0 1 0-2 0v16.586l-5.293-5.293a1 1 0 0 0-1.414 1.414l7 7a1 1 0 0 0 1.414 0l7-7a1 1 0 0 0-1.414-1.414L17 20.586zM7 27a1 1 0 1 0 0 2h18a1 1 0 1 0 0-2z"
                                   fill="currentColor" style={{ cursor: "inherit" }} />
                         </svg>
-                        <span>Download the app</span>
+                        <span className="hidden header-cutoff-lx:inline-block">Download the app</span>
                     </div>
                     <div className="hidden group-hover:block absolute top-12.75 bg-(--pri) overflow-y-auto z-10 transform-[translateX(-.75rem)] p-2"
                          style={{ fontSize: "0.8rem", boxShadow: "black 0 10px 10px" }}>Download the app</div>

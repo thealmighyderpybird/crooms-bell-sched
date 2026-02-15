@@ -16,7 +16,7 @@ export default function NewPostDialog({ sid, setIsActive }: { sid: string, setIs
         <div className="modal" onClick={() => setIsActive(false)}></div>
         <div className={`${styles.dialog} ${styles.controlledWidth} ${styles.separatedContent}`}>
             <div className={postStyles.content}>
-                <header><h2 style={{ marginBlockEnd: "0.5rem" }}>Send Message</h2></header>
+                <header><h2 style={{ marginBlockEnd: "0.5rem" }}>Create Post</h2></header>
                 <main className={postStyles.content}>
                     <LiveEdit value={content} mentionHelper onChange={(e) => setContent(e)} />
                 </main>
@@ -24,7 +24,7 @@ export default function NewPostDialog({ sid, setIsActive }: { sid: string, setIs
             <div className={styles.actionButtons}>
                 <button onClick={() => setIsActive(false)}>Cancel</button>
                 <button onClick={() => createPost(sid, content, setIsActive, setDisabled, createAlertBalloon)}
-                        disabled={disabled}>Send</button>
+                        disabled={disabled}>Post</button>
             </div>
         </div>
     </>

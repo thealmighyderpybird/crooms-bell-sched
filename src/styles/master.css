@@ -106,6 +106,7 @@
     color: var(--main);
 
     color-scheme: light;
+    --modal-max: calc(100vh - 4rem);
 }
 
 @media screen and (prefers-color-scheme: dark) {

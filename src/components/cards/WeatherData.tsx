@@ -9,7 +9,7 @@ interface Forecast {
 const WeatherData = ({ forecasts }: { forecasts: Forecast[] }) => {
     return forecasts.map((forecast: Forecast, index: number) => {
         return <div className={styles.content} key={index} id={"forecast-" + index}>
-            <h4>{forecast.dayName}</h4>
+            <h4>{forecast.dayName === "Washington's Birthday" ? "Monday" : forecast.dayName}</h4>
             <ForecastImage icon={forecast.icon}/>
             <h6>
                 {forecast.temp}&deg;F | {forecast.windDirection} at {forecast.windSpeed}

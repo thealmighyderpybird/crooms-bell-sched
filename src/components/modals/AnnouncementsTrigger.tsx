@@ -17,6 +17,6 @@ export default function AnnouncementsTrigger() {
             <div className="hidden group-hover:block absolute top-12.75 bg-(--pri) overflow-y-auto z-10 transform-[translateX(-.75rem)] p-2"
                  style={{ fontSize: "0.8rem", boxShadow: "black 0 10px 10px" }}>Announcements</div>
         </div>
-        { isActive && createPortal(<Announcements setIsActive={setIsActive} />, document.getElementById("modal-portal")!) }
+        { isActive && createPortal(<Announcements setIsActiveAction={setIsActive} />, document.getElementById("modal-portal")!) }
     </>;
 }

@@ -6,27 +6,28 @@ import type Announcement from "~/types/Announcement";
 import CBSHServerURL from "~/lib/CBSHServerURL";
 import { useState, useEffect } from "react";
 
-export default function Announcements({ setIsActive }: { setIsActive: (arg0: boolean) => void }) {
-    const [announcements, setAnnouncements] = useState([]);
+export default function Announcements({ setIsActiveAction }: { setIsActiveAction: (arg0: boolean) => void }) {
+    const [announcements, setAnnouncements] = useState<Announcement[]>([]);
     const [error, setError] = useState(false);
 
     useEffect(() => {
         void fetch(CBSHServerURL + "/announcements/website")
-            .then(r => r.json() as Promise<{ status: "OK" | "FAILED", data: Announcement }>)
+            .then(r => r.json() as Promise<{ status: "OK" | "FAILED", data: Announcement[] }>)
             .then(r => {
-                if (r.status !== "OK") setError(true); // @ts-expect-error type shii
+                if (r.status !== "OK") setError(true);
                 setAnnouncements(r.data);
             }).catch(() => setError(true));
     }, []);
 
     return <>
-        <div className={overlayStyles.modal} />
-        <div className={`${overlayStyles.dialog} ${overlayStyles.controlledWidth}`}>
-            <header><h2 style={{ lineHeight: "1" }}>Announcements</h2></header>
-            <main style={{ width: "100%" }}>{ !error ? announcements.map((announcement: Announcement) =>
+        <div className={overlayStyles.modal} onClick={() => setIsActiveAction(false)} />
+        <div className={`${overlayStyles.dialog} ${overlayStyles.controlledWidth} h-fit max-h-(--modal-max)`}>
+            <header><h2 className="leading-none">Announcements</h2></header>
+            <main className="w-full overflow-y-auto"
+                  style={{ maxHeight: "calc(100% - 56.56px - 2rem)" }}>{ !error ? announcements.map((announcement: Announcement) =>
                 <AnnouncementItem announcement={announcement} key={announcement.id} />) :
-                <div style={{ marginBlockStart: "0.5rem", userSelect: "none" }}>
-                    <div style={{ display: "flex", flexFlow: "column", alignItems: "center" }}>
+                <div className="mb-2 select-none">
+                    <div className="flex flex-col items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="6rem" height="6rem">
                             <path d="M24 4c11.046 0 20 8.954 20 20s-8.954 20-20 20S4 35.046 4 24S12.954 4 24 4"
                                   fill="url(#fluentColorDismissCircle480)" />
@@ -54,7 +55,7 @@ export default function Announcements({ setIsActive }: { setIsActive: (arg0: boo
                 </div> }
             </main>
             <footer className={overlayStyles.actionButtons}>
-                <button className={overlayStyles.button} onClick={() => setIsActive(false)}>Close</button>
+                <button className={overlayStyles.button} onClick={() => setIsActiveAction(false)}>Close</button>
             </footer>
         </div>
     </>;

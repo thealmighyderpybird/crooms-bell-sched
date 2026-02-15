@@ -18,7 +18,7 @@ export default function ActionArea({ session, post, sid, uid }: { session: User,
 
     return <div className="flex flex-row flex-nowrap">
         <button title="Options" onClick={() => setMenuEnabled(true)}
-                className="bg-transparent max-h-fit opacity-100 rounded-full p-0 hover:bg-(--mid-pri) active:bg-(--sec)">
+                className="bg-transparent max-h-fit opacity-100 rounded-full p-0 hover:bg-(--mid-sec) active:bg-(--tri)">
             <svg className="box-content relative fill-(--main) p-2 w-5 h-5 block shrink-0" viewBox="0 0 48 48"
                  xmlns="http://www.w3.org/2000/svg">
                 <path d="M16.668 24a3.5 3.5 0 1 1-7 0a3.5 3.5 0 0 1 7 0z" />
@@ -26,7 +26,7 @@ export default function ActionArea({ session, post, sid, uid }: { session: User,
                 <path d="M36.168 27.5a3.5 3.5 0 1 0 0-7a3.5 3.5 0 0 0 0 7z" />
             </svg>
         </button>
-        { menuEnabled && <><div className="bg-(--mid-pri) box-glow-[black] select-none rounded-lg absolute z-7 min-w-36">
+        { menuEnabled && <><div className="bg-(--mid-pri) box-glow-[black] select-none rounded-lg absolute z-7 min-w-36 transform-[translateX(-75%)]">
             { uid === post.uid && <>
             <button className="w-full flex items-center rounded-lg bg-transparent hover:bg-(--sec) active:bg-(--tri) p-0 opacity-100"
                     title="Edit" onClick={() => setEditDialogEnabled(true)}>
