@@ -13,7 +13,7 @@ import "~/styles/colors.css";
 import "~/styles/cursor.css";
 import "~/styles/master.css";
 
-const maintenance = true;
+const maintenance = false;
 
 export const viewport: Viewport = {
     width: "device-width",
