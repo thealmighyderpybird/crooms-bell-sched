@@ -36,7 +36,7 @@ export default function AlertPanel() {
             { alerts.map((alert: Alert) => {
                 const { properties } = alert;
                 return <li key={properties.id}><Link className="no-underline text-(--main) flex justify-between"
-                                                     href={`/alerts?id=${properties.id}`}>
+                                                     href={`/alert?id=${properties.id}`}>
                     { properties.event } until { parseEndTime(new Date(properties.ends), new Date(properties.expires)) }
                     <svg className="w-4 h-4 ml-1.25 fill-current align-middle inline-block" xmlns="http://www.w3.org/2000/svg"
                          viewBox="0 0 12 12">

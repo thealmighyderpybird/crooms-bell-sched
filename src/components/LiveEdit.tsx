@@ -9,9 +9,9 @@ import CBSHServerURL from "~/lib/CBSHServerURL";
 import { createPortal } from "react-dom";
 import type User from "~/types/user";
 
-export default function LiveEdit({ value, onChange, style, preview = false, mentionHelper = false }:
-    { value?: string, onChange: (newContent: string) => void, style?: CSSProperties, preview?: boolean, mentionHelper?: boolean }
-) {
+export default function LiveEdit({ value, onChange, style, preview = false, mentionHelper = false }: {
+    value?: string, onChange: (newContent: string) => void, style?: CSSProperties, preview?: boolean, mentionHelper?: boolean
+}) {
     const iframeRef = useRef<HTMLIFrameElement>(null);
     const [isHelpEnabled, setIsHelpEnabled] = useState(false);
     const [formats, setFormats] = useState({
@@ -395,6 +395,9 @@ export default function LiveEdit({ value, onChange, style, preview = false, ment
         doc.addEventListener("keydown", handleKey);
         return () => doc.removeEventListener("keydown", handleKey);
     }, [suggestions, activeIndex]);
+
+    // !bangs
+    // To be started later
 
     // Detection for rainbow button
     const updateFormatData = () => {
