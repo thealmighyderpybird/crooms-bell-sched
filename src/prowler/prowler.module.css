@@ -145,6 +145,10 @@
     margin-block-start: 1rem;
 }
 
+.bio > img {
+    display: inline-block;
+}
+
 .buttonBar {
     margin-block-start: 1rem;
     display: flex;
