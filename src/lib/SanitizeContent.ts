@@ -7,12 +7,15 @@ const SanitizeContent = (html: string) => sanitizeHtml(html, {
         "ul", "a", "abbr", "b", "bdi", "bdo", "br", "cite", "code", "data", "dfn", "em",
         "i", "kbd", "mark", "q", "rb", "rp", "rt", "rtc", "ruby", "s", "samp", "small",
         "span", "strong", "sub", "sup", "time", "u", "var", "wbr", "caption", "col",
-        "colgroup", "table", "tbody", "td", "tfoot", "th", "thead", "tr", "rainbow"
+        "colgroup", "table", "tbody", "td", "tfoot", "th", "thead", "tr", "rainbow",
+        "source", "video"
     ],
     disallowedTagsMode: "discard",
     allowedAttributes: {
         a: [ "href", "name", "target" ],
         img: [ "src", "srcset", "alt", "title", "width", "height", "loading" ],
+        video: [ "controls" ],
+        source: [ "type", "src"],
         "*": [ "mention", "style", "class" ]
     },
     allowedClasses: {
@@ -26,7 +29,7 @@ const SanitizeContent = (html: string) => sanitizeHtml(html, {
             "font-style": [/^normal$/, /^italic$/, /^oblique$/, /^revert$/, /^unset$/],
         },
     },
-    selfClosing: [ "img", "br", "hr", "area", "base", "basefont", "input" ],
+    selfClosing: [ "img", "br", "hr", "area", "base", "basefont", "input", "source" ],
     // URL schemes we permit
     allowedSchemes: [ "http", "https", "ftp", "mailto", "tel" ],
     allowedSchemesByTag: {},
