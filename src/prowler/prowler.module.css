@@ -75,6 +75,7 @@
 }
 
 .corePostContent img {
+    display: inline-block;
     height: auto;
     width: 100%;
 }
@@ -145,7 +146,7 @@
     margin-block-start: 1rem;
 }
 
-.bio > img {
+.bio img {
     display: inline-block;
 }
 
