@@ -49,7 +49,7 @@ export default async function Header() {
                         <span className="hidden header-cutoff-lx:inline-block">Download the app</span>
                     </div>
                     <div className="hidden group-hover:block absolute top-12.75 bg-(--pri) overflow-y-auto z-10 transform-[translateX(-.75rem)] p-2"
-                         style={{ fontSize: "0.8rem", boxShadow: "black 0 10px 10px" }}>Download the app</div>
+                         style={{ fontSize: "0.8rem", boxShadow: "black 0 5px 5px" }}>Download the app</div>
                 </Link>}
                 <AnnouncementsTrigger />
                 <AccountHeader session={typeof sessionInfo.username === "undefined" ? null : sessionInfo} />
