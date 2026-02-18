@@ -25,11 +25,11 @@ export default async function Header() {
                     <span className="hidden header-cutoff-lg:block">Crooms Bell Schedule</span>
                 </Link>
                 <div className="p-3 flex flex-row flex-nowrap items-center hover:bg-(--sec) active:bg-(--tri) group"
-                     id="tools-tab" tabIndex={1}>
+                     tabIndex={1}>
                     Tools <ToolsMenu />
                 </div>
                 <div className="p-3 flex flex-row flex-nowrap items-center hover:bg-(--sec) active:bg-(--tri) group"
-                     id="tools-tab" tabIndex={1}>
+                     tabIndex={1}>
                     Toys <ToysMenu />
                 </div>
                 <Link className="p-3 flex flex-row flex-nowrap items-center hover:bg-(--sec) active:bg-(--tri) no-underline text-inherit"
