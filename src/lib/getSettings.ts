@@ -11,7 +11,7 @@ export default async function getSiteSettings(): Promise<SiteSettings> {
         accentColor: cookieStore.get("accentColor")?.value ? cookieStore.get("accentColor")!.value : "default-accent",
         defaultLunch: cookieStore.get("defaultLunch")?.value === "A Lunch" ? "A Lunch" : "B Lunch",
         font: cookieStore.get("font")?.value ? cookieStore.get("font")!.value : "SegoeUI",
-        showTimeRemainingRing: cookieStore.get("showTimeRemainingRing")?.value === "true",
+        showTimeRemainingRing: cookieStore.get("showTimeRemainingRing")?.value !== "false",
         clippy: cookieStore.get("clippy")?.value === "true",
         periodNames: getPeriodNames(),
     };
