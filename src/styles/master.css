@@ -12,6 +12,10 @@
     color: --value([color]) !important;
 }
 
+@utility min-h-main {
+    min-height: calc(100vh - 5.1875rem);
+}
+
 @utility context-menu {
     background-color: var(--pri);
     box-shadow: black 0 0 10px;
@@ -317,6 +321,7 @@ h1, h2, h3, h4, h5, h6 {
 pre {
     border: var(--tri) solid 1px;
     border-radius: 1rem;
+    white-space: normal;
     padding: 1rem;
 }
 
@@ -641,6 +646,10 @@ iframe {
         width: 100vw;
         border-radius: 0;
     }
+}
+
+.react-switch-bg, .react-switch-bg * {
+    cursor: inherit !important;
 }
 
 :has(.react-switch-bg):has(input[type="checkbox"][aria-checked="true"]) .react-switch-bg {

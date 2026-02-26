@@ -29,6 +29,6 @@ export default function AlertInfo({ alertId }: { alertId: string | undefined }) 
             <li><b>Expires:</b> { parseEndTime(new Date(alertInfo.ends), new Date(alertInfo.expires)) }</li>
         </ul>
         { /* @ts-expect-error event, ends, and expires not included in generic type */ }
-        <pre className="break-after-all mb-0 overflow-x-auto">{ alertInfo.description }</pre>
+        <pre className="break-after-all mb-0 overflow-x-auto whitespace-pre">{ alertInfo.description }</pre>
     </> : null;
 }

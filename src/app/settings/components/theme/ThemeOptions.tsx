@@ -6,30 +6,30 @@ import ThemeImage from "./ThemeImage";
 export default function ThemeOptions() {
     return <ThemeGrid>
         <ThemeOption id="default-accent" title="Default Colors">
-            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" className={ styles.theme }>
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" className="rounded-lg">
                 <polygon points="0,0 50,0 0,50" fill="#690D24"></polygon>
                 <polygon points="50,50 50,0 0,50" fill="#FF1010"></polygon>
             </svg>
         </ThemeOption>
         <ThemeOption id="windows" title="Windows Blue">
-            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" className={ styles.theme }>
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" className="rounded-lg">
                 <rect height="50" width="50" fill="#0078D4"></rect>
             </svg>
         </ThemeOption>
         <ThemeOption id="nature" title="Nature Green">
-            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" className={ styles.theme }>
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" className="rounded-lg">
                 <polygon points="0,0 50,0 0,50" fill="#006400"></polygon>
                 <polygon points="50,50 50,0 0,50" fill="#008000"></polygon>
             </svg>
         </ThemeOption>
         <ThemeOption id="halloween" title="Halloween">
-            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" className={ styles.theme }>
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" className="rounded-lg">
                 <polygon points="0,0 50,0 0,50" fill="#4B0082"></polygon>
                 <polygon points="50,50 50,0 0,50" fill="#FF8C00"></polygon>
             </svg>
         </ThemeOption>
         <ThemeOption id="winter" title="Winter">
-            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" className={ styles.theme }>
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" className="rounded-lg">
                 <polygon points="0,0 50,0 0,50" fill="#1E90FF"></polygon>
                 <polygon points="50,50 50,0 0,50" fill="#87CEEB"></polygon>
             </svg>
