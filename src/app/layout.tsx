@@ -64,27 +64,25 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
 
         return <html lang="en" className={ Fonts[font] + parseTheme(theme) }>
             <body className={ accentColor ? parseAccentColor(accentColor, uid) : undefined }>
-            <AlertProvider>
-                { maintenance ? <Maintenance /> : <>
+            { maintenance ? <Maintenance /> : <AlertProvider>
                 <Header />
                 <main className="pt-13 pb-7.75">{children}</main>
                 <Footer />
                 <Script src={statusPageURL} />
-                <div id="modal-portal" /></> }
-            </AlertProvider>
+                <div id="modal-portal" />
+            </AlertProvider> }
             </body>
         </html>;
     } catch {
         return <html lang="en" className={ Fonts.SegoeUI }>
             <body>
-            <AlertProvider>
-                { maintenance ? <Maintenance /> : <>
+            { maintenance ? <Maintenance /> : <AlertProvider>
                 <Header />
                 <main className="pt-13 pb-7.75">{children}</main>
                 <Footer />
                 <Script src={statusPageURL} />
-                <div id="modal-portal" /></> }
-            </AlertProvider>
+                <div id="modal-portal" />
+            </AlertProvider> }
             </body>
         </html>
     }
