@@ -1,15 +1,17 @@
 "use client";
 
 import type { CBSHUser } from "~/lib/getSessionInfo";
-import { eventSignOut } from "~/lib/ssrSession";
 import CBSHServerURL from "~/lib/CBSHServerURL";
 import Verified from "~/components/Verified";
 import { useRouter } from "next/navigation";
+import { createPortal } from "react-dom";
+import LogoutModal from "./LogoutModal";
 import { useState } from "react";
 import Link from "next/link";
 
 export default function AccountHeader({ session }: { session: CBSHUser | null }) {
     const [isTrayOpen, setIsTrayOpen] = useState(false);
+    const [logoutModal, setLogoutModal] = useState(false);
     const router = useRouter();
 
     if (session === null) return <div className="p-3 flex flex-row flex-nowrap items-center justify-end hover:bg-(--sec) active:bg-(--tri)"
@@ -22,7 +24,7 @@ export default function AccountHeader({ session }: { session: CBSHUser | null })
 
     return <>
         <div className="p-3 flex flex-row flex-nowrap items-center justify-end hover:bg-(--sec) active:bg-(--tri)"
-             onClick={() => setIsTrayOpen(toggleIsTrayOpen(isTrayOpen))}>
+             onClick={() => setIsTrayOpen(!isTrayOpen)}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={`${CBSHServerURL}/users/profile-picture/${session.id}`} draggable="false"
                  alt={ (session.displayname ? session.displayname : `@${session.username}`) + "'s Profile Picture"}
@@ -51,13 +53,10 @@ export default function AccountHeader({ session }: { session: CBSHUser | null })
             <div className="mt-2 flex flex-col flex-nowrap">
                 <Link href="https://account.croomssched.tech/account-center" target="CBSHAccountCenter"
                       className="w-fit">Manage your account</Link>
-                <Link href="#" className="w-fit" onClick={() => {
-                    void eventSignOut();
-                    router.refresh();
-                }}>Sign out</Link>
+                <Link href="#" className="w-fit" onClick={() => setLogoutModal(true)}>Sign out</Link>
             </div>
         </div> }
+        { logoutModal && createPortal(<LogoutModal setIsActiveAction={setLogoutModal} />,
+            document.getElementById("modal-portal")!) }
     </>
 };
-
-const toggleIsTrayOpen = (isTrayOpen: boolean) => !isTrayOpen;
