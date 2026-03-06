@@ -38,8 +38,8 @@ export default function TermsOfService() {
         <h3>4. Data Retention and Deletion</h3>
         <p>
             You may permanently delete your account, along with all associated personal information and content,
-            by using the following link: <Link href="https://account.croomssched.tech/account-center/account-deletion"
-            target="_blank">https://account.croomssched.tech/account-center/account-deletion</Link>.
+            by using the following link: <Link href="https://account.croomsbellschedule.com/account-center/account-deletion"
+            target="_blank">https://account.croomsbellschedule.com/account-center/account-deletion</Link>.
             Once deleted, this information cannot be recovered.
         </p>
         <h3>5. Applicability</h3>

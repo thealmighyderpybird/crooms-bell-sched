@@ -12,7 +12,7 @@ const friendlyTagList: Record<string, TagInfo> = {
     "mod": {
         name: "Moderator",
         description: "This user is a moderator on the Crooms Bell Schedule.",
-        image: "https://cdn.croomssched.tech/data/b0e90fd7-e0de-4cba-901b-563f3cc272d0/cop.webp",
+        image: "https://cdn.croomsbellschedule.com/data/b0e90fd7-e0de-4cba-901b-563f3cc272d0/cop.webp",
     },
     "admin": {
         name: "Admin",
@@ -22,32 +22,32 @@ const friendlyTagList: Record<string, TagInfo> = {
     "computerScience": {
         name: "Computer Science Club",
         description: "This user is a member of the Computer Science Club.",
-        image: "https://cdn.croomssched.tech/data/b0e90fd7-e0de-4cba-901b-563f3cc272d0/comp-sci.png",
+        image: "https://cdn.croomsbellschedule.com/data/b0e90fd7-e0de-4cba-901b-563f3cc272d0/comp-sci.png",
     },
     "croomsCon": {
         name: "CroomsCon",
         description: "This user likes CroomsCon.",
-        image: "https://cdn.croomssched.tech/data/b0e90fd7-e0de-4cba-901b-563f3cc272d0/croomscon.png",
+        image: "https://cdn.croomsbellschedule.com/data/b0e90fd7-e0de-4cba-901b-563f3cc272d0/croomscon.png",
     },
     "considerThisCow": {
         name: "Cow",
         description: "Consider this cow.",
-        image: "https://cdn.croomssched.tech/data/b0e90fd7-e0de-4cba-901b-563f3cc272d0/cow.png",
+        image: "https://cdn.croomsbellschedule.com/data/b0e90fd7-e0de-4cba-901b-563f3cc272d0/cow.png",
     },
     "croomsBellSchedule": {
         name: "Crooms Bell Schedule",
         description: "This user likes the Crooms Bell Schedule",
-        image: "https://www.croomssched.tech/favicon.ico"
+        image: "https://www.croomsbellschedule.com/favicon.ico"
     },
     "derpyBird": {
         name: "Derpy Bird",
         description: "This user likes Tyrax the Destroyer.",
-        image: "https://cdn.croomssched.tech/data/b0e90fd7-e0de-4cba-901b-563f3cc272d0/tyrax.png"
+        image: "https://cdn.croomsbellschedule.com/data/b0e90fd7-e0de-4cba-901b-563f3cc272d0/tyrax.png"
     },
     "antiVerified": {
         name: "Antiverified",
         description: "This user has been antiverified.",
-        image: "https://cdn.croomssched.tech/data/b0e90fd7-e0de-4cba-901b-563f3cc272d0/antiverified.svg"
+        image: "https://cdn.croomsbellschedule.com/data/b0e90fd7-e0de-4cba-901b-563f3cc272d0/antiverified.svg"
     },
     "pride": {
         name: "Pride",
@@ -127,7 +127,7 @@ const friendlyTagList: Record<string, TagInfo> = {
     "croomsConnect": {
         name: "Crooms Connect",
         description: "This user is a Crooms Connect user.",
-        image: "https://cdn.croomssched.tech/data/b0e90fd7-e0de-4cba-901b-563f3cc272d0/croomsconnect.png"
+        image: "https://cdn.croomsbellschedule.com/data/b0e90fd7-e0de-4cba-901b-563f3cc272d0/croomsconnect.png"
     },
     "easonOrnament": {
         name: "Easonmas",
@@ -142,7 +142,7 @@ const friendlyTagList: Record<string, TagInfo> = {
     "drummerBoy": {
         name: "Drummer Boy Christmas",
         description: "This user has completed a Christmas quest.",
-        image: "https://cdn.croomssched.tech/data/b0e90fd7-e0de-4cba-901b-563f3cc272d0/drummerboy.png",
+        image: "https://cdn.croomsbellschedule.com/data/b0e90fd7-e0de-4cba-901b-563f3cc272d0/drummerboy.png",
     },
     "chorb": {
         name: "Chorb",

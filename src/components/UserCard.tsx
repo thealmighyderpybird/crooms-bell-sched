@@ -12,7 +12,7 @@ export default function UserCard({ userData }: { userData: {
 
     return <div className={ prowlerStyles.corePostHeaderItem } style={{ marginBlockEnd: "0" }}>
         { userData?.username && userData?.id ? // eslint-disable-next-line @next/next/no-img-element
-            <img src={`https://mikhail.croomssched.tech/apiv2/fs/pfp/${userData.id}.png`}
+            <img src={`https://mikhail.croomsbellschedule.com/apiv2/fs/pfp/${userData.id}.png`}
                  alt={ userData.username + "'s profile picture" } title={ userData.username + "'s profile picture" }
                  className={ prowlerStyles.profilePicture } width={64} height={64} draggable="false" /> : null }
         <div className={`${prowlerStyles.corePostHeaderContent} ${styles.userContainer} ${styles.header}`}>

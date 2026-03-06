@@ -35,56 +35,56 @@ export default function ThemeOptions() {
             </svg>
         </ThemeOption>
         <ThemeOption id="christmas" title="Christmas">
-            <ThemeImage src="https://cdn.croomssched.tech/data/7291ef48-5f58-4f73-a79d-23f146afd471/Christmas.png"
+            <ThemeImage src="https://cdn.croomsbellschedule.com/data/7291ef48-5f58-4f73-a79d-23f146afd471/Christmas.png"
                         theme="Christmas" />
         </ThemeOption>
         <ThemeOption id="wawwf" title="What Are We Waiting For?">
-            <ThemeImage src="https://cdn.croomssched.tech/data/7291ef48-5f58-4f73-a79d-23f146afd471/WAWWF.png"
+            <ThemeImage src="https://cdn.croomsbellschedule.com/data/7291ef48-5f58-4f73-a79d-23f146afd471/WAWWF.png"
                         theme="What Are We Waiting For?" />
         </ThemeOption>
         <ThemeOption id="burn-the-ships" title="Burn The Ships">
             <ThemeImage
-                src="https://cdn.croomssched.tech/data/7291ef48-5f58-4f73-a79d-23f146afd471/BurnTheShips-Square.png"
+                src="https://cdn.croomsbellschedule.com/data/7291ef48-5f58-4f73-a79d-23f146afd471/BurnTheShips-Square.png"
                 theme="Burn The Ships" />
         </ThemeOption>
         <ThemeOption id="landon-homeless-camp" title="Camp Landon">
-            <ThemeImage src="https://cdn.croomssched.tech/data/7291ef48-5f58-4f73-a79d-23f146afd471/landon.png"
+            <ThemeImage src="https://cdn.croomsbellschedule.com/data/7291ef48-5f58-4f73-a79d-23f146afd471/landon.png"
                         theme="Landon's Homeless Camp" />
         </ThemeOption>
         <ThemeOption id="clouds" title="Clouds">
-            <ThemeImage src="https://mikhail.croomssched.tech/apiv2/fs/assets/Clouds_preview.jpg"
+            <ThemeImage src="https://mikhail.croomsbellschedule.com/apiv2/fs/assets/Clouds_preview.jpg"
                         theme="Clouds" />
         </ThemeOption>
         <ThemeOption id="COW" title="Cow!">
-            <ThemeImage src="https://mikhail.croomssched.tech/apiv2/fs/assets/COW_preview.png"
+            <ThemeImage src="https://mikhail.croomsbellschedule.com/apiv2/fs/assets/COW_preview.png"
                         theme="Cow" />
         </ThemeOption>
         <ThemeOption id="rezero" title="Re:Zero">
-            <ThemeImage src="https://mikhail.croomssched.tech/apiv2/fs/assets/rezr_bg.png"
+            <ThemeImage src="https://mikhail.croomsbellschedule.com/apiv2/fs/assets/rezr_bg.png"
                         theme="Re:Zero" />
         </ThemeOption>
         <ThemeOption id="eva" title="Neon Genesis Evangelion">
-            <ThemeImage src="https://mikhail.croomssched.tech/apiv2/fs/assets/EVA_preview.png"
+            <ThemeImage src="https://mikhail.croomsbellschedule.com/apiv2/fs/assets/EVA_preview.png"
                         theme="Neon Genesis Evangelion" />
         </ThemeOption>
         <ThemeOption id="frieren" title="Frieren: Beyond Journey's End">
-            <ThemeImage src="https://mikhail.croomssched.tech/apiv2/fs/assets/Frieren_preview.jpg"
+            <ThemeImage src="https://mikhail.croomsbellschedule.com/apiv2/fs/assets/Frieren_preview.jpg"
                         theme="Frieren: Beyond Journey's End" />
         </ThemeOption>
         <ThemeOption id="zzz" title="Zenless Zone Zero">
-            <ThemeImage src="https://mikhail.croomssched.tech/apiv2/fs/assets/ZZZ_Preview.png"
+            <ThemeImage src="https://mikhail.croomsbellschedule.com/apiv2/fs/assets/ZZZ_Preview.png"
                         theme="Zenless Zone Zero" />
         </ThemeOption>
         <ThemeOption id="goldenfish" title="Golden Fish">
-            <ThemeImage src="https://mikhail.croomssched.tech/apiv2/fs/assets/sora-sagano.jpg"
+            <ThemeImage src="https://mikhail.croomsbellschedule.com/apiv2/fs/assets/sora-sagano.jpg"
                         theme="Golden Fish" />
         </ThemeOption>
         <ThemeOption id="bacon" title="Bacon">
-            <ThemeImage src="https://mikhail.croomssched.tech/apiv2/fs/assets/Bacon_preview.png"
+            <ThemeImage src="https://mikhail.croomsbellschedule.com/apiv2/fs/assets/Bacon_preview.png"
                         theme="Bacon" />
         </ThemeOption>
         <ThemeOption id="jetbrains" title="JetBrains">
-            <ThemeImage src="https://cdn.croomssched.tech/data/7291ef48-5f58-4f73-a79d-23f146afd471/jetbrains.png"
+            <ThemeImage src="https://cdn.croomsbellschedule.com/data/7291ef48-5f58-4f73-a79d-23f146afd471/jetbrains.png"
                         theme="JetBrains" />
         </ThemeOption>
         <ThemeOption id="pride" title="Pride">

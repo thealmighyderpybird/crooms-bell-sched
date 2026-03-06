@@ -19,7 +19,7 @@ export default function ProwlerLockDialog({ setIsActive }: { setIsActive: (arg0:
             <footer className={overlayStyles.actionButtons}>
                 <button className={overlayStyles.button} onClick={() => setIsActive(false)}>Cancel</button>
                 <Link className={"button " + overlayStyles.button}
-                      href="https://community.croomssched.tech/prowler-verification">Start Basic Verification</Link>
+                      href="https://community.croomsbellschedule.com/prowler-verification">Start Basic Verification</Link>
             </footer>
         </div>
     </>;

@@ -2,7 +2,7 @@ const schedMessenger = new BroadcastChannel("sched-messenger");
 const appStyles = document.createElement("link");
 appStyles.rel = "stylesheet";
 appStyles.type = "text/css";
-appStyles.href = "https://croomssched.tech/sched/app.css";
+appStyles.href = "https://www.croomsbellschedule.com/sched/app.css";
 document.head.appendChild(appStyles);
 let CBSHSched = {
     "time": {
@@ -32,13 +32,13 @@ function createCBSHSched(element) {
     element.appendChild(application);
     application.id = "cbsh-application";
 
-    fetch("https://api.croomssched.tech/today").then((res) => {
+    fetch("https://api.croomsbellschedule.com/today").then((res) => {
         return res.text();
     }).then((res) => {
         return JSON.parse(res).data;
     }).then((res) => {
         Schedules = res;
-        if ((location.hostname === "croomssched.tech" || location.hostname === "localhost") && (location.pathname === "/" || location.pathname === "")) {
+        if ((location.hostname === "croomsbellschedule.com" || location.hostname === "localhost") && (location.pathname === "/" || location.pathname === "")) {
             window.addEventListener("blur", () =>
                 titleUpdateLoop = setInterval(
                     () => document.title = CBSHSched.period.remainingTime + " | Crooms Bell Schedule", 1000)
@@ -54,7 +54,7 @@ function createCBSHSched(element) {
 }
 
 function fixMissingSettings(application) {
-    fetch("https://croomssched.tech/sched/defaultSettings.json").then((res) => {
+    fetch("https://croomsbellschedule.com/sched/defaultSettings.json").then((res) => {
         return res.json();
     }).then((DefaultSettings) => {
         let UserSettings = JSON.parse(window.localStorage.getItem("settings"));
@@ -84,7 +84,7 @@ function startSched(application) {
     let inAnIframe = inIframe();
 
     try {
-        if (inAnIframe && window.top.location.hostname === "croomssched.tech") {
+        if (inAnIframe && window.top.location.hostname === "croomsbellschedule.com") {
             document.body.style.margin = "0";
             schedMessenger.postMessage("initialized");
         }
@@ -182,7 +182,7 @@ function startSched(application) {
     SettingsButton.addEventListener("click", () => {
         let x = (screen.width / 2) - 200;
         let y = (screen.height / 2) - 420;
-        let settingsWindow = window.open("https://croomssched.tech/sched/settings/", "cbsh-settings",
+        let settingsWindow = window.open("https://croomsbellschedule.com/sched/settings/", "cbsh-settings",
             "status=0,toolbar=0,location=0,width=400,height=720,screenX=" + x + ",screenY=" + y + ",popup=true");
         let isClosedInterval = setInterval(() => {
             if (settingsWindow.closed) {

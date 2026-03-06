@@ -27,7 +27,7 @@ export default function SignOutModal({ setIsActiveAction }: { setIsActiveAction:
                     setIsActiveAction(false);}}>No</button>
                 <button onClick={async () => {
                     await eventSignOut()
-                    if (globalSignOut) redirect("https://account.croomssched.tech/auth/auto-logout");
+                    if (globalSignOut) redirect("https://account.croomsbellschedule.com/auth/auto-logout");
                 }}>Yes</button>
             </div>
         </div>

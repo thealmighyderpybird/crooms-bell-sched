@@ -12,7 +12,7 @@ export default function EditHelpDialog({ setIsActive }: { setIsActive: (arg0: bo
         <div className={`${overlayStyles.dialog} ${overlayStyles.controlledWidth} ${overlayStyles.controlledHeight}`}>
             <DialogCloseButton onClick={() => setIsActive(false)} />
             <header><h2>LiveEdit Help</h2></header>
-            <iframe src={"https://community.croomssched.tech/liveedit/how-to-use?embed=1" + theme} className={overlayStyles.iframeBody}
+            <iframe src={"https://community.croomsbellschedule.com/liveedit/how-to-use?embed=1" + theme} className={overlayStyles.iframeBody}
                     style={{ height: "100%" }} />
         </div>
     </>;

@@ -48,7 +48,7 @@ export default function Post({ post, session, sid, uid, deviceType }: { post: Po
             <div onMouseEnter={() => enableHoverCard()} onMouseLeave={() => cancelHoverCard()}>
                 <Link className={ styles.corePostHeaderItem } href={"/prowler/" + post.createdBy}>
                     { (post?.createdBy && post?.uid) && // eslint-disable-next-line @next/next/no-img-element
-                    <img src={`https://mikhail.croomssched.tech/apiv2/fs/pfp/${post.uid}.png`}
+                    <img src={`https://mikhail.croomsbellschedule.com/apiv2/fs/pfp/${post.uid}.png`}
                          alt={ post.createdBy + "'s profile picture" } title={ post.createdBy + "'s profile picture" }
                          className={ styles.profilePicture } width={32} height={32} /> }
                     <div className={ styles.corePostHeaderContent }>

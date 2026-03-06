@@ -9,7 +9,7 @@ export default function Page() {
                 products to students on a platform made by students.
             </p>
         </section>
-        <iframe src="https://ad.croomssched.tech" style={{ userSelect: "none", marginBlockEnd: "0.75rem" }} />
+        <iframe src="https://ad.crooms.to" style={{ userSelect: "none", marginBlockEnd: "0.75rem" }} />
         <section>
             <h2>We will work with you.</h2>
             <p>

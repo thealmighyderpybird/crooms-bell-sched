@@ -30,7 +30,7 @@ export default async function Page() {
                     style={{ textDecorationColor: "#46a127" }}>contact us over email</Link>.
             </p>
             { (uid && sid) && <p style={{ textAlign: "center" }}>
-                <Link href="https://account.croomssched.tech/account-center/account-badges"
+                <Link href="https://account.croomsbellschedule.com/account-center/account-badges"
                       className={ styles.dynamicText } style={{ margin: "auto", textDecorationColor: "#46a127" }}>
                 Try them out in Account Center</Link>
             </p> }
@@ -41,7 +41,7 @@ export default async function Page() {
                 and everyone should be treated fairly by the same guidelines.</p>
             <p>Our <Link href="/terms" target="CBSH_Terms" className={ styles.dynamicText }
                          style={{ textDecorationColor: "#ef0402" }}>Terms of Service</Link> and <Link
-                href="https://community.croomssched.tech/standards" target="CBSH_CS" className={ styles.dynamicText }
+                href="https://community.croomsbellschedule.com/standards" target="CBSH_CS" className={ styles.dynamicText }
                 style={{ textDecorationColor: "#ef0402" }}>Community Standards</Link> are designed to protect all our
                 users and encourage them to treat everyone with the same respect.
             </p>

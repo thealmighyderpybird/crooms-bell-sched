@@ -3,7 +3,7 @@
 }
 
 body.christmas::before {
-    background-image: url("https://cdn.croomssched.tech/data/7291ef48-5f58-4f73-a79d-23f146afd471/ChristmasTall.png");
+    background-image: url("https://cdn.croomsbellschedule.com/data/7291ef48-5f58-4f73-a79d-23f146afd471/ChristmasTall.png");
     background-position: center bottom;
     background-repeat: no-repeat;
     background-size: cover;
@@ -26,7 +26,7 @@ body.christmas::after {
 
 @media screen and (prefers-color-scheme: dark) {
     body.christmas::before {
-        background-image: url("https://cdn.croomssched.tech/data/7291ef48-5f58-4f73-a79d-23f146afd471/Drummer%20Boy%20Christmas%20Wide.png");
+        background-image: url("https://cdn.croomsbellschedule.com/data/7291ef48-5f58-4f73-a79d-23f146afd471/Drummer%20Boy%20Christmas%20Wide.png");
         background-position: center;
         opacity: 1;
     }
@@ -37,7 +37,7 @@ body.christmas::after {
 }
 
 :root.light > body.christmas::before {
-    background-image: url("https://cdn.croomssched.tech/data/7291ef48-5f58-4f73-a79d-23f146afd471/ChristmasTall.png") !important;
+    background-image: url("https://cdn.croomsbellschedule.com/data/7291ef48-5f58-4f73-a79d-23f146afd471/ChristmasTall.png") !important;
     background-position: center bottom !important;
     opacity: 0.2 !important;
 }
@@ -47,7 +47,7 @@ body.christmas::after {
 }
 
 :root.dark > body.christmas::before {
-    background-image: url("https://cdn.croomssched.tech/data/7291ef48-5f58-4f73-a79d-23f146afd471/Drummer%20Boy%20Christmas%20Wide.png") !important;
+    background-image: url("https://cdn.croomsbellschedule.com/data/7291ef48-5f58-4f73-a79d-23f146afd471/Drummer%20Boy%20Christmas%20Wide.png") !important;
     background-position: center !important;
     opacity: 1 !important;
 }

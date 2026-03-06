@@ -12,16 +12,16 @@ const shareLink = async (username: string, displayName: string,
                          newAlert: (title: string, message: string, severity?:  0 | 1 | 2 | -1) => void) => {
     try {
         await navigator.share({
-            url: "https://www.croomssched.tech/prowler/" + (username ?? ""),
+            url: "https://www.croomsbellschedule.com/prowler/" + (username ?? ""),
             title: (displayName ?? username) + " | Prowler"
         });
     } catch {
         try {
-            await navigator.clipboard.writeText("https://www.croomssched.tech/prowler/" + (username ?? ""));
+            await navigator.clipboard.writeText("https://www.croomsbellschedule.com/prowler/" + (username ?? ""));
             newAlert("Copied Link to Clipboard", "The link to your tree is in your clipboard. " +
                 "Just paste it wherever you want to share.", 0);
         } catch {
-            alert("Copy the link below:\nhttps://www.croomssched.tech/prowler/" + (username ?? ""))
+            alert("Copy the link below:\nhttps://www.croomsbellschedule.com/prowler/" + (username ?? ""))
         }
     }
 };
