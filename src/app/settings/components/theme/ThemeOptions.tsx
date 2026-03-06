@@ -1,6 +1,5 @@
 import ThemeOption from "~/app/settings/components/theme/ThemeOption";
 import ThemeGrid from "~/app/settings/components/theme/ThemeGrid";
-import styles from "./theme.module.css";
 import ThemeImage from "./ThemeImage";
 
 export default function ThemeOptions() {
