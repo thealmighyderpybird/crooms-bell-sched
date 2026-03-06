@@ -16,7 +16,7 @@ export default async function WidgetManager() {
                 <SettingsIcon icon="widgets" />
                 <div>
                     <OptionHeader>Manage Widgets</OptionHeader>
-                    <OptionDescription>Toggle the visibility of certain widgets on the dashboard.</OptionDescription>
+                    <OptionDescription>Toggle the visibility of certain widgets on the homepage</OptionDescription>
                 </div>
             </OptionGroup>
             <WidgetSettings settings={widgets} />

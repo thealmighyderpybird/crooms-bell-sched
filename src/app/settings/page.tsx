@@ -11,8 +11,8 @@ export default function SettingsPage() {
         <Personalization />
         <SettingsHeader>Schedule</SettingsHeader>
         <Schedule />
-        {/*<SettingsHeader>Widgets</SettingsHeader>
-        <WidgetManager />*/}
+        <SettingsHeader>Widgets</SettingsHeader>
+        <WidgetManager />
         <SettingsHeader>Manage Settings</SettingsHeader>
         <ManageSettings />
     </>;

@@ -1,4 +1,5 @@
 import defaultWidgetSettings from "~/lib/defaultWidgetSettings";
+import type { WidgetSettings } from "~/types/settings";
 import type Settings from "~/types/settings";
 import fonts from "~/styles/fonts/fonts";
 import type { FormEvent } from "react";
@@ -63,6 +64,10 @@ export const updatePeriodNames = (periodNames: string[]) => {
             periodNames[7] ?? "Homeroom",
         ])
     });
+};
+
+export const updateWidgetSettings = (widgets: WidgetSettings) => {
+    void saveSettings({ widgets });
 };
 
 export const resetSettings = () => {

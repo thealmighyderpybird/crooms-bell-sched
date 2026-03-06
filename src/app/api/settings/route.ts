@@ -7,6 +7,7 @@ export async function POST(req: Request) {
         defaultLunch,
         periodNames,
         accentColor,
+        widgets,
         clippy,
         theme,
         font
@@ -21,6 +22,7 @@ export async function POST(req: Request) {
         path: "/", maxAge: 31536000
     });
 
+    if (widgets) res.cookies.set("widgets", JSON.stringify(widgets), { path: "/", maxAge: 31536000 });
     if (defaultLunch) res.cookies.set("defaultLunch", defaultLunch, { path: "/", maxAge: 31536000 });
     if (periodNames) res.cookies.set("periodNames", periodNames, { path: "/", maxAge: 31536000 });
     if (accentColor) res.cookies.set("accentColor", accentColor, { path: "/", maxAge: 31536000 });
