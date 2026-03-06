@@ -16,6 +16,14 @@
     min-height: calc(100vh - 5.1875rem);
 }
 
+@utility max-h-main {
+    max-height: calc(100vh - 5.1875rem);
+}
+
+@utility max-h-prowler {
+    max-height: calc(100vh - 13.0325rem);
+}
+
 @utility context-menu {
     background-color: var(--pri);
     box-shadow: black 0 0 10px;

@@ -207,13 +207,15 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
     useEffect(() => {
         const onScroll = async () => {
             if (loading) return;
-            const scrollHeight = document.documentElement.scrollHeight;
-            const clientHeight = document.documentElement.clientHeight;
-            const scrollTop = document.documentElement.scrollTop;
+            const checkingElement = deviceType === "mobile" ? document.documentElement : document.getElementById("prowler-container")!;
+
+            const scrollHeight = checkingElement.scrollHeight;
+            const clientHeight = checkingElement.clientHeight;
+            const scrollTop = checkingElement.scrollTop;
 
             const scrollPercent = (scrollTop + clientHeight) / scrollHeight * 100;
 
-            if (!isTriggered && scrollPercent >= 95 && scrollPercent < 100) {
+            if (!isTriggered && scrollPercent >= 90 && scrollPercent < 100) {
                 loading = true;
                 console.log("scroll triggered");
                 setIsTriggered(true);
@@ -222,8 +224,12 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
             }
         };
 
+        document.getElementById("prowler-container")!.addEventListener('scroll', onScroll);
         window.addEventListener('scroll', onScroll);
-        return () => window.removeEventListener('scroll', onScroll);
+        return () => {
+            document.getElementById("prowler-container")!.addEventListener('scroll', onScroll);
+            window.removeEventListener('scroll', onScroll);
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [startAt]);
 
