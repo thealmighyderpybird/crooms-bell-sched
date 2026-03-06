@@ -226,10 +226,7 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
 
         document.getElementById("prowler-container")!.addEventListener('scroll', onScroll);
         window.addEventListener('scroll', onScroll);
-        return () => {
-            document.getElementById("prowler-container")!.addEventListener('scroll', onScroll);
-            window.removeEventListener('scroll', onScroll);
-        }
+        return () => window.removeEventListener('scroll', onScroll);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [startAt]);
 
