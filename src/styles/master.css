@@ -656,11 +656,11 @@ iframe {
     }
 }
 
-.react-switch-bg, .react-switch-bg * {
+.react-switch, .react-switch * {
     cursor: inherit !important;
 }
 
-:has(.react-switch-bg):has(input[type="checkbox"][aria-checked="true"]) .react-switch-bg {
+.react-switch:has(.react-switch-bg):has(input[type="checkbox"][aria-checked="true"]) .react-switch-bg {
     background-color: var(--accent-color) !important;
 }
 
