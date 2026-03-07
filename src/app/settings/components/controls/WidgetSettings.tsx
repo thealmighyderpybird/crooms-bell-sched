@@ -21,7 +21,7 @@ export default function WidgetSettings({ settings }: { settings: WidgetSettings 
         <div className="flex justify-between items-center bg-(--sec) p-2 rounded-lg">
             <span className="leading-none">Weather</span>
             <OptionSlider checked={weatherWidget} onChange={value => {setWeatherWidget(value);
-                widgetSettings.lunch = value; setWidgetSettings(widgetSettings); updateWidgetSettings(widgetSettings)}} />
+                widgetSettings.weather = value; setWidgetSettings(widgetSettings); updateWidgetSettings(widgetSettings)}} />
         </div>
         <div className="flex justify-between items-center bg-(--sec) p-2 rounded-lg">
             <span className="leading-none">Surveys</span>
