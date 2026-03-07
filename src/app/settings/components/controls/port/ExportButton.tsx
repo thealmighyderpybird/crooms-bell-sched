@@ -47,6 +47,8 @@ const getSettings = (getCookie: (key: string, options?: (OptionsType)) => Cookie
         font: getCookie("font")?.toString() ? getCookie("font")!.toString() : "SegoeUI",
         defaultLunch: getCookie("defaultLunch") === "B Lunch" ? "B Lunch" : "A Lunch",
         showTimeRemainingRing: getCookie("showTimeRemainingRing") === "true",
+        // @ts-expect-error this is not actually a big issue so shush
+        layout: String(getCookie("layout")) ?? "sidebar",
         clippy: getCookie("clippy") === "true",
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         periodNames: getPeriodNames(),
