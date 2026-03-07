@@ -74,6 +74,11 @@ export const setWidgetLayout = (layout: WidgetLayout) => {
     void saveSettings({ layout });
 };
 
+export const importSettings = (settings: Settings) => {
+    void saveSettings(settings);
+    return true;
+};
+
 export const resetSettings = () => {
     void saveSettings({
         widgets: defaultWidgetSettings,
@@ -94,5 +99,6 @@ export const resetSettings = () => {
             "7th Period",
             "Homeroom",
         ])
-    })
+    });
+    setTimeout(() => window.location.reload(), 200);
 };

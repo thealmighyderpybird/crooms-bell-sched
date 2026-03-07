@@ -21,7 +21,7 @@ const exportSettings = (settings: Settings) => {
     URL.revokeObjectURL(a.href);
 };
 
-const getSettings = (getCookie: (key: string, options?: (OptionsType)) => CookieValueTypes): Settings => {
+export const getSettings = (getCookie: (key: string, options?: (OptionsType)) => CookieValueTypes): Settings => {
     function getPeriodNames() {
         try {
             // eslint-disable-next-line @typescript-eslint/no-unsafe-return

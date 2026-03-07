@@ -656,6 +656,12 @@ iframe {
     }
 }
 
+.fileUploader.focus {
+    outline: 2px solid var(--accent-color);
+    border-color: var(--qua);
+    outline-offset: 0.25rem;
+}
+
 .react-switch, .react-switch * {
     cursor: inherit !important;
 }
