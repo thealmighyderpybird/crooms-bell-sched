@@ -217,7 +217,6 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
 
             if (!isTriggered && scrollPercent >= 90 && scrollPercent < 100) {
                 loading = true;
-                console.log("scroll triggered");
                 setIsTriggered(true);
                 await loadPosts();
                 loading = false;

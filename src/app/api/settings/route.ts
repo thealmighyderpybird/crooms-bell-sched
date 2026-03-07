@@ -8,6 +8,7 @@ export async function POST(req: Request) {
         periodNames,
         accentColor,
         widgets,
+        layout,
         clippy,
         theme,
         font
@@ -27,6 +28,7 @@ export async function POST(req: Request) {
     if (periodNames) res.cookies.set("periodNames", periodNames, { path: "/", maxAge: 31536000 });
     if (accentColor) res.cookies.set("accentColor", accentColor, { path: "/", maxAge: 31536000 });
     if (showClippy) res.cookies.set("clippy", showClippy, { path: "/", maxAge: 31536000 });
+    if (layout) res.cookies.set("layout", layout, { path: "/", maxAge: 31536000 });
     if (theme) res.cookies.set("theme", theme, { path: "/", maxAge: 31536000 });
     if (font) res.cookies.set("font", font, { path: "/", maxAge: 31536000 });
 

@@ -1,4 +1,8 @@
+import type { ReactNode } from "react";
+
 enum Enum {
+    SimplifiedLayout = "simpleLayout",
+    SidebarLayout = "sidebar",
     Download = "download",
     Widgets = "widgets",
     Upload = "upload",
@@ -10,7 +14,7 @@ enum Enum {
     Bar = "bar",
 }
 
-const iconList = {
+const iconList: Record<string, ReactNode> = {
     [Enum.Paint]: (<path
         d="M6.75 2a.75.75 0 0 0-.75.75v13.5A2.75 2.75 0 0 0 8.75 19H11v4a3 3 0 0 0 6 0v-4h2.25A2.75 2.75 0 0 0 22 16.25V2.75a.75.75 0 0 0-.75-.75zM20.5 3.5V13h-13V3.5h7v2.75a.75.75 0 0 0 1.5 0V3.5h1.5v4.75a.75.75 0 0 0 1.5 0V3.5zm-13 11h13v1.75c0 .69-.56 1.25-1.25 1.25h-3a.75.75 0 0 0-.75.75V23a1.5 1.5 0 0 1-3 0v-4.75a.75.75 0 0 0-.75-.75h-3c-.69 0-1.25-.56-1.25-1.25z"
     />),
@@ -37,6 +41,12 @@ const iconList = {
         fillRule="nonzero"
     />),
     [Enum.Widgets]: (<path
+        d="M6.75 3A3.75 3.75 0 0 0 3 6.75v14.5A3.75 3.75 0 0 0 6.75 25h14.5A3.75 3.75 0 0 0 25 21.25V6.75A3.75 3.75 0 0 0 21.25 3zM4.5 6.75A2.25 2.25 0 0 1 6.75 4.5h6.75v5h-9zm0 4.25h9v12.5H6.75a2.25 2.25 0 0 1-2.25-2.25zM15 23.5V18h8.5v3.25a2.25 2.25 0 0 1-2.25 2.25zm8.5-7H15v-12h6.25a2.25 2.25 0 0 1 2.25 2.25z"
+    />),
+    [Enum.SidebarLayout]: (<path
+        d="M2 6c0-1.1.9-2 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6Zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h5.5V5H4Zm12 10a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1h-5.5v10H16Zm-4-9a.5.5 0 0 0 0 1h3.5a.5.5 0 0 0 0-1H12Z"
+    />),
+    [Enum.SimplifiedLayout]: (<path
         d="M6.75 3A3.75 3.75 0 0 0 3 6.75v14.5A3.75 3.75 0 0 0 6.75 25h14.5A3.75 3.75 0 0 0 25 21.25V6.75A3.75 3.75 0 0 0 21.25 3zM4.5 6.75A2.25 2.25 0 0 1 6.75 4.5h6.75v5h-9zm0 4.25h9v12.5H6.75a2.25 2.25 0 0 1-2.25-2.25zM15 23.5V18h8.5v3.25a2.25 2.25 0 0 1-2.25 2.25zm8.5-7H15v-12h6.25a2.25 2.25 0 0 1 2.25 2.25z"
     />),
 };

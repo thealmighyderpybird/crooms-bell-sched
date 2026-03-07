@@ -1,5 +1,5 @@
+import type { WidgetSettings, WidgetLayout } from "~/types/settings";
 import defaultWidgetSettings from "~/lib/defaultWidgetSettings";
-import type { WidgetSettings } from "~/types/settings";
 import type Settings from "~/types/settings";
 import fonts from "~/styles/fonts/fonts";
 import type { FormEvent } from "react";
@@ -70,12 +70,17 @@ export const updateWidgetSettings = (widgets: WidgetSettings) => {
     void saveSettings({ widgets });
 };
 
+export const setWidgetLayout = (layout: WidgetLayout) => {
+    void saveSettings({ layout });
+};
+
 export const resetSettings = () => {
     void saveSettings({
         widgets: defaultWidgetSettings,
         accentColor: "default-accent",
         showTimeRemainingRing: true,
         defaultLunch: "A Lunch",
+        layout: "sidebar",
         theme: "system",
         font: "SegoeUI",
         clippy: false,

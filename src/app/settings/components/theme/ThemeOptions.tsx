@@ -1,9 +1,9 @@
 import ThemeOption from "~/app/settings/components/theme/ThemeOption";
-import ThemeGrid from "~/app/settings/components/theme/ThemeGrid";
+import SettingsGrid from "~/app/settings/components/SettingsGrid";
 import ThemeImage from "./ThemeImage";
 
 export default function ThemeOptions() {
-    return <ThemeGrid>
+    return <SettingsGrid>
         <ThemeOption id="default-accent" title="Default Colors">
             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" className="rounded-lg">
                 <polygon points="0,0 50,0 0,50" fill="#690D24"></polygon>
@@ -90,5 +90,5 @@ export default function ThemeOptions() {
             <ThemeImage src="https://upload.wikimedia.org/wikipedia/commons/6/60/Intersex-inclusive_pride_flag.svg"
                         theme="Pride" />
         </ThemeOption>
-    </ThemeGrid>;
+    </SettingsGrid>;
 }

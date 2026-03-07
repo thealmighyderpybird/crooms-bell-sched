@@ -1,9 +1,8 @@
 import CroomsBellScheduleApplet from "~/components/CroomsBellScheduleApplet";
 import WeatherWidget from "~/components/cards/WeatherWidget";
-import SharePostLink from "~/components/cards/SharePostLink";
 import CardLayout from "~/components/index/IndexCardLayout";
+import ProwlerCard from "~/components/cards/ProwlerCard";
 import LunchWidget from "~/components/cards/LunchWidget";
-import CardHeader from "~/components/index/CardHeader";
 import ThemeProvider from "~/components/ThemeProvider";
 import getSessionInfo from "~/lib/getSessionInfo";
 import getSiteSettings from "~/lib/getSettings";
@@ -14,7 +13,6 @@ import AdFrame from "~/components/AdFrame";
 import Surveys from "~/prowler/surveyRoot";
 import { userAgent } from "next/server";
 import { headers } from "next/headers";
-import Prowler from "~/prowler/root";
 import RandExp from "randexp";
 import "~/styles/index.css";
 
@@ -39,16 +37,14 @@ export default async function Home() {
                 { siteSettings.widgets.lunch && <LunchWidget /> }
                 { siteSettings.widgets.weather && <WeatherWidget /> }
                 { siteSettings.widgets.surveys && <Surveys />}
+                { (siteSettings.layout === "simplified" && siteSettings.widgets.prowler) &&
+                    <ProwlerCard sid={sid} uid={uid} userDetails={userDetails} canIPost={canIPostRes.data}
+                                 deviceType="mobile" /> }
             </CardLayout>
-            { siteSettings.widgets.prowler && <div className="sticky top-13 h-fit">
+            { (siteSettings.layout === "sidebar" && siteSettings.widgets.prowler) && <div className="sticky top-13 h-fit">
                 <CardLayout>
-                    <Card>
-                        <CardHeader>Prowler</CardHeader>
-                        <SharePostLink sid={sid} canIPost={canIPostRes.data}>Share a post</SharePostLink>
-                        <div id="prowler-container" className="lg:max-h-prowler overflow-y-auto rounded-lg">
-                            <Prowler sid={sid} uid={uid} session={userDetails} deviceType={deviceType} />
-                        </div>
-                    </Card>
+                    <ProwlerCard sid={sid} uid={uid} userDetails={userDetails} canIPost={canIPostRes.data}
+                                 deviceType={deviceType} />
                 </CardLayout>
             </div>}
         </div>
