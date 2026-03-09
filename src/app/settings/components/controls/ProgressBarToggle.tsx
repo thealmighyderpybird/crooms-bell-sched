@@ -8,7 +8,5 @@ export default function ProgressBarToggle({ initial }: { initial: boolean }) {
     const [enabled, setEnabled] = useState(initial);
     
     return <OptionSlider checked={enabled} onChange={(value) => {
-        setProgressBar(value);
-        setEnabled(value);
-    }} />
+        setProgressBar(value); setEnabled(value);}} />
 };

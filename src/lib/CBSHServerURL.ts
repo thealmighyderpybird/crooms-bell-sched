@@ -1,2 +1,2 @@
-const CBSHServerURL = "https://api.croomssched.tech";
+const CBSHServerURL = "https://api.croomsbellschedule.com";
 export default CBSHServerURL;

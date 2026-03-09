@@ -3,6 +3,7 @@ export default interface Settings {
     theme: "light" | "dark" | "system",
     showTimeRemainingRing: boolean,
     widgets: WidgetSettings,
+    layout: WidgetLayout,
     periodNames: string,
     accentColor: string,
     clippy: boolean,
@@ -15,3 +16,5 @@ export interface WidgetSettings {
     surveys: boolean,
     prowler: boolean,
 }
+
+export type WidgetLayout = "sidebar" | "simplified";

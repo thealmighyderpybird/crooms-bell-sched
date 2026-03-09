@@ -10,7 +10,7 @@ export default function FontSelect({ font }: { font: string }) {
 
     return <OptionSelect value={fontValue} onChange={(e) => {
         changeFont(e); setFontValue(e.currentTarget.value);
-    }}>
+    }} style={{ fontSize: "revert" }}>
         <option value="SegoeUI" className={fonts.SegoeUI}>Segoe UI (Default)</option>
         <option value="Torus" className={fonts.Torus}>Torus Notched</option>
         <option value="Avenir" className={fonts.Avenir}>Avenir</option>

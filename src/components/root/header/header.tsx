@@ -39,7 +39,7 @@ export default async function Header() {
             </div>
             <div className="flex-row flex-nowrap hidden header-cutoff-sm:flex">
                 { osName === "Windows" &&
-                <Link href="https://mikhail.croomssched.tech/apps/bellscheduleapp" title="Download the app" tabIndex={1}
+                <Link href="https://app.croomssched.tech" title="Download the app" tabIndex={1}
                       target="CBSHApp" className="p-3 hidden header-cutoff-md:flex flex-row flex-nowrap items-center hover:bg-(--sec) active:bg-(--tri) no-underline text-inherit group">
                     <div className="flex justify-center gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="1.5rem" height="1.5em" style={{ cursor: "inherit" }}>

@@ -1,0 +1,34 @@
+.noSelect {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.fileDropZone {
+    border: 2px dashed var(--sec);
+    flex-flow: column nowrap;
+    justify-content: center;
+    box-sizing: content-box;
+    border-radius: 1rem;
+    align-items: center;
+    outline-offset: 0;
+    max-width: 400px;
+    height: 300px;
+    display: flex;
+    margin: auto;
+    width: 100%;
+}
+
+div:has(.fileDropZone) {
+    justify-content: center;
+    border: none;
+}
+
+.fileDropZone:hover {
+    border-color: var(--tri);
+}
+
+.fileDropZone:active {
+    border-color: var(--qua);
+}

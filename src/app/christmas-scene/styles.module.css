@@ -9,7 +9,7 @@ body:has(.root) {
 }
 
 .root::before {
-    background-image: url("https://cdn.croomssched.tech/data/7291ef48-5f58-4f73-a79d-23f146afd471/ChristmasTall.png");
+    background-image: url("https://cdn.croomsbellschedule.com/data/7291ef48-5f58-4f73-a79d-23f146afd471/ChristmasTall.png");
     background-position: center 95%;
     background-repeat: no-repeat;
     background-size: cover;

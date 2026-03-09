@@ -636,7 +636,7 @@ export default function LiveEdit({ value, onChange, style, preview = false, ment
             { (mentionHelper && suggestions.length > 0) &&
             <ul className={`${dialogStyles.suggestions} ${styles.suggestions}`} style={mentionAnchor}>
                 {suggestions.sort().map((u, i) => (
-                    <li key={u} style={{ background: i === activeIndex ? "var(--tri)" : "transparent" }}
+                    <li key={u} style={i === activeIndex ? { background:  "var(--tri)" } : undefined}
                         onMouseDown={e => { e.preventDefault(); insertMention(u); }}>
                         @{u}
                     </li>

@@ -9,10 +9,11 @@ export default async function getSiteSettings(): Promise<SiteSettings> {
         widgets: cookieStore.get("widgets")?.value ? JSON.parse(cookieStore.get("widgets")!.value) as WidgetSettings : defaultWidgetSettings,
         theme: cookieStore.get("theme")?.value === "dark" ? "dark" : cookieStore.get("theme")?.value === "light" ? "light" : "system",
         accentColor: cookieStore.get("accentColor")?.value ? cookieStore.get("accentColor")!.value : "default-accent",
-        defaultLunch: cookieStore.get("defaultLunch")?.value === "A Lunch" ? "A Lunch" : "B Lunch",
+        defaultLunch: cookieStore.get("defaultLunch")?.value === "B Lunch" ? "B Lunch" : "A Lunch",
         font: cookieStore.get("font")?.value ? cookieStore.get("font")!.value : "SegoeUI",
         showTimeRemainingRing: cookieStore.get("showTimeRemainingRing")?.value !== "false",
-        clippy: cookieStore.get("clippy")?.value === "true",
+        clippy: cookieStore.get("clippy")?.value === "true", // @ts-ignore
+        layout: String(cookieStore.get("layout")?.value ?? "sidebar"),
         periodNames: getPeriodNames(),
     };
 

@@ -33,7 +33,7 @@ export default async function Maintenance() {
             </section>
         </div>
         <div className="flex flex-row justify-center gap-4 text-xs opacity-50 mt-5 px-4 select-none">
-            <Link href="https://mikhail.croomssched.tech" target="MH"
+            <Link href="https://crooms.to/mikhail" target="MH"
                   className="text-white">MikhailHosting</Link>
             <Link href="/terms" target="TOS"
                   className="text-white">Terms of Service</Link>
@@ -46,6 +46,6 @@ export default async function Maintenance() {
 
 const getNo = async () => {
     try {
-        return (await (await fetch("https://no.croomssched.tech/api")).json()).reason as string;
+        return (await (await fetch("https://no.croomsbellschedule.com/api")).json()).reason as string;
     } catch { return "Nah bro, not in the mood today."; }
 };

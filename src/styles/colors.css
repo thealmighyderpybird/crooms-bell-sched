@@ -70,7 +70,3 @@
 :root:has(body.jetbrains) {
     --accent-color: var(--jetbrains);
 }
-
-:root:has(body.pride) {
-    --accent-color: var(--mid-qua);
-}

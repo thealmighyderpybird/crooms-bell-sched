@@ -51,7 +51,7 @@ export default function AccountHeader({ session }: { session: CBSHUser | null })
                 </div>
             </div>
             <div className="mt-2 flex flex-col flex-nowrap">
-                <Link href="https://account.croomssched.tech/account-center" target="CBSHAccountCenter"
+                <Link href="https://account.croomsbellschedule.com/account-center" target="CBSHAccountCenter"
                       className="w-fit">Manage your account</Link>
                 <Link href="#" className="w-fit" onClick={() => setLogoutModal(true)}>Sign out</Link>
             </div>

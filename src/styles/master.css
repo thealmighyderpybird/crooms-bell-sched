@@ -16,6 +16,14 @@
     min-height: calc(100vh - 5.1875rem);
 }
 
+@utility max-h-main {
+    max-height: calc(100vh - 5.1875rem);
+}
+
+@utility max-h-prowler {
+    max-height: calc(100vh - 13.0325rem);
+}
+
 @utility context-menu {
     background-color: var(--pri);
     box-shadow: black 0 0 10px;
@@ -648,11 +656,17 @@ iframe {
     }
 }
 
-.react-switch-bg, .react-switch-bg * {
+.fileUploader.focus {
+    outline: 2px solid var(--accent-color);
+    border-color: var(--qua);
+    outline-offset: 0.25rem;
+}
+
+.react-switch, .react-switch * {
     cursor: inherit !important;
 }
 
-:has(.react-switch-bg):has(input[type="checkbox"][aria-checked="true"]) .react-switch-bg {
+.react-switch:has(.react-switch-bg):has(input[type="checkbox"][aria-checked="true"]) .react-switch-bg {
     background-color: var(--accent-color) !important;
 }
 

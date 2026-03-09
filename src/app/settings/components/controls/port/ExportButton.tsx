@@ -21,7 +21,7 @@ const exportSettings = (settings: Settings) => {
     URL.revokeObjectURL(a.href);
 };
 
-const getSettings = (getCookie: (key: string, options?: (OptionsType)) => CookieValueTypes): Settings => {
+export const getSettings = (getCookie: (key: string, options?: (OptionsType)) => CookieValueTypes): Settings => {
     function getPeriodNames() {
         try {
             // eslint-disable-next-line @typescript-eslint/no-unsafe-return
@@ -47,6 +47,8 @@ const getSettings = (getCookie: (key: string, options?: (OptionsType)) => Cookie
         font: getCookie("font")?.toString() ? getCookie("font")!.toString() : "SegoeUI",
         defaultLunch: getCookie("defaultLunch") === "B Lunch" ? "B Lunch" : "A Lunch",
         showTimeRemainingRing: getCookie("showTimeRemainingRing") === "true",
+        // @ts-expect-error this is not actually a big issue so shush
+        layout: String(getCookie("layout")) ?? "sidebar",
         clippy: getCookie("clippy") === "true",
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         periodNames: getPeriodNames(),

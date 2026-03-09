@@ -11,7 +11,7 @@ export default function DefaultLunch({ lunch }: { lunch: "A Lunch" | "B Lunch" |
         // @ts-expect-error undefined will be ignored
         setDefaultLunch(e.currentTarget.value);
         changeDefaultLunch(e);
-    }}>
+    }} style={{ fontSize: "revert" }}>
         <option value="A Lunch">A Lunch</option>
         <option value="B Lunch">B Lunch</option>
     </OptionSelect>;

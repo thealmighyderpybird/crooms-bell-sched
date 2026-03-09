@@ -103,7 +103,7 @@ const EditDialog = ({ setActive, ogDetails, sid, newAlert }: {
                 </main>
             </div>
             <p style={{ textAlign: "center", marginBlockEnd: 0, width: "100%" }}>
-            <Link href="https://account.croomssched.tech/account-center" target="CBSHAccountCenter">
+            <Link href="https://account.croomsbellschedule.com/account-center" target="CBSHAccountCenter">
                 Manage more in Account Center</Link>
             </p>
             <footer>

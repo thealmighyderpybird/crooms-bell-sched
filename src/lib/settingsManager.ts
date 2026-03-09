@@ -1,3 +1,4 @@
+import type { WidgetSettings, WidgetLayout } from "~/types/settings";
 import defaultWidgetSettings from "~/lib/defaultWidgetSettings";
 import type Settings from "~/types/settings";
 import fonts from "~/styles/fonts/fonts";
@@ -65,12 +66,26 @@ export const updatePeriodNames = (periodNames: string[]) => {
     });
 };
 
+export const updateWidgetSettings = (widgets: WidgetSettings) => {
+    void saveSettings({ widgets });
+};
+
+export const setWidgetLayout = (layout: WidgetLayout) => {
+    void saveSettings({ layout });
+};
+
+export const importSettings = (settings: Settings) => {
+    void saveSettings(settings);
+    return true;
+};
+
 export const resetSettings = () => {
     void saveSettings({
         widgets: defaultWidgetSettings,
         accentColor: "default-accent",
         showTimeRemainingRing: true,
         defaultLunch: "A Lunch",
+        layout: "sidebar",
         theme: "system",
         font: "SegoeUI",
         clippy: false,
@@ -84,5 +99,6 @@ export const resetSettings = () => {
             "7th Period",
             "Homeroom",
         ])
-    })
+    });
+    setTimeout(() => window.location.reload(), 200);
 };

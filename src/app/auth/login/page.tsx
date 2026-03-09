@@ -12,7 +12,7 @@ export default async function AuthLogin() {
             <Spinner size={100} />
             <h2>Please wait...</h2>
             <p style={{ marginBlockEnd: "0" }}>Logging you in...</p>
-            { redirect("https://account.croomssched.tech/auth/login/sso/crooms-bell-schedule") }
+            { redirect("https://account.croomsbellschedule.com/auth/login/sso/crooms-bell-schedule") }
         </div>
     </Card>
 }

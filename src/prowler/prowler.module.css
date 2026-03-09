@@ -110,11 +110,16 @@
 }
 
 .userPageBanner {
-    border-radius: 1rem 1rem 0 0;
     width: calc(100% + 2rem);
     position: relative;
+    transition: none;
     left: -1rem;
     top: -1rem;
+}
+
+.userPageBanner img {
+    border-radius: 1rem 1rem 0 0;
+    pointer-events: none;
 }
 
 .menu button span {
