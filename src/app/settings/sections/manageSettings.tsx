@@ -38,7 +38,7 @@ export default async function ManageSettings() {
             <OptionGroup>
                 <div className="flex justify-between items-center gap-5 w-full">
                     <div className="flex items-center gap-5">
-                        <SettingsIcon icon="upload" viewBox={24} />
+                        <SettingsIcon icon="reset" viewBox={20} />
                         <div>
                             <OptionHeader>Reset your settings</OptionHeader>
                             <OptionDescription>Start fresh with a clean set of settings</OptionDescription>
