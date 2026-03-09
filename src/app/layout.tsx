@@ -68,14 +68,14 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
         const { uid, sid } = await getSession();
 
         try {
-            const {device, browser, os} = userAgent({headers: await headers()});
-            const deviceType = device.model ?? "Unknown";
-
             if (sid && env.NODE_ENV === "production") {
+                const {device, browser, os} = userAgent({headers: await headers()});
+                const deviceType = device.model ?? "Unknown";
+
                 await fetch(CBSHServerURL + "/usage/website", {
                     body: JSON.stringify({
                         browser: `${browser.name} v${browser.version}`,
-                        os: `${os.name}, version ${os.version}`,
+                        os: `${os.name} ${os.version}`,
                         device: deviceType,
                         time: new Date(),
                     }),
