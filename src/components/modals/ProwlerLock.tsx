@@ -3,7 +3,7 @@
 import overlayStyles from "../dialog/dialog.module.css";
 import Link from "next/link";
 
-export default function ProwlerLockDialog({ setIsActive }: { setIsActive: (arg0: boolean) => void }) {
+export default function ProwlerLockDialog({ setIsActiveAction }: { setIsActiveAction: (arg0: boolean) => void }) {
     return <>
         <div className={overlayStyles.modal} />
         <div className={`${overlayStyles.dialog} ${overlayStyles.controlledWidth}`}>
@@ -17,9 +17,8 @@ export default function ProwlerLockDialog({ setIsActive }: { setIsActive: (arg0:
                     href="mailto:support@croomssched.tech">email our support</Link>.</p>
             </main>
             <footer className={overlayStyles.actionButtons}>
-                <button className={overlayStyles.button} onClick={() => setIsActive(false)}>Cancel</button>
-                <Link className={"button " + overlayStyles.button}
-                      href="https://community.croomssched.tech/prowler-verification">Start Basic Verification</Link>
+                <button className={overlayStyles.button} onClick={() => setIsActiveAction(false)}>Cancel</button>
+                <Link className={"button " + overlayStyles.button} href="/prowlerlock">View ProwlerLock Status</Link>
             </footer>
         </div>
     </>;

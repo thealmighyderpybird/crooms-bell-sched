@@ -17,6 +17,6 @@ export default function SharePostLink({ children, sid, canIPost }: { children: R
             else setEnabled(true);
         }}>{ children }</a>
         { enabled && createPortal(<NewPostDialog sid={sid} setIsActive={setEnabled} />, document.getElementById("modal-portal")!) }
-        { prowlerLockEnabled && createPortal(<ProwlerLockDialog setIsActive={setProwlerLockEnabled} />, document.getElementById("modal-portal")!) }
+        { prowlerLockEnabled && createPortal(<ProwlerLockDialog setIsActiveAction={setProwlerLockEnabled} />, document.getElementById("modal-portal")!) }
     </>;
 };
