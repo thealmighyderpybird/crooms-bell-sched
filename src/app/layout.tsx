@@ -93,7 +93,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
         {maintenance ? <Maintenance/> : <AlertProvider>
             <Header/>
             <main className="pt-13 pb-7.75">{children}</main>
-            <Footer/><EverythingTrigger/>
+            <Footer/>{/*<EverythingTrigger/>*/}
             <Script src={statusPageURL}/>
             <div id="modal-portal"/>
         </AlertProvider>}
