@@ -2,17 +2,21 @@
 import Header from "~/components/root/header/header";
 import Footer from "~/components/root/footer/footer";
 import Maintenance from "~/components/Maintenance";
+import CBSHServerURL from "~/lib/CBSHServerURL";
 import getSiteSettings from "~/lib/getSettings";
 import type { Metadata, Viewport } from "next";
 import { AlertProvider } from "~/AlertContext";
 import getSession from "~/lib/session.server";
 import Fonts from "~/styles/fonts/fonts";
-import { type ReactNode } from "react";
+import { userAgent } from "next/server";
+import { headers } from "next/headers";
+import type { ReactNode } from "react";
 import Script from "next/script";
 import "~/styles/themes/all.css";
 import "~/styles/colors.css";
 import "~/styles/cursor.css";
 import "~/styles/master.css";
+import { env } from "~/env";
 
 const maintenance = false;
 
@@ -61,18 +65,39 @@ export const metadata: Metadata = {
 export default async function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
     try {
         const { theme, font, accentColor } = await getSiteSettings();
-        const { uid } = await getSession();
+        const { uid, sid } = await getSession();
 
-        return <html lang="en" className={ Fonts[font] + parseTheme(theme) }>
-            <body className={ accentColor ? parseAccentColor(accentColor, uid) : undefined }>
-            { maintenance ? <Maintenance /> : <AlertProvider>
-                <Header />
-                <main className="pt-13 pb-7.75">{children}</main>
-                <Footer />{/*<EverythingTrigger />*/}
-                <Script src={statusPageURL} />
-                <div id="modal-portal" />
-            </AlertProvider> }
-            </body>
+        try {
+            const {device, browser, os} = userAgent({headers: await headers()});
+            const deviceType = device.model ?? "Unknown";
+
+            if (sid && env.NODE_ENV === "production") {
+                await fetch(CBSHServerURL + "/usage/website", {
+                    body: JSON.stringify({
+                        browser: `${browser.name} v${browser.version}`,
+                        os: `${os.name}, version ${os.version}`,
+                        device: deviceType,
+                        time: new Date(),
+                    }),
+                    headers: {
+                        "Authorization": JSON.stringify(sid ?? ""),
+                        "Content-Type": "application/json"
+                    },
+                    method: "POST"
+                });
+            }
+        } catch (e) {console.error(e)}
+
+        return <html lang="en" className={Fonts[font] + parseTheme(theme)}>
+        <body className={accentColor ? parseAccentColor(accentColor, uid) : undefined}>
+        {maintenance ? <Maintenance/> : <AlertProvider>
+            <Header/>
+            <main className="pt-13 pb-7.75">{children}</main>
+            <Footer/><EverythingTrigger/>
+            <Script src={statusPageURL}/>
+            <div id="modal-portal"/>
+        </AlertProvider>}
+        </body>
         </html>;
     } catch {
         return <html lang="en" className={ Fonts.SegoeUI }>

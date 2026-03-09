@@ -4,7 +4,6 @@ import ManageSettings from "./sections/manageSettings";
 import WidgetManager from "./sections/widgetManager";
 import Schedule from "./sections/schedule";
 
-
 export default function SettingsPage() {
     return <>
         <SettingsHeader>Personalization</SettingsHeader>
