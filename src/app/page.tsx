@@ -25,7 +25,7 @@ export default async function Home() {
 
     const canIPostRes = await (await fetch(CBSHServerURL + "/prowler/can-i-post", {
         headers: { "Authorization": JSON.stringify(sid) }, method: "POST",
-    })).json() as { status: "OK" | "FAILED", data: boolean };
+    })).json() as { status: "OK" | "FAILED", data: boolean | "pending" };
 
     return <ThemeProvider>
         <div className="flex flex-col lg:flex-row w-fit mx-auto px-2 lg:px-4 py-7 lg:py-0">

@@ -5,7 +5,7 @@ import Prowler from "~/prowler/root";
 import Card from "../index/Card";
 
 export default function ProwlerCard({ sid, uid, userDetails, deviceType, canIPost }: {
-    sid: string, uid: string, userDetails: User, deviceType: string, canIPost: boolean,
+    sid: string, uid: string, userDetails: User, deviceType: string, canIPost: boolean | "pending",
 }) {
     return <Card>
         <CardHeader>Prowler</CardHeader>
