@@ -1,9 +1,10 @@
+import getSiteSettings, { getDefaultSiteSettings } from "~/lib/getSettings";
 //import EverythingTrigger from "~/components/everything/Trigger";
+import FocusModeTrigger from "~/components/focusMode/Trigger";
 import Header from "~/components/root/header/header";
 import Footer from "~/components/root/footer/footer";
 import Maintenance from "~/components/Maintenance";
 import CBSHServerURL from "~/lib/CBSHServerURL";
-import getSiteSettings from "~/lib/getSettings";
 import type { Metadata, Viewport } from "next";
 import { AlertProvider } from "~/AlertContext";
 import getSession from "~/lib/session.server";
@@ -64,7 +65,7 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
     try {
-        const { theme, font, accentColor } = await getSiteSettings();
+        const settings = await getSiteSettings();
         const { uid, sid } = await getSession();
 
         try {
@@ -88,14 +89,15 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
             }
         } catch (e) {console.error(e)}
 
-        return <html lang="en" className={Fonts[font] + parseTheme(theme)}>
-        <body className={accentColor ? parseAccentColor(accentColor, uid) : undefined}>
+        return <html lang="en" className={Fonts[settings.font] + parseTheme(settings.theme)}>
+        <body className={settings.accentColor ? parseAccentColor(settings.accentColor, uid) : undefined}>
         {maintenance ? <Maintenance/> : <AlertProvider>
             <Header/>
             <main className="pt-13 pb-7.75">{children}</main>
             <Footer/>{/*<EverythingTrigger/>*/}
             <Script src={statusPageURL}/>
             <div id="modal-portal"/>
+            <FocusModeTrigger settings={settings} />
         </AlertProvider>}
         </body>
         </html>;
@@ -108,6 +110,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
                 <Footer />{/*<EverythingTrigger />*/}
                 <Script src={statusPageURL} />
                 <div id="modal-portal" />
+                <FocusModeTrigger settings={getDefaultSiteSettings()} />
             </AlertProvider> }
             </body>
         </html>

@@ -334,6 +334,25 @@ pre {
 }
 
 @layer base {
+    kbd {
+        background-color: var(--pri);
+        border-radius: 3px;
+        border: 1px solid var(--sec);
+        box-shadow:
+                0 1px 1px var(--main) / 0.2,
+                0 2px 0 0 var(--rev) / 0.7 inset;
+        color: var(--main);
+        display: inline-block;
+        font-size: 0.85em;
+        font-weight: bold;
+        line-height: 1;
+        padding: 2px 4px;
+        white-space: nowrap;
+    }
+}
+
+
+@layer base {
     ul {
         padding-inline: revert;
         margin-block: revert;
@@ -672,4 +691,12 @@ iframe {
 
 .opaque {
     opacity: 1 !important;
+}
+
+:root:has(#focus) {
+    overflow: hidden;
+}
+
+#focus #cbsh-application-focus-schedule {
+    width: 100%;
 }
