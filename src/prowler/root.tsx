@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import CBSHServerURL from "~/lib/CBSHServerURL";
 import type Post from "~/types/ProwlerPost";
 import styles from "./prowler.module.css";
@@ -48,43 +48,60 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
     const [posts, setPosts] = useState<Post[]>([]);
     const [isTriggered, setIsTriggered] = useState(false);
     const [startAt, setStartAt] = useState(0);
-    let ws: WebSocket;
-    let reconnectTimer: NodeJS.Timeout = undefined!;
-    let shownDisconnected = false;
-    let loading = false;
-    let [loadingText, setLoadingText] = useState("Connecting to Crooms Bell Schedule Services");
+    const [loadingText, setLoadingText] = useState("Connecting to Crooms Bell Schedule Services");
 
-    const createWebsocket = () => {
-        ws = new WebSocket(CBSHServerURL.replace("http://", "ws://"));
+    // FIX: All mutable persistent values moved to refs so they survive re-renders
+    const wsRef = useRef<WebSocket | null>(null);
+    const reconnectTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+    const shownDisconnectedRef = useRef(false);
+    const loadingRef = useRef(false);
+    // FIX: Ref always holds the latest createWebsocket so setInterval never captures a stale closure
+    const createWebsocketRef = useRef<(() => void) | null>(null);
+
+    const createWebsocket = useCallback(() => {
+        // Close any existing socket cleanly before opening a new one
+        if (wsRef.current) {
+            wsRef.current.onclose = null; // prevent triggering reconnect logic on intentional close
+            wsRef.current.close();
+        }
+
+        // FIX: Handle both http→ws and https→wss
+        const wsUrl = CBSHServerURL
+            .replace("https://", "wss://")
+            .replace("http://", "ws://");
+
+        const ws = new WebSocket(wsUrl);
+        wsRef.current = ws;
+
         ws.addEventListener('open', () => {
             console.log('[Prowler] Connected!');
             setLoadingText("Connected");
-            shownDisconnected = false;
+            shownDisconnectedRef.current = false;
 
-            if (reconnectTimer) {
-                clearInterval(reconnectTimer);
-                reconnectTimer = undefined!;
-
+            if (reconnectTimerRef.current) {
+                clearInterval(reconnectTimerRef.current);
+                reconnectTimerRef.current = null;
                 createAlertBalloon("Prowler", "Reconnected to server", 0);
             }
         });
 
         ws.addEventListener('close', event => {
             // https://developer.mozilla.org/en-US/docs/Web/API/CloseEvent/code
-            // 1001: going away
-            console.log("disconnected with code " + event.code)
-            if (event.code !== 1001) {
-                if (!shownDisconnected) {
+            // 1000: normal closure, 1001: going away — don't reconnect for either
+            console.log("disconnected with code " + event.code);
+            if (event.code !== 1000 && event.code !== 1001) {
+                if (!shownDisconnectedRef.current) {
                     createAlertBalloon("Prowler", `Disconnected from server`, 1);
-                    shownDisconnected = true;
+                    shownDisconnectedRef.current = true;
                 }
                 setLoadingText("Disconnected from server, reconnecting...");
 
-                if (!reconnectTimer) {
+                if (!reconnectTimerRef.current) {
                     console.log("create reconnect timer");
-                    reconnectTimer = setInterval(() => {
+                    reconnectTimerRef.current = setInterval(() => {
                         console.log("attempting to reconnect");
-                        createWebsocket();
+                        // FIX: Call via ref so interval always invokes the latest function
+                        createWebsocketRef.current?.();
                     }, 5000);
                 }
             }
@@ -98,7 +115,8 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
                 for (let index = 0; index < prowler.posts.length; index++) {
                     if (prowler.posts[index]?.id == delPost.ID) {
                         prowler.posts.splice(index, 1);
-                        setPosts(prowler.posts);
+                        // FIX: Spread to a new array so React detects the change and re-renders
+                        setPosts([...prowler.posts]);
                         console.log("deleted post " + index);
                         break;
                     }
@@ -111,14 +129,35 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
                 if (postIndex <= -1) return;
 
                 prowler.posts[postIndex]!.data = updatePost.NewContent;
-                setPosts(prowler.posts);
+                // FIX: Spread to a new array so React detects the change and re-renders
+                setPosts([...prowler.posts]);
             }
             else if (data.Message === "NewPost") {
                 const newPost = data as NewPostWebsocketMessage;
                 setPosts((prev: Post[]) => uniquePosts([newPost.Data, ...prev]));
             }
         });
-    };
+    }, [createAlertBalloon]);
+
+    // Keep the ref in sync with the latest createWebsocket function
+    useEffect(() => {
+        createWebsocketRef.current = createWebsocket;
+    }, [createWebsocket]);
+
+    // FIX: Clean up WebSocket and reconnect timer on unmount
+    useEffect(() => {
+        return () => {
+            if (reconnectTimerRef.current) {
+                clearInterval(reconnectTimerRef.current);
+                reconnectTimerRef.current = null;
+            }
+            if (wsRef.current) {
+                wsRef.current.onclose = null;
+                wsRef.current.close(1000);
+                wsRef.current = null;
+            }
+        };
+    }, []);
 
     const loadPostsBefore = useCallback(async (beforeId: string) => {
         try {
@@ -142,7 +181,7 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
 
         } catch (e) {
             createAlertBalloon("Something went wrong", // @ts-expect-error it's unknown but known
-                "Failed to fetch the latest from Prowler. Error details: " + e.message, 2);
+                "Failed to fetch the latest from Prowler. Error details: " + (e as Error).message, 2);
         }
         setLoadingText("");
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -171,7 +210,7 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
 
         } catch (e) {
             createAlertBalloon("Something went wrong", // @ts-expect-error it's unknown but known
-                "Failed to fetch the latest from Prowler. Error details: " + e.message, 2);
+                "Failed to fetch the latest from Prowler. Error details: " + (e as Error).message, 2);
         }
         setLoadingText("");
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -183,7 +222,8 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
         if (!lastItem) return;
         await loadPostsBefore(lastItem.id);
 
-        setPosts(() => prowler.posts);
+        // FIX: Spread to new array so React re-renders
+        setPosts(() => [...prowler.posts]);
         setStartAt(prev => prev + prowler.incrementor);
         setIsTriggered(false);
 
@@ -205,9 +245,12 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
     }, []);
 
     useEffect(() => {
+        const container = document.getElementById("prowler-container")!;
+
         const onScroll = async () => {
-            if (loading) return;
-            const checkingElement = deviceType === "mobile" ? document.documentElement : document.getElementById("prowler-container")!;
+            // FIX: Use ref for loading flag so it persists across renders
+            if (loadingRef.current) return;
+            const checkingElement = deviceType === "mobile" ? document.documentElement : container;
 
             const scrollHeight = checkingElement.scrollHeight;
             const clientHeight = checkingElement.clientHeight;
@@ -216,16 +259,20 @@ export default function ProwlerRoot({ sid, uid, session, deviceType }: { sid: st
             const scrollPercent = (scrollTop + clientHeight) / scrollHeight * 100;
 
             if (!isTriggered && scrollPercent >= 90 && scrollPercent < 100) {
-                loading = true;
+                loadingRef.current = true;
                 setIsTriggered(true);
                 await loadPosts();
-                loading = false;
+                loadingRef.current = false;
             }
         };
 
-        document.getElementById("prowler-container")!.addEventListener('scroll', onScroll);
+        container.addEventListener('scroll', onScroll);
         window.addEventListener('scroll', onScroll);
-        return () => window.removeEventListener('scroll', onScroll);
+        // FIX: Remove BOTH listeners on cleanup, not just window's
+        return () => {
+            container.removeEventListener('scroll', onScroll);
+            window.removeEventListener('scroll', onScroll);
+        };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [startAt]);
 
