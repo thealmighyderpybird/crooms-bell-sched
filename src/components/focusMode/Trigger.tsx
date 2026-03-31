@@ -15,7 +15,7 @@ export default function FocusModeTrigger({ settings }: { settings: Settings }) {
 
         window.addEventListener("keydown", handleKey);
         return () => window.removeEventListener("keydown", handleKey);
-    }, []);
+    }, [focusMode]);
 
     return focusMode && createPortal(<FocusMode settings={settings} />, document.getElementById("modal-portal")!);
 }
