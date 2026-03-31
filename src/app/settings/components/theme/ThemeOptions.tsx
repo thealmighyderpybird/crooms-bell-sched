@@ -82,6 +82,18 @@ export default function ThemeOptions() {
             <ThemeImage src="https://mikhail.croomsbellschedule.com/apiv2/fs/assets/Bacon_preview.png"
                         theme="Bacon" />
         </ThemeOption>
+        <ThemeOption id="tadc" title="Digital Circus">
+            <ThemeImage src="https://mikhail.croomsbellschedule.com/apiv2/fs/assets/tadc_preview.png"
+                        theme="Bacon" />
+        </ThemeOption>
+        <ThemeOption id="jp2" title="Akihabara">
+            <ThemeImage src="https://mikhail.croomsbellschedule.com/apiv2/fs/assets/jp2_bg.jpg"
+                        theme="Bacon" />
+        </ThemeOption>
+        <ThemeOption id="jp1" title="Osaka">
+            <ThemeImage src="https://mikhail.croomsbellschedule.com/apiv2/fs/assets/jp1_bg.jpg"
+                        theme="Bacon" />
+        </ThemeOption>
         <ThemeOption id="jetbrains" title="JetBrains">
             <ThemeImage src="https://cdn.croomsbellschedule.com/data/7291ef48-5f58-4f73-a79d-23f146afd471/jetbrains.png"
                         theme="JetBrains" />
