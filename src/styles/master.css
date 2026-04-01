@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+:root, * {
+    --default-cursor: url("https://www.croomsbellschedule.com/donnan.jpg") !important;
+    cursor: url("https://www.croomsbellschedule.com/donnan.jpg") !important;
+}
+
 @theme {
     --breakpoint-header-cutoff-sm: 359px;
     --breakpoint-header-cutoff-md: 424px;

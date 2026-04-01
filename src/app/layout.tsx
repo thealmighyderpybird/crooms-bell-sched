@@ -15,7 +15,7 @@ import type { ReactNode } from "react";
 import Script from "next/script";
 import "~/styles/themes/all.css";
 import "~/styles/colors.css";
-import "~/styles/cursor.css";
+// import "~/styles/cursor.css";
 import "~/styles/master.css";
 import { env } from "~/env";
 
