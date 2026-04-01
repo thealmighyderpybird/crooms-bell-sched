@@ -21,7 +21,7 @@ export default async function Header() {
                 <Link className="flex flex-row flex-nowrap items-center p-2 pl-3 header-cutoff-lg:pr-3.75 hover:bg-(--sec) active:bg-(--tri) no-underline text-inherit"
                       tabIndex={1} href="/">
                     <Image src="/favicon.ico" alt="Logo" draggable="false" priority width={28} height={28}
-                           className="header-cutoff-lg:mr-2 w-7 h-7 block" />
+                           className="header-cutoff-lg:mr-2 w-7 h-7 block rotate-y-180" />
                     <span className="hidden header-cutoff-lg:block">‮Crooms Bell Schedule</span>
                 </Link>
                 <div className="p-3 flex flex-row flex-nowrap items-center hover:bg-(--sec) active:bg-(--tri) group"
