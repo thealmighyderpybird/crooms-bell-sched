@@ -1,7 +1,6 @@
 import CroomsBellScheduleApplet from "~/components/CroomsBellScheduleApplet";
 import FeedAndUpdateRotation from "./FeedAndUpdateRotation";
 import getSiteSettings from "~/lib/getSettings";
-import RandExp from "randexp";
 import Link from "next/link";
 
 export default async function Footer() {
@@ -89,8 +88,7 @@ export default async function Footer() {
             </span>
             <div className="hidden group-hover:block bg-(--pri) px-2.5 py-2 max-w-93.75 w-full absolute bottom-9.25 right-0"
                  style={{ boxShadow: "black 0 -10px 10px" }}>
-                <CroomsBellScheduleApplet id={new RandExp(/[a-f0-9]\w{10}/).gen()}
-                                          settings={await getSiteSettings()} />
+                <CroomsBellScheduleApplet id="app" settings={await getSiteSettings()} />
             </div>
         </div>
     </footer>;
