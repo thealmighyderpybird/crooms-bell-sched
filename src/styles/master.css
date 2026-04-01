@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root * {
-    cursor: url("/cursors/donnancur.png"), auto;
+    cursor: url("/cursors/donnancur.png"), auto !important;
 }
 
 @theme {
