@@ -1,8 +1,7 @@
 @import "tailwindcss";
 
-:root, * {
-    --default-cursor: url("https://www.croomsbellschedule.com/donnan.jpg") !important;
-    cursor: url("https://www.croomsbellschedule.com/donnan.jpg") !important;
+:root * {
+    cursor: url("/cursors/donnancur.png"), auto;
 }
 
 @theme {
