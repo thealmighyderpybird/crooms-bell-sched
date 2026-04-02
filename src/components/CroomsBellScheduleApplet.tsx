@@ -6,7 +6,6 @@ import layout from "./schedule/schedule.module.css";
 import type Settings from "~/types/settings";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import donnan from "./donnan/donnan";
 
 enum L { A = "A Lunch", B = "B Lunch" }
 const currentLunchMap = { [L.A]: 0, [L.B]: 1 };
@@ -63,7 +62,6 @@ export default function CroomsBellScheduleApplet({ id, settings }: { id: string,
                     newEvent,
                     setPeriodClassName,
                     setProgress,
-                    id
                 )
             );
         }
@@ -103,7 +101,7 @@ export default function CroomsBellScheduleApplet({ id, settings }: { id: string,
 
 const getPeriodAndTimeRemaining = (
     schedule: Schedule, settings: Settings, currentLunch: "A Lunch" | "B Lunch", currentEvent: number[],
-    setCurrentPeriodClass: (className: string) => void, setProgress: (progress: number) => void, id: string,
+    setCurrentPeriodClass: (className: string) => void, setProgress: (progress: number) => void,
 ) => {
     const now = new Date();
 
@@ -126,8 +124,6 @@ const getPeriodAndTimeRemaining = (
     const percentRemaining = ((endEventSec - nowSec) / (endEventSec - startEventSec)) * 100;
     const percentComplete = 100 - percentRemaining;
     setProgress(percentComplete);
-
-    if (id === "app" && endEventSec - nowSec === 1) donnan();
 
     return EventName + ", Time Left: " + countdown.toString();
 };
