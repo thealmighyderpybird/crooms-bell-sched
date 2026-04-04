@@ -1,11 +1,11 @@
 "use client";
 
 import { getDateTime, getSchedule, hms2sec, sec2hms, getEventName, type Schedule } from "~/lib/schedule";
-import { useState, useEffect, type Dispatch, type SetStateAction } from "react";
 import ProgressMeter from "~/components/ProgressMeter";
 import layout from "./schedule/schedule.module.css";
 import type Settings from "~/types/settings";
 import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
 
 enum L { A = "A Lunch", B = "B Lunch" }
 const currentLunchMap = { [L.A]: 0, [L.B]: 1 };
@@ -14,11 +14,10 @@ export default function CroomsBellScheduleApplet({ id, settings }: { id: string,
     const router = useRouter();
 
     const [currentLunch, setCurrentLunch] = useState(settings.defaultLunch);
-
     const [currentTime, setCurrentTime] = useState("Please wait...");
     const [period, setPeriod] = useState("Please wait...");
 
-    const [schedule, setSchedule]: [Schedule, Dispatch<SetStateAction<Schedule>>] = useState({
+    const [schedule, setSchedule] = useState<Schedule>({
         msg: "Please wait...",
         schedule: [[[0, 0, 0, 23, 59]], [[0, 0, 0, 23, 59]]],
         error: "", code: ""
@@ -62,7 +61,7 @@ export default function CroomsBellScheduleApplet({ id, settings }: { id: string,
                     currentLunch,
                     newEvent,
                     setPeriodClassName,
-                    setProgress
+                    setProgress,
                 )
             );
         }

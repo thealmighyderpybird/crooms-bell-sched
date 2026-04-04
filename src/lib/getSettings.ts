@@ -34,3 +34,26 @@ export default async function getSiteSettings(): Promise<SiteSettings> {
         }
     }
 };
+
+export function getDefaultSiteSettings(): SiteSettings {
+    return {
+        widgets: defaultWidgetSettings,
+        accentColor: "default-accent",
+        showTimeRemainingRing: false,
+        defaultLunch: "A Lunch",
+        layout: "sidebar",
+        theme: "system",
+        font: "SegoeUI",
+        clippy: false,
+        periodNames: JSON.stringify([
+            "1st Period",
+            "2nd Period",
+            "3rd Period",
+            "4th Period",
+            "5th Period",
+            "6th Period",
+            "7th Period",
+            "Homeroom",
+        ]),
+    }
+}

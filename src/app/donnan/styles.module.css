@@ -1,0 +1,9 @@
+body:has(.root) {
+    header, footer, nav, aside {
+        display: none !important;
+    }
+
+    main {
+        padding: 0;
+    }
+}
