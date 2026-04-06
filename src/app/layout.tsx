@@ -19,7 +19,7 @@ import "~/styles/cursor.css";
 import "~/styles/master.css";
 import { env } from "~/env";
 
-const maintenance = true;
+const maintenance = false;
 
 export const viewport: Viewport = {
     width: "device-width",
