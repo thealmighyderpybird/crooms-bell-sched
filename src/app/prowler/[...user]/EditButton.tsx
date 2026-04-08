@@ -21,7 +21,7 @@ export default function EditButton({ sid, pronouns, bio }: { sid: string, pronou
     const { createAlertBalloon } = useAlert();
 
     return <>
-        <button onClick={() => setActive(true)}>Edit Profile</button>
+        <button className="text-(--main)!" onClick={() => setActive(true)}>Edit Profile</button>
         { active && createPortal(
             <EditDialog setActive={setActive} ogDetails={{bio, pronouns}} sid={sid} newAlert={createAlertBalloon} />,
             document.getElementById("modal-portal")!) }

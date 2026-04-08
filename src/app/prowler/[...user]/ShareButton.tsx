@@ -4,7 +4,7 @@ import useAlert from "~/AlertContext";
 
 export default function LinkCopy({ username, displayName }: { username: string, displayName: string }) {
     const { createAlertBalloon } = useAlert();
-    return <button onClick={(): void => void shareLink(username, displayName, createAlertBalloon)}>
+    return <button className="text-(--main)!" onClick={(): void => void shareLink(username, displayName, createAlertBalloon)}>
             Share Profile</button>;
 };
 

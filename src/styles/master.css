@@ -519,14 +519,14 @@ svg.spinner > * {
     }
 
     button, a.button, input[type="button"], input[type="submit"], input[type="reset"] {
-        padding: 8px 10px;
         background: var(--accent-color);
-        color: var(--rev) !important;
+        border-radius: 0.5rem;
         text-decoration: none;
         font-family: inherit;
-        border: none;
-        border-radius: 0.5rem;
         font-size: 0.8rem;
+        padding: 8px 10px;
+        color: var(--rev);
+        border: none;
     }
 
     button:hover, a.button:hover, input[type="button"]:hover, input[type="submit"]:hover, input[type="reset"]:hover {
