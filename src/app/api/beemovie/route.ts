@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import BeeMovie from 'beemovie';
+import { Script } from 'beemovie';
 
 export async function GET() {
-    NextResponse.json({ body: BeeMovie.Script() });
+    return NextResponse.json(Script());
 }
