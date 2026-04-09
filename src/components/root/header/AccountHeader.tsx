@@ -50,11 +50,11 @@ export default function AccountHeader({ session }: { session: CBSHUser | null })
             </div>
         </div>
         { isTrayOpen && <div className="bg-(--pri) rounded-xl fixed top-16 right-2.5 box-glow-[black]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
             <div className="relative">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={`https://mikhail.croomsbellschedule.com/apiv2/fs/profile_banner/${session.id}.png`}
-                     alt={ (session.displayname ? session.displayname : `@${session.username}`) + "'s Profile Picture"}
-                     title={ (session.displayname ? session.displayname : `@${session.username}`) + "'s Profile Picture"}
+                     alt={(session.displayname ? session.displayname : `@${session.username}`) + "'s Profile Banner"}
+                     title={(session.displayname ? session.displayname : `@${session.username}`) + "'s Profile Banner"}
                      className="rounded-t-xl aspect-9/5 h-50 pointer-events-none block" draggable="false" />
                 <Link className="absolute inset-0 flex justify-center items-center bg-(--background)/60 rounded-t-xl opacity-0 hover:opacity-100 text-(--main)"
                       href="https://account.croomsbellschedule.com/account-center/profile-banner?change"

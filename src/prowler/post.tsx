@@ -67,7 +67,7 @@ export default function Post({ post, session, sid, uid, deviceType }: { post: Po
                         </span> }
                     </div>
                 </Link>
-                { hoverCardActive && <div className={ styles.hoverCard } onMouseOut={() => disableHoverCard()}>
+                { hoverCardActive && <div className="absolute mt-2 z-90">
                     <UserCard userData={{
                         croomsPro: post.userTags.includes("croomsPro"),
                         displayName: post.displayName,
@@ -75,7 +75,7 @@ export default function Post({ post, session, sid, uid, deviceType }: { post: Po
                         verified: post.verified,
                         pronouns: post.pronouns,
                         id: post.uid,
-                    }} /></div> }
+                    }} onMouseLeave={() => disableHoverCard()} /></div> }
             </div>
             <ActionArea session={session} post={post} sid={sid} uid={uid} />
         </div>

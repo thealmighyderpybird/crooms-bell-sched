@@ -193,14 +193,3 @@
     margin-left: 0.25rem !important;
     margin-top: 1%;
 }
-
-.hoverCard {
-    transform: translate(-0.25rem, 0.5rem);
-    background-color: var(--pri);
-    box-shadow: 0 0 1rem black;
-    border-radius: 1rem;
-    position: absolute;
-    max-width: 24rem;
-    padding: 1rem;
-    z-index: 10;
-}
