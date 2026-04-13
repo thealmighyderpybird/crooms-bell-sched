@@ -1,0 +1,43 @@
+/* Background gradient */
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  font-family: Arial, sans-serif;
+}
+
+/* Liquid glass card */
+.liquid-glass-card {
+  width: 320px;
+  padding: 2rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(15px) saturate(150%);
+  -webkit-backdrop-filter: blur(15px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  text-align: center;
+  animation: liquidMove 6s infinite alternate ease-in-out;
+  filter: url(#liquid);
+}
+
+/* Text styling */
+.liquid-glass-card h1 {
+  margin: 0 0 0.5rem;
+  font-size: 1.8rem;
+}
+
+.liquid-glass-card p {
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+/* Liquid movement animation */
+@keyframes liquidMove {
+  0% { filter: url(#liquid); }
+  100% { filter: url(#liquid); }
+}
