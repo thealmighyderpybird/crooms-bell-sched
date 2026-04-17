@@ -6,17 +6,26 @@ import { parseTime } from "~/lib/parseEndTime";
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September",
     "October", "November", "December"];
 
-export default function Announcement({ announcement }: { announcement: Announcement }) {
+export default function Announcement({ announcement, unread, viewed, setViewedAction }: {
+    announcement: Announcement, unread: boolean, viewed: string[], setViewedAction: (value: string[]) => void,
+}) {
     const createdDate = new Date(announcement.created);
     const expiresData = new Date(announcement.expires);
 
     const createTime = `${months[createdDate.getMonth()]} ${createdDate.getDate()}, ${createdDate.getFullYear()} ` +
-        parseTime(createdDate)
+        parseTime(createdDate);
 
     const expiresTime = `${months[expiresData.getMonth()]} ${expiresData.getDate()}, ${expiresData.getFullYear()} ` +
-        parseTime(expiresData)
+        parseTime(expiresData);
 
-    return <Accordion title={ announcement.data.title }>
+    const viewItem = () => {
+        const isAlreadyAdded = viewed.includes(announcement.id);
+        if (!isAlreadyAdded) setViewedAction([...viewed, announcement.id]);
+        localStorage.setItem("viewed-announcements", JSON.stringify(viewed));
+    };
+
+    return <Accordion title={ announcement.data.title } badge={unread ? { color: "accent-color" } : undefined}
+                      onOpen={viewItem}>
         <div dangerouslySetInnerHTML={{ __html: sanitizeContent(announcement.data.message) }} />
         <div className="mt-4 text-[.7rem] flex items-center group">
             <span className="leading-none">{createTime}</span>

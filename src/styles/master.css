@@ -20,10 +20,6 @@
     max-height: calc(100vh - 5.1875rem);
 }
 
-@utility max-h-prowler {
-    max-height: calc(100vh - 13.0325rem);
-}
-
 @utility context-menu {
     background-color: var(--pri);
     box-shadow: black 0 0 10px;
@@ -679,6 +675,16 @@ iframe {
     outline: 2px solid var(--accent-color);
     border-color: var(--qua);
     outline-offset: 0.25rem;
+}
+
+@media (min-width: 64rem) {
+    .max-h-prowler {
+        max-height: calc(100vh - 13.0325rem);
+    }
+
+    .max-h-prowler-no-post {
+        max-height: calc(100vh - 11.25rem);
+    }
 }
 
 .react-switch, .react-switch * {

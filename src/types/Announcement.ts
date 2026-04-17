@@ -7,7 +7,7 @@ export default interface Announcement {
     id: string,
 }
 
-export interface AnnouncementData {
+export type AnnouncementData = {
     title: string,
     message: string,
 }

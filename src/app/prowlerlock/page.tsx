@@ -67,7 +67,7 @@ export default async function Page() {
                         </svg>
                         <div className="flex flex-col justify-center">
                             <h2 className="override-header-[white]">You are allowed to use Prowler</h2>
-                            <p>You currently can post on the <Link href="/prowler">Prowler</Link> page.</p>
+                            <p>You currently can post on <Link href="/prowler">Prowler</Link>.</p>
                             <p className="mb-0">Make sure you follow the <Link
                                 href="https://community.croomssched.tech/standards"
                                 target="CBSH_CommunityStandards">Community Standards</Link> when posting.</p>

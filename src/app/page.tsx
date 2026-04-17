@@ -26,6 +26,7 @@ export default async function Home() {
     const canIPostRes = await (await fetch(CBSHServerURL + "/prowler/can-i-post", {
         headers: { "Authorization": JSON.stringify(sid) }, method: "POST",
     })).json() as { status: "OK" | "FAILED", data: boolean | "pending" };
+    const canIPost = (canIPostRes.status === "FAILED" ? false : canIPostRes.data);
 
     return <ThemeProvider>
         <div className="flex flex-col lg:flex-row w-fit mx-auto px-2 lg:px-4 py-7 lg:py-0">
@@ -38,12 +39,12 @@ export default async function Home() {
                 { siteSettings.widgets.weather && <WeatherWidget /> }
                 { siteSettings.widgets.surveys && <Surveys />}
                 { (siteSettings.layout === "simplified" && siteSettings.widgets.prowler) &&
-                    <ProwlerCard sid={sid} uid={uid} userDetails={userDetails} canIPost={canIPostRes.data}
+                    <ProwlerCard sid={sid} uid={uid} userDetails={userDetails} canIPost={canIPost}
                                  deviceType="mobile" /> }
             </CardLayout>
             { (siteSettings.layout === "sidebar" && siteSettings.widgets.prowler) && <div className="sticky top-13 h-fit">
                 <CardLayout>
-                    <ProwlerCard sid={sid} uid={uid} userDetails={userDetails} canIPost={canIPostRes.data}
+                    <ProwlerCard sid={sid} uid={uid} userDetails={userDetails} canIPost={canIPost}
                                  deviceType={deviceType} />
                 </CardLayout>
             </div>}

@@ -11,7 +11,7 @@ export default async function SurveyPostPage() {
     if (sid === "") redirect("/auth/login");
     const res = await (await fetch(CBSHServerURL + "/feed/can-i-post", {
         headers: { "Authorization": JSON.stringify(sid) }, method: "POST",
-    })).json() as { status: "OK" | "FAILED", data: boolean };
+    })).json() as { status: "OK" | "FAILED", data: boolean | "pending" };
 
     return <Card>
         <h2>Share a survey</h2>

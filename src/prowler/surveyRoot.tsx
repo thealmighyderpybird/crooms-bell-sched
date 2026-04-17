@@ -1,5 +1,4 @@
 import CardHeader from "~/components/index/CardHeader";
-import indexStyles from "~/app/index.module.css";
 import CBSHServerURL from "~/lib/CBSHServerURL";
 import Card from "~/components/index/Card";
 import styles from "./surveys.module.css";
@@ -26,7 +25,7 @@ export default async function SurveyRoot() {
 
     return <Card>
         <CardHeader>Surveys</CardHeader>
-        <Link href="/prowler/survey" className={ indexStyles.sharePostLink }>Share a survey</Link>
+        <Link href="/prowler/survey" className="inline-block w-fit mb-4 select-none">Share a survey</Link>
         { res.data.length > 0 ? <ul id="surveys" className={ styles.surveyContainer }>
             { res.data.map(survey => <li key={survey.id} data-survey-id={survey.id}>
                 <Link href={survey.link} target="CBSH_Survey">{survey.name}</Link>
