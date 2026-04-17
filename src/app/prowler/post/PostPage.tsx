@@ -16,7 +16,7 @@ export default function PostPage({ session }: { session: { uid: string, sid: str
 
     return <>
         <div className={styles.prowlerForm}>
-            <LiveEdit value={postContent} onChange={(e) => setPostContent(e)} />
+            <LiveEdit value={postContent} onChangeAction={(e) => setPostContent(e)} />
         </div>
         { onPostErrorContent !== "" ? <p className={ styles.error }>{ onPostErrorContent }</p> : null }
         <div className={ styles.actionBar }>

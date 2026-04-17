@@ -9,8 +9,8 @@ import CBSHServerURL from "~/lib/CBSHServerURL";
 import { createPortal } from "react-dom";
 import type User from "~/types/user";
 
-export default function LiveEdit({ value, onChange, style, preview = false, mentionHelper = false }: {
-    value?: string, onChange: (newContent: string) => void, style?: CSSProperties, preview?: boolean, mentionHelper?: boolean
+export default function LiveEdit({ value, onChangeAction, style, preview = false, mentionHelper = false }: {
+    value?: string, onChangeAction: (newContent: string) => void, style?: CSSProperties, preview?: boolean, mentionHelper?: boolean
 }) {
     const iframeRef = useRef<HTMLIFrameElement>(null);
     const [isHelpEnabled, setIsHelpEnabled] = useState(false);
@@ -146,7 +146,7 @@ export default function LiveEdit({ value, onChange, style, preview = false, ment
         // Update handler
         const handler = () => {
             setHtml(sanitizeContent(doc.body.innerHTML));
-            onChange(sanitizeContent(doc.body.innerHTML.toString()));
+            onChangeAction(sanitizeContent(doc.body.innerHTML.toString()));
         }
 
         doc.addEventListener("selectionchange", updateState);
@@ -216,7 +216,7 @@ export default function LiveEdit({ value, onChange, style, preview = false, ment
             setHtml(htmlContent);
 
             // Set the HTML state
-            onChange(html);
+            onChangeAction(html);
         };
 
         doc.body.addEventListener("input", handleInput);
@@ -260,7 +260,7 @@ export default function LiveEdit({ value, onChange, style, preview = false, ment
                 setHtml(htmlContent);
 
                 // Set the HTML state
-                onChange(html);
+                onChangeAction(html);
             }
         };
 
@@ -328,6 +328,7 @@ export default function LiveEdit({ value, onChange, style, preview = false, ment
         const a = doc.createElement("a");
         a.className = "links";
         a.setAttribute("mention", username);
+        a.setAttribute("href", `/prowler/${username}`);
         a.textContent = `@${username}`;
         parent.insertBefore(a, textNode);
 
@@ -349,7 +350,7 @@ export default function LiveEdit({ value, onChange, style, preview = false, ment
         setHtml(htmlContent);
 
         // Set the HTML state
-        onChange(html);
+        onChangeAction(html);
     };
 
     const updateDropdownPos = () => {
@@ -457,7 +458,7 @@ export default function LiveEdit({ value, onChange, style, preview = false, ment
         setHtml(htmlContent);
 
         // Set the HTML state
-        onChange(html);
+        onChangeAction(html);
     }
 
     // Command manager for items
@@ -586,7 +587,7 @@ export default function LiveEdit({ value, onChange, style, preview = false, ment
         setHtml(htmlContent);
 
         // Set the HTML state
-        onChange(html);
+        onChangeAction(html);
     }
 
     // Editor and toolbar

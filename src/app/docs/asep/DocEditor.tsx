@@ -7,6 +7,6 @@ export default function DocEditor({ originalContent }: { originalContent: string
     const [content, setContent] = useState(originalContent);
 
     return <>
-        <LiveEdit onChange={(c) => setContent(c)} value={content} />
+        <LiveEdit onChangeAction={(c) => setContent(c)} value={content} />
     </>;
 };
