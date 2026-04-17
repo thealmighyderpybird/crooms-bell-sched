@@ -21,11 +21,14 @@ export default function Announcement({ announcement, unread, viewed, setViewedAc
     const viewItem = () => {
         const isAlreadyAdded = viewed.includes(announcement.id);
         if (!isAlreadyAdded) setViewedAction([...viewed, announcement.id]);
+    };
+
+    const closeItem = () => {
         localStorage.setItem("viewed-announcements", JSON.stringify(viewed));
     };
 
     return <Accordion title={ announcement.data.title } badge={unread ? { color: "accent-color" } : undefined}
-                      onOpen={viewItem}>
+                      onOpen={viewItem} onClose={closeItem}>
         <div dangerouslySetInnerHTML={{ __html: sanitizeContent(announcement.data.message) }} />
         <div className="mt-4 text-[.7rem] flex items-center group">
             <span className="leading-none">{createTime}</span>
