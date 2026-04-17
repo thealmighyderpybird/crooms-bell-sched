@@ -238,7 +238,6 @@ export default function ProwlerRoot({ sid, uid, session, deviceType, canIPost }:
 
     return <div id="prowler">
         <div className={styles.prowlerPostContainer}>
-            <pre className="wrap-anywhere text-wrap whitespace-normal max-h-36 overflow-y-auto">{ JSON.stringify(posts) }</pre>
             {/* Signed Out Banner */}
             { (sid === "") && <div className="bg-(--sec) mb-2.5 p-3 rounded-2xl flex gap-2.5">
                 <svg xmlns="http://www.w3.org/2000/svg" width="2.5rem" height="2.5rem" viewBox="0 0 24 24"
