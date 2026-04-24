@@ -48,6 +48,7 @@ export default function ProwlerRoot({ sid, uid, session, deviceType, canIPost }:
     const [shownDisconnected, setShownDisconnected] = useState(false);
     const [isTriggered, setIsTriggered] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [latestPost, setLatestPost] = useState<Post>();
     const [startAt, setStartAt] = useState(0);
     const [posts, setPosts] = useState<Post[]>([]);
     const { createAlertBalloon } = useAlert();
@@ -100,6 +101,7 @@ export default function ProwlerRoot({ sid, uid, session, deviceType, canIPost }:
                     if (postIndex < 0) return prev;
 
                     postList.splice(postIndex, 1);
+                    setLatestPost(postList[postList.length - 1]);
                     return postList;
                 })
             } else if (data.Message === "UpdatePost") {
@@ -113,11 +115,17 @@ export default function ProwlerRoot({ sid, uid, session, deviceType, canIPost }:
                     const post = postList[postIndex]!;
                     Object.assign(post, updatePost.NewContent);
                     postList[postIndex] = post;
+
+                    setLatestPost(postList[postList.length - 1]);
                     return postList;
                 });
             } else if (data.Message === "NewPost") {
                 const { Data } = data as NewPostWebsocketMessage;
-                setPosts(prev => uniquePosts([Data, ...prev]));
+                setPosts(prev => {
+                    const data = uniquePosts([Data, ...prev]);
+                    setLatestPost(data[data.length - 1]);
+                    return data;
+                });
             }
         });
     };
@@ -125,8 +133,8 @@ export default function ProwlerRoot({ sid, uid, session, deviceType, canIPost }:
     const loadPostsBefore = useCallback(async (beforeId: string) => {
         try {
             setLoadingText("Loading data");
-            console.log("fetch before " + beforeId + ", 50 items");
-            const r = await fetch(prowler.source + "/before/" + beforeId + "?limit=50", {
+            console.log("fetch before " + beforeId + ", 100 items");
+            const r = await fetch(prowler.source + "/before/" + beforeId + "?limit=100", {
                 headers: {
                     "Authorization": JSON.stringify(sid),
                     "Content-Type": "application/json",
@@ -140,18 +148,24 @@ export default function ProwlerRoot({ sid, uid, session, deviceType, canIPost }:
                 return;
             }
 
-            setPosts(prev => uniquePosts([...prev, ...res.data]));
-        } catch (e) {
-            createAlertBalloon("Something went wrong", // @ts-expect-error it's unknown but known
+            setPosts(prev => {
+                const data = uniquePosts([...prev, ...res.data]);
+                setLatestPost(data[data.length - 1]);
+                return data;
+            });
+        } catch (e: any) {
+            createAlertBalloon("Something went wrong",
                 "Failed to fetch the latest from Prowler. Error details: " + e.message, 2);
+            return;
+        } finally {
+            setLoadingText("");
         }
-        setLoadingText("");
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const fetchPosts = async () => {
         try {
-            const r = await fetch(prowler.source + "?limit=50", {
+            const r = await fetch(prowler.source + "?limit=100", {
                 headers: {
                     "Authorization": JSON.stringify(sid),
                     "Content-Type": "application/json",
@@ -177,23 +191,27 @@ export default function ProwlerRoot({ sid, uid, session, deviceType, canIPost }:
 
     const getPosts = useCallback(async () => {
         const newPosts = await fetchPosts();
-        setPosts(prev => uniquePosts([...prev, ...newPosts]));
+        setPosts(prev => {
+            const data = uniquePosts([...prev, ...newPosts]);
+            setLatestPost(data[data.length - 1]);
+            return data;
+        });
         await loadPosts();
         createWebsocket();
     }, []);
 
     const loadPosts = async () => {
-        let postList = posts;
+        console.log("[Prowler] loading old posts");
+        setLatestPost(prev => {
+            if (!prev) return latestPost;
 
-        console.log("[Prowler] loading old posts, current len: " + postList.length);
-        const lastItem = postList[postList.length - 1];
-        if (!lastItem) return;
-        await loadPostsBefore(lastItem.id);
+            void loadPostsBefore(prev.id);
+            setStartAt(prev => prev + prowler.incrementor);
+            setIsTriggered(false);
 
-        setStartAt(prev => prev + prowler.incrementor);
-        setIsTriggered(false);
-
-        console.log("[Prowler] done, result len: " + posts.length);
+            console.log("[Prowler] done loading old posts");
+            return posts[posts.length - 1] ?? prev;
+        });
     }
 
     function uniquePosts(posts: Post[]) {
