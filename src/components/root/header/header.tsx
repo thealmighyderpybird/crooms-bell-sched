@@ -38,15 +38,15 @@ export default async function Header() {
                 </Link>
             </div>
             <div className='flex-row flex-nowrap hidden header-cutoff-sm:flex'>
-                { osName === 'Windows' &&
-                <Link href='https://app.croomsbellschedule.com' title='Download the app' tabIndex={1}
-                      target='CBSHApp' className='p-3 hidden header-cutoff-md:flex flex-row flex-nowrap items-center hover:bg-(--sec) active:bg-(--tri) no-underline text-inherit group'>
+                { (osName === 'Windows' || osName.includes('Android')) &&
+                <Link href='/app' title='Download the app' tabIndex={1}
+                      className='p-3 hidden header-cutoff-s1:flex flex-row flex-nowrap items-center hover:bg-(--sec) active:bg-(--tri) no-underline text-inherit group'>
                     <div className='flex justify-center gap-2'>
                         <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='1.5rem' height='1.5em' style={{ cursor: 'inherit' }}>
                             <path d='M17 4a1 1 0 1 0-2 0v16.586l-5.293-5.293a1 1 0 0 0-1.414 1.414l7 7a1 1 0 0 0 1.414 0l7-7a1 1 0 0 0-1.414-1.414L17 20.586zM7 27a1 1 0 1 0 0 2h18a1 1 0 1 0 0-2z'
                                   fill='currentColor' style={{ cursor: 'inherit' }} />
                         </svg>
-                        <span className='hidden header-cutoff-lx:inline-block'>Download the app</span>
+                        <span className='hidden header-cutoff-xl:inline-block'>Download the app</span>
                     </div>
                     <div className='hidden group-hover:block absolute top-12.75 bg-(--pri) overflow-y-auto z-10 transform-[translateX(-.75rem)] p-2'
                          style={{ fontSize: '0.8rem', boxShadow: 'black 0 5px 5px' }}>Download the app</div>
