@@ -1,7 +1,9 @@
 @import "tailwindcss";
 
 @theme {
+    --breakpoint-header-cutoff-xs: 235px;
     --breakpoint-header-cutoff-sm: 359px;
+    --breakpoint-header-cutoff-s1: 400px;
     --breakpoint-header-cutoff-md: 424px;
     --breakpoint-header-cutoff-lg: 620px;
     --breakpoint-header-cutoff-lx: 859px;
