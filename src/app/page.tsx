@@ -21,10 +21,10 @@ export default async function Home() {
                 </Card>
                 { siteSettings.widgets.lunch && <LunchWidget /> }
                 { siteSettings.widgets.weather && <WeatherWidget /> }
-                { (siteSettings.layout === 'simplified' && siteSettings.widgets.prowler) &&
+                { (siteSettings.layout === 'simplified' && siteSettings.widgets.news) &&
                     <div></div> }
             </CardLayout>
-            {/* (siteSettings.layout === 'sidebar' && siteSettings.widgets.prowler) && <div className='sticky top-13 h-fit'>
+            {/* (siteSettings.layout === 'sidebar' && siteSettings.widgets.news) && <div className='sticky top-13 h-fit'>
                 <CardLayout>
                     <div></div>
                 </CardLayout>

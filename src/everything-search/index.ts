@@ -1,9 +1,9 @@
-import Plugin from "./plugin";
+import Plugin from './plugin';
 
 // EVERYTHING SEARCH by Crooms Bell Schedule
 export default class EverythingSearch {
     private useSearchSuggestions = false;
-    private query = "";
+    private query = '';
 
     public constructor(useSearchSuggestions: boolean) {
         this.useSearchSuggestions = useSearchSuggestions;

@@ -1,7 +1,7 @@
-import CBSHServerURL from "~/lib/CBSHServerURL";
+import CBSHServerURL from '~/lib/CBSHServerURL';
 
 interface CBSHUserAPIResponse {
-    status: "OK" | "FAILED",
+    status: 'OK' | 'FAILED',
     data: CBSHUser & { error: string, code: string }
 }
 
@@ -13,11 +13,11 @@ export interface CBSHUser {
 }
 
 const getSessionInfo = async (sid: string) => {
-    const r = await fetch(CBSHServerURL + "/users/userDetails", {
-        method: "POST",
+    const r = await fetch(CBSHServerURL + '/users/userDetails', {
+        method: 'POST',
         headers: {
-            "Content-Type": "application/json",
-            "Authorization": JSON.stringify(sid)
+            'Content-Type': 'application/json',
+            'Authorization': JSON.stringify(sid)
         },
     });
     const res = await r.json() as CBSHUserAPIResponse;

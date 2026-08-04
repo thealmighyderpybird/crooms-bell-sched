@@ -1,4 +1,4 @@
-import type { WidgetSettings } from "~/types/settings";
+import type { WidgetSettings } from '~/types/settings';
 
 export const defaultWidgetSettings: WidgetSettings = {
     lunch: true,

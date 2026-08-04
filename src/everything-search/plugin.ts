@@ -1,4 +1,4 @@
-import type QueryResult from "./types/QueryResult";
+import type QueryResult from './types/QueryResult';
 
 /** This is the base plugin class and has no search items/actions of its own.
  *  All search items/actions should be added by the plugin developer in a subclass.

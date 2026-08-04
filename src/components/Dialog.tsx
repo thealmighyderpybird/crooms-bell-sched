@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import DialogCloseButton from "./dialog/DialogCloseButton";
-import styles from "./dialog/dialog.module.css";
-import React, { type ReactNode } from "react";
+import DialogCloseButton from './dialog/DialogCloseButton';
+import styles from './dialog/dialog.module.css';
+import React, { type ReactNode } from 'react';
 
 export default function Dialog({
     children, isModal, closeButton = true, backgroundClose = true, controlledWidth = false, controlledHeight = false,
@@ -11,9 +11,9 @@ export default function Dialog({
     children: ReactNode, isModal?: boolean, closeButton?: boolean, backgroundClose?: boolean,
     controlledWidth?: boolean, controlledHeight?: boolean, separateContent?: boolean, setIsActiveAction: (value: boolean) => void,
 }) {
-    const computedStyles = `${controlledWidth ? " " + styles.controlledWidth : ""}` +
-        `${controlledHeight ? " " + styles.controlledHeight : ""}` +
-        `${separateContent ? " " + styles.separatedContent : ""}`;
+    const computedStyles = `${controlledWidth ? ' ' + styles.controlledWidth : ''}` +
+        `${controlledHeight ? ' ' + styles.controlledHeight : ''}` +
+        `${separateContent ? ' ' + styles.separatedContent : ''}`;
 
     return <>
         <div className={ styles.dialog + computedStyles }>
