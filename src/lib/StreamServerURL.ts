@@ -1,2 +1,1 @@
-const streamServerURL = "https://radio.croomsbellschedule.com";
-export default streamServerURL;
+export default 'https://radio.croomsbellschedule.com';

@@ -1,35 +1,35 @@
-import defaultWidgetSettings from "~/lib/defaultWidgetSettings";
-import type { WidgetSettings } from "~/types/settings";
-import type SiteSettings from "~/types/settings";
-import { cookies } from "next/headers";
+import defaultWidgetSettings from '~/lib/defaultWidgetSettings';
+import type { WidgetSettings } from '~/types/settings';
+import type SiteSettings from '~/types/settings';
+import { cookies } from 'next/headers';
 
 export default async function getSiteSettings(): Promise<SiteSettings> {
     const cookieStore = await cookies();
     return {
-        widgets: cookieStore.get("widgets")?.value ? JSON.parse(cookieStore.get("widgets")!.value) as WidgetSettings : defaultWidgetSettings,
-        theme: cookieStore.get("theme")?.value === "dark" ? "dark" : cookieStore.get("theme")?.value === "light" ? "light" : "system",
-        accentColor: cookieStore.get("accentColor")?.value ? cookieStore.get("accentColor")!.value : "default-accent",
-        defaultLunch: cookieStore.get("defaultLunch")?.value === "B Lunch" ? "B Lunch" : "A Lunch",
-        font: cookieStore.get("font")?.value ? cookieStore.get("font")!.value : "SegoeUI",
-        showTimeRemainingRing: cookieStore.get("showTimeRemainingRing")?.value !== "false",
-        clippy: cookieStore.get("clippy")?.value === "true", // @ts-ignore
-        layout: String(cookieStore.get("layout")?.value ?? "sidebar"),
+        widgets: cookieStore.get('widgets')?.value ? JSON.parse(cookieStore.get('widgets')!.value) as WidgetSettings : defaultWidgetSettings,
+        theme: cookieStore.get('theme')?.value === 'dark' ? 'dark' : cookieStore.get('theme')?.value === 'light' ? 'light' : 'system',
+        accentColor: cookieStore.get('accentColor')?.value ? cookieStore.get('accentColor')!.value : 'default-accent',
+        defaultLunch: cookieStore.get('defaultLunch')?.value === 'B Lunch' ? 'B Lunch' : 'A Lunch',
+        font: cookieStore.get('font')?.value ? cookieStore.get('font')!.value : 'SegoeUI',
+        showTimeRemainingRing: cookieStore.get('showTimeRemainingRing')?.value !== 'false',
+        clippy: cookieStore.get('clippy')?.value === 'true', // @ts-ignore
+        layout: String(cookieStore.get('layout')?.value ?? 'sidebar'),
         periodNames: getPeriodNames(),
     };
 
     function getPeriodNames() {
         try {
-            return cookieStore.get("periodNames")!.value;
+            return cookieStore.get('periodNames')!.value;
         } catch {
             return JSON.stringify([
-                "1st Period",
-                "2nd Period",
-                "3rd Period",
-                "4th Period",
-                "5th Period",
-                "6th Period",
-                "7th Period",
-                "Homeroom",
+                '1st Period',
+                '2nd Period',
+                '3rd Period',
+                '4th Period',
+                '5th Period',
+                '6th Period',
+                '7th Period',
+                'Homeroom',
             ]);
         }
     }
@@ -38,22 +38,22 @@ export default async function getSiteSettings(): Promise<SiteSettings> {
 export function getDefaultSiteSettings(): SiteSettings {
     return {
         widgets: defaultWidgetSettings,
-        accentColor: "default-accent",
+        accentColor: 'default-accent',
         showTimeRemainingRing: false,
-        defaultLunch: "A Lunch",
-        layout: "sidebar",
-        theme: "system",
-        font: "SegoeUI",
+        defaultLunch: 'A Lunch',
+        layout: 'sidebar',
+        theme: 'system',
+        font: 'SegoeUI',
         clippy: false,
         periodNames: JSON.stringify([
-            "1st Period",
-            "2nd Period",
-            "3rd Period",
-            "4th Period",
-            "5th Period",
-            "6th Period",
-            "7th Period",
-            "Homeroom",
+            '1st Period',
+            '2nd Period',
+            '3rd Period',
+            '4th Period',
+            '5th Period',
+            '6th Period',
+            '7th Period',
+            'Homeroom',
         ]),
     }
 }
