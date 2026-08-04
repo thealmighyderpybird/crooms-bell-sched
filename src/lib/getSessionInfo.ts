@@ -2,20 +2,14 @@ import CBSHServerURL from "~/lib/CBSHServerURL";
 
 interface CBSHUserAPIResponse {
     status: "OK" | "FAILED",
-    data: CBSHUser
+    data: CBSHUser & { error: string, code: string }
 }
 
 export interface CBSHUser {
-    error: string,
-    code: string,
     id: string,
     username: string,
-    displayname: string,
-    verified: boolean,
-    userTags: string[],
-    croomsPro: boolean,
-    role: "user" | "mod" | "dev" | "admin",
-    providers: [],
+    displayName: string,
+    isAdmin: boolean,
 }
 
 const getSessionInfo = async (sid: string) => {

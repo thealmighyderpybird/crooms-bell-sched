@@ -1,2 +1,1 @@
-const CBSHServerURL = "https://api.croomsbellschedule.com";
-export default CBSHServerURL;
+export default 'http://localhost:3101'; //'http://192.168.1.64:3101'; //'https://api.croomsbellschedule.com';

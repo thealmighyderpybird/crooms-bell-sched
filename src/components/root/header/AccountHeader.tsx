@@ -2,7 +2,6 @@
 
 import type { CBSHUser } from "~/lib/getSessionInfo";
 import CBSHServerURL from "~/lib/CBSHServerURL";
-import Verified from "~/components/Verified";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
@@ -41,20 +40,19 @@ export default function AccountHeader({ session }: { session: CBSHUser | null })
              onClick={() => setIsTrayOpen(!isTrayOpen)}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={`${CBSHServerURL}/users/profile-picture/${session.id}`} draggable="false"
-                 alt={ (session.displayname ? session.displayname : `@${session.username}`) + "'s Profile Picture"}
-                 title={ (session.displayname ? session.displayname : `@${session.username}`) + "'s Profile Picture"}
+                 alt={ (session.displayName ? session.displayName : `@${session.username}`) + "'s Profile Picture"}
+                 title={ (session.displayName ? session.displayName : `@${session.username}`) + "'s Profile Picture"}
                  className="rounded-full aspect-square w-7 h-7 pointer-events-none" />
             <div className="hidden header-cutoff-lx:flex flex-row items-center gap-1 pl-1.25">
-                { session.displayname !== "" ? session.displayname : `@${session.username}` }
-                { session.verified && <Verified size={15} /> }
+                { session.displayName !== "" ? session.displayName : `@${session.username}` }
             </div>
         </div>
         { isTrayOpen && <div className="bg-(--pri) rounded-xl fixed top-16 right-2.5 box-glow-[black]">
             <div className="relative">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={`https://mikhail.croomsbellschedule.com/apiv2/fs/profile_banner/${session.id}.png`}
-                     alt={(session.displayname ? session.displayname : `@${session.username}`) + "'s Profile Banner"}
-                     title={(session.displayname ? session.displayname : `@${session.username}`) + "'s Profile Banner"}
+                     alt={(session.displayName ? session.displayName : `@${session.username}`) + "'s Profile Banner"}
+                     title={(session.displayName ? session.displayName : `@${session.username}`) + "'s Profile Banner"}
                      className="rounded-t-xl aspect-9/5 h-50 pointer-events-none block" draggable="false" />
                 <Link className="absolute inset-0 flex justify-center items-center bg-(--background)/60 rounded-t-xl opacity-0 hover:opacity-100 text-(--main)"
                       href="https://account.croomsbellschedule.com/account-center/profile-banner?change"
@@ -69,8 +67,8 @@ export default function AccountHeader({ session }: { session: CBSHUser | null })
                 <div className="relative">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={`${CBSHServerURL}/users/profile-picture/${session.id}`}
-                         alt={(session.displayname ? session.displayname : `@${session.username}`) + "'s Profile Picture"}
-                         title={(session.displayname ? session.displayname : `@${session.username}`) + "'s Profile Picture"}
+                         alt={(session.displayName ? session.displayName : `@${session.username}`) + "'s Profile Picture"}
+                         title={(session.displayName ? session.displayName : `@${session.username}`) + "'s Profile Picture"}
                          className="rounded-full aspect-square w-13 h-13 pointer-events-none block" draggable="false" />
                     <Link className="absolute inset-0 flex justify-center items-center bg-(--background)/60 rounded-full opacity-0 hover:opacity-100 text-(--main)"
                           href="https://account.croomsbellschedule.com/account-center/profile-picture?change"
@@ -83,10 +81,9 @@ export default function AccountHeader({ session }: { session: CBSHUser | null })
                 </div>
                 <div>
                     <h2 className="flex items-center gap-0.5 leading-none">
-                        { session.displayname ? session.displayname : `@${session.username}` }
-                        { session.verified && <Verified size={16} /> }
+                        { session.displayName ? session.displayName : `@${session.username}` }
                     </h2>
-                    { session.displayname && <span className="leading-none">@{session.username}</span> }
+                    { session.displayName && <span className="leading-none">@{session.username}</span> }
                 </div>
             </div>
             <div className="mt-4 px-4 pb-4 flex flex-row flex-nowrap gap-1">

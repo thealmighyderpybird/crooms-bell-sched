@@ -7,9 +7,8 @@ import { useState } from "react";
 
 export default function WidgetSettings({ settings }: { settings: WidgetSettings }) {
     const [weatherWidget, setWeatherWidget] = useState(settings.weather);
-    const [prowlerWidget, setProwlerWidget] = useState(settings.prowler);
-    const [surveyWidget, setSurveyWidget] = useState(settings.surveys);
     const [lunchWidget, setLunchWidget] = useState(settings.lunch);
+    const [newsWidget, setNewsWidget] = useState(settings.news);
     const [widgetSettings, setWidgetSettings] = useState(settings);
 
     return <div className="mt-6 flex flex-col gap-1">
@@ -23,15 +22,10 @@ export default function WidgetSettings({ settings }: { settings: WidgetSettings 
             <OptionSlider checked={weatherWidget} onChange={value => {setWeatherWidget(value);
                 widgetSettings.weather = value; setWidgetSettings(widgetSettings); updateWidgetSettings(widgetSettings)}} />
         </div>
-        <div className="flex justify-between items-center bg-(--sec) p-2 rounded-lg">
-            <span className="leading-none">Surveys</span>
-            <OptionSlider checked={surveyWidget} onChange={value => {setSurveyWidget(value);
-                widgetSettings.surveys = value; setWidgetSettings(widgetSettings); updateWidgetSettings(widgetSettings)}} />
-        </div>
-        <div className="flex justify-between items-center bg-(--sec) p-2 rounded-lg">
-            <span className="leading-none">Prowler</span>
-            <OptionSlider checked={prowlerWidget} onChange={value => {setProwlerWidget(value);
-                widgetSettings.prowler = value; setWidgetSettings(widgetSettings); updateWidgetSettings(widgetSettings)}} />
-        </div>
+        {/*<div className="flex justify-between items-center bg-(--sec) p-2 rounded-lg">*/}
+        {/*    <span className="leading-none">News</span>*/}
+        {/*    <OptionSlider checked={newsWidget} onChange={value => {setNewsWidget(value);*/}
+        {/*        widgetSettings.news = value; setWidgetSettings(widgetSettings); updateWidgetSettings(widgetSettings)}} />*/}
+        {/*</div>*/}
     </div>;
 };

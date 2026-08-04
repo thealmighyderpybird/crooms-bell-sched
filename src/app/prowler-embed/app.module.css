@@ -1,3 +1,0 @@
-body:has(.prowlerEmbed)::before, body:has(.prowlerEmbed)::after {
-    content: revert !important;
-}
