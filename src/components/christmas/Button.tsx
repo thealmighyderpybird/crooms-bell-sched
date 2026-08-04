@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { type MouseEventHandler, useState } from "react";
-import styles from "./Button.module.css";
+import { type MouseEventHandler, useState } from 'react';
+import styles from './Button.module.css';
 
 export default function ChristmasButton({ onClickAction, hidden }: { onClickAction: MouseEventHandler<HTMLDivElement>, hidden: boolean }) {
     const [hover, setHover] = useState(false);

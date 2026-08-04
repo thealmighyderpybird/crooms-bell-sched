@@ -1,6 +1,6 @@
 {
   "name": "crooms-bell-sched",
-  "version": "4.8.0",
+  "version": "5.0.0",
   "type": "module",
   "private": true,
   "scripts": {
@@ -14,33 +14,32 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@namnguyenthanhwork/react-snowfall-effect": "^1.0.3",
-    "@t3-oss/env-nextjs": "^0.13.10",
+    "@t3-oss/env-nextjs": "^0.13.11",
     "beemovie": "^1.0.4",
     "cookies-next": "^6.1.1",
-    "next": "16.2.3",
+    "next": "16.3.0",
     "randexp": "^0.5.3",
-    "react": "^19.2.3",
-    "react-dom": "^19.2.3",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
     "react-switch": "^7.1.0",
-    "sanitize-html": "^2.17.0",
+    "sanitize-html": "^2.17.6",
     "websocket": "^1.0.35",
-    "zod": "^4.3.5"
+    "zod": "^4.4.3"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.3.3",
-    "@tailwindcss/postcss": "^4.1.18",
+    "@eslint/eslintrc": "^3.3.6",
+    "@tailwindcss/postcss": "^4.3.3",
     "@types/eslint": "^9.6.1",
-    "@types/node": "^25.0.3",
-    "@types/react": "^19.2.7",
-    "@types/react-dom": "^19.2.3",
+    "@types/node": "^26.1.2",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
     "@types/sanitize-html": "^2.16.0",
-    "eslint": "^9.39.2",
-    "eslint-config-next": "^16.2.3",
-    "postcss": "^8.5.6",
+    "eslint": "^10.8.0",
+    "eslint-config-next": "^16.3.0",
+    "postcss": "^8.5.25",
     "tailwindcss": "^4.1.18",
-    "typescript": "^5.9.3",
-    "typescript-eslint": "^8.52.0"
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.66.0"
   },
   "ct3aMetadata": {
     "initVersion": "7.38.1"

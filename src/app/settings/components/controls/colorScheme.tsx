@@ -12,7 +12,6 @@ export default function ColorScheme({ theme }: { theme: string }) {
         setColorScheme(e.currentTarget.value)
     }} style={{ fontSize: "revert" }}>
         <option value="system">System Theme</option>
-        <option value="light">Light Theme</option>
         <option value="dark">Dark Theme</option>
     </OptionSelect>;
 };

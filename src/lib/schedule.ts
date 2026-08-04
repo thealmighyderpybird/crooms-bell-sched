@@ -1,6 +1,6 @@
-import { weekday, parseTime } from "./parseEndTime";
-import CBSHServerURL from "~/lib/CBSHServerURL";
-import type Settings from "~/types/settings";
+import { weekday, parseTime } from './parseEndTime';
+import CBSHServerURL from '~/lib/CBSHServerURL';
+import type Settings from '~/types/settings';
 
 export interface Schedule {
     msg: string,
@@ -12,7 +12,7 @@ export interface Schedule {
 }
 
 interface ScheduleRequest {
-    status: "OK" | "FAILED",
+    status: 'OK' | 'FAILED',
     data: Schedule
 }
 
@@ -29,14 +29,14 @@ export const getDateTime = () => {
 
 export const getSchedule = async () => {
     try {
-        const r = await fetch(CBSHServerURL + "/today");
+        const r = await fetch(CBSHServerURL + '/today');
         const res = await r.json() as ScheduleRequest;
 
-        if (res.status !== "OK") return { error: "An error occurred. " + res.data.error } as Schedule;
+        if (res.status !== 'OK') return { error: 'An error occurred. ' + res.data.error } as Schedule;
         return res.data;
     }
     catch {
-        return { error: "An error occurred. "} as Schedule;
+        return { error: 'An error occurred. '} as Schedule;
     }
 };
 
@@ -52,15 +52,15 @@ export const sec2hms = (sec: number) => {
     remaining -= minutes * 60;
     const seconds = remaining;
 
-    if (sec < 3600) hms = "";
-    else hms = hours.toString() + ":";
+    if (sec < 3600) hms = '';
+    else hms = hours.toString() + ':';
 
     if (minutes >= 10) hms += minutes.toString();
-    else if (sec >= 3600 && minutes <= 10) hms += "0" + minutes.toString();
+    else if (sec >= 3600 && minutes <= 10) hms += '0' + minutes.toString();
     else hms += minutes.toString();
 
-    if (seconds >= 10) hms += ":" + seconds.toString();
-    else hms += ":0" + seconds.toString();
+    if (seconds >= 10) hms += ':' + seconds.toString();
+    else hms += ':0' + seconds.toString();
 
     return hms;
 };
@@ -71,21 +71,21 @@ export const getEventName = (EventName: number | undefined, settings: Settings) 
     if (EventName === 1 || EventName === 2 || EventName === 3 || EventName === 4 || EventName === 5
         || EventName === 6 || EventName === 7 || EventName === 8) return periodNames[EventName - 1];
 
-    else if (EventName === 0) return "Nothing";
-    else if (EventName === 100) return "Morning";
-    else if (EventName === 101) return "Welcome";
-    else if (EventName === 102) return "Lunch";
-    else if (EventName === 103) return "Homeroom";
-    else if (EventName === 104) return "Dismissal";
-    else if (EventName === 105) return "After School";
-    else if (EventName === 106) return "End";
-    else if (EventName === 107) return "Break";
-    else if (EventName === 110) return "PSAT/SAT";
-    else if (EventName === 111) return "Session 1";
-    else if (EventName === 112) return "Session 2";
-    else if (EventName === 113) return "Session 3";
-    else if (EventName === 114) return "Session 5";
-    else if (EventName === 115) return "Field Day";
-    else if (EventName === 116) return "Testing";
-    else return "Unknown Event";
+    else if (EventName === 0) return 'Nothing';
+    else if (EventName === 100) return 'Morning';
+    else if (EventName === 101) return 'Welcome';
+    else if (EventName === 102) return 'Lunch';
+    else if (EventName === 103) return 'Homeroom';
+    else if (EventName === 104) return 'Dismissal';
+    else if (EventName === 105) return 'After School';
+    else if (EventName === 106) return 'End';
+    else if (EventName === 107) return 'Break';
+    else if (EventName === 110) return 'PSAT/SAT';
+    else if (EventName === 111) return 'Session 1';
+    else if (EventName === 112) return 'Session 2';
+    else if (EventName === 113) return 'Session 3';
+    else if (EventName === 114) return 'Session 5';
+    else if (EventName === 115) return 'Field Day';
+    else if (EventName === 116) return 'Testing';
+    else return 'Unknown Event';
 };

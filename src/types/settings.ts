@@ -1,6 +1,6 @@
 export default interface Settings {
-    defaultLunch: "A Lunch" | "B Lunch",
-    theme: "light" | "dark" | "system",
+    defaultLunch: 'A Lunch' | 'B Lunch',
+    theme: 'light' | 'dark' | 'system',
     showTimeRemainingRing: boolean,
     widgets: WidgetSettings,
     layout: WidgetLayout,
@@ -13,8 +13,7 @@ export default interface Settings {
 export interface WidgetSettings {
     lunch: boolean,
     weather: boolean,
-    surveys: boolean,
-    prowler: boolean,
+    news: boolean,
 }
 
-export type WidgetLayout = "sidebar" | "simplified";
+export type WidgetLayout = 'sidebar' | 'simplified';
