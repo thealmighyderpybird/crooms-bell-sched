@@ -133,3 +133,4 @@ dist
 .idea/runConfigurations/bin_www.xml
 /.idea
 /_BAK/
+next-env.d.ts

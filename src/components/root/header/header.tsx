@@ -52,7 +52,7 @@ export default async function Header() {
                          style={{ fontSize: '0.8rem', boxShadow: 'black 0 5px 5px' }}>Download the app</div>
                 </Link>}
                 <AnnouncementsTrigger />
-                <AccountHeader session={typeof sessionInfo.username === 'undefined' ? null : sessionInfo} />
+                <AccountHeader session={typeof sessionInfo?.username === 'undefined' ? null : sessionInfo} />
             </div>
         </nav>
     </header>;
