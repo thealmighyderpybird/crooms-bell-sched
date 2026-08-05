@@ -6,13 +6,8 @@ The website usually updates on its own, and therefore doesn't require you to upd
 
 | Version | Supported          |
 |---------|--------------------|
-| 4.7.0   | :white_check_mark: |
-| 4.6.0   | :x:                |
-| 4.5.0   | :x:                |
-| 4.4.0   | :x:                |
-| 4.3.0   | :x:                |
-| 4.2.x   | :x:                |
-| 4.1.x   | :x:                |      
+| 5.0.0   | :white_check_mark: |
+| 4.x.x   | :x:                |      
 | 3.x.x   | :x:                |
 | 2.x.x   | :x:                |
 | 1.x.x   | :x:                |
