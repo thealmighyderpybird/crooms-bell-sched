@@ -8,9 +8,9 @@ import CBSHServerURL from '~/lib/CBSHServerURL';
 import type { Metadata, Viewport } from 'next';
 import { AlertProvider } from '~/AlertContext';
 import getSession from '~/lib/session.server';
+import { headers as h } from 'next/headers';
 import Fonts from '~/styles/fonts/fonts';
 import { userAgent } from 'next/server';
-import { headers } from 'next/headers';
 import type { ReactNode } from 'react';
 import Script from 'next/script';
 import '~/styles/themes/all.css';
@@ -69,8 +69,13 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
         const { sid } = await getSession();
 
         try {
-            if (sid && env.NODE_ENV === 'production') {
-                const {device, browser, os} = userAgent({headers: await headers()});
+            if (env.NODE_ENV === 'production') {
+                const headers = (sid !== '') ? {
+                    'Authorization': JSON.stringify(sid),
+                    'Content-Type': 'application/json'
+                } : { 'Content-Type': 'application/json' } as HeadersInit;
+
+                const {device, browser, os} = userAgent({headers: await h()});
                 const deviceType = device.model ?? 'Unknown';
 
                 await fetch(CBSHServerURL + '/usage/website', {
@@ -80,11 +85,8 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
                         device: deviceType,
                         time: new Date(),
                     }),
-                    headers: {
-                        'Authorization': JSON.stringify(sid ?? ''),
-                        'Content-Type': 'application/json'
-                    },
-                    method: 'POST'
+                    method: 'POST',
+                    headers,
                 });
             }
         } catch (e) {console.error(e)}
