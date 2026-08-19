@@ -17,6 +17,7 @@ import '~/styles/themes/all.css';
 import '~/styles/colors.css';
 import '~/styles/cursor.css';
 import '~/styles/master.css';
+import EmbedMode from '~/components/EmbedMode';
 import { env } from '~/env';
 
 const maintenance = false;
@@ -94,6 +95,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
         return <html lang='en' className={Fonts[settings.font] + parseTheme(settings.theme)}>
         <body className={settings.accentColor ?? undefined}>
         {maintenance ? <Maintenance/> : <AlertProvider>
+            <EmbedMode />
             <Header/>
             <main className='pt-13 pb-7.75'>{children}</main>
             <Footer/>{/*<EverythingTrigger/>*/}

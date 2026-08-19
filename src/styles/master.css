@@ -483,6 +483,15 @@ svg.spinner > * {
         outline: none;
         border-bottom: 2px solid var(--tri);
         padding: 5px;
+/* Embed mode: hide the site header and remove main top padding when page is embedded */
+.embed-mode header {
+    display: none !important;
+}
+
+.embed-mode main {
+    padding-top: 0 !important;
+}
+
         accent-color: var(--accent-color);
         text-align: center;
     }

@@ -3,6 +3,7 @@
 import AnnouncementItem from '../announcement/Announcement';
 import overlayStyles from '../dialog/dialog.module.css';
 import type Announcement from '~/types/Announcement';
+import ReadAllAnnouncements from '~/components/ReadAllAnnouncements';
 
 export default function Announcements({ setIsActiveAction, announcements, error, viewed, setViewedAction }: {
     setIsActiveAction: (arg0: boolean) => void, announcements: Announcement[], error: boolean, viewed: string[],
@@ -11,7 +12,9 @@ export default function Announcements({ setIsActiveAction, announcements, error,
     return <>
         <div className={overlayStyles.modal} onClick={() => setIsActiveAction(false)} />
         <div className={`${overlayStyles.dialog} ${overlayStyles.controlledWidth} h-fit max-h-(--modal-max)`}>
-            <header><h2 className='leading-none'>Announcements</h2></header>
+            <header className='flex items-center justify-between'><h2 className='leading-none'>Announcements</h2>
+                <div className='ml-4'><ReadAllAnnouncements /></div>
+            </header>
             <main className='w-full overflow-y-auto'
                   style={{ maxHeight: 'calc(100% - 56.56px - 2rem)' }}>{ !error ? announcements.map((announcement: Announcement) =>
                 <AnnouncementItem announcement={announcement} key={announcement.id} setViewedAction={setViewedAction}

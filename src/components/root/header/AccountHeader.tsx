@@ -14,17 +14,19 @@ export default function AccountHeader({ session }: { session: CBSHUser | null })
     const router = useRouter();
 
     useEffect(() => {
-        document.querySelector('body > main')!
-            .addEventListener('click', () => setIsTrayOpen(false));
-        return () => document.querySelector('body > main')!
-            .removeEventListener('click', () => setIsTrayOpen(false));
+        const el = document.querySelector('body > main');
+        if (!el) return;
+        const handler = () => setIsTrayOpen(false);
+        el.addEventListener('click', handler);
+        return () => el.removeEventListener('click', handler);
     }, []);
 
     useEffect(() => {
-        document.querySelector('body > footer')!
-            .addEventListener('click', () => setIsTrayOpen(false));
-        return () => document.querySelector('body > footer')!
-            .removeEventListener('click', () => setIsTrayOpen(false));
+        const el = document.querySelector('body > footer');
+        if (!el) return;
+        const handler = () => setIsTrayOpen(false);
+        el.addEventListener('click', handler);
+        return () => el.removeEventListener('click', handler);
     }, []);
 
     if (session === null) return <div className='p-3 flex flex-row flex-nowrap items-center justify-end hover:bg-(--sec) active:bg-(--tri)'
