@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import CBSHServerURL from '~/lib/CBSHServerURL';
 import { useState } from 'react';
@@ -24,7 +24,8 @@ export default function ReadAllAnnouncements() {
         }
     };
 
-    return <div className='p-3 flex flex-row items-center' title='Mark all announcements as read'>
-        <button className='button' onClick={markAllRead} disabled={loading}>{ loading ? 'Reading...' : 'Read all' }</button>
+    return <div className='rounded-lg' title='Mark all announcements as read'>
+        <button className='text-[0.9rem] min-w-27 px-4 py-[.45rem]' onClick={markAllRead} disabled={loading}>
+            { loading ? 'Please wait...' : 'Mark all as Read' }</button>
     </div>;
 }
