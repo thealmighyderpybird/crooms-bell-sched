@@ -58,7 +58,7 @@ async function fetchMaxPrepsSchedule(url: string): Promise<Array<{
         const html = await res.text()
 
         // Try to find JSON-LD structured data
-        const scriptRe = /<script[^>]*type=['']application\/ld\+json[''][^>]*>([\s\S]*?)<\/script>/gi
+        const scriptRe = /<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi
         let m
         const events: any[] = []
         while ((m = scriptRe.exec(html)) !== null) {
