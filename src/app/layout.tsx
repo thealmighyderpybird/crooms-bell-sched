@@ -5,6 +5,7 @@ import Header from '~/components/root/header/header';
 import Footer from '~/components/root/footer/footer';
 import Maintenance from '~/components/Maintenance';
 import CBSHServerURL from '~/lib/CBSHServerURL';
+import EmbedMode from '~/components/EmbedMode';
 import type { Metadata, Viewport } from 'next';
 import { AlertProvider } from '~/AlertContext';
 import getSession from '~/lib/session.server';
@@ -17,7 +18,6 @@ import '~/styles/themes/all.css';
 import '~/styles/colors.css';
 import '~/styles/cursor.css';
 import '~/styles/master.css';
-import EmbedMode from '~/components/EmbedMode';
 import { env } from '~/env';
 
 const maintenance = false;
@@ -95,13 +95,13 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
         return <html lang='en' className={Fonts[settings.font] + parseTheme(settings.theme)}>
         <body className={settings.accentColor ?? undefined}>
         {maintenance ? <Maintenance/> : <AlertProvider>
-            <EmbedMode />
             <Header/>
             <main className='pt-13 pb-7.75'>{children}</main>
             <Footer/>{/*<EverythingTrigger/>*/}
             <Script src={statusPageURL}/>
             <div id='modal-portal'/>
             <FocusModeTrigger settings={settings} />
+            <EmbedMode />
         </AlertProvider>}
         </body>
         </html>;
@@ -115,6 +115,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
                 <Script src={statusPageURL} />
                 <div id='modal-portal' />
                 <FocusModeTrigger settings={getDefaultSiteSettings()} />
+                <EmbedMode />
             </AlertProvider> }
             </body>
         </html>
