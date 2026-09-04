@@ -2,10 +2,10 @@ import CroomsBellScheduleApplet from '~/components/CroomsBellScheduleApplet';
 import WeatherWidget from '~/components/cards/WeatherWidget';
 import CardLayout from '~/components/index/IndexCardLayout';
 import LunchWidget from '~/components/cards/LunchWidget';
+import ScheduleTable from '~/components/ScheduleTable';
 import ThemeProvider from '~/components/ThemeProvider';
 import getSiteSettings from '~/lib/getSettings';
 import Card from '../components/index/Card';
-import AdFrame from '~/components/AdFrame';
 import RandExp from 'randexp';
 import '~/styles/index.css';
 
@@ -17,7 +17,7 @@ export default async function Home() {
             <CardLayout>
                 <Card>
                     <CroomsBellScheduleApplet id={new RandExp(/[a-f0-9]\w{10}/).gen()} settings={siteSettings} />
-                    <AdFrame style={{ marginBlockStart: '1rem' }} />
+                    <ScheduleTable settings={siteSettings} />
                 </Card>
                 { siteSettings.widgets.lunch && <LunchWidget /> }
                 { siteSettings.widgets.weather && <WeatherWidget /> }
