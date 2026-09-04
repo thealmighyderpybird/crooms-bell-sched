@@ -8,7 +8,7 @@ import type Settings from "~/types/settings";
 export default function ExportButton() {
     const getCookie = useGetCookie();
     return <button onClick={() => exportSettings(getSettings(getCookie))}
-                   style={{minWidth: "8rem"}}>Export Settings</button>;
+                   style={{minWidth: "8.25rem"}}>Export Settings</button>;
 };
 
 const exportSettings = (settings: Settings) => {
