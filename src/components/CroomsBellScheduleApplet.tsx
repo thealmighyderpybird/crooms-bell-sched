@@ -56,9 +56,7 @@ export default function CroomsBellScheduleApplet({ id, settings }: { id: string,
             const newEvent = currentDay[index]!;
             setPeriod(
                 getPeriodAndTimeRemaining(
-                    schedule,
                     settings,
-                    currentLunch,
                     newEvent,
                     setPeriodClassName,
                     setProgress,
@@ -100,8 +98,8 @@ export default function CroomsBellScheduleApplet({ id, settings }: { id: string,
 };
 
 const getPeriodAndTimeRemaining = (
-    schedule: Schedule, settings: Settings, currentLunch: 'A Lunch' | 'B Lunch', currentEvent: number[],
-    setCurrentPeriodClass: (className: string) => void, setProgress: (progress: number) => void,
+    settings: Settings, currentEvent: number[], setCurrentPeriodClass: (className: string) => void,
+    setProgress: (progress: number) => void,
 ) => {
     const now = new Date();
 
