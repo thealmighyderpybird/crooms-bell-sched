@@ -5,12 +5,13 @@ import Header from '~/components/root/header/header';
 import Footer from '~/components/root/footer/footer';
 import Maintenance from '~/components/Maintenance';
 import CBSHServerURL from '~/lib/CBSHServerURL';
+import EmbedMode from '~/components/EmbedMode';
 import type { Metadata, Viewport } from 'next';
 import { AlertProvider } from '~/AlertContext';
 import getSession from '~/lib/session.server';
+import { headers as h } from 'next/headers';
 import Fonts from '~/styles/fonts/fonts';
 import { userAgent } from 'next/server';
-import { headers } from 'next/headers';
 import type { ReactNode } from 'react';
 import Script from 'next/script';
 import '~/styles/themes/all.css';
@@ -66,11 +67,16 @@ export const metadata: Metadata = {
 export default async function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
     try {
         const settings = await getSiteSettings();
-        const { uid, sid } = await getSession();
+        const { sid } = await getSession();
 
         try {
-            if (sid && env.NODE_ENV === 'production') {
-                const {device, browser, os} = userAgent({headers: await headers()});
+            if (env.NODE_ENV === 'production') {
+                const headers = (sid !== '') ? {
+                    'Authorization': JSON.stringify(sid),
+                    'Content-Type': 'application/json'
+                } : { 'Content-Type': 'application/json' } as HeadersInit;
+
+                const {device, browser, os} = userAgent({headers: await h()});
                 const deviceType = device.model ?? 'Unknown';
 
                 await fetch(CBSHServerURL + '/usage/website', {
@@ -80,17 +86,14 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
                         device: deviceType,
                         time: new Date(),
                     }),
-                    headers: {
-                        'Authorization': JSON.stringify(sid ?? ''),
-                        'Content-Type': 'application/json'
-                    },
-                    method: 'POST'
+                    method: 'POST',
+                    headers,
                 });
             }
         } catch (e) {console.error(e)}
 
         return <html lang='en' className={Fonts[settings.font] + parseTheme(settings.theme)}>
-        <body className={settings.accentColor ? parseAccentColor(settings.accentColor, uid) : undefined}>
+        <body className={settings.accentColor ?? undefined}>
         {maintenance ? <Maintenance/> : <AlertProvider>
             <Header/>
             <main className='pt-13 pb-7.75'>{children}</main>
@@ -98,6 +101,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
             <Script src={statusPageURL}/>
             <div id='modal-portal'/>
             <FocusModeTrigger settings={settings} />
+            <EmbedMode />
         </AlertProvider>}
         </body>
         </html>;
@@ -111,6 +115,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
                 <Script src={statusPageURL} />
                 <div id='modal-portal' />
                 <FocusModeTrigger settings={getDefaultSiteSettings()} />
+                <EmbedMode />
             </AlertProvider> }
             </body>
         </html>
@@ -118,4 +123,3 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
 };
 
 const parseTheme = (theme: string) => theme ? ` ${theme}` : '';
-const parseAccentColor = (accent: string, uid: string) => uid === 'kone' ? 'pride' : accent;

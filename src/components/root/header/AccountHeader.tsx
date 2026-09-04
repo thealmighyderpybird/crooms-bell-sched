@@ -14,17 +14,19 @@ export default function AccountHeader({ session }: { session: CBSHUser | null })
     const router = useRouter();
 
     useEffect(() => {
-        document.querySelector('body > main')!
-            .addEventListener('click', () => setIsTrayOpen(false));
-        return () => document.querySelector('body > main')!
-            .removeEventListener('click', () => setIsTrayOpen(false));
+        const el = document.querySelector('body > main');
+        if (!el) return;
+        const handler = () => setIsTrayOpen(false);
+        el.addEventListener('click', handler);
+        return () => el.removeEventListener('click', handler);
     }, []);
 
     useEffect(() => {
-        document.querySelector('body > footer')!
-            .addEventListener('click', () => setIsTrayOpen(false));
-        return () => document.querySelector('body > footer')!
-            .removeEventListener('click', () => setIsTrayOpen(false));
+        const el = document.querySelector('body > footer');
+        if (!el) return;
+        const handler = () => setIsTrayOpen(false);
+        el.addEventListener('click', handler);
+        return () => el.removeEventListener('click', handler);
     }, []);
 
     if (session === null) return <div className='p-3 flex flex-row flex-nowrap items-center justify-end hover:bg-(--sec) active:bg-(--tri)'
@@ -50,7 +52,7 @@ export default function AccountHeader({ session }: { session: CBSHUser | null })
         { isTrayOpen && <div className='bg-(--pri) rounded-xl fixed top-16 right-2.5 box-glow-[black]'>
             <div className='relative'>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={`${CBSHServerURL}/profile-banner/${session.id}`}
+                <img src={`${CBSHServerURL}/users/profile-banner/${session.id}`}
                      alt={(session.displayName ? session.displayName : `@${session.username}`) + '\'s Profile Banner'}
                      title={(session.displayName ? session.displayName : `@${session.username}`) + '\'s Profile Banner'}
                      className='rounded-t-xl aspect-9/5 h-50 pointer-events-none block' draggable='false' />

@@ -7,12 +7,6 @@
       "popup": false
     },
     {
-      "id": "mikhail-advice",
-      "name": "Mikhail's Advice",
-      "link": "https://mikhail.croomsbellschedule.com/advice",
-      "popup": false
-    },
-    {
       "id": "desmos",
       "name": "Desmos Calculator",
       "link": "https://www.desmos.com/calculator",
@@ -45,7 +39,7 @@
     {
       "id": "suggestion",
       "name": "Suggest a Tool",
-      "link": "/tools/suggest/",
+      "link": "/tools/suggest",
       "popup": false
     }
   ]
