@@ -20,12 +20,13 @@
 .button {
     background: var(--accent-color);
     margin-block-end: 0.125rem;
-    padding: 0.125rem 0.5rem;
+    padding: 0.125rem 0.25rem;
     border-radius: 0.25rem;
     font-family: inherit;
-    width: 4.0625rem;
+    font-size: .8rem;
     display: block;
     border: none;
+    width: 4rem;
 }
 
 .button:last-child {
