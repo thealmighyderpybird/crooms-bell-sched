@@ -18,6 +18,7 @@
 }
 
 .button {
+    transition: 0.1s all !important;
     background: var(--accent-color);
     margin-block-end: 0.125rem;
     padding: 0.125rem 0.25rem;

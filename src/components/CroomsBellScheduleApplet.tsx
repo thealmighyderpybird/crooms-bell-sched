@@ -1,21 +1,22 @@
 'use client';
 
 import { getDateTime, getSchedule, hms2sec, sec2hms, getEventName, type Schedule } from '~/lib/schedule';
+import { useState, useEffect, type ChangeEvent } from 'react';
+import { changeDefaultLunch } from '~/lib/settingsManager';
 import ProgressMeter from '~/components/ProgressMeter';
 import layout from './schedule/schedule.module.css';
 import type Settings from '~/types/settings';
 import { useRouter } from 'next/navigation';
-import { useState, useEffect } from 'react';
 
-enum L { A = 'A Lunch', B = 'B Lunch' }
-const currentLunchMap = { [L.A]: 0, [L.B]: 1 };
+const aLunchChange = new CustomEvent('lunchchange', { detail: { lunch: 0 } });
+const bLunchChange = new CustomEvent('lunchchange', { detail: { lunch: 1 } });
 
 export default function CroomsBellScheduleApplet({ id, settings, controlDocumentTitle = false }: {
     id: string, settings: Settings, controlDocumentTitle?: boolean,
 }) {
     const router = useRouter();
 
-    const [currentLunch, setCurrentLunch] = useState(settings.defaultLunch);
+    const [currentLunch, setCurrentLunch] = useState(settings.defaultLunch === 'A Lunch' ? 0 : 1);
     const [currentTime, setCurrentTime] = useState('Please wait...');
     const [period, setPeriod] = useState('Please wait...');
 
@@ -42,7 +43,7 @@ export default function CroomsBellScheduleApplet({ id, settings, controlDocument
         if (!schedule?.schedule) return;
 
         function mainLoop() {
-            const currentDay = schedule.schedule[currentLunchMap[currentLunch]]!;
+            const currentDay = schedule.schedule[currentLunch]!;
             const now = new Date();
             const nowSec = hms2sec(now.getHours(), now.getMinutes(), now.getSeconds());
 
@@ -86,7 +87,14 @@ export default function CroomsBellScheduleApplet({ id, settings, controlDocument
         }
     }, []);
 
-    const isActive = (selectedLunch: string) => {
+    useEffect(() => {
+        window.addEventListener('lunchchange', handleLunchChange as EventListener);
+        return () => window.removeEventListener('lunchchange', handleLunchChange as EventListener);
+    }, []);
+
+    const handleLunchChange = (e: CustomEvent) => setCurrentLunch(e.detail.lunch);
+
+    const isActive = (selectedLunch: number) => {
         return selectedLunch === currentLunch ? ` ${layout.active}` : '';
     };
 
@@ -98,11 +106,13 @@ export default function CroomsBellScheduleApplet({ id, settings, controlDocument
                 <p className={`${layout.content} ${periodClassName}`}>{period}</p>
             </div>
             <div>
-                <button className={layout.button + isActive('A Lunch')} title='Switch to A Lunch' onClick={() => {
-                            setCurrentLunch('A Lunch');
+                <button className={layout.button + isActive(0)} title='Switch to A Lunch' onClick={() => {
+                            const e = { currentTarget: { value: 'A Lunch' } } as ChangeEvent<HTMLSelectElement>;
+                            setCurrentLunch(0); changeDefaultLunch(e); window.dispatchEvent(aLunchChange);
                         }}>A Lunch</button>
-                <button className={layout.button + isActive('B Lunch')} title='Switch to B Lunch' onClick={() => {
-                            setCurrentLunch('B Lunch');
+                <button className={layout.button + isActive(1)} title='Switch to B Lunch' onClick={() => {
+                            const e = { currentTarget: { value: 'B Lunch' } } as ChangeEvent<HTMLSelectElement>;
+                            setCurrentLunch(1); changeDefaultLunch(e); window.dispatchEvent(bLunchChange);
                         }}>B Lunch</button>
                 <button className={layout.button} title='Change your settings'
                         onClick={() => router.push('/settings')}>Settings</button>
