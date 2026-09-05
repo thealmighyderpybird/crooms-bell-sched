@@ -12,7 +12,7 @@ export default function ImportButton() {
     const [isActive, setIsActive] = useState(false);
 
     return <>
-        <button style={{ minWidth: "8rem" }} onClick={() => setIsActive(true)}>Import Settings</button>
+        <button style={{ minWidth: "8.25rem" }} onClick={() => setIsActive(true)}>Import Settings</button>
         { isActive && createPortal(<ImportModal setIsActive={setIsActive} />, document.getElementById("modal-portal")!) }
     </>;
 };

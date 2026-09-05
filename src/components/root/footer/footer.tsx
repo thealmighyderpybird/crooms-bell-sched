@@ -88,7 +88,7 @@ export default async function Footer() {
             </span>
             <div className='hidden group-hover:block bg-(--pri) px-2.5 py-2 max-w-93.75 w-full absolute bottom-9.25 right-0'
                  style={{ boxShadow: 'black 0 -10px 10px' }}>
-                <CroomsBellScheduleApplet id='app' settings={await getSiteSettings()} />
+                <CroomsBellScheduleApplet id='app' settings={await getSiteSettings()} controlDocumentTitle={true} />
             </div>
         </div>
     </footer>;

@@ -493,7 +493,7 @@ svg.spinner > * {
         border-bottom: 2px solid var(--tri);
         padding: 5px;
         accent-color: var(--accent-color);
-        text-align: center;
+        font-size: .9rem;
     }
 
     input:not([type="file"]):not([type="button"]):hover, select:hover {
@@ -527,12 +527,13 @@ svg.spinner > * {
 
     button, a.button, input[type="button"], input[type="submit"], input[type="reset"] {
         background: var(--accent-color);
-        border-radius: 0.5rem;
+        border-radius: .5rem;
         text-decoration: none;
         font-family: inherit;
-        font-size: 0.8rem;
-        padding: 8px 10px;
+        padding: .45rem 1rem;
         color: var(--rev);
+        min-width: 4.5rem;
+        font-size: .9rem;
         border: none;
     }
 
