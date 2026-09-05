@@ -10,7 +10,9 @@ import { useState, useEffect } from 'react';
 enum L { A = 'A Lunch', B = 'B Lunch' }
 const currentLunchMap = { [L.A]: 0, [L.B]: 1 };
 
-export default function CroomsBellScheduleApplet({ id, settings }: { id: string, settings: Settings }) {
+export default function CroomsBellScheduleApplet({ id, settings, controlDocumentTitle = false }: {
+    id: string, settings: Settings, controlDocumentTitle?: boolean,
+}) {
     const router = useRouter();
 
     const [currentLunch, setCurrentLunch] = useState(settings.defaultLunch);
@@ -25,6 +27,7 @@ export default function CroomsBellScheduleApplet({ id, settings }: { id: string,
 
     const [periodClassName, setPeriodClassName] = useState('');
     const [progress, setProgress] = useState(0);
+    const [blurred, setBlurred] = useState(false);
     
     useEffect(() => {
         setCurrentTime(getDateTime());
@@ -62,6 +65,11 @@ export default function CroomsBellScheduleApplet({ id, settings }: { id: string,
                     setProgress,
                 )
             );
+
+            if (controlDocumentTitle) {
+                if (blurred) document.title = `${getTimeRemaining(newEvent).countdown} | Crooms Bell Schedule`;
+                else document.title = 'Crooms Bell Schedule';
+            }
         }
 
         // Run immediately so there's no 'loading' delay
@@ -69,7 +77,14 @@ export default function CroomsBellScheduleApplet({ id, settings }: { id: string,
 
         const interval = setInterval(mainLoop, 1000);
         return () => clearInterval(interval);
-    }, [schedule, currentLunch, settings]);
+    }, [schedule, currentLunch, settings, blurred]);
+
+    useEffect(() => {
+        if (controlDocumentTitle) {
+            window.addEventListener('blur', () => setBlurred(true));
+            window.addEventListener('focus', () => setBlurred(false));
+        }
+    }, []);
 
     const isActive = (selectedLunch: string) => {
         return selectedLunch === currentLunch ? ` ${layout.active}` : '';
@@ -101,6 +116,19 @@ const getPeriodAndTimeRemaining = (
     settings: Settings, currentEvent: number[], setCurrentPeriodClass: (className: string) => void,
     setProgress: (progress: number) => void,
 ) => {
+    const EventName = currentEvent !== undefined ? getEventName(currentEvent[2], settings) : 'Unknown Event';
+    const timeRemaining = getTimeRemaining(currentEvent);
+
+    if (timeRemaining.seconds <= 600) {
+        setCurrentPeriodClass(timeRemaining.seconds <= 60 ? layout.lessThan1! : layout.lessThan10!);
+    } else setCurrentPeriodClass('');
+
+    setProgress(timeRemaining.progress);
+
+    return EventName + ', Time Left: ' + timeRemaining.countdown;
+};
+
+const getTimeRemaining = (currentEvent: number[]) => {
     const now = new Date();
 
     const startHour = currentEvent !== undefined ? currentEvent[0]! : 0;
@@ -108,20 +136,13 @@ const getPeriodAndTimeRemaining = (
     const endHour = currentEvent !== undefined ? currentEvent[3]! : 23;
     const endMinute = currentEvent !== undefined ? currentEvent[4]! : 59;
 
-    const EventName = currentEvent !== undefined ? getEventName(currentEvent[2], settings) : 'Unknown Event';
-
     const endEventSec = hms2sec(endHour, endMinute, 0);
     const startEventSec = hms2sec(startHour, startMinute, 0);
     const nowSec = hms2sec(now.getHours(), now.getMinutes(), now.getSeconds());
     const countdown = sec2hms(endEventSec - nowSec);
 
-    if (endEventSec - nowSec <= 600) {
-        setCurrentPeriodClass(endEventSec - nowSec <= 60 ? layout.lessThan1! : layout.lessThan10!);
-    } else setCurrentPeriodClass('');
-
     const percentRemaining = ((endEventSec - nowSec) / (endEventSec - startEventSec)) * 100;
     const percentComplete = 100 - percentRemaining;
-    setProgress(percentComplete);
 
-    return EventName + ', Time Left: ' + countdown.toString();
+    return { countdown: countdown.toString(), progress: percentComplete, seconds: endEventSec - nowSec };
 };

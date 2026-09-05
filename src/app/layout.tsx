@@ -30,11 +30,10 @@ export const viewport: Viewport = {
 };
 
 const title = 'Crooms Bell Schedule';
-const description = 'The Crooms Bell Schedule features an interactive bell schedule applet that keeps track of' +
-    ' your periods and the time remaining in the period. Stay up-to-date with Quick Bits and connect with others with' +
-    ' Prowler.';
+const description = `Be prepared for your classes with the ${title}. Keep track of your daily schedule and how `+
+    'long you have in each class as the day progresses. You\'ll never need another website for school info ever again!';
 const keywords = 'Crooms, CAIT, CAoIT, Crooms Bell Schedule, Crooms Academy Bell Schedule, Crooms Academy,' +
-    ' Crooms Schedule, Schedule, Bell Schedule, 2024-2025, 2025-2026';
+    ' Crooms Schedule, Schedule, Bell Schedule, 2023-2024, 2024-2025, 2025-2026, 2026-2027';
 const statusPageURL = 'https://croomssched.statuspage.io/embed/script.js';
 
 export const metadata: Metadata = {
@@ -45,6 +44,7 @@ export const metadata: Metadata = {
     applicationName: title,
     description: description,
     keywords: keywords,
+    publisher: title,
     robots: 'index, follow, nositelinkssearchbox',
     icons: [
         {rel: 'icon', url: '/favicon.ico'}
