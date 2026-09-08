@@ -39,7 +39,7 @@
     {
       "id": "suggestion",
       "name": "Suggest a Tool",
-      "link": "/tools/suggest/",
+      "link": "/tools/suggest",
       "popup": false
     }
   ]

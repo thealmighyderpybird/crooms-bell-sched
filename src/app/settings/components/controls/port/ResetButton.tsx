@@ -9,7 +9,7 @@ export default function ResetButton() {
     const [isActive, setIsActive] = useState(false);
 
     return <>
-        <button style={{ minWidth: "8rem" }} onClick={() => setIsActive(true)}>Reset Settings</button>
+        <button style={{ minWidth: "8.25rem" }} onClick={() => setIsActive(true)}>Reset Settings</button>
         { isActive && createPortal(<ResetModal setIsActive={setIsActive} />, document.getElementById("modal-portal")!) }
     </>;
 };

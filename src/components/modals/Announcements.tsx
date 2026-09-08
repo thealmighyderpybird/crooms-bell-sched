@@ -1,5 +1,6 @@
 'use client';
 
+import ReadAllAnnouncements from '~/components/ReadAllAnnouncements';
 import AnnouncementItem from '../announcement/Announcement';
 import overlayStyles from '../dialog/dialog.module.css';
 import type Announcement from '~/types/Announcement';
@@ -8,10 +9,14 @@ export default function Announcements({ setIsActiveAction, announcements, error,
     setIsActiveAction: (arg0: boolean) => void, announcements: Announcement[], error: boolean, viewed: string[],
     setViewedAction: (value: string[]) => void,
 }) {
+    const unread = announcements.filter(a => !viewed.includes(a.id));
+
     return <>
         <div className={overlayStyles.modal} onClick={() => setIsActiveAction(false)} />
         <div className={`${overlayStyles.dialog} ${overlayStyles.controlledWidth} h-fit max-h-(--modal-max)`}>
-            <header><h2 className='leading-none'>Announcements</h2></header>
+            <header className='flex items-center justify-between w-full'><h2 className='leading-none'>Announcements</h2>
+                { unread.length > 0 && <div><ReadAllAnnouncements /></div> }
+            </header>
             <main className='w-full overflow-y-auto'
                   style={{ maxHeight: 'calc(100% - 56.56px - 2rem)' }}>{ !error ? announcements.map((announcement: Announcement) =>
                 <AnnouncementItem announcement={announcement} key={announcement.id} setViewedAction={setViewedAction}

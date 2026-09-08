@@ -2,7 +2,7 @@ import type { WidgetSettings, WidgetLayout } from '~/types/settings';
 import defaultWidgetSettings from '~/lib/defaultWidgetSettings';
 import type Settings from '~/types/settings';
 import fonts from '~/styles/fonts/fonts';
-import type { FormEvent } from 'react';
+import type { ChangeEvent } from 'react';
 
 const saveSettings = async (settings: Partial<Settings>) => {
     await fetch('/api/settings', {
@@ -12,7 +12,7 @@ const saveSettings = async (settings: Partial<Settings>) => {
     });
 };
 
-export const changeColorMode = (e: FormEvent<HTMLSelectElement>) => {
+export const changeColorMode = (e: ChangeEvent<HTMLSelectElement>) => {
     const colorScheme = e.currentTarget.value;
     document.querySelector('html')?.classList.remove('dark');
     document.querySelector('html')?.classList.remove('light');
@@ -27,7 +27,7 @@ export const setTheme = (id: string) => {
     void saveSettings({ accentColor: id });
 };
 
-export const changeFont = (e: FormEvent<HTMLSelectElement>) => {
+export const changeFont = (e: ChangeEvent<HTMLSelectElement>) => {
     const font = e.currentTarget.value;
 
     for (const fontsKey in fonts) {
@@ -42,7 +42,7 @@ export const changeFont = (e: FormEvent<HTMLSelectElement>) => {
     void saveSettings({ font: font });
 };
 
-export const changeDefaultLunch = (e: FormEvent<HTMLSelectElement>) => {
+export const changeDefaultLunch = (e: ChangeEvent<HTMLSelectElement>) => {
     const defaultLunch = e.currentTarget.value;
     if (defaultLunch === 'A Lunch' || defaultLunch === 'B Lunch')
         void saveSettings({ defaultLunch: defaultLunch });

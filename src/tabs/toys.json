@@ -25,6 +25,12 @@
       "popup": true
     },
     {
+    "id": "Crooms Academy Games",
+      "name": "Crooms Games",
+      "link": "https://croomsgamedesign.weebly.com/",
+      "popup": true
+    },
+    {
       "id": "google-doodles",
       "name": "Google Doodles",
       "link": "https://doodles.google/",

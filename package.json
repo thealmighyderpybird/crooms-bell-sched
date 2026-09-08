@@ -1,6 +1,6 @@
 {
   "name": "crooms-bell-sched",
-  "version": "5.0.0",
+  "version": "5.1.0",
   "type": "module",
   "private": true,
   "scripts": {
@@ -17,29 +17,29 @@
     "@t3-oss/env-nextjs": "^0.13.11",
     "beemovie": "^1.0.4",
     "cookies-next": "^6.1.1",
-    "next": "16.3.0",
+    "next": "16.3.4",
     "randexp": "^0.5.3",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-switch": "^7.1.0",
-    "sanitize-html": "^2.17.6",
+    "sanitize-html": "^2.17.7",
     "websocket": "^1.0.35",
-    "zod": "^4.4.3"
+    "zod": "^4.5.4"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.3.6",
+    "@eslint/eslintrc": "^3.3.7",
     "@tailwindcss/postcss": "^4.3.3",
     "@types/eslint": "^9.6.1",
-    "@types/node": "^26.1.2",
+    "@types/node": "^26.4.1",
     "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.4",
+    "@types/react-dom": "^19.2.7",
     "@types/sanitize-html": "^2.16.0",
-    "eslint": "^10.8.0",
-    "eslint-config-next": "^16.3.0",
-    "postcss": "^8.5.25",
+    "eslint": "^10.10.0",
+    "eslint-config-next": "^16.3.4",
+    "postcss": "^8.5.28",
     "tailwindcss": "^4.1.18",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.66.0"
+    "typescript-eslint": "^8.69.0"
   },
   "ct3aMetadata": {
     "initVersion": "7.38.1"
