@@ -47,7 +47,7 @@ export default function CroomsConAd() {
         day: 'numeric',
     });
 
-    return <Link className='min-w-full min-h-full bg-black p-5 rounded-xl block! **:cursor-[inherit]! text-inherit! no-underline'
+    return <Link className='min-w-full min-h-full bg-black p-5 rounded-xl block! **:cursor-[inherit]! text-white! no-underline'
                  href='https://www.croomscon.org' target='CBSH_AD_CROOMSCON'>
         <div className={`max-w-md mx-auto select-none ${Fonts['Torus']}`}>
             <span role='heading' className='block text-center'>
@@ -68,7 +68,7 @@ export default function CroomsConAd() {
                 {priceFormatter.format(price.price)}</span> until <span className='text-xl font-bold'>
                 {dateFormatter.format(price.ends)}</span>!</div> }
             <div className='text-center mt-2.5'>
-                <button className='bg-[rgb(255,153,0)] text-[1rem]'>Let's game!</button></div>
+                <button className='bg-[rgb(255,153,0)] text-black! text-[1rem]'>Let's game!</button></div>
         </div>
     </Link>;
 };
