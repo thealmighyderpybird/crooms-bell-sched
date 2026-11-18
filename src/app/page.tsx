@@ -4,6 +4,7 @@ import CardLayout from '~/components/index/IndexCardLayout';
 import LunchWidget from '~/components/cards/LunchWidget';
 import ScheduleTable from '~/components/ScheduleTable';
 import ThemeProvider from '~/components/ThemeProvider';
+import CroomsConAd from '~/components/CroomsConAd';
 import getSiteSettings from '~/lib/getSettings';
 import { getSchedule } from '~/lib/schedule';
 import Card from '../components/index/Card';
@@ -20,6 +21,9 @@ export default async function Home() {
                     <CroomsBellScheduleApplet id={new RandExp(/[a-f0-9]\w{10}/).gen()} settings={siteSettings} />
                     <br className='select-none invisible' />
                     <ScheduleTable settings={siteSettings} schedule={await getSchedule()} />
+                    <div className='mt-2.5 w-full'>
+                        <CroomsConAd />
+                    </div>
                 </Card>
                 { siteSettings.widgets.lunch && <LunchWidget /> }
                 { siteSettings.widgets.weather && <WeatherWidget /> }
